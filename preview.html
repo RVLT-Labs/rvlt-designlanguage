@@ -30,6 +30,7 @@
   --scrim:rgba(14,12,10,.66); --select:rgba(224,54,61,.20); --link:#5B8DEF;
   --sh-card:0 3px 0 #0C0A08; --sh-hover:0 7px 0 #0C0A08;
   --lit:inset 0 1px 0 rgba(255,253,248,.14); --sh-stk:2px 4px 0 rgba(0,0,0,.5);
+  --cream:#F5EFE2; --cream-ink:#1D1A15;
   --r:14px; --r-lg:20px; --radius:0.875rem;
   --fd:"Archivo",sans-serif;            /* swap to "bc-alphapipe" when kit lands */
   --fb:"Hanken Grotesk",system-ui,sans-serif;
@@ -121,19 +122,19 @@ section{padding:54px 0;border-bottom:1px solid var(--line)}
 /* buttons (§15.2) */
 .btn{font-family:var(--fb);font-weight:600;font-size:14px;border-radius:99px;padding:11px 20px;border:none;
   cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:transform .12s,box-shadow .12s,background .12s,color .12s;text-decoration:none}
-.btn-primary{background:var(--red);color:#fff;box-shadow:0 3px 0 var(--red-700)}
+.btn-primary{background:var(--red);color:white;box-shadow:0 3px 0 var(--red-700)}
 .btn-primary:hover{transform:translateY(-1px)}
 .btn-primary:active{transform:translateY(2px);box-shadow:0 1px 0 var(--red-700)}
-.btn-halo{background:var(--red);color:#fff;box-shadow:0 3px 0 var(--red-700),0 0 28px rgba(224,54,61,.5)}
+.btn-halo{background:var(--red);color:white;box-shadow:0 3px 0 var(--red-700),0 0 28px rgba(224,54,61,.5)}
 .btn-line{background:transparent;color:var(--ink);border:2px solid var(--line-2);padding:9px 18px}
 .light .btn-line{border-color:var(--ink)}
 .btn-line:hover{background:var(--ink);color:var(--paper)}
 .btn-ghost{background:transparent;color:var(--ink)}
 .btn-ghost:hover{color:var(--red)}
-.btn-cream{background:#F5EFE2;color:#1D1A15;box-shadow:0 3px 0 rgba(0,0,0,.25)}
+.btn-cream{background:var(--cream);color:var(--cream-ink);box-shadow:0 3px 0 rgba(0,0,0,.25)}
 .btn:focus-visible{outline:2px solid var(--red);outline-offset:3px}
 .btn[disabled]{opacity:.45;cursor:not-allowed;box-shadow:none;transform:none}
-.btn .spin{width:14px;height:14px;border:2px solid rgba(255,255,255,.45);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite}
+.btn .spin{width:14px;height:14px;border:2px solid rgba(255,255,255,.45);border-top-color:white;border-radius:50%;animation:spin .7s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 
 /* card */
@@ -156,7 +157,7 @@ section{padding:54px 0;border-bottom:1px solid var(--line)}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
 
 /* patch (§10) + icon ramp (§9.2) */
-.patch{width:42px;height:42px;border-radius:11px;border:2px solid #FFFDF8;box-shadow:var(--sh-stk);
+.patch{width:42px;height:42px;border-radius:11px;border:2px solid var(--cream);box-shadow:var(--sh-stk);
   display:grid;place-items:center;transform:rotate(-4deg)}
 .patch svg{width:24px;height:24px}
 .iconrow{display:flex;align-items:flex-end;gap:24px}
@@ -202,18 +203,18 @@ section{padding:54px 0;border-bottom:1px solid var(--line)}
    light theme = deep fills → white ink, except amber/lime stay --dark (§3.7) */
 .av{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;font-family:var(--fb);
   font-weight:700;font-size:14px;color:var(--dark);border:2px solid var(--card)}
-.light .av{color:#fff}
+.light .av{color:white}
 .light .av.dark-ink{color:var(--dark)}
 .crew{display:flex;flex-direction:column;gap:9px;max-width:600px}
 .crew .prow{display:flex;align-items:center;gap:12px}
 .crew .pwho{display:flex;align-items:center;gap:8px;width:152px;flex:none;min-width:0}
 .crew .pwho .av{width:30px;height:30px;font-size:12px;flex:none}
 .crew .pwho .nm{font-size:13.5px;font-weight:600;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.crew .clashtag{font-size:10px;font-weight:700;color:var(--t-out);background:var(--out-soft);border-radius:99px;padding:2px 6px;flex:none}
+.crew .clashtag{font-size:11px;font-weight:700;color:var(--t-out);background:var(--out-soft);border-radius:99px;padding:2px 6px;flex:none}
 .crew .ptrack{flex:1;height:26px;border-radius:6px;background:var(--paper-2);border:1px solid var(--line-2);position:relative;overflow:hidden;min-width:0}
 .crew .shift{position:absolute;top:0;bottom:0;border-radius:6px;display:flex;align-items:center;
   padding:0 8px;font-size:11px;font-weight:600;color:var(--dark);white-space:nowrap}
-.light .crew .shift{color:#fff}
+.light .crew .shift{color:white}
 .light .crew .shift.di{color:var(--dark)}
 .crew .shift.clash{outline:2px solid var(--t-out);outline-offset:-2px;z-index:1}
 
@@ -273,13 +274,13 @@ footer{padding:40px 0 80px;color:var(--faint);font-size:13px}
 /* pricing cream tier (§4 pop #2) */
 .plan{background:var(--card);border:2px solid var(--card-outline);border-radius:var(--r-lg);
   padding:24px;box-shadow:var(--sh-card);position:relative}
-.plan.cream{background:#FFFDF8;color:#1D1A15;border-color:#FFFDF8;transform:translateY(-6px);
+.plan.cream{background:var(--cream);color:var(--cream-ink);border-color:var(--cream);transform:translateY(-6px);
   box-shadow:0 9px 0 #0C0A08,inset 0 0 0 1px rgba(255,253,248,.6)}
 .light .plan.cream{box-shadow:0 9px 0 var(--line-2)}
 .plan.cream .tab{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--red);
-  color:#fff;font-family:var(--fd);font-weight:700;font-size:12px;padding:4px 14px;border-radius:99px;white-space:nowrap}
+  color:white;font-family:var(--fd);font-weight:700;font-size:12px;padding:4px 14px;border-radius:99px;white-space:nowrap}
 .plan .pname{font-family:var(--fd);font-weight:800;font-size:18px}
-.plan.cream .note{font-family:var(--fh);font-weight:400;font-size:14px;color:#1D1A15;transform:rotate(-3deg);margin-top:12px}
+.plan.cream .note{font-family:var(--fh);font-weight:400;font-size:14px;color:var(--cream-ink);transform:rotate(-3deg);margin-top:12px}
 
 /* selected row (--select, §3.7) */
 .selrow{display:flex;align-items:center;justify-content:space-between;padding:10px 13px;border-radius:10px;
@@ -649,7 +650,7 @@ footer{padding:40px 0 80px;color:var(--faint);font-size:13px}
       <code>--scrim</code> per §10.1 (text over photo needs a scrim; no soft glow).</p>
     <div class="photo">
       <div class="img">
-        <svg width="64" height="64" viewBox="0 0 48 48" fill="none" stroke="#EBA53A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="13" y="11" width="22" height="20" rx="3"/><circle cx="24" cy="21" r="6"/><path d="M13 18l-4-2M13 24l-4 2M24 31v6M17 39h14"/></svg>
+        <svg width="64" height="64" viewBox="0 0 48 48" fill="none" stroke="var(--amber)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="13" y="11" width="22" height="20" rx="3"/><circle cx="24" cy="21" r="6"/><path d="M13 18l-4-2M13 24l-4 2M24 31v6M17 39h14"/></svg>
         <span class="cap">caught before the truck leaves</span>
       </div>
       <div class="ft">Flat stand-in for a warm-graded photo · 2px frame · scrim caption · a "pop" on dark (§4)</div>
@@ -664,7 +665,7 @@ footer{padding:40px 0 80px;color:var(--faint);font-size:13px}
       (idle · scanning · celebrating · worried) awaits an illustrator pass (§18.1). Don't fabricate poses.</p>
     <div class="row" style="gap:18px;align-items:center">
       <div class="mascot">
-        <svg width="70" height="70" viewBox="0 0 48 48"><g fill="var(--ink)"><rect x="11" y="27" width="26" height="7" rx="2"/><rect x="16" y="34" width="16" height="5" rx="1.5"/><rect x="16" y="9" width="16" height="17" rx="6"/></g><circle cx="20.5" cy="17" r="2.8" fill="var(--blue)"/><circle cx="27.5" cy="17" r="2.8" fill="var(--blue)"/><circle cx="21.4" cy="16.1" r="1" fill="#fff"/><circle cx="28.4" cy="16.1" r="1" fill="#fff"/><path d="M14 26l-4-5M34 26l4-5" stroke="var(--ink)" stroke-width="2.4" stroke-linecap="round" fill="none" opacity=".5"/></svg>
+        <svg width="70" height="70" viewBox="0 0 48 48"><g fill="var(--ink)"><rect x="11" y="27" width="26" height="7" rx="2"/><rect x="16" y="34" width="16" height="5" rx="1.5"/><rect x="16" y="9" width="16" height="17" rx="6"/></g><circle cx="20.5" cy="17" r="2.8" fill="var(--blue)"/><circle cx="27.5" cy="17" r="2.8" fill="var(--blue)"/><circle cx="21.4" cy="16.1" r="1" fill="var(--cream)"/><circle cx="28.4" cy="16.1" r="1" fill="var(--cream)"/><path d="M14 26l-4-5M34 26l4-5" stroke="var(--ink)" stroke-width="2.4" stroke-linecap="round" fill="none" opacity=".5"/></svg>
       </div>
       <p style="font-family:var(--fh);font-weight:700;color:var(--red);font-size:20px;transform:rotate(-3deg)">"No clashes. Suspiciously calm."</p>
     </div>
