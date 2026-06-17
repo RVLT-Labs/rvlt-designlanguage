@@ -745,6 +745,11 @@ transitions + the sanctioned moment animations; no scroll parallax in-app.
 > Uses the **modern shadcn convention** (Tailwind v4, direct hex / `var()` aliases,
 > `@theme inline`) — **not** the legacy HSL-channel format (`--background: 240 6% 10%`).
 > Drop in as-is; do not convert to HSL channels.
+>
+> **Installable form:** this block is also published as **`@rvlt/flow-theme`**
+> (`packages/flow-theme/`) — `dist/globals.css` is *generated* from `tokens.json` (the
+> same values as Appendix A), so they can't drift. Prefer `@import "@rvlt/flow-theme/globals.css"`
+> over hand-copying; the package also ships a shadcn registry of RVLT-styled components.
 
 ```css
 :root {                          /* DARK = default */
@@ -1391,6 +1396,10 @@ table with availability columns"); avoid vague style words; name an app to filte
 - `preview.html` — **token &amp; component catalog** (the design.md preview artifact): every
   token + component rendered, dark-first with a light toggle, swatch hexes read live from
   the CSS vars. The visual companion to this spec.
+- `packages/flow-theme/` — **`@rvlt/flow-theme`**, the installable theme: `tokens.json`
+  (source) → generated `dist/globals.css` (Tailwind v4 / shadcn) + a shadcn component
+  registry. This is the canonical *code* form of §3/§5/§7 + §15.1; consume it instead of
+  hand-copying. Keep `tokens.json` == Appendix A.
 - `assets/rvlt-labs-logo.svg`, `assets/rvlt-mark.svg` — logo (full wordmark + RVLT-only mark).
 
 ### 18.1 Known gaps &amp; out of scope — *agent: do NOT invent; derive + flag*
@@ -1430,10 +1439,14 @@ for the starred items.
 
 ### 18.3 Changelog
 
-This file is **versioned** (see front-matter `version`). Keep it the single source
-of truth — when a token changes, change it in §3/§5/§7 **and** Appendix A **and**
-§15.1 in the same commit, and add a line here.
+This file is **versioned** (see front-matter `version`). When a token changes, change it
+in §3/§5/§7 **and** Appendix A **and** §15.1 **and** `packages/flow-theme/tokens.json` in
+the same commit, then run the theme build, and add a line here. *(Goal: make `tokens.json`
+the single generator and derive Appendix A + §15.1 from it, retiring the manual sync.)*
 
+- **2026-06-17** — Extracted the tokens into **`@rvlt/flow-theme`** (`packages/flow-theme/`):
+  `tokens.json` (== Appendix A) → generated `globals.css` + a shadcn component registry.
+  Token *values* unchanged (no version bump); added pointers in §15.1 + §18.
 - **1.1.1** (2026-06-17) — Reconciled a contradiction surfaced while building the
   preview: §15.4c/§16.9c said shift-bar labels were **"white"**, which fails AA on the
   bright dark-theme hues. Generalised the **on-fill label rule** (§3.7) to cover any text

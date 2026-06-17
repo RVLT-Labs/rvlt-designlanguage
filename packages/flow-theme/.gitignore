@@ -1,0 +1,3 @@
+# shadcn registry build output (regenerate with: npm run build:registry)
+public/
+node_modules/
