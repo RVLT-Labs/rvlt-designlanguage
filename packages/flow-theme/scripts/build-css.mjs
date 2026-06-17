@@ -68,9 +68,27 @@ ${textMap}
   --font-mono: ${t.fonts.mono};
   /* radius */
   --radius: ${t.radius.default};
+  /* accordion animation (shadcn) */
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
 }`;
 
-const css = [header, rootBlock, lightBlock, themeBlock].join("\n\n") + "\n";
+// the overlay/menu components use tw-animate-css utilities (animate-in/fade/zoom/slide);
+// accordion uses the keyframes below. Import must precede style rules.
+const importLine = `@import "tw-animate-css";`;
+const keyframes = `@keyframes accordion-down {
+  from { height: 0 }
+  to { height: var(--radix-accordion-content-height) }
+}
+@keyframes accordion-up {
+  from { height: var(--radix-accordion-content-height) }
+  to { height: 0 }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; }
+}`;
+
+const css = [importLine, header, rootBlock, lightBlock, themeBlock, keyframes].join("\n\n") + "\n";
 
 mkdirSync(join(root, "dist"), { recursive: true });
 writeFileSync(join(root, "dist", "globals.css"), css);

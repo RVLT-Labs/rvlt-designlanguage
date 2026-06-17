@@ -39,7 +39,8 @@
     "prepublishOnly": "npm run check && npm run build"
   },
   "peerDependencies": {
-    "tailwindcss": "^4"
+    "tailwindcss": "^4",
+    "tw-animate-css": "^1"
   },
   "keywords": [
     "rvlt",

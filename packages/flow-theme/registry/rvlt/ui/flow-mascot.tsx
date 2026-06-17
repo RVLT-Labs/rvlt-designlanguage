@@ -29,8 +29,8 @@ const FlowMascot = React.forwardRef<
     {/* googly eyes */}
     <circle cx="20.5" cy="17" r="2.7" fill={eyeColor} />
     <circle cx="27.5" cy="17" r="2.7" fill={eyeColor} />
-    <circle cx="21.4" cy="16.1" r="0.9" fill="#fff" />
-    <circle cx="28.4" cy="16.1" r="0.9" fill="#fff" />
+    <circle cx="21.4" cy="16.1" r="0.9" fill="var(--cream)" />
+    <circle cx="28.4" cy="16.1" r="0.9" fill="var(--cream)" />
     {/* faint beam lines */}
     <path
       d="M14 26l-4-5M34 26l4-5"
