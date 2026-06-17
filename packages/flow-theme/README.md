@@ -15,7 +15,7 @@ RVLT-styled primitives. This is the canonical, droppable form of
 | `tokens.json` | **Source of truth.** Every colour/radius/font/type token (mirrors DESIGN.md Appendix A). |
 | `dist/globals.css` | **Generated** from `tokens.json` — `:root` (dark) + `.light` + `@theme inline`. Drop into `app/globals.css`. |
 | `dist/tokens.js` | Typed runtime export (`tokens`, `avatarOrder`, `datavizOrder`) for chart palettes etc. |
-| `registry.json` + `registry/` | shadcn registry — RVLT-styled `button`, `badge`, `card`, `input`, `utils`. |
+| `registry.json` + `registry/` | shadcn registry — 27 RVLT-styled components (see below). |
 
 **Never hand-edit `dist/`.** Change `tokens.json`, then `npm run build`.
 
@@ -40,11 +40,26 @@ are now wired. Default theme is dark; add `class="light"` on `<html>` for Paper.
 
 ```bash
 # point shadcn at the published registry (once it's hosted — see below)
-npx shadcn@latest add @rvlt/button @rvlt/badge @rvlt/card @rvlt/input
+npx shadcn@latest add @rvlt/dialog @rvlt/avatar @rvlt/stepper   # …or any below
 ```
 
-Components reference the semantic tokens (`bg-red`, `text-ok`, `--primary`), never raw
-hex (DESIGN.md §3.6), so they re-theme automatically.
+Every component is **RVLT-styled** (2px outline, hard offset shadow, pill, scrim baked in)
+and references semantic tokens (`bg-red`, `text-ok`, `border-border`), never raw hex
+(§3.6) — so they re-theme automatically. The agent installs and goes; it shouldn't need to
+re-derive look-and-feel from `DESIGN.md`.
+
+**The kit (27):**
+
+| Group | Components |
+|---|---|
+| **Core** | `button` (primary/halo/line/ghost/cream · loading) · `badge` (status) · `card` (interactive/live) · `input` · `textarea` · `label` |
+| **Overlays** | `dialog` (modal + scrim) · `sheet` (off-canvas) · `drawer` (mobile, vaul) · `popover` · `dropdown-menu` · `tooltip` · `command` (palette) · `sonner` (toasts) |
+| **Forms/structure** | `select` · `checkbox` · `switch` · `tabs` · `accordion` (FAQ) · `table` · `separator` · `skeleton` |
+| **RVLT signature** | `avatar` (8-hue palette, AA-safe initials · `PersonAvatar name=…`) · `stat` · `stepper` (lifecycle spine) · `empty-state` (mascot) · `flow-mascot` |
+
+> Stock shadcn components you `add` from the official registry also inherit the brand
+> automatically (the `@theme` exposes `--color-primary`, `border-border`, `bg-ok-soft`…) —
+> these RVLT versions additionally bake in the *character* (outline, shadow, scrim, pill).
 
 **3 · Tokens at runtime** (optional):
 
