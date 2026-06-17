@@ -1,6 +1,6 @@
 ---
 spec: design.md
-version: "1.1.0"
+version: "1.1.1"
 status: authoritative — the build bible for the RVLT Flow app & site
 updated: 2026-06-17
 canonical_tokens: "Appendix A (machine-readable JSON) + §15.1 (paste-ready globals.css)"
@@ -341,11 +341,13 @@ Module border/icon = the hue at full; active surface = the `-soft`; never colour
 one colour everywhere (the scheduler antidote to a grey roster, §15.4c). Order =
 `blue · amber · green · purple · coral · teal · pink · lime`, where `--pink:#E875AC`/
 `#C2487E` (dark/light) and `--lime:#AFC44E`/`#6E8C12`. Red is never an avatar colour.
-- **Solid hue fill; initials colour is AA-safe and theme-aware:** on **dark** theme the
-  fills are bright → use **`--dark` initials**; on **light** theme the fills are deeper →
-  use **white initials, except `--amber`/`--lime`** (still light) → `--dark`. (Pure CSS,
-  amber/lime carry a `.dark-ink` class:
-  `.av{color:var(--dark)} .light .av{color:#fff} .light .av.dark-ink{color:var(--dark)}`.)
+- **On-fill label rule (AA-safe, theme-aware) — applies to ANY text on a categorical
+  fill:** avatar initials, **shift-bar labels (§15.4c)**, coloured chips/tags. On
+  **dark** theme the fills are bright → use **`--dark`** text; on **light** theme the
+  fills are deeper → use **white**, except `--amber`/`--lime` (still light) → `--dark`.
+  **Never assume "white text on the colour"** — that fails AA on the bright dark-theme
+  hues (this is the bug that motivated the rule). Pure CSS (light hues carry `.dark-ink`):
+  `.av{color:var(--dark)} .light .av{color:#fff} .light .av.dark-ink{color:var(--dark)}`.
 - The person's **name is always shown adjacent** (row/shift-bar/tooltip), so per §3.3 the
   initials are a secondary cue, never the sole identifier — but keep them legible by the
   rule above, which matters most for **standalone avatars** (stacks, comments) with no name.
@@ -869,9 +871,13 @@ the full-size widget from the same parts and tokens.
 
 **(c) Crew scheduler** — *the "why Flow" timeline → the real Crew screen.*
 A 7shifts/Deputy-style timeline: a day/hour column header over per-person rows.
-Each row = an **avatar** (initials on a per-person colour) + name + a track
-holding a **shift bar** placed by `left%`/`width%` = a booking, white label on the
-person/job colour. An **"+N open"** row shows unfilled calls.
+Each row = an **avatar** (initials on a per-person colour) + the **name as a legible
+row label** + a track lane holding a **shift bar** placed by `left%`/`width%` = a
+booking. **Keep the name as a real label beside the avatar** — don't rely on a label
+*inside* the bar alone (bars get narrow and truncate); the bar carries the time/booking,
+and **its label follows the on-fill rule (§3.7)** — not "white" (that fails AA on the
+bright dark-theme hues). An **"+N open"** row shows unfilled calls. A **clash** badge +
+red outline flags overlaps.
 - **Colour logic:** every crew member / job gets a categorical colour so the board
   is scannable at a glance — the antidote to a grey roster. **Clashes** (overlaps)
   flag in overbooked red with a callout.
@@ -1158,13 +1164,15 @@ nature — here's how each reflows without losing meaning:
 A multi-person × hours grid can't shrink to 390px and stay usable. Mobile patterns,
 in order of preference:
 - **Day-pager + per-person rows:** one day at a time (swipe left/right between
-  days, date in the header), each crew row = avatar (initials on the per-person
-  colour) + name + a **horizontally-scrollable** shift track. Shift bars keep the
-  person/job colour + white label; **clashes** still flag overbooked red with the
-  callout.
-- **Or an agenda/list view:** collapse the grid into a chronological list of
-  *shifts grouped by person* (or by time) — often more useful on a phone than any
-  timeline. Offer both; default to agenda on the narrowest screens.
+  days, date in the header), each crew row = avatar + name + a **horizontally-scrollable**
+  shift track. Shift bars keep the person/job colour; **bar label follows the on-fill
+  rule (§3.7)**, not "white". **Clashes** flag overbooked red with the callout.
+- **Agenda-stack (what the preview uses):** the name row (avatar + name + clash badge)
+  **above** a full-width mini-timeline lane — the clean, legible default when a person's
+  row gets too narrow for a side-by-side track.
+- **Or a flat chronological list:** drop the timeline entirely — *shifts grouped by
+  person* (or by time) as plain rows. Most useful on the narrowest screens. Default to
+  the agenda-stack or this list below the tablet breakpoint.
 - Drag-to-assign degrades to **tap-to-assign** (tap an open call → pick a person →
   Flow runs the availability/skills/tickets check). The "+N open" row stays. One
   hand-drawn "no clashes ✦" corner note is still fine (chrome, not data).
@@ -1426,6 +1434,12 @@ This file is **versioned** (see front-matter `version`). Keep it the single sour
 of truth — when a token changes, change it in §3/§5/§7 **and** Appendix A **and**
 §15.1 in the same commit, and add a line here.
 
+- **1.1.1** (2026-06-17) — Reconciled a contradiction surfaced while building the
+  preview: §15.4c/§16.9c said shift-bar labels were **"white"**, which fails AA on the
+  bright dark-theme hues. Generalised the **on-fill label rule** (§3.7) to cover any text
+  on a categorical fill — avatar initials, shift-bar labels, chips — theme-aware (`--dark`
+  on dark, white on light except amber/lime). Clarified the crew name stays a legible row
+  label (not jammed inside a narrow bar) and documented the agenda-stack mobile layout.
 - **1.1.0** (2026-06-17) — **Locked the major design choices agents were freestyling.**
   Added §3.7 extended palette (module-colour tints, `--coral`/`--teal`, an 8-hue avatar
   set, ordered data-viz ramp, `--scrim`/`--select`/`--link`); §5.5 functional app type
@@ -1454,7 +1468,7 @@ this and §15.1 win.
 
 ```json
 {
-  "version": "1.1.0",
+  "version": "1.1.1",
   "updated": "2026-06-17",
   "default_theme": "dark",
   "themes": {
