@@ -186,6 +186,7 @@ section{padding:54px 0;border-bottom:1px solid var(--line)}
 .conn.active::after{content:"";position:absolute;inset:0;background:var(--red);transform-origin:left;
   transform:scaleX(.55);animation:grow 2.4s ease-in-out infinite alternate}
 @keyframes grow{from{transform:scaleX(.25)}to{transform:scaleX(.85)}}
+@keyframes growY{from{transform:scaleY(.25)}to{transform:scaleY(.85)}}
 
 /* chiplogo */
 .chiplogo{border:2px solid var(--line-2);border-radius:99px;padding:9px 17px;font-family:var(--fd);
@@ -322,6 +323,13 @@ footer{padding:40px 0 80px;color:var(--faint);font-size:13px}
   .ladder>div{padding:14px 9px}
   .side{width:100%}
   .field{max-width:none}
+  /* lifecycle stepper → vertical timeline (§16.9a) so the active step is never scrolled off */
+  .stepper{flex-direction:column;align-items:stretch;overflow:visible;padding:4px 0}
+  .step{flex-direction:row;align-items:center;gap:12px;width:100%;min-width:0}
+  .step .ring{flex:none}
+  .step .lab{font-size:14px}
+  .conn{width:2px;height:18px;flex:none;min-width:0;margin:2px 0 2px 13px}
+  .conn.active::after{transform-origin:top;transform:scaleY(.55);animation-name:growY}
 }
 @media(max-width:400px){
   .wrap{padding:0 16px}
