@@ -204,14 +204,18 @@ section{padding:54px 0;border-bottom:1px solid var(--line)}
   font-weight:700;font-size:14px;color:var(--dark);border:2px solid var(--card)}
 .light .av{color:#fff}
 .light .av.dark-ink{color:var(--dark)}
-.crew{display:flex;flex-direction:column;gap:8px;max-width:520px}
-.crew .prow{display:flex;align-items:center;gap:10px}
-.crew .ptrack{flex:1;height:26px;border-radius:6px;background:var(--card);border:1px solid var(--line-2);position:relative}
-.crew .shift{position:absolute;top:3px;bottom:3px;border-radius:4px;display:flex;align-items:center;
+.crew{display:flex;flex-direction:column;gap:9px;max-width:600px}
+.crew .prow{display:flex;align-items:center;gap:12px}
+.crew .pwho{display:flex;align-items:center;gap:8px;width:152px;flex:none;min-width:0}
+.crew .pwho .av{width:30px;height:30px;font-size:12px;flex:none}
+.crew .pwho .nm{font-size:13.5px;font-weight:600;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.crew .clashtag{font-size:10px;font-weight:700;color:var(--t-out);background:var(--out-soft);border-radius:99px;padding:2px 6px;flex:none}
+.crew .ptrack{flex:1;height:26px;border-radius:6px;background:var(--paper-2);border:1px solid var(--line-2);position:relative;overflow:hidden;min-width:0}
+.crew .shift{position:absolute;top:0;bottom:0;border-radius:6px;display:flex;align-items:center;
   padding:0 8px;font-size:11px;font-weight:600;color:var(--dark);white-space:nowrap}
 .light .crew .shift{color:#fff}
 .light .crew .shift.di{color:var(--dark)}
-.crew .shift.clash{outline:2px solid var(--t-out);outline-offset:1px}
+.crew .shift.clash{outline:2px solid var(--t-out);outline-offset:-2px;z-index:1}
 
 /* wayfinding sidebar demo (§15.5) */
 .side{background:var(--paper-2);border:2px solid var(--line-2);border-radius:var(--r-lg);padding:10px;width:230px}
@@ -298,7 +302,7 @@ footer{padding:40px 0 80px;color:var(--faint);font-size:13px}
   padding:28px;border:2px dashed var(--line-2);border-radius:var(--r-lg);color:var(--muted)}
 
 /* open crew slot — dashed, not a gradient */
-.crew .open-slot{background:var(--paper-2);border:2px dashed var(--line-2);color:var(--ink-2)}
+.crew .shift.open-slot{background:var(--rep-soft);border:1px dashed var(--line-2);color:var(--muted);font-weight:500}
 
 /* ---- mobile (§16): gutter 20px, stacked, no fixed-width columns crushing samples ---- */
 @media(max-width:760px){
@@ -330,6 +334,11 @@ footer{padding:40px 0 80px;color:var(--faint);font-size:13px}
   .step .lab{font-size:14px}
   .conn{width:2px;height:18px;flex:none;min-width:0;margin:2px 0 2px 13px}
   .conn.active::after{transform-origin:top;transform:scaleY(.55);animation-name:growY}
+  /* crew board → agenda: name row above a full-width mini-timeline (§16.9c).
+     flex:none so the track keeps its height in the column layout (flex:1 would zero it) */
+  .crew .prow{flex-direction:column;align-items:stretch;gap:5px}
+  .crew .pwho{width:auto}
+  .crew .ptrack{flex:none;height:22px;width:100%}
 }
 @media(max-width:400px){
   .wrap{padding:0 16px}
@@ -539,7 +548,7 @@ footer{padding:40px 0 80px;color:var(--faint);font-size:13px}
     <p class="eyebrow">§15.4c · signature pattern</p>
     <h2 class="sec-h">Crew scheduler</h2>
     <p class="sec-d">Per-person colour from the avatar palette (§3.7). Clashes flag in overbooked red.</p>
-    <div class="crew" id="crew"></div>
+    <div class="crew" id="crewBoard"></div>
   </section>
 
   <!-- ============ WAYFINDING ============ -->
@@ -719,12 +728,22 @@ document.getElementById('iconramp').innerHTML=[16,20,24].map(s=>`<div class="i">
   `<div class="i">${ico('box',42,2.6,'#fffdf8').replace('<svg','<svg style=\"background:var(--blue);border:2px solid #fffdf8;border-radius:11px;padding:6px;box-shadow:var(--sh-stk)\"')}<span class="lab">42px patch</span></div>`;
 
 /* ---- crew rows ---- */
-const CREW=[['--blue','JN','Jay N.',8,34],['--amber','TM','Tara M.',20,30,true],['--green','RS','Rae S.',40,38],['--purple','KO','Kit O.',5,22]];
-document.getElementById('crew').innerHTML=CREW.map(([c,i,name,left,w,clash])=>
-  `<div class="prow"><div class="av${di(c)}" style="background:var(${c});width:32px;height:32px;font-size:12px">${i}</div>
-   <div class="ptrack"><div class="shift${clash?' clash':''}${di(c)?' di':''}" style="left:${left}%;width:${w}%;background:var(${c})">${name}${clash?' · clash':''}</div></div></div>`).join('')+
-  `<div class="prow"><div class="av" style="background:var(--paper-2);border:2px dashed var(--line-2);width:32px;height:32px;font-size:12px;color:var(--faint)">+2</div>
-   <div class="ptrack"><div class="shift open-slot" style="left:55%;width:24%">+2 open</div></div></div>`;
+// [colour, initials, name, shift time, left%, width%, clash]
+const CREW=[
+  ['--blue','JN','Jay N.','08:00–14:00',8,34],
+  ['--amber','TM','Tara M.','10:00–16:00',20,30,true],
+  ['--green','RS','Rae S.','12:00–19:00',40,38],
+  ['--purple','KO','Kit O.','08:00–11:00',5,22],
+];
+document.getElementById('crewBoard').innerHTML=CREW.map(([c,ini,name,time,left,w,clash])=>
+  `<div class="prow">
+     <div class="pwho"><div class="av${di(c)}" style="background:var(${c})">${ini}</div><span class="nm">${name}</span>${clash?'<span class="clashtag">clash</span>':''}</div>
+     <div class="ptrack"><div class="shift${clash?' clash':''}${di(c)?' di':''}" style="left:${left}%;width:${w}%;background:var(${c})">${time}</div></div>
+   </div>`).join('')+
+  `<div class="prow">
+     <div class="pwho"><div class="av" style="background:var(--paper-2);border:2px dashed var(--line-2);color:var(--faint)">+2</div><span class="nm" style="color:var(--muted);font-weight:500">+2 open</span></div>
+     <div class="ptrack"><div class="shift open-slot" style="left:55%;width:24%">unfilled call</div></div>
+   </div>`;
 
 /* ---- sidebar wayfinding ---- */
 const NAV=[['box','--blue','Projects',1],['users','--purple','Crew',0],['zap','--amber','Gear',0],['shield','--teal','Compliance',0],['wrench','--coral','Maintenance',0]];
