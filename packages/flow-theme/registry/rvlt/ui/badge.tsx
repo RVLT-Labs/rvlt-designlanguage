@@ -12,10 +12,10 @@ const badgeVariants = cva(
   {
     variants: {
       status: {
-        ok: "text-ok bg-[var(--ok-soft)]", // available / ready / pass
-        warn: "text-warn bg-[var(--warn-soft)]", // check / due / warning
-        overbooked: "text-t-out bg-[var(--out-soft)]", // overbooked / short / error
-        repair: "text-rep bg-[var(--rep-soft)]", // in repair / neutral
+        ok: "text-ok bg-ok-soft", // available / ready / pass
+        warn: "text-warn bg-warn-soft", // check / due / warning
+        overbooked: "text-t-out bg-out-soft", // overbooked / short / error
+        repair: "text-rep bg-rep-soft", // in repair / neutral
         neutral: "text-ink-2 bg-paper-2",
       },
     },

@@ -549,7 +549,7 @@ Weighty, physical, purposeful — never ambient decoration. Always honour
 | **Button — halo** | Primary + red bloom — hero CTA only. |
 | **Button — line** | Transparent, `2px --line-2` (dark) / `2px --ink` (light); hover fills ink. |
 | **Button — ghost** | Text only; hover → red. |
-| **Button — cream** | `#F5EFE2` fill, dark text — for use on the red CTA block. |
+| **Button — cream** | `--cream` fill, `--cream-ink` text (fixed tokens, §15.1) — for use on the red CTA block. |
 | **Card** | `--card` + `2px` outline + `--r-lg` + `--sh-card`; hover `translateY(-3px)` + `--sh-hover`. |
 | **"Live" card** | One card lifted to `--elev` + `--lit` (the only resting lit-edge). |
 | **Badge / pill** | `--r-pill`, weight 700, status soft-fill + matching text (§3.3), 11px. |
@@ -778,7 +778,9 @@ transitions + the sanctioned moment animations; no scroll parallax in-app.
   --secondary:var(--paper-2); --secondary-foreground:var(--ink);
   --muted-foreground:var(--muted); --accent:var(--elev); --accent-foreground:var(--ink);
   --destructive:var(--red); --destructive-foreground:#fff;
-  --border:var(--line-2); --input:var(--line-2); --ring:var(--red);
+  /* 2px outline = --line-2 on dark, --ink on light (§7); --input follows it */
+  --border:var(--line-2); --input:var(--border); --ring:var(--red);
+  --cream:#F5EFE2; --cream-ink:#1D1A15;   /* fixed cream button on the red CTA (§9) */
 }
 .light {                         /* opt-in alternate */
   --paper:#F4EEE1; --paper-2:#EDE4D2; --card:#FFFDF8; --elev:#FFFDF8;
@@ -795,7 +797,7 @@ transitions + the sanctioned moment animations; no scroll parallax in-app.
   /* utility (§3.7) */
   --scrim:rgba(40,30,15,.45); --select:rgba(193,34,41,.16); --link:#2F6BD6;
   --sh-card:0 3px 0 var(--line-2); --sh-hover:0 7px 0 var(--line-2);
-  /* NOTE: card outline on light = --ink (vs --line-2 on dark) */
+  --border:var(--ink);   /* card/input/line 2px outline = --ink on light (§7) */
 }
 @theme inline {                  /* expose Tailwind utilities: bg-paper, text-ink, font-display… */
   --color-paper:var(--paper); --color-paper-2:var(--paper-2);
@@ -808,6 +810,7 @@ transitions + the sanctioned moment animations; no scroll parallax in-app.
   --color-amber:var(--amber); --color-blue:var(--blue); --color-green:var(--green);
   --color-purple:var(--purple); --color-coral:var(--coral); --color-teal:var(--teal);
   --color-pink:var(--pink); --color-lime:var(--lime); --color-link:var(--link);
+  --color-border:var(--border); --color-input:var(--input); --color-ring:var(--ring);
   --font-display:"bc-alphapipe","Archivo",sans-serif;
   --font-sans:"Hanken Grotesk",system-ui,sans-serif;
   --font-hand:"Kalam",cursive;
@@ -818,10 +821,11 @@ transitions + the sanctioned moment animations; no scroll parallax in-app.
 
 ### 15.2 Component recipes (shadcn, restyled to RVLT)
 - **Button / primary:** `bg-red text-white rounded-full font-semibold shadow-[0_3px_0_var(--red-700)] hover:-translate-y-px active:translate-y-[2px] active:shadow-[0_1px_0_var(--red-700)] transition`.
-  - `outline` = `border-2 border-line-2 bg-transparent hover:bg-ink hover:text-paper`; `ghost` = text only, `hover:text-red`.
-- **Card:** `bg-card border-2 border-line-2 rounded-[var(--radius)] shadow-[var(--sh-card)]` (override shadcn's soft shadow). Active/selected/"live" → `bg-elev shadow-[var(--sh-card),var(--lit)]`.
+  - `outline` (line) = `border-2 border-border bg-transparent hover:bg-ink hover:text-paper`; `ghost` = text only, `hover:text-red`. `cream` = `bg-[var(--cream)] text-[var(--cream-ink)]` (on the red CTA).
+  - **`border-border` = the 2px outline token** (`--line-2` on dark, `--ink` on light, §7) — use it, not a hardcoded `border-line-2`, so the outline is correct on both themes.
+- **Card:** `bg-card border-2 border-border rounded-[var(--radius)] shadow-[var(--sh-card)]` (override shadcn's soft shadow). Active/selected/"live" → `bg-elev shadow-[var(--sh-card),var(--lit)]`.
 - **Badge (status):** `rounded-full text-[11px] font-bold px-2.5 py-1` + a status pair — ready `text-ok bg-[var(--ok-soft)]`, check `text-warn bg-[var(--warn-soft)]`, overbooked `text-t-out bg-[var(--out-soft)]`, repair `text-rep bg-[var(--rep-soft)]`. **Always render the label** (never colour-only).
-- **Input / Select / Textarea:** `bg-card border-2 border-line-2 rounded-[var(--radius)] focus-visible:ring-2 focus-visible:ring-red`.
+- **Input / Select / Textarea:** `bg-card border-2 border-input rounded-[var(--radius)] focus-visible:ring-2 focus-visible:ring-red` (`--input` follows the outline token, §7).
 - **Table / data:** numeric columns `font-mono tabular-nums text-ink-2`; status cell = Badge; row divider `border-t border-line`.
 - **Type:** headings `font-display font-extrabold tracking-tight`; section eyebrow `font-hand text-red text-[17px]`; body `font-sans`; figures `font-mono tabular-nums`.
 - **Empty state:** the Flow mascot + one operator-voice line — the one sanctioned place for personality in-app.
@@ -1254,8 +1258,8 @@ This is where being a *production* tool earns its keep:
 
 - **Right keyboard, every time:** `inputmode`/`type` for numbers (quantities,
   counts → numeric pad), email, tel, search. Asset IDs/SKUs in `font-mono` (§5.4).
-- **Inputs are `≥44px` tall**, 2px `--line-2` border, `--r` radius, red focus ring
-  (§15.2) — restyled shadcn, not stock.
+- **Inputs are `≥44px` tall**, 2px outline (`border-input`, theme-aware §7), `--r` radius,
+  red focus ring (§15.2) — restyled shadcn, not stock.
 - **Avoid zoom-on-focus:** form inputs `≥16px` font (iOS zooms below that).
 - **Labels above fields** (not placeholder-only); one field per row on phone;
   the submit/primary action in the sticky bottom bar (§16.10), not lost mid-scroll.
@@ -1291,7 +1295,7 @@ The product sidebar appears at `md:`; render the bottom bar + off-canvas drawer 
 
 **Responsive dialog → bottom sheet.** Use shadcn **Drawer** (vaul) on phone, **Dialog**
 on `md+` — one component switched by breakpoint, not two code paths.
-`Drawer` content: `bg-elev border-2 border-line-2 rounded-t-[var(--r-lg)] shadow-[var(--sh-card),var(--lit)] pb-[max(1rem,var(--safe-b))]`; keep the grab handle; swipe-down dismiss is built in. Title `font-display font-extrabold`; primary = full-width red pill.
+`Drawer` content: `bg-elev border-2 border-border rounded-t-[var(--r-lg)] shadow-[var(--sh-card),var(--lit)] pb-[max(1rem,var(--safe-b))]`; keep the grab handle; swipe-down dismiss is built in. Title `font-display font-extrabold`; primary = full-width red pill.
 
 **Bottom tab bar** (no shadcn primitive — build it). Fixed, warm, never black:
 ```
@@ -1301,7 +1305,7 @@ grid grid-cols-5 pb-[var(--safe-b)] md:hidden
 Each item: Lucide icon + label, tinted by **module colour** (§15.5); active item =
 module colour + `shadow-[var(--lit)]` top edge. Hide at `md:` (sidebar takes over).
 
-**Off-canvas sidebar:** shadcn **Sheet** (`side="left"`), `bg-paper-2 border-r-2 border-line-2`, the full grouped nav from §15.5; trigger = hamburger. The bottom bar covers the hot paths; the Sheet covers everything.
+**Off-canvas sidebar:** shadcn **Sheet** (`side="left"`), `bg-paper-2 border-r-2 border-border`, the full grouped nav from §15.5; trigger = hamburger. The bottom bar covers the hot paths; the Sheet covers everything.
 
 **Sticky action bar** (primary action in the thumb zone, §16.8):
 ```
@@ -1446,7 +1450,15 @@ the single generator and derive Appendix A + §15.1 from it, retiring the manual
 
 - **2026-06-17** — Extracted the tokens into **`@rvlt/flow-theme`** (`packages/flow-theme/`):
   `tokens.json` (== Appendix A) → generated `globals.css` + a shadcn component registry.
-  Token *values* unchanged (no version bump); added pointers in §15.1 + §18.
+  Token *values* unchanged (no version bump); added pointers in §15.1 + §18. **Compliance
+  pass** (codex-reviewed) fixed a §15.2-vs-§7 contradiction: the 2px outline is now a
+  theme-aware **`--border`** token (`--line-2` dark / `--ink` light) — §15.2/§16.13/§16.14
+  said `border-line-2` (wrong on light), now reconciled. Added `--cream`/`--cream-ink` +
+  `--sh-halo`/`--sh-cream` tokens (components no longer inline hex, §3.6); exposed the full
+  `@theme` surface (soft-fills, shadcn role utilities, app type ramp, wordmark font,
+  `--color-border`/`--color-input`); added the wordmark + icon ramp to the package tokens;
+  Card gained the §9 hover-lift and Button the §9.1 disabled/loading states. A
+  `check-sync` script now fails the build if `tokens.json` drifts from Appendix A.
 - **1.1.1** (2026-06-17) — Reconciled a contradiction surfaced while building the
   preview: §15.4c/§16.9c said shift-bar labels were **"white"**, which fails AA on the
   bright dark-theme hues. Generalised the **on-fill label rule** (§3.7) to cover any text

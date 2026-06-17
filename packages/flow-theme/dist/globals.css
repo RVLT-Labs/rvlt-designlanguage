@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
- * @rvlt/flow-theme v0.1.0 — GENERATED from tokens.json. Do not edit by hand.
+ * @rvlt/flow-theme — GENERATED from tokens.json. Do not edit by hand.
  * Source of truth: tokens.json  ·  Design spec: DESIGN.md v1.1.1
  * Tailwind v4 + shadcn convention (direct hex / var() aliases, @theme inline).
  * Dark "espresso" is the default; .light is the opt-in "Paper" alternate.
@@ -53,10 +53,9 @@
   /* === radius === */
   --radius: 0.875rem;
   --r: 14px; --r-lg: 20px;
-  /* === shadcn semantic aliases (theme-independent — restyle primitives through these) === */
+  /* === shadcn semantic aliases + brand constants (restyle primitives through these) === */
   --background: var(--paper);
   --foreground: var(--ink);
-  --card-bg: var(--card);
   --card-foreground: var(--ink);
   --popover: var(--card);
   --popover-foreground: var(--ink);
@@ -69,9 +68,15 @@
   --accent-foreground: var(--ink);
   --destructive: var(--red);
   --destructive-foreground: #fff;
-  --border: var(--line-2);
-  --input: var(--line-2);
+  --input: var(--border);
   --ring: var(--red);
+  --cream: #F5EFE2;
+  --cream-ink: #1D1A15;
+  --sh-halo: 0 3px 0 var(--red-700), 0 0 28px rgba(224,54,61,.5);
+  --sh-cream: 0 3px 0 rgba(0,0,0,.25);
+  --sh-cream-press: 0 1px 0 rgba(0,0,0,.25);
+  /* === theme-dependent aliases: 2px outline = --line-2 on dark === */
+  --border: var(--line-2);
 }
 
 .light {
@@ -119,10 +124,12 @@
   --sh-hover: 0 7px 0 var(--line-2);
   --lit: inset 0 1px 0 rgba(255,253,248,.14);
   --sh-stk: 2px 4px 0 rgba(40,30,15,.13);
+  /* === theme-dependent aliases: 2px outline = --ink on light === */
+  --border: var(--ink);
 }
 
 @theme inline {
-  /* expose Tailwind utilities: bg-paper, text-ink, border-line-2, text-ok, font-display… */
+  /* brand palette → bg-paper, text-ink, border-line-2, text-ok, bg-ok-soft, bg-red… */
   --color-paper: var(--paper);
   --color-paper-2: var(--paper-2);
   --color-card: var(--card);
@@ -134,6 +141,7 @@
   --color-line: var(--line);
   --color-line-2: var(--line-2);
   --color-red: var(--red);
+  --color-red-700: var(--red-700);
   --color-ok: var(--ok);
   --color-warn: var(--warn);
   --color-rep: var(--rep);
@@ -148,10 +156,54 @@
   --color-lime: var(--lime);
   --color-dark: var(--dark);
   --color-link: var(--link);
+  --color-red-soft: var(--red-soft);
+  --color-ok-soft: var(--ok-soft);
+  --color-warn-soft: var(--warn-soft);
+  --color-rep-soft: var(--rep-soft);
+  --color-out-soft: var(--out-soft);
+  --color-blue-soft: var(--blue-soft);
+  --color-amber-soft: var(--amber-soft);
+  --color-green-soft: var(--green-soft);
+  --color-purple-soft: var(--purple-soft);
+  --color-coral-soft: var(--coral-soft);
+  --color-teal-soft: var(--teal-soft);
+  --color-scrim: var(--scrim);
+  --color-select: var(--select);
+  --color-cream: var(--cream);
+  --color-cream-ink: var(--cream-ink);
+  /* shadcn role utilities → bg-primary, text-foreground, border-border, ring-ring… */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-card-foreground: var(--card-foreground);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  /* app functional type ramp (§5.5) → text-page-title, text-ui-text, text-table-cell… */
+  --text-page-title: 1.5rem;
+  --text-section-header: 1.125rem;
+  --text-card-title: 0.9375rem;
+  --text-reading-body: 1rem;
+  --text-ui-text: 0.875rem;
+  --text-table-cell: 0.84375rem;
+  --text-caption: 0.75rem;
+  --text-badge: 0.6875rem;
+  --text-button: 0.875rem;
   /* fonts */
   --font-display: "bc-alphapipe", "Archivo", sans-serif;
   --font-sans: "Hanken Grotesk", system-ui, sans-serif;
   --font-hand: "Kalam", cursive;
+  --font-wordmark: "Baloo 2", cursive;
   --font-mono: "Geist Mono", ui-monospace, monospace;
   /* radius */
   --radius: 0.875rem;

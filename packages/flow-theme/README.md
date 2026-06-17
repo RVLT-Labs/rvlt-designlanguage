@@ -66,8 +66,10 @@ component source under `registry/rvlt/` can be copied in directly.
 
 ## Keeping it in sync with DESIGN.md
 
-`tokens.json` is the same data as DESIGN.md Appendix A. When a token changes, change it in
-**both** (or generate Appendix A from here). The generated `globals.css` then can't drift —
-that's the whole point of centralising.
+`tokens.json`'s **theme values, fonts, type ramps, icon sizes and palette order mirror
+DESIGN.md Appendix A** (the file adds a `_generator` block of emit config on top). The
+`npm run check` script (run on `prepublishOnly`) **fails the build if they drift** —
+`scripts/check-sync.mjs` diffs `tokens.json` against Appendix A. When a token changes,
+change it in both and re-run `npm run build`; `globals.css` then can't drift.
 
 — © RVLT Labs. Built for production companies, by a production company.

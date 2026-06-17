@@ -14,7 +14,7 @@ const Input = React.forwardRef<
     type={type}
     ref={ref}
     className={cn(
-      "flex min-h-11 w-full rounded-[var(--radius)] border-2 border-line-2 bg-card px-3.5 py-2 text-[16px] text-ink",
+      "flex min-h-11 w-full rounded-[var(--radius)] border-2 border-input bg-card px-3.5 py-2 text-[16px] text-ink",
       "placeholder:text-faint",
       "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red focus-visible:ring-offset-0",
       "aria-[invalid=true]:border-t-out aria-[invalid=true]:focus-visible:ring-t-out",

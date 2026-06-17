@@ -3,17 +3,21 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 
 /**
- * RVLT Flow card — 2px outline + hard offset shadow (no soft blur). Set `live`
- * for the one active / real-time card: lifts to --elev + the lit top-edge (§4/§9).
+ * RVLT Flow card — 2px outline + hard offset shadow (no soft blur).
+ * - `interactive`: clickable cards lift 3px to --sh-hover on hover (§9).
+ * - `live`: the one active / real-time card lifts to --elev + the lit top-edge (§4/§9).
  */
 const Card = React.forwardRef<
   HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement> & { live?: boolean }
->(({ className, live, ...props }, ref) => (
+  React.HTMLAttributes<HTMLDivElement> & { live?: boolean; interactive?: boolean }
+>(({ className, live, interactive, ...props }, ref) => (
   <div
     ref={ref}
     className={cn(
-      "rounded-[var(--r-lg)] border-2 border-line-2 bg-card text-ink shadow-[var(--sh-card)]",
+      // 2px outline = --border (--line-2 dark / --ink light, §7); hard offset shadow, no blur
+      "rounded-[var(--radius)] border-2 border-border bg-card text-ink shadow-[var(--sh-card)]",
+      interactive &&
+        "cursor-pointer transition-[transform,box-shadow] hover:-translate-y-[3px] hover:shadow-[var(--sh-hover)]",
       live && "bg-elev shadow-[var(--sh-card),var(--lit)]",
       className,
     )}
