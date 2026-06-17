@@ -1445,7 +1445,14 @@ for the starred items.
 
 This file is **versioned** (see front-matter `version`). When a token changes, change it
 in §3/§5/§7 **and** Appendix A **and** §15.1 **and** `packages/flow-theme/tokens.json` in
-the same commit, then run the theme build, and add a line here. *(Goal: make `tokens.json`
+the same commit, then run the theme build, and add a line here.
+
+- **2026-06-17** — `@rvlt/flow-theme` grew a **full component kit** (27 RVLT-styled shadcn
+  registry items): overlays (dialog/sheet/drawer/popover/dropdown/tooltip/command/sonner),
+  forms/structure (select/checkbox/switch/tabs/accordion/table/separator/skeleton/textarea/
+  label) and the **signature** set (avatar palette, stat, lifecycle stepper, empty-state,
+  mascot). The goal: an app agent installs components and rarely re-derives look from this
+  spec. Token-only (§3.6); registry validated by `shadcn build`. *(Goal: make `tokens.json`
 the single generator and derive Appendix A + §15.1 from it, retiring the manual sync.)*
 
 - **2026-06-17** — Extracted the tokens into **`@rvlt/flow-theme`** (`packages/flow-theme/`):

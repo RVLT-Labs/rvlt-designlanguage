@@ -8,13 +8,7 @@
       "type": "registry:style",
       "title": "RVLT Flow theme",
       "description": "Espresso-dark theme tokens (globals.css) — drop-in app/globals.css.",
-      "files": [
-        {
-          "path": "dist/globals.css",
-          "type": "registry:file",
-          "target": "app/globals.css"
-        }
-      ]
+      "files": [{ "path": "dist/globals.css", "type": "registry:file", "target": "app/globals.css" }]
     },
     {
       "name": "utils",
@@ -22,20 +16,17 @@
       "title": "cn()",
       "description": "clsx + tailwind-merge helper.",
       "dependencies": ["clsx", "tailwind-merge"],
-      "files": [
-        { "path": "registry/rvlt/lib/utils.ts", "type": "registry:lib" }
-      ]
+      "files": [{ "path": "registry/rvlt/lib/utils.ts", "type": "registry:lib" }]
     },
+
     {
       "name": "button",
       "type": "registry:ui",
       "title": "Button",
-      "description": "RVLT pill button — primary/halo/line/ghost/cream, tactile press.",
+      "description": "RVLT pill button — primary/halo/line/ghost/cream, tactile press, loading state.",
       "dependencies": ["class-variance-authority", "@radix-ui/react-slot"],
       "registryDependencies": ["utils"],
-      "files": [
-        { "path": "registry/rvlt/ui/button.tsx", "type": "registry:ui" }
-      ]
+      "files": [{ "path": "registry/rvlt/ui/button.tsx", "type": "registry:ui" }]
     },
     {
       "name": "badge",
@@ -44,19 +35,15 @@
       "description": "Labelled status soft-fill pill (ok/warn/overbooked/repair).",
       "dependencies": ["class-variance-authority"],
       "registryDependencies": ["utils"],
-      "files": [
-        { "path": "registry/rvlt/ui/badge.tsx", "type": "registry:ui" }
-      ]
+      "files": [{ "path": "registry/rvlt/ui/badge.tsx", "type": "registry:ui" }]
     },
     {
       "name": "card",
       "type": "registry:ui",
       "title": "Card",
-      "description": "2px outline + hard offset shadow; `live` for the active card.",
+      "description": "2px outline + hard offset shadow; `interactive` hover-lift, `live` active state.",
       "registryDependencies": ["utils"],
-      "files": [
-        { "path": "registry/rvlt/ui/card.tsx", "type": "registry:ui" }
-      ]
+      "files": [{ "path": "registry/rvlt/ui/card.tsx", "type": "registry:ui" }]
     },
     {
       "name": "input",
@@ -64,9 +51,211 @@
       "title": "Input",
       "description": "2px outline, red focus ring, 16px text (no iOS zoom), aria-invalid error state.",
       "registryDependencies": ["utils"],
-      "files": [
-        { "path": "registry/rvlt/ui/input.tsx", "type": "registry:ui" }
-      ]
+      "files": [{ "path": "registry/rvlt/ui/input.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "textarea",
+      "type": "registry:ui",
+      "title": "Textarea",
+      "description": "Input twin — 2px outline, red focus ring, 16px text.",
+      "registryDependencies": ["utils"],
+      "files": [{ "path": "registry/rvlt/ui/textarea.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "label",
+      "type": "registry:ui",
+      "title": "Label",
+      "description": "Form label — 14px medium, --ink-2.",
+      "dependencies": ["@radix-ui/react-label"],
+      "registryDependencies": ["utils"],
+      "files": [{ "path": "registry/rvlt/ui/label.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "checkbox",
+      "type": "registry:ui",
+      "title": "Checkbox",
+      "description": "2px outline, fills red when checked.",
+      "dependencies": ["@radix-ui/react-checkbox", "lucide-react"],
+      "registryDependencies": ["utils"],
+      "files": [{ "path": "registry/rvlt/ui/checkbox.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "switch",
+      "type": "registry:ui",
+      "title": "Switch",
+      "description": "Pill track, fills red when on.",
+      "dependencies": ["@radix-ui/react-switch"],
+      "registryDependencies": ["utils"],
+      "files": [{ "path": "registry/rvlt/ui/switch.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "select",
+      "type": "registry:ui",
+      "title": "Select",
+      "description": "Input-like trigger + elevated panel with red check.",
+      "dependencies": ["@radix-ui/react-select", "lucide-react"],
+      "registryDependencies": ["utils"],
+      "files": [{ "path": "registry/rvlt/ui/select.tsx", "type": "registry:ui" }]
+    },
+
+    {
+      "name": "dialog",
+      "type": "registry:ui",
+      "title": "Dialog",
+      "description": "Modal — --scrim overlay, 2px outline + --lit elevated panel, BC Alphapipe title.",
+      "dependencies": ["@radix-ui/react-dialog", "lucide-react"],
+      "registryDependencies": ["utils"],
+      "files": [{ "path": "registry/rvlt/ui/dialog.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "sheet",
+      "type": "registry:ui",
+      "title": "Sheet",
+      "description": "Off-canvas panel (sidebar / side drawer), --scrim + elevated surface.",
+      "dependencies": ["@radix-ui/react-dialog", "lucide-react", "class-variance-authority"],
+      "registryDependencies": ["utils"],
+      "files": [{ "path": "registry/rvlt/ui/sheet.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "drawer",
+      "type": "registry:ui",
+      "title": "Drawer",
+      "description": "Mobile bottom sheet (vaul) — grab handle, rounded-top elevated surface.",
+      "dependencies": ["vaul"],
+      "registryDependencies": ["utils"],
+      "files": [{ "path": "registry/rvlt/ui/drawer.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "popover",
+      "type": "registry:ui",
+      "title": "Popover",
+      "description": "Floating elevated surface, 2px outline + --lit.",
+      "dependencies": ["@radix-ui/react-popover", "lucide-react"],
+      "registryDependencies": ["utils"],
+      "files": [{ "path": "registry/rvlt/ui/popover.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "dropdown-menu",
+      "type": "registry:ui",
+      "title": "Dropdown Menu",
+      "description": "Menu surface — items highlight --paper-2, red check.",
+      "dependencies": ["@radix-ui/react-dropdown-menu", "lucide-react"],
+      "registryDependencies": ["utils"],
+      "files": [{ "path": "registry/rvlt/ui/dropdown-menu.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "tooltip",
+      "type": "registry:ui",
+      "title": "Tooltip",
+      "description": "Small elevated chip.",
+      "dependencies": ["@radix-ui/react-tooltip"],
+      "registryDependencies": ["utils"],
+      "files": [{ "path": "registry/rvlt/ui/tooltip.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "command",
+      "type": "registry:ui",
+      "title": "Command",
+      "description": "Search / command palette (cmdk) on the elevated surface; CommandDialog.",
+      "dependencies": ["cmdk", "lucide-react"],
+      "registryDependencies": ["utils", "dialog"],
+      "files": [{ "path": "registry/rvlt/ui/command.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "sonner",
+      "type": "registry:ui",
+      "title": "Toaster (Sonner)",
+      "description": "Chunky status toasts — 2px outline + hard offset; bottom on mobile.",
+      "dependencies": ["sonner"],
+      "registryDependencies": ["utils"],
+      "files": [{ "path": "registry/rvlt/ui/sonner.tsx", "type": "registry:ui" }]
+    },
+
+    {
+      "name": "tabs",
+      "type": "registry:ui",
+      "title": "Tabs",
+      "description": "Pill list; active tab lifts to --elev + --lit.",
+      "dependencies": ["@radix-ui/react-tabs"],
+      "registryDependencies": ["utils"],
+      "files": [{ "path": "registry/rvlt/ui/tabs.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "accordion",
+      "type": "registry:ui",
+      "title": "Accordion / FAQ",
+      "description": "Native-feel FAQ — `+` rotates 45° on open, open item lifts to --elev.",
+      "dependencies": ["@radix-ui/react-accordion", "lucide-react"],
+      "registryDependencies": ["utils"],
+      "files": [{ "path": "registry/rvlt/ui/accordion.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "table",
+      "type": "registry:ui",
+      "title": "Table",
+      "description": "Calm data table — 1px row dividers, row hover --elev; pair figures with font-mono.",
+      "registryDependencies": ["utils"],
+      "files": [{ "path": "registry/rvlt/ui/table.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "separator",
+      "type": "registry:ui",
+      "title": "Separator",
+      "description": "1px --line divider.",
+      "dependencies": ["@radix-ui/react-separator"],
+      "registryDependencies": ["utils"],
+      "files": [{ "path": "registry/rvlt/ui/separator.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "skeleton",
+      "type": "registry:ui",
+      "title": "Skeleton",
+      "description": "Loading placeholder — solid --elev pulse (no gradient), motion-safe.",
+      "registryDependencies": ["utils"],
+      "files": [{ "path": "registry/rvlt/ui/skeleton.tsx", "type": "registry:ui" }]
+    },
+
+    {
+      "name": "avatar",
+      "type": "registry:ui",
+      "title": "Avatar",
+      "description": "Crew avatar — 8-hue deterministic palette + AA-safe theme-aware initials (§3.7). `PersonAvatar name=…`.",
+      "dependencies": ["@radix-ui/react-avatar"],
+      "registryDependencies": ["utils"],
+      "files": [{ "path": "registry/rvlt/ui/avatar.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "flow-mascot",
+      "type": "registry:ui",
+      "title": "Flow mascot",
+      "description": "The moving-head mascot SVG (concept idle pose, §11) — empty/loading/success.",
+      "registryDependencies": ["utils"],
+      "files": [{ "path": "registry/rvlt/ui/flow-mascot.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "stat",
+      "type": "registry:ui",
+      "title": "Stat",
+      "description": "Display-type figure + faint label; `bright` for the one 38px stat (§9).",
+      "registryDependencies": ["utils"],
+      "files": [{ "path": "registry/rvlt/ui/stat.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "empty-state",
+      "type": "registry:ui",
+      "title": "Empty state",
+      "description": "Mascot + operator-voice line — the sanctioned home for personality in-app (§15.5).",
+      "registryDependencies": ["utils", "flow-mascot"],
+      "files": [{ "path": "registry/rvlt/ui/empty-state.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "stepper",
+      "type": "registry:ui",
+      "title": "Lifecycle stepper",
+      "description": "The signature project-status spine (§15.4a) — vertical on mobile, horizontal on desktop.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["utils"],
+      "files": [{ "path": "registry/rvlt/ui/stepper.tsx", "type": "registry:ui" }]
     }
   ]
 }
