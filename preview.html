@@ -103,7 +103,7 @@ section{padding:54px 0;border-bottom:1px solid var(--line)}
 
 /* ladder */
 .ladder{display:flex;gap:0;border:2px solid var(--card-outline);border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--sh-card)}
-.ladder>div{flex:1;padding:22px 16px;font-family:var(--fm);font-size:12px}
+.ladder>div{flex:1;min-width:0;padding:22px 16px;font-family:var(--fm);font-size:12px;overflow-wrap:anywhere}
 .ladder .lname{font-weight:600}.ladder .lhex{color:var(--muted);font-size:11px}
 
 /* type */
@@ -299,7 +299,34 @@ footer{padding:40px 0 80px;color:var(--faint);font-size:13px}
 /* open crew slot — dashed, not a gradient */
 .crew .open-slot{background:var(--paper-2);border:2px dashed var(--line-2);color:var(--ink-2)}
 
-@media(max-width:760px){.grid3,.grid2{grid-template-columns:1fr}.type-row{flex-wrap:wrap}.type-row .spec{text-align:left;width:auto}}
+/* ---- mobile (§16): gutter 20px, stacked, no fixed-width columns crushing samples ---- */
+@media(max-width:760px){
+  .wrap{padding:0 20px}
+  section{padding:40px 0}
+  .sec-h{font-size:26px}
+  /* topbar: drop the version chip so the brand + toggle breathe */
+  .top .wrap{height:56px}
+  .ver{display:none}
+  .toggle{padding:7px 13px;font-size:13px}
+  /* grids stack */
+  .grid3,.grid2{grid-template-columns:1fr}
+  /* type rows: stack token / sample / spec full-width (no side-by-side squeeze) */
+  .type-row{flex-direction:column;align-items:flex-start;gap:6px}
+  .type-row .tk,.type-row .sample,.type-row .spec{width:auto;flex:none;text-align:left;min-width:0;overflow-wrap:anywhere}
+  /* pricing tiers stack; un-lift the cream tier so it doesn't clip */
+  .pricing-row{flex-direction:column}
+  .pricing-row .plan{flex:none!important;width:100%}
+  .pricing-row .plan.cream{transform:none}
+  /* misc density */
+  .iconrow{gap:18px;flex-wrap:wrap}
+  .ladder>div{padding:14px 9px}
+  .side{width:100%}
+  .field{max-width:none}
+}
+@media(max-width:400px){
+  .wrap{padding:0 16px}
+  .ladder>div{padding:12px 7px}
+}
 
 /* honour reduced motion (§8/§13) — freeze every loop/transition */
 @media (prefers-reduced-motion: reduce){
@@ -564,7 +591,7 @@ footer{padding:40px 0 80px;color:var(--faint);font-size:13px}
     <div class="grid2" style="margin-top:26px;align-items:start">
       <div>
         <div class="sub" style="margin-top:0">Pricing — the lone cream spotlight tier (§4 pop #2)</div>
-        <div class="row" style="gap:16px;align-items:stretch;padding-top:16px">
+        <div class="row pricing-row" style="gap:16px;align-items:stretch;padding-top:16px">
           <div class="plan" style="flex:1"><div class="pname">Core</div><p style="font-size:13px;color:var(--muted)">Start here.</p></div>
           <div class="plan cream" style="flex:1"><div class="tab">Most crews</div><div class="pname">Flow</div><p style="font-size:13px;color:#7D7565">The full connected suite.</p><div class="note">priced per warehouse, not per headache</div></div>
           <div class="plan" style="flex:1"><div class="pname">Network</div><p style="font-size:13px;color:var(--muted)">Multi-site.</p></div>
