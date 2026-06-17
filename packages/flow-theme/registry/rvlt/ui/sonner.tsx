@@ -5,7 +5,9 @@ import { Toaster as Sonner, type ToasterProps } from "sonner";
 function Toaster(props: ToasterProps) {
   return (
     <Sonner
-      theme="dark"
+      // bottom-center stacks above the mobile tab bar / safe-area (§15.5/§16.10).
+      // theme is left to the consumer (e.g. next-themes) so light mode works.
+      position="bottom-center"
       className="toaster group"
       toastOptions={{
         classNames: {

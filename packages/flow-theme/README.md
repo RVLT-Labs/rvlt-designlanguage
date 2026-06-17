@@ -25,11 +25,14 @@ RVLT-styled primitives. This is the canonical, droppable form of
 npm i @rvlt/flow-theme
 ```
 
-**1 · Theme** — in your `app/globals.css`:
+**1 · Theme** — install the animation peer (the theme imports it) and wire your `app/globals.css`:
 
+```bash
+npm i tw-animate-css        # required — globals.css @imports it for component animations
+```
 ```css
 @import "tailwindcss";
-@import "@rvlt/flow-theme/globals.css";
+@import "@rvlt/flow-theme/globals.css";   /* tokens, @theme utilities, accordion keyframes */
 ```
 
 That's it — Tailwind v4 utilities (`bg-paper`, `text-ink`, `border-line-2`, `text-ok`,

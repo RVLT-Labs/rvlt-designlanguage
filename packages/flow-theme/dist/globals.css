@@ -1,3 +1,5 @@
+@import "tw-animate-css";
+
 /* ----------------------------------------------------------------------------
  * @rvlt/flow-theme — GENERATED from tokens.json. Do not edit by hand.
  * Source of truth: tokens.json  ·  Design spec: DESIGN.md v1.1.1
@@ -207,4 +209,19 @@
   --font-mono: "Geist Mono", ui-monospace, monospace;
   /* radius */
   --radius: 0.875rem;
+  /* accordion animation (shadcn) */
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+}
+
+@keyframes accordion-down {
+  from { height: 0 }
+  to { height: var(--radix-accordion-content-height) }
+}
+@keyframes accordion-up {
+  from { height: var(--radix-accordion-content-height) }
+  to { height: 0 }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; }
 }

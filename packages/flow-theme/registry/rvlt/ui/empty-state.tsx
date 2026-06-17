@@ -15,7 +15,7 @@ const EmptyState = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "flex flex-col items-center gap-3 rounded-[var(--r-lg)] border-2 border-dashed border-line-2 p-7 text-center",
+      "flex flex-col items-center gap-3 rounded-[var(--r-lg)] border-2 border-dashed border-border p-7 text-center",
       className,
     )}
     {...props}
