@@ -1,6 +1,6 @@
-// @rvlt/flow-theme v0.1.0 — GENERATED from tokens.json. Do not edit.
+// @rvlt/flow-theme — GENERATED from tokens.json. Do not edit.
 export const tokens = {
-  "version": "0.1.0",
+  "version": "1.1.1",
   "themes": {
     "dark": {
       "paper": "#141210",
@@ -104,23 +104,37 @@ export const tokens = {
     "display": "\"bc-alphapipe\", \"Archivo\", sans-serif",
     "sans": "\"Hanken Grotesk\", system-ui, sans-serif",
     "hand": "\"Kalam\", cursive",
+    "wordmark": "\"Baloo 2\", cursive",
     "mono": "\"Geist Mono\", ui-monospace, monospace"
   },
-  "typeScale": {
-    "$comment": "px — marketing display (§5.1) + app functional ramp (§5.5). 11px floor; reading-body >= 16.",
+  "typeScalePx": {
     "display-xl": 72,
     "display-l": 44,
     "display-m": 30,
-    "eyebrow": 17,
-    "app-page-title": 24,
-    "app-section-header": 18,
-    "app-card-title": 15,
-    "app-reading-body": 16,
-    "app-ui-text": 14,
-    "app-table-cell": 13.5,
-    "app-caption": 12,
-    "app-badge": 11
+    "title": 18,
+    "lead": 19,
+    "body": 16,
+    "small": 13.5,
+    "meta": 12,
+    "eyebrow": 17
   },
+  "appTypeRampPx": {
+    "page-title": 24,
+    "section-header": 18,
+    "card-title": 15,
+    "reading-body": 16,
+    "ui-text": 14,
+    "table-cell": 13.5,
+    "caption": 12,
+    "badge": 11,
+    "button": 14
+  },
+  "iconPx": [
+    16,
+    20,
+    24,
+    42
+  ],
   "avatarOrder": [
     "blue",
     "amber",
