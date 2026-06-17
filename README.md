@@ -11,6 +11,7 @@ inside Two Toned Productions).
 | [`DESIGN.md`](DESIGN.md) | **The brand bible &amp; build spec.** Tokens, type, voice, the spotlight rule, components, the signature product screens, and a paste-ready app theme. Written for AI build agents — **read §0 first.** |
 | [`index.html`](index.html) | Canonical homepage mockup — **dark "espresso", spotlit** (the brand's primary surface). |
 | [`light.html`](light.html) | Light "Paper" twin — same copy &amp; system, light surface. |
+| [`preview.html`](preview.html) | **Token &amp; component catalog** — every token and component from `DESIGN.md` rendered (dark-first, light toggle; swatch hexes read live from the CSS vars). The visual companion to the spec. |
 | `assets/` | Logo — full RVLT LABS wordmark + RVLT-only mark (SVG). |
 
 ## Preview

@@ -1,4 +1,43 @@
+---
+spec: design.md
+version: "1.1.0"
+status: authoritative — the build bible for the RVLT Flow app & site
+updated: 2026-06-17
+canonical_tokens: "Appendix A (machine-readable JSON) + §15.1 (paste-ready globals.css)"
+reference_impl: "index.html (dark, primary) · light.html (light twin)"
+read_order: "§0 first → then §3/§5/§7 tokens → §15 (app) / §14 (site) → §16 (mobile)"
+description: >
+  RVLT Flow is production-operations software built by a production company — and
+  the design says so. A warm espresso-dark canvas (#141210) lit like a stage in a
+  dark room: ~90% of every viewport stays in the espresso ramp and brightness is
+  spent as ≤3 deliberate "pops" per page. A single RVLT red (#E0363D on dark /
+  #C12229 on light) is the only accent — primary action, live/active state, alerts
+  — never a gradient, never one-of-many. Depth is a luminance ladder + 2px outlines
+  + hard offset shadows (no soft blur), tactile like flight cases and enamel
+  patches. Type pairs pipe-cut BC Alphapipe display against quiet Hanken Grotesk
+  body and legible Kalam handwriting; a die-cut gear-sticker collage and a
+  moving-head mascot ("Flow") carry the personality. Voice is a production manager,
+  not a marketer. The app runs the same tokens at the Functional end of the dial:
+  "calm data, fun chrome."
+---
+
 # RVLT Flow — Design Language &amp; Brand
+
+> **Format.** This file follows the **design.md** convention (a single Markdown
+> design system an AI coding agent reads as the visual contract). It deliberately
+> exceeds the baseline 9-section spec — it also carries *voice*, the *why* behind
+> each rule (so an agent stays on-system in cases this file never lists), explicit
+> **precedence** (§0), machine-readable **tokens** (Appendix A), per-surface
+> **self-audits** (§15.3 app · §16.15 mobile · §12 site), **component states**
+> (§9.1), an **extend-without-drift** guide (§15.6), and a **known-gaps** boundary
+> (§18) so agents escalate instead of inventing. **Single source of truth:** every
+> value lives in §3/§5/§7 + Appendix A — never hardcode a hex, size, or radius that
+> isn't there (§0), and components reference **semantic** tokens, not primitives (§3.6).
+>
+> **Relationship to other agent files.** DESIGN.md is the **visual contract** — *what
+> it looks like*. It complements, not replaces, `AGENTS.md` / `CLAUDE.md` (stack,
+> commands, build, process — *how to work in this repo*). On a visual question this
+> file wins; on a process question, defer to those.
 
 This is the brand. RVLT Flow is **production operations software, built by a
 production company** — and the design has to feel that way: made by a live-events
@@ -57,8 +96,50 @@ this spec. It is authoritative. Follow these rules:**
   data/content, or brand calls not covered here. Otherwise proceed with the
   documented defaults — don't stall.
 - **Section applicability:** §§2, 4, 9–11, 14 lean **marketing**; §§3, 5–8, 12–13,
-  15 + Appendix A apply directly to **app code**. When unsure for the app, prefer
-  the Functional guidance.
+  15 + Appendix A apply directly to **app code**; **§16 (mobile) applies to both**.
+  When unsure for the app, prefer the Functional guidance.
+- **Mobile is not an afterthought.** §16 is authoritative for every viewport below
+  the desktop breakpoint, marketing *and* app. The phone is where the crew actually
+  works — design for it (§16.1), don't just let the desktop layout reflow.
+
+### 0.1 Agent non-negotiables &amp; conflict notes (read before building)
+
+The brand thesis is **anti-generic personality** — "crew-made, not a SaaS template."
+The failure mode isn't a broken build; it's **stock shadcn wearing espresso colours.**
+These resolve the few places the files disagree, so you don't guess wrong.
+
+**Source of truth.** `index.html` (dark "espresso") is **canonical** — when anything
+conflicts, it wins. `light.html` is a *direction* reference and is **stale** in three
+spots; trust `DESIGN.md` over it there:
+- it still loads **Caveat** for handwriting — the brand moved to **Kalam** (§5). Use Kalam.
+- its featured pricing tier is a **red-outlined** plan — the spec is the **cream
+  spotlight tier** (§4 pop #2). Use cream.
+- some surfaces use soft shadows — the system is **hard offset, no blur** (§7), except
+  the two sanctioned soft floats (the `.shot.lightui` hero monitor and cream pops).
+
+**Red is sacred — one accent, tiered (§4/§3.5).** Red = primary action · active/live ·
+alert. **In the app, red is never a module/wayfinding colour** — modules draw from the
+categorical ramp (§15.5). The one allowed exception is **marketing** gear stickers/
+patches, where red is just one die-cut colour in the collage (e.g. the hero road-case
+sticker) — that's decoration, not a status or a module. If you're unsure, it's not red.
+
+**Mascot &amp; stickers — don't fabricate assets.** The "Flow" mascot expression set and
+the full sticker library are **pending an illustrator pass** (§18.1). Use only the
+existing SVGs in `assets/` + the simple inline Flow mark. For empty/loading/success
+states, reuse the **idle / scanning** poses with operator-voice copy — **never
+AI-generate a new mascot pose or gear sticker.** Personality there comes from *copy and
+placement*, not invented art.
+
+**These shadcn primitives MUST be restyled (never ship stock):** Button, Card,
+Input/Select/Textarea, Dialog **and** Drawer (§16.14), Sheet, Sonner/Toast, Table,
+Tabs, Badge, DropdownMenu, Command/▢search, Tooltip, Skeleton. Restyle via the role
+aliases (§3.6) → 2px outline, hard offset shadow, pill buttons, red primary, warm
+surfaces (§15.2). A stock soft-shadow/thin-border component is an off-brand bug.
+
+**When the spec doesn't cover a surface** (settings, search, command palette, filters,
+side panels, destructive flows): build it from §15 ("calm data, fun chrome") + the
+component states (§9.1) + the nearest signature pattern (§15.4) — **don't reach for a
+generic SaaS pattern.** Log the gap (§18.1).
 
 ---
 
@@ -205,6 +286,84 @@ Keep the UI *inside* clean — never put doodles/stickers over live data.
 - Surfaces do the work; reach for inverted cream (on dark) only for the spotlight
   pops (§5).
 
+### 3.6 Token tiers — never inline a value (MUST follow)
+
+A tiered model. The **iron rule: components never inline a hex, px, or radius — they
+reference a named token.** Two token layers are both valid because both are
+**theme-mapped** in §15.1 (they resolve to the right value per theme automatically):
+
+| Tier | What it is | Example | Who uses it |
+|---|---|---|---|
+| **Primitive** (raw value) | The literal hex/size, defined **per theme**. | `--red:#E0363D` (dark) / `#C12229` (light); `--paper`; `#0C0A08` | **Only** the theme blocks in §15.1 / Appendix A — never a component. |
+| **Design token** (named, theme-mapped) | The brand vocabulary, exposed as utilities via `@theme`. | `bg-red`, `text-ok`, `text-t-out`, `border-line-2`, `bg-paper-2` | **Components** (this is what §15.2 uses). |
+| **shadcn role alias** (semantic) | Role names shadcn primitives read. | `--primary`, `--background`, `--border`, `--ring`, `--destructive` | **shadcn components** — restyle through these so primitives inherit the brand. |
+| **Component-local** | A component-scoped alias, only when needed. | `--btn-bg:var(--red)` | That one component. |
+
+- **MUST:** reference a token (`bg-red`, `text-ok`, `border-line-2`, or a role alias
+  like `bg-primary`) — **never** an inline hex/px/radius. `bg-red` is correct, not a
+  violation: `--red` is itself theme-mapped, so it gives `#E0363D` on dark and
+  `#C12229` on light automatically.
+- **This is what removes the "use `--red`, never `#C12229`" footgun (§4):** a component
+  never picks a hex at all — it names the token and the active theme resolves it. Same
+  rule kills theme bugs where a hardcoded dark value leaks into light.
+- **For shadcn primitives, restyle through the role aliases** (`--primary`, `--border`,
+  `--ring`, `--destructive`) so Button/Input/Dialog inherit the brand (§15.2) — don't
+  hardcode `bg-red` *into* a shadcn primitive's variant when an alias exists.
+- **Adding a value?** Add the primitive to the theme **and** expose a named token (and
+  a role alias if shadcn needs it), then reference the token — never the raw primitive
+  (§15.6).
+- **Names are self-documenting:** `--color-status-overbooked` / `text-t-out`, not
+  `--red-2`. A reader (human or agent) should know a token's job from its name.
+
+### 3.7 Extended palette — module tints, avatars, charts, utilities (LOCKED)
+
+These close the gaps where an app forces a colour choice — so agents **never invent
+one.** All derived from the existing brand hues; **red is never in any of these sets**
+(it stays the one accent, §3.5). Add to §15.1 + Appendix A when you wire them.
+
+**Module hues + tints.** Each wayfinding hue (§15.5) gets a `-soft` fill (same alpha
+logic as the status soft-fills, §3.3) for active nav / header wash / selected chips.
+Two hues are **added** to the ramp so every module is distinct:
+
+| Hue | Dark | Dark `-soft` | Light | Light `-soft` |
+|---|---|---|---|---|
+| `--blue` | `#5B8DEF` | `rgba(91,141,239,.15)` | `#2F6BD6` | `#E2ECFB` |
+| `--amber` | `#EBA53A` | `rgba(235,165,58,.15)` | `#E79A2B` | `#FBF0D6` |
+| `--green` | `#3ECF7A` | `rgba(62,207,122,.14)` | `#2EA65C` | `#E7F5EC` |
+| `--purple` | `#9B82E6` | `rgba(155,130,230,.15)` | `#7A5CD0` | `#ECE6FA` |
+| `--coral` *(new)* | `#EF7E55` | `rgba(239,126,85,.15)` | `#CC5E2E` | `#FBE6DB` |
+| `--teal` *(new)* | `#3FC8BE` | `rgba(63,200,190,.15)` | `#1C8B83` | `#DBF1EF` |
+
+Module border/icon = the hue at full; active surface = the `-soft`; never colour-only
+(§3.3). Module→hue map is §15.5 (add Compliance=`--teal`, Maintenance=`--coral`).
+
+**Avatar / crew palette (8, deterministic).** Assign `hash(name) % 8` so a person keeps
+one colour everywhere (the scheduler antidote to a grey roster, §15.4c). Order =
+`blue · amber · green · purple · coral · teal · pink · lime`, where `--pink:#E875AC`/
+`#C2487E` (dark/light) and `--lime:#AFC44E`/`#6E8C12`. Red is never an avatar colour.
+- **Solid hue fill; initials colour is AA-safe and theme-aware:** on **dark** theme the
+  fills are bright → use **`--dark` initials**; on **light** theme the fills are deeper →
+  use **white initials, except `--amber`/`--lime`** (still light) → `--dark`. (Pure CSS,
+  amber/lime carry a `.dark-ink` class:
+  `.av{color:var(--dark)} .light .av{color:#fff} .light .av.dark-ink{color:var(--dark)}`.)
+- The person's **name is always shown adjacent** (row/shift-bar/tooltip), so per §3.3 the
+  initials are a secondary cue, never the sole identifier — but keep them legible by the
+  rule above, which matters most for **standalone avatars** (stacks, comments) with no name.
+
+**Data-viz ramp (categorical, ordered).** Series order = the 8 above
+(`blue→amber→green→purple→coral→teal→pink→lime`). **Red is reserved for thresholds /
+alert lines / "over" markers only**, never a normal series. Sequential scale = step one
+module hue's lightness (don't introduce new hues); no diverging scale until a real need.
+Keep charts inside the "calm data" rule — colour encodes data, gridlines stay `--line`.
+
+**Utility tokens.**
+
+| Token | Dark | Light | Use |
+|---|---|---|---|
+| `--scrim` | `rgba(14,12,10,.66)` | `rgba(40,30,15,.45)` | modal/drawer backdrop — espresso, **never black** |
+| `--select` | `rgba(224,54,61,.20)` | `rgba(193,34,41,.16)` | text-selection + selected-row wash (red-tinted) |
+| `--link` | `#5B8DEF` | `#2F6BD6` | inline links in body/docs — **blue, not red** (red = actions); underline on hover |
+
 ---
 
 ## 4. The spotlight rule — how the dark page pops (the core vibe)
@@ -298,6 +457,32 @@ For dense screens add a tabular monospace for asset IDs, quantities, timestamps,
 SKUs: **Geist Mono** or **JetBrains Mono**, `font-variant-numeric:tabular-nums`.
 Data cells only — not body, not the marketing site.
 
+### 5.5 App functional type ramp (LOCKED — don't invent UI sizes)
+
+The §5.1 scale is **marketing/display-led** (72px hero). Dense app screens need their
+own ramp — without it, agents proliferate sizes (the mockup already uses ~25). **This
+is the single ramp for app UI; use only these roles.** 11px floor (§13); reading body
+stays ≥16px, but *functional UI text* (labels, cells, controls, meta) steps down — that
+is allowed and is **not** a violation of the body-size rule.
+
+| Role | Size / line / tracking | Family · weight | Use |
+|---|---|---|---|
+| App page title | 24px / 1.2 / -.02em | display 800 | the one screen `h1` |
+| Section / panel header | 18px / 1.25 / -.01em | display 700 | card &amp; section headers |
+| Card / widget title | 15px / 1.3 | display 700 *or* body 600 | tiles, list headers |
+| Reading body | 16px / 1.5 | body 400 | descriptions, help, long text (**≥16**) |
+| UI text / label | 14px / 1.4 | body 500 | controls, nav items, form labels, buttons |
+| Table cell | 13.5px / 1.4 | body 400 (mono+tabular for figures) | rows |
+| Caption / meta | 12px / 1.35 | body 500 | secondary meta, timestamps, helper text |
+| Badge / micro | 11px (floor) | body 700 | status pills, counts, tags |
+
+- **Button** = UI-text 14px / weight 600. **Mono** (§5.4) matches the cell it sits in
+  (13.5 / 12), `tabular-nums`. **Eyebrows** stay Kalam (§5.1), not in this ramp.
+- **Weights:** display 700–800 for titles; body 400 (read) / 500 (UI/label) / 600
+  (emphasis, button, widget title) / 700 (badge). No other weights.
+- **High-contrast jump still applies** (§5.2): a 24px display title over 13.5px quiet
+  rows. Don't flatten everything to one size.
+
 ---
 
 ## 6. Spacing, layout &amp; grid
@@ -376,6 +561,47 @@ Weighty, physical, purposeful — never ambient decoration. Always honour
 Functional icons = **Lucide** or **Phosphor**. Never glyph characters or emoji as
 icons.
 
+### 9.1 Universal component states (MUST specify every one)
+
+The table above leads with the resting + hover/active look. A component isn't done
+until **all** of these states are handled with documented tokens — this is the #1
+source of inconsistent, half-built UI. Apply uniformly:
+
+| State | Rule (tokens only) |
+|---|---|
+| **Default** | As specced per component above. |
+| **Hover** (pointer only) | The documented lift/fill (e.g. card `translateY(-3px)` + `--sh-hover`; ghost → `--red`). **Never the only affordance** — pair with focus + active (§16.8: no hover on touch). |
+| **Focus-visible** | `2px` ring in `--red` (`focus-visible:ring-2 ring-red`, §15.2), offset so it clears the 2px outline. **Every** interactive element — keyboard users must see focus. Never remove the outline without a replacement. |
+| **Active / pressed** | The tactile drop: primary lifts 1px on hover, drops 2px on `:active`, shadow shrinks to `0 1px 0` (§8). |
+| **Selected / current** | Persistent `--elev` + `--lit` edge (the resting lit-edge is reserved for this, §4) + a `--red`/module-colour indicator. This is the touch-safe substitute for hover. |
+| **Disabled** | `opacity:.45`, `cursor:not-allowed`, no shadow/lift, `aria-disabled`. Never just greyed with no semantics. Keep label readable (AA). |
+| **Loading** | In-place spinner/skeleton in the luminance ladder (`--card`/`--elev`, §15.5); button keeps its width (no layout shift), label → spinner, stays disabled. Mascot "scanning" pose for long waits. |
+| **Error / invalid** | Border + ring → `--t-out`; a **text** message (never colour-only, §3.3/§13); inputs set `aria-invalid`. |
+| **Empty** (data components) | The mascot + one operator-voice line (§15.5) — the sanctioned personality home. |
+
+**Reduced-motion:** every state change above is `prefers-reduced-motion` aware —
+freeze at rest, no loops (§8/§13). **Contrast holds in every state** (disabled and
+placeholder text still legible).
+
+### 9.2 Iconography ramp (LOCKED)
+
+**Lucide** is the default set (functional UI); **Phosphor** only for occasional
+duotone moments. Never glyph characters or emoji as icons. Sizes — use only these:
+
+| Size | Stroke | Use |
+|---|---|---|
+| `16px` | 2px | inline with text, dense rows, chips, table cells |
+| `20px` | 2px | **default** — buttons, nav items, toolbar, inputs |
+| `24px` | 2px | section headers, emphasis, empty-state secondary |
+| `42px` | 2.6px (white) | the **patch icon** (§10) — categorical fill, cream border |
+
+- **Colour:** icons inherit text colour (`--ink-2` default); **module icons** take the
+  module hue (§3.7/§15.5); status icons take the status colour + always a label.
+- **Alignment:** optical-center with text; don't scale an icon off the ramp to fit.
+- Patch glyphs keep the 2.6px white stroke (§10); regular UI icons stay 2px.
+
+State changes use `transform`/`opacity`/colour only — no reflow.
+
 ---
 
 ## 10. Illustration &amp; sticker system
@@ -402,6 +628,31 @@ truck leaves"*, *"one change, everywhere"*).
 data-dense product screens**. Personality lives in the framing, not on the data.
 The current SVGs are concept sketches; a proper illustrator pass is a known next
 step.
+
+### 10.1 Photography &amp; imagery
+
+Real production photography **is on-brand and encouraged** — it's the authenticity a
+production company has that a SaaS can't fake. It complements the illustration system;
+it does not replace it.
+
+- **Subject = the real job:** actual gear, road cases, crew at work, bump-in/load-out,
+  FOH, a lit stage, the dock. Real people and real kit — **never stock, never AI, never
+  "smooth-plastic" 3D** (§12).
+- **Treatment (locked):** a **warm grade** — lift toward the espresso/amber world, keep
+  shadows in the `--paper` warmth, **never crushed to pure black** or cooled to slate.
+  Full-colour for hero/feature; may **duotone** to espresso + cream for quiet
+  background/section use. No gradient overlays, no glow.
+- **Framing = the same tactile frame as everything else:** `2px` outline (`--line-2`
+  dark / `--ink` light) + `--r-lg` + the **hard offset shadow** (§7). No soft vignette,
+  no ambient drop-shadow. A photo is a card, not a hero-glow.
+- **On dark, a bright photo is a "pop"** — it counts against the ≤3 light budget (§4);
+  keep it controlled, within the espresso ambience.
+- **Text over photos:** only with a `--scrim` (§3.7) for AA; prefer text *beside* the
+  framed photo, not on it.
+- **Captions:** a Kalam annotation (§5) or mono meta — in the brand voice (§2).
+- **In-app:** photography is marketing/chrome; **keep it off dense data screens** (same
+  rule as stickers). Asset thumbnails (gear photos in inventory) are the exception —
+  small, framed, square, never a background.
 
 ---
 
@@ -442,7 +693,9 @@ product data clean · squint test: crew-made, not template?
 ---
 
 ## 13. Accessibility
-- Body ≥ 16px in product; nothing below 11px anywhere.
+- **Reading/body copy ≥ 16px** in product (descriptions, help, long text). **Functional
+  UI text** — labels, table cells, controls, captions, badges — may step down per the
+  app ramp (§5.5), but **nothing below 11px anywhere** (the floor; badges sit at 11px).
 - WCAG AA contrast — status text uses the darker stop on light (`#9C1B21` etc.)
   and the brighter stop on dark (`--t-out #F26F73`). Verify red-on-cream.
 - Never encode state by colour alone — badges always carry a text label.
@@ -500,7 +753,14 @@ transitions + the sanctioned moment animations; no scroll parallax in-app.
   --ok:#4FD888; --warn:#EBA53A; --rep:#B6AC9A; --t-out:#F26F73;
   --ok-soft:rgba(62,207,122,.14); --warn-soft:rgba(235,165,58,.15);
   --rep-soft:rgba(158,148,131,.14); --out-soft:rgba(224,54,61,.18);
-  --amber:#EBA53A; --blue:#5B8DEF; --green:#3ECF7A; --purple:#9B82E6;
+  --amber:#EBA53A; --blue:#5B8DEF; --green:#3ECF7A; --purple:#9B82E6; --dark:#0E0C0A;
+  /* extended module hues + tints (§3.7) */
+  --coral:#EF7E55; --teal:#3FC8BE; --pink:#E875AC; --lime:#AFC44E;
+  --blue-soft:rgba(91,141,239,.15); --amber-soft:rgba(235,165,58,.15);
+  --green-soft:rgba(62,207,122,.14); --purple-soft:rgba(155,130,230,.15);
+  --coral-soft:rgba(239,126,85,.15); --teal-soft:rgba(63,200,190,.15);
+  /* utility (§3.7) */
+  --scrim:rgba(14,12,10,.66); --select:rgba(224,54,61,.20); --link:#5B8DEF;
   --sh-card:0 3px 0 #0C0A08; --sh-hover:0 7px 0 #0C0A08;
   --lit:inset 0 1px 0 rgba(255,253,248,.14); --sh-stk:2px 4px 0 rgba(0,0,0,.5);
   --radius:0.875rem;
@@ -520,7 +780,13 @@ transitions + the sanctioned moment animations; no scroll parallax in-app.
   --red:#C12229; --red-700:#9C1B21; --red-soft:#FBE7E3;
   --ok:#2EA65C; --warn:#C98A14; --rep:#8A8270; --t-out:#9C1B21;
   --ok-soft:#E7F5EC; --warn-soft:#FBF0D6; --rep-soft:#EFE9DC; --out-soft:#FBE7E3;
-  --amber:#E79A2B; --blue:#2F6BD6; --green:#2EA65C; --purple:#7A5CD0;
+  --amber:#E79A2B; --blue:#2F6BD6; --green:#2EA65C; --purple:#7A5CD0; --dark:#241F1A;
+  /* extended module hues + tints (§3.7) */
+  --coral:#CC5E2E; --teal:#1C8B83; --pink:#C2487E; --lime:#6E8C12;
+  --blue-soft:#E2ECFB; --amber-soft:#FBF0D6; --green-soft:#E7F5EC;
+  --purple-soft:#ECE6FA; --coral-soft:#FBE6DB; --teal-soft:#DBF1EF;
+  /* utility (§3.7) */
+  --scrim:rgba(40,30,15,.45); --select:rgba(193,34,41,.16); --link:#2F6BD6;
   --sh-card:0 3px 0 var(--line-2); --sh-hover:0 7px 0 var(--line-2);
   /* NOTE: card outline on light = --ink (vs --line-2 on dark) */
 }
@@ -532,6 +798,9 @@ transitions + the sanctioned moment animations; no scroll parallax in-app.
   --color-line:var(--line); --color-line-2:var(--line-2);
   --color-red:var(--red); --color-ok:var(--ok); --color-warn:var(--warn);
   --color-rep:var(--rep); --color-t-out:var(--t-out);
+  --color-amber:var(--amber); --color-blue:var(--blue); --color-green:var(--green);
+  --color-purple:var(--purple); --color-coral:var(--coral); --color-teal:var(--teal);
+  --color-pink:var(--pink); --color-lime:var(--lime); --color-link:var(--link);
   --font-display:"bc-alphapipe","Archivo",sans-serif;
   --font-sans:"Hanken Grotesk",system-ui,sans-serif;
   --font-hand:"Kalam",cursive;
@@ -627,12 +896,12 @@ active / alert, so modules draw from the categorical ramp:
 | Gear / Inventory | `--amber` |
 | Crew / People | `--purple` |
 | Availability | `--green` |
-| Compliance | `--green` (tint) / add `--teal` |
-| Maintenance | `--rep` neutral / add `--coral` |
+| Compliance | `--teal` |
+| Maintenance | `--coral` |
 
-Add `--coral` / `--teal` to the ramp if you need more distinct module hues. Keep
-status badges as **labelled soft-fill pills** so a green *badge* never reads as the
-green *module*.
+`--coral` / `--teal` are now first-class tokens (§3.7), each with a `-soft` tint for
+active nav / header wash / selected chips. Keep status badges as **labelled soft-fill
+pills** so a green *badge* never reads as the green *module*.
 
 **Sidebar** — warm espresso (`--paper-2` / `--card`), **never black**. Grouped nav,
 Lucide icons tinted by module colour; the active item = `--elev` bg + `--lit` top
@@ -665,9 +934,411 @@ ring pulse; a row settling after a scan. Always honour `prefers-reduced-motion`.
 **Through-line:** warm surfaces + the categorical ramp + one personality beat per
 screen = energy. Keep it off the dense data; put it everywhere around it.
 
+### 15.6 Extending the system (and not breaking it)
+
+How an agent adds a screen or component **without drifting off-brand**. Follow in
+order; this is the iteration contract:
+
+1. **Reuse before you invent.** Before adding any token, ask: can this be built from
+   the existing vocabulary — a `--card` + 2px outline + `--r` radius + a status
+   soft-fill + a module colour? The system's strength is that it almost never needs
+   new tokens. Most "new" components are a recomposition of §9 + §15.2.
+2. **Reference tokens, never paraphrase.** In code and prose use the var name
+   (`--red`, `--paper-2`, `--r-lg`) — never a raw hex, px size, or radius that isn't
+   in §3/§5/§7 + Appendix A. A hardcoded `#E0363D` is a bug even when it's correct.
+3. **If you genuinely need a new value, derive it** from the nearest token, add it to
+   §3/§5/§7 **and** Appendix A in the same change (keep them in sync — they're the
+   single source of truth), and leave `/* TODO: confirm with brand */`. Never start a
+   parallel system or a one-off inline value (§0).
+4. **Add variants as named states, not prose asides.** A new button/badge variant gets
+   its full state set per §9.1 (default/hover/focus/active/selected/disabled/loading/
+   error) — don't bury a half-state in a sentence.
+5. **One component at a time.** Build it, then run the relevant self-audit
+   (§15.3 app · §16.15 mobile · §12 site) before moving on.
+6. **Respect the budgets.** One red accent tiered to one moment per viewport (§4);
+   ≤3 light pops on dark / ≤2 on mobile (§4/§16.5); one personality beat per screen
+   (§15.5). Adding energy usually means *moving* it, not *adding* it.
+7. **When the file doesn't cover your case,** decide from the nearest rule + the
+   *why* (the rationale is in the prose for exactly this), keep it on-system, and log
+   it in §18 "known gaps." Escalate to the human only for the items §0 lists.
+
 ---
 
-## 16. References
+## 16. Mobile, responsive &amp; field use
+
+Authoritative for every viewport below the desktop breakpoint — **marketing and
+app both.** Mobile is not "desktop, narrower." For RVLT Flow the phone is the
+*primary field surface*: the crew uses it on the dock, in the truck, on a dark
+stage and in load-out sun — and the marketing site is mostly opened on a phone
+too. Design the small screen first; let the desktop be the one that "expands."
+
+> **Binding, same as §15.** Precedence per §0 (paste-ready §16.14/§15.1 > tables >
+> prose); pass the §16.15 **and** §15.3 audits; on a phone viewport **§16 wins** over
+> any desktop spec — don't ship a screen that only works at `lg`. The dial (§15) tips
+> further **Functional** here (fewer pops, calmer motion, bigger targets, personality
+> in a couple of moments) — but **never go grey/chrome-less**; that sterile result is
+> exactly the boring production software we replace.
+
+### 16.1 First principles — mobile is where the work happens
+
+- **Field-first, not couch-first.** Assume bright sun, a moving truck, gloves, one
+  thumb, and patchy warehouse Wi-Fi. The common app tasks on a phone are
+  *scan gear out/in, check availability, read today's call sheet, mark a return,
+  flag damage* — make those reachable in one or two taps, not buried.
+- **Calm data, fun chrome — even more so.** On a small screen the data must be the
+  whole screen; personality lives in the **chrome and the moments** (§15.5) — the
+  header, the bottom bar, the scan-success toast, the empty state, the pull-to-
+  refresh. One beat per screen, never competing with the data.
+- **The spotlight rule still holds, tightened.** ≤90% espresso; **≤2 bright pops
+  per screen** (§16.5), each still a single lit *object*. A phone viewport is small
+  — three pops crowd it into glare.
+- **Reach beats density.** Where desktop packs in, mobile spaces out *vertically*
+  for the thumb. Trade columns for stacked cards; never shrink a touch target to
+  keep a layout.
+
+### 16.2 Breakpoints &amp; the responsive ladder
+
+The marketing mockups collapse at a single breakpoint (`max-width:880px`, see
+`index.html`); the app (Tailwind v4) uses the standard ladder. Reconciled:
+
+| Token | Width | Surface use |
+|---|---|---|
+| `base` | `0–639px` | **Phone — design here first.** Single column, bottom nav/drawer. |
+| `sm` | `≥640px` | Large phone / small tablet — 2-col grids may return. |
+| `md` | `≥768px` | Tablet — sidebar can appear (app); marketing still stacked-ish. |
+| `lg` | `≥1024px` | **Desktop** — full multi-column, sidebar, the canonical layouts (§14). |
+| `xl` | `≥1280px` | Container caps at `1140px` (§6); no new layout past here. |
+
+- **Marketing single collapse stays at `880px`** for parity with the mockups, but
+  fluid type (§16.4) should make the hero feel right well before that.
+- **App:** mobile = `base`–`md` (drawer/bottom-bar, stacked, off-canvas sidebar);
+  `lg+` = the desktop product layout. Don't render the desktop sidebar below `md`.
+- **One ladder, mobile-first authoring:** write base styles for the phone, add
+  `sm:`/`md:`/`lg:` to *expand* — never desktop-down `max-` overrides that fight
+  each other.
+
+### 16.3 Layout, spacing &amp; grid on mobile
+
+- **Container gutter** drops from `28px` (§6) to **`20px`** (`16px` on `<360px`
+  hardware). Hero copy column goes full-width within the gutter.
+- **Section rhythm** compresses: `.band` padding `84px` → **`56px`** top/bottom on
+  phone (use the `56` step from the scale in §6). Keep the fading hairline
+  `.divider` between bands — it does more work when sections are short.
+- **Everything collapses to one column** (`.fgrid`, `.how`, `.price`, `.sc-grid`,
+  `.foot-grid`) — already the mockup behaviour. The pricing tiers stack
+  **featured-first** (the cream spotlight tier on top), and `transform` is reset
+  so the lifted tier doesn't clip.
+- **Spacing scale unchanged** (4/8/12/16/20/28/40/56/84) — just step *down* a notch
+  or two per gap; don't invent mobile-only values.
+- **Tap rhythm:** vertical gaps between tappable rows ≥ `8px` so fingers don't
+  mis-hit the neighbour.
+
+### 16.4 Typography — the headline still has to hit
+
+The 72px hero (§5.1) does not fit a 390px screen. **Fluid display type with
+`clamp()`**, anchored to the existing scale (paste-ready tokens in §16.14) — never a
+separate mobile scale, never sub-11px anywhere (§13).
+
+- **Tighten tracking as size grows, not on the phone** — at `40px` the hero wants
+  `-.02em`, not the desktop `-.035em` (over-tight small display closes up).
+- **Lead** (`19px`) may drop to `17px` on phone; **body stays ≥16px** in the app.
+- **Keep the high-contrast jump** (§5.2): big tight display over small quiet body
+  reads even better on a phone. One bright stat, siblings to `--ink-2`.
+- **Kalam eyebrows / doodles** stay legible — don't shrink Kalam below `15px`; it
+  blurs out before the body does.
+
+### 16.5 The spotlight rule on a small screen
+
+Budget drops from 3 pops to **≤2 per screen** (one is fine):
+
+- **Marketing hero:** keep **pop #1**, the glowing `.lightui` dashboard — but it's
+  the *signature*, so give it room: full-bleed-to-gutter, scaled down, and let the
+  data rows inside reduce to the 2–3 that tell the story (§16.9). It can scroll
+  horizontally inside its own frame rather than shrink illegibly.
+- **Pricing cream tier** (pop #2) and the **cream testimonial** (pop #3) are now
+  *sequential* down the scroll, not side-by-side — so only one is ever in the
+  viewport. That's allowed: the "≤2 per viewport" rule is about what's *on screen
+  at once*, and a single scrolling phone viewport rarely holds two.
+- **Stage-wash** (the one amber radial, §4) stays behind the hero only, scaled to
+  the smaller hero. Don't add a second glow to compensate for the lost stickers.
+- **App screens:** typically **one** pop — the live/active card or the module
+  header accent. Don't light up a toast *and* a card *and* the FAB at once.
+
+### 16.6 Stickers, doodles &amp; the mascot on mobile
+
+The mockups currently hide all stickers/doodles below `880px` (`.stk`, `.doodle`,
+`.d-circle { display:none }`). That's the safe default — **but don't strip the
+personality entirely.** Refined guidance:
+
+- **Marketing:** keep **1–2 hero stickers**, repositioned to the corners where they
+  won't collide with the headline or the dashboard, at reduced size (≈48–60px).
+  Drop the rest and **all scroll parallax** (§16.12). Keep **one** red doodle —
+  the scribble-underline on the hero keyword — because it carries the joke; cut the
+  free-floating arrows/notes that need whitespace to read. Re-enable the corner
+  stickers on the **closing red CTA block** (one or two), since that section has
+  room. Everything decorative stays `aria-hidden` (§13).
+- **App:** unchanged from §15 — **no stickers/doodles on data.** The mascot is the
+  personality carrier on mobile: it owns empty states, the scan-success cameo,
+  loading ("scanning" pose), 404, and a small idle pose tucked in the drawer
+  footer. It must scale clean from a 24px favicon to a hero sticker (§11), so it
+  reads fine at phone sizes.
+- **Rule of thumb:** if a sticker/doodle would overlap text or a tap target on the
+  narrowest phone, cut it — never let framing fight the content on a small screen.
+
+### 16.7 Navigation — drawer (marketing) &amp; bottom bar (app)
+
+The mockups just hide `.navlinks` on mobile — fine for a static page, **not enough
+for either real product.**
+
+**Marketing nav:**
+- Sticky bar keeps the brand lockup + a **hamburger** (right). Frosted glass stays
+  here only (§9): `rgba(18,16,13,.93)` + `blur(14px)`, `--lit` edge.
+- Tap → **full-height drawer** sliding from the right over an espresso scrim
+  (`--paper` at ~92% + slight blur). Big stacked links (display-ish, `≥20px`,
+  generous `48px` rows), the **"Book a demo"** primary pill pinned at the bottom.
+- Animate as a weighty slide (§8 / §16.12), reduced-motion → instant. Trap focus,
+  close on `Esc`/scrim tap/link tap, lock body scroll while open.
+
+**App nav (the important one):**
+- **Bottom tab bar** on phone — the field-reachable pattern. 4–5 destinations max
+  (e.g. *Projects · Gear · Crew · Scan · More*), Lucide icons **tinted by module
+  colour** (§15.5), label under each, active item = module colour + `--lit` top
+  edge on the bar. Sits above the home indicator (safe-area, §16.11).
+- The desktop sidebar (§15.5) becomes an **off-canvas drawer** (hamburger or
+  swipe-from-edge) for the full grouped nav; the bottom bar covers the hot paths.
+- **Never a black bar.** The bottom bar is warm espresso (`--paper-2`/`--card`),
+  2px top hairline `--line-2`, like the sidebar.
+- Optional **center scan FAB** (§16.10) raised in the bar — scanning is the
+  highest-frequency field action.
+
+### 16.8 Touch, thumb zones &amp; ergonomics
+
+- **Minimum target `44×44px`** (`48px` for primary field actions — scan, confirm,
+  check-out). Applies to icon buttons, FAQ `<details>` summaries, badges that are
+  actually tappable, table rows, stepper rings.
+- **Thumb-reachable primary actions:** put the main action at the **bottom** — a
+  sticky action bar (§16.10) or the bottom tab bar — not a top-right corner the
+  thumb can't reach one-handed.
+- **Hover is not available.** Every hover affordance (card lift, row → `--elev`,
+  ghost → red) needs a tap/active equivalent: use `:active` for the press drop
+  (§8) and persistent selected state (`--elev` + `--lit`) for "current," not hover.
+- **Spacing between targets ≥ 8px**; destructive and confirm actions never adjacent.
+- **No tiny close-X in a corner** as the only dismiss — support swipe-down on sheets
+  and a full-width button.
+
+### 16.9 The signature product screens on mobile (the hard part)
+
+The three signature patterns (§15.4) must survive the phone. They're dense by
+nature — here's how each reflows without losing meaning:
+
+**(a) Availability board / lifecycle stepper.**
+- **Stepper goes vertical.** The horizontal Enquiry → … → Return spine doesn't fit;
+  rotate it to a **vertical timeline** (rings down the left, labels right,
+  connectors are vertical). Same states: done = `--ink` + check, **now** = red ring
+  + `--red-soft` glow + bold label, future = `--line-2`/`--faint`. The active
+  connector still animates (`grow`, reduced-motion aware). Rings stay tappable
+  (≥44px hit area) to jump stage.
+- *Alternative for tight space:* a **horizontally-scrollable** stepper chip-rail
+  with the current stage centered and a "3 of 6" caption — but vertical is
+  preferred when there's room.
+- **Data rows are already mobile-friendly** — the `asset · qty · status badge`
+  grid is essentially a card list. Keep all three columns; let the asset name
+  wrap, keep `qty` in `font-mono tabular-nums`, keep the labelled status badge
+  (never colour-only, §3.3). Row press → `--elev`. **Still never decorate the
+  data.**
+
+**(b) Mini-UI feature cards / dashboard widgets.**
+- Stack one-per-row. Each keeps its **module-colour patch icon** (the wayfinding
+  hue, §15.5) so the screen stays scannable. The live mini-UI tile keeps its
+  `--line` top/bottom borders and status-colour `--mbar` bars.
+- The **one "live" card** keeps `--elev` + `--lit` + pulsing tag — it's the single
+  app "pop" (§16.5).
+
+**(c) Crew scheduler timeline — the genuinely hard one.**
+A multi-person × hours grid can't shrink to 390px and stay usable. Mobile patterns,
+in order of preference:
+- **Day-pager + per-person rows:** one day at a time (swipe left/right between
+  days, date in the header), each crew row = avatar (initials on the per-person
+  colour) + name + a **horizontally-scrollable** shift track. Shift bars keep the
+  person/job colour + white label; **clashes** still flag overbooked red with the
+  callout.
+- **Or an agenda/list view:** collapse the grid into a chronological list of
+  *shifts grouped by person* (or by time) — often more useful on a phone than any
+  timeline. Offer both; default to agenda on the narrowest screens.
+- Drag-to-assign degrades to **tap-to-assign** (tap an open call → pick a person →
+  Flow runs the availability/skills/tickets check). The "+N open" row stays. One
+  hand-drawn "no clashes ✦" corner note is still fine (chrome, not data).
+
+**General table rule:** any wide data table → **card list** below `md` (label:value
+pairs stacked), *or* keep the table but let it scroll horizontally inside a bordered
+frame with the first column pinned. Never squeeze 6 columns into 390px.
+
+### 16.10 Mobile-native components
+
+Built from the same tokens (2px outline, hard offset shadow, pill buttons, status
+soft-fills) — just shaped for touch:
+
+- **Bottom sheet** (replaces the centered modal/dialog from §15.5 on phone): slides
+  up from the bottom, `--elev` (or cream for a moment), 2px outline + `--lit` edge,
+  rounded top corners (`--r-lg`), a small grab handle, **swipe-down to dismiss** +
+  a full-width primary pill. BC Alphapipe title. Human copy even when destructive
+  (*"This kit's booked Saturday — pull it anyway?"*). Respects safe-area bottom.
+- **Sticky action bar:** the screen's primary action(s) pinned to the bottom above
+  the home indicator — `--card`/`--elev`, 2px top hairline, red primary pill +
+  optional line button. This is where "Check out", "Confirm", "Save" live on a
+  phone (thumb zone, §16.8).
+- **Scan FAB:** a raised red circular button (the one place red is a big shape) for
+  the camera/scanner — the highest-frequency field action. `--sh-card` offset, tap
+  → press drop. Center of the bottom bar, or floating bottom-right above it.
+- **Swipe actions on rows:** swipe a gear/return row for quick actions (check in,
+  flag damage) in status colours with Lucide icons + labels. Always also reachable
+  via tap → sheet (swipe is an accelerator, not the only path).
+- **Toasts** stack from the **bottom** on mobile (above the bar/safe-area), same
+  chunky status-colour card + Lucide + wit (§15.5); the scan-success green toast
+  and the all-returned mascot+confetti cameo are the signature moments.
+- **Pull-to-refresh:** a sanctioned personality beat — the **mascot** can ride the
+  refresh spinner (beam-on "scanning" pose). Motion-safe.
+
+### 16.11 Field conditions — sun, gloves, signal, notches
+
+This is where being a *production* tool earns its keep:
+
+- **Safe areas / notches:** respect `env(safe-area-inset-*)` — pad the sticky nav,
+  bottom tab bar, action bar and sheets so nothing hides behind the notch or home
+  indicator. `viewport-fit=cover` when going edge-to-edge.
+- **Sunlight legibility:** the warm espresso dark can wash out outdoors. Maintain
+  **WCAG AA and a little more** for primary text/actions; never rely on the faint
+  end of the ladder (`--faint`, `--muted`) for anything that must be read on the
+  dock. Status badges keep their **text label** — colour alone dies in glare (and
+  fails colour-blind users). Consider honouring a **high-contrast** preference.
+- **Gloved / imprecise taps:** bigger targets (§16.8), forgiving hit areas, no
+  precision drag as the only path (§16.9).
+- **Patchy signal / offline:** warehouses and venues have dead spots. Scanning and
+  reads should work **offline-first** and sync later; show an honest, on-voice
+  offline state (*"No signal in the dock — Flow's holding your scans, syncs when
+  you're back."*) rather than a dead spinner. Queue writes; never lose a scan.
+- **One-handed:** keep the hot actions in the bottom third (§16.8). The crew has a
+  road case in the other hand.
+- **Don't depend on hover, right-click, or precise cursor** for any field task.
+
+### 16.12 Motion &amp; performance on mobile
+
+- **Kill scroll parallax entirely** — the hero sticker drift (§8) is desktop-only;
+  it's already disabled with the stickers below `880px`. No parallax, ever, on
+  touch.
+- **Keep the cheap, physical beats:** button press drop, the lifecycle segment
+  growing red, status badge cross-fade, the "now" ring pulse, sheet slide-up,
+  toast settle. All `transform`/`opacity` only (compositor-friendly), short
+  (~150–250ms), and **`prefers-reduced-motion` aware** (§8/§13) — freeze at rest.
+- **Budget for low-end Android:** avoid simultaneous animations, heavy blur on
+  scroll (frosted glass is sticky-nav only), and large reflows. The 2px-outline +
+  hard-offset-shadow look is *cheaper* than soft ambient shadows — a mobile bonus.
+- **Performance is brand:** fast, jank-free, small payload. Lazy-load below-fold
+  imagery and the heavy hero dashboard; the squint test includes "does it feel
+  instant on a mid-range phone on warehouse Wi-Fi?"
+
+### 16.13 Forms &amp; input
+
+- **Right keyboard, every time:** `inputmode`/`type` for numbers (quantities,
+  counts → numeric pad), email, tel, search. Asset IDs/SKUs in `font-mono` (§5.4).
+- **Inputs are `≥44px` tall**, 2px `--line-2` border, `--r` radius, red focus ring
+  (§15.2) — restyled shadcn, not stock.
+- **Avoid zoom-on-focus:** form inputs `≥16px` font (iOS zooms below that).
+- **Labels above fields** (not placeholder-only); one field per row on phone;
+  the submit/primary action in the sticky bottom bar (§16.10), not lost mid-scroll.
+- **Big tap pickers** over tiny native selects where it matters (date/crew/gear) —
+  bottom-sheet pickers with the module colour.
+
+### 16.14 App build recipes — shadcn/Tailwind for the mobile chrome
+
+Paste-ready, in the format of §15.2. Same precedence as §15.1 (this wins over
+prose). All built mobile-first; add `md:`/`lg:` to expand to the desktop layouts.
+
+**Add these tokens to your `app/globals.css`** (extend the §15.1 `:root` and
+`@theme inline` — they don't exist in §15.1 yet):
+
+```css
+:root{
+  /* fluid display — see §16.4 (min phone … fluid … §5.1 desktop max) */
+  --t-display-xl:clamp(40px,9vw,72px); --t-display-l:clamp(30px,6vw,44px);
+  --t-display-m:clamp(24px,4.5vw,30px); --t-numeral:clamp(30px,7vw,44px);
+  /* safe-area insets (0 on non-notched devices) */
+  --safe-b:env(safe-area-inset-bottom,0px); --safe-t:env(safe-area-inset-top,0px);
+}
+@theme inline{
+  --text-display-xl:var(--t-display-xl); --text-display-l:var(--t-display-l);
+  --text-display-m:var(--t-display-m); --text-numeral:var(--t-numeral);
+}
+```
+And set `viewport-fit=cover` in the Next.js `viewport` export so `env()` resolves
+edge-to-edge.
+
+**Breakpoints:** use Tailwind defaults (§16.2) — `sm 640 · md 768 · lg 1024 · xl 1280`.
+The product sidebar appears at `md:`; render the bottom bar + off-canvas drawer below it.
+
+**Responsive dialog → bottom sheet.** Use shadcn **Drawer** (vaul) on phone, **Dialog**
+on `md+` — one component switched by breakpoint, not two code paths.
+`Drawer` content: `bg-elev border-2 border-line-2 rounded-t-[var(--r-lg)] shadow-[var(--sh-card),var(--lit)] pb-[max(1rem,var(--safe-b))]`; keep the grab handle; swipe-down dismiss is built in. Title `font-display font-extrabold`; primary = full-width red pill.
+
+**Bottom tab bar** (no shadcn primitive — build it). Fixed, warm, never black:
+```
+fixed inset-x-0 bottom-0 z-40 bg-paper-2 border-t-2 border-line-2
+grid grid-cols-5 pb-[var(--safe-b)] md:hidden
+```
+Each item: Lucide icon + label, tinted by **module colour** (§15.5); active item =
+module colour + `shadow-[var(--lit)]` top edge. Hide at `md:` (sidebar takes over).
+
+**Off-canvas sidebar:** shadcn **Sheet** (`side="left"`), `bg-paper-2 border-r-2 border-line-2`, the full grouped nav from §15.5; trigger = hamburger. The bottom bar covers the hot paths; the Sheet covers everything.
+
+**Sticky action bar** (primary action in the thumb zone, §16.8):
+```
+sticky bottom-0 inset-x-0 bg-card/95 backdrop-blur border-t-2 border-line-2
+px-5 pt-3 pb-[max(0.75rem,var(--safe-b))]
+```
+Holds the red primary pill (+ optional `outline` button). Use instead of an
+in-flow submit button on any form/detail screen.
+
+**Scan FAB:** `size-14 rounded-full bg-red text-white shadow-[var(--sh-card)] active:translate-y-[2px] active:shadow-[0_1px_0_var(--red-700)]` — centered in the bar or floating `bottom-[calc(var(--safe-b)+1rem)] right-4`. The one place red is a big shape.
+
+**Toasts:** shadcn **Sonner**, `position="bottom-center"`, offset above the bar/safe-area; restyle to the chunky status card (§15.5). The green scan-success toast + the all-returned mascot cameo are the signature moments.
+
+**Inputs:** the §15.2 input recipe + mobile delta — `text-base` (16px, no iOS zoom),
+`min-h-11` (44px), correct `type`/`inputmode`, labels above (§16.13).
+
+**Data table → cards below `md`:** render the table at `md:` and a stacked
+`label:value` card list at `base` (or keep the table in an `overflow-x-auto`
+frame with the first column `sticky left-0`). Status stays a labelled Badge (§3.3).
+
+**Lifecycle stepper:** horizontal at `md:`, **vertical timeline** at `base` (§16.9a) —
+same ring states, same animated active connector (reduced-motion aware).
+
+### 16.15 Mobile self-audit (run before returning any responsive UI)
+
+- [ ] Designed mobile-first; layout *expands* up the ladder (§16.2), no desktop-down
+      override fights.
+- [ ] Hero/headlines fluid (`clamp`, §16.4); nothing below 11px; body ≥16px in app.
+- [ ] **≤2 bright pops** on screen at once; espresso still ≥90% (§16.5).
+- [ ] Some personality kept (1–2 hero stickers, one doodle, the mascot) — not
+      stripped to a grey reflow (§16.6).
+- [ ] Real mobile nav: marketing drawer / app bottom-tab-bar + off-canvas sidebar —
+      **not** just hidden links (§16.7). Neither bar is black.
+- [ ] All targets `≥44px` (`48px` for scan/confirm); primary action in the thumb
+      zone; every hover affordance has a tap/active equivalent (§16.8).
+- [ ] Signature screens reflow with meaning intact — stepper vertical, tables →
+      cards / pinned-scroll, crew board → day-pager/agenda, drag → tap (§16.9).
+- [ ] Touch components used where due — bottom sheet, sticky action bar, scan FAB,
+      bottom toasts (§16.10).
+- [ ] Safe-areas padded; status carries a **label** (sun/colour-blind safe); offline
+      state is honest and on-voice; scans queue, never lost (§16.11).
+- [ ] No scroll parallax; motion is cheap, short, `prefers-reduced-motion` aware;
+      feels instant on a mid-range phone (§16.12).
+- [ ] Correct keyboards; inputs ≥16px (no zoom) and ≥44px tall; labels above (§16.13).
+- [ ] Squint test, phone edition: **crew-made field tool — or a desktop site
+      crushed into a column?**
+
+---
+
+## 17. References
 
 Built with **Mobbin** (team has access — open to see full screens) + the
 **awesome-design-md** catalog (`getdesign.md/<name>/design-md`,
@@ -704,15 +1375,75 @@ table with availability columns"); avoid vague style words; name an app to filte
 
 ---
 
-## 17. Asset inventory &amp; next steps
+## 18. Asset inventory, known gaps &amp; next steps
 
+**Assets**
 - `index.html` — **THE reference** (dark "espresso", spotlit). Brand source of truth.
 - `light.html` — light "Paper" twin, same copy &amp; system.
+- `preview.html` — **token &amp; component catalog** (the design.md preview artifact): every
+  token + component rendered, dark-first with a light toggle, swatch hexes read live from
+  the CSS vars. The visual companion to this spec.
 - `assets/rvlt-labs-logo.svg`, `assets/rvlt-mark.svg` — logo (full wordmark + RVLT-only mark).
 
-**Open items:** wire the BC Alphapipe Adobe kit · professional illustration pass
-on the sticker set + develop the "Flow" mascot expression set · port these tokens
-into the app's Tailwind/shadcn theme.
+### 18.1 Known gaps &amp; out of scope — *agent: do NOT invent; derive + flag*
+
+This spec is honest about its edges. Where something below isn't specified, **derive
+from the nearest token + the documented rationale, keep it on-system, leave a
+`/* TODO: confirm with brand */`, and surface it** (§15.6). Escalate to a human only
+for the starred items.
+
+- **★ BC Alphapipe Adobe Typekit URL** — not wired (kit is account-specific, §5).
+  Until then **Archivo** holds all display type. *Human-only.*
+- **★ Real content / data / copy** — headlines, pricing numbers, testimonials, logos.
+  Never fabricate proof or logos (§2). *Human-only.*
+- **Illustration & mascot set** — current SVGs are concept sketches; the full
+  sticker library and the "Flow" expression set (idle/scanning/celebrating/worried,
+  §11) await an illustrator pass. Don't generate new gear stickers ad-hoc.
+- **Mobile mockups** — §16 is the spec, but there's no canonical phone mockup yet the
+  way `index.html` is the desktop one. Build to §16; flag divergences.
+- **Offline / sync & scan flows** — §16.11 assumes offline-first scanning; the state
+  machine, conflict resolution and sync UI are not yet specified.
+- **Authenticated app chrome beyond the signature screens** — settings, billing,
+  account, notifications, search/command-palette, onboarding flows are not drawn.
+  Build from §15 (calm data, fun chrome) + §9.1 states; don't invent new patterns.
+- **Data-viz / charts** — palette + series order + sequential rule are now locked
+  (§3.7); still unspecified: chart *types*, axes, gridline weights, legends, tooltips,
+  empty/loading chart states. Build from §3.7 + "calm data" until specced.
+- **Email / PDF / print** (quotes, dispatch sheets, invoices) — out of scope here.
+- **Internationalisation, RTL, currency/date locales** — not addressed.
+- **Hover-only states on touch** — covered by §16.8/§9.1, but verify per component.
+
+### 18.2 Next steps (prioritised)
+
+1. Wire the BC Alphapipe kit · 2. Illustrator pass on stickers + mascot expressions ·
+3. Port these tokens into the app's Tailwind/shadcn theme (paste §15.1) ·
+4. Build the mobile mockups (phone hero + the three signature screens, §16) ·
+5. Spec the offline/sync + scan flows · 6. Spec data-viz + the remaining app chrome.
+
+### 18.3 Changelog
+
+This file is **versioned** (see front-matter `version`). Keep it the single source
+of truth — when a token changes, change it in §3/§5/§7 **and** Appendix A **and**
+§15.1 in the same commit, and add a line here.
+
+- **1.1.0** (2026-06-17) — **Locked the major design choices agents were freestyling.**
+  Added §3.7 extended palette (module-colour tints, `--coral`/`--teal`, an 8-hue avatar
+  set, ordered data-viz ramp, `--scrim`/`--select`/`--link`); §5.5 functional app type
+  ramp (11px floor; reading-body ≥16 vs UI-text clarified in §13); §9.2 icon ramp;
+  §10.1 photography stance (warm grade + tactile frame); restored `--dark` to §15.1 +
+  Appendix A. Wired all into §15.1 + Appendix A. Fixed the mockup's sub-11px text to
+  honour the floor. Built **`preview.html`** (token/component catalog). Post-preview
+  review (codex): made the avatar-initial rule AA-safe + theme-aware (§3.7) — dark
+  theme → `--dark` ink, light theme → white except amber/lime.
+- **1.0.0** (2026-06-17) — Baseline brand + app spec. Added the **mobile/field-use
+  section** (§16) with app build recipes; aligned the doc to the **design.md**
+  convention (front-matter, component-states §9.1, **token tiers §3.6**, extend-
+  without-drift §15.6, known-gaps boundary §18.1, AGENTS.md relationship, changelog).
+  Post-review (head-designer handoff lens): added **§0.1 agent non-negotiables &
+  conflict notes** (canonical dark mockup; stale `light.html` divergences; red-vs-
+  module resolution; mascot/sticker fabrication ban; shadcn must-restyle list);
+  reconciled §3.6 so `bg-red`/`text-ok` token utilities read as valid (not
+  violations); de-duplicated the §16.4 clamp block and §16 intro into pointers.
 
 ---
 
@@ -723,6 +1454,8 @@ this and §15.1 win.
 
 ```json
 {
+  "version": "1.1.0",
+  "updated": "2026-06-17",
   "default_theme": "dark",
   "themes": {
     "dark": {
@@ -733,7 +1466,12 @@ this and §15.1 win.
       "ok": "#4FD888", "warn": "#EBA53A", "rep": "#B6AC9A", "t-out": "#F26F73",
       "ok-soft": "rgba(62,207,122,.14)", "warn-soft": "rgba(235,165,58,.15)",
       "rep-soft": "rgba(158,148,131,.14)", "out-soft": "rgba(224,54,61,.18)",
-      "amber": "#EBA53A", "blue": "#5B8DEF", "green": "#3ECF7A", "purple": "#9B82E6"
+      "amber": "#EBA53A", "blue": "#5B8DEF", "green": "#3ECF7A", "purple": "#9B82E6", "dark": "#0E0C0A",
+      "coral": "#EF7E55", "teal": "#3FC8BE", "pink": "#E875AC", "lime": "#AFC44E",
+      "blue-soft": "rgba(91,141,239,.15)", "amber-soft": "rgba(235,165,58,.15)",
+      "green-soft": "rgba(62,207,122,.14)", "purple-soft": "rgba(155,130,230,.15)",
+      "coral-soft": "rgba(239,126,85,.15)", "teal-soft": "rgba(63,200,190,.15)",
+      "scrim": "rgba(14,12,10,.66)", "select": "rgba(224,54,61,.20)", "link": "#5B8DEF"
     },
     "light": {
       "paper": "#F4EEE1", "paper-2": "#EDE4D2", "card": "#FFFDF8", "elev": "#FFFDF8",
@@ -742,9 +1480,16 @@ this and §15.1 win.
       "red": "#C12229", "red-700": "#9C1B21", "red-soft": "#FBE7E3",
       "ok": "#2EA65C", "warn": "#C98A14", "rep": "#8A8270", "t-out": "#9C1B21",
       "ok-soft": "#E7F5EC", "warn-soft": "#FBF0D6", "rep-soft": "#EFE9DC", "out-soft": "#FBE7E3",
-      "amber": "#E79A2B", "blue": "#2F6BD6", "green": "#2EA65C", "purple": "#7A5CD0"
+      "amber": "#E79A2B", "blue": "#2F6BD6", "green": "#2EA65C", "purple": "#7A5CD0", "dark": "#241F1A",
+      "coral": "#CC5E2E", "teal": "#1C8B83", "pink": "#C2487E", "lime": "#6E8C12",
+      "blue-soft": "#E2ECFB", "amber-soft": "#FBF0D6", "green-soft": "#E7F5EC",
+      "purple-soft": "#ECE6FA", "coral-soft": "#FBE6DB", "teal-soft": "#DBF1EF",
+      "scrim": "rgba(40,30,15,.45)", "select": "rgba(193,34,41,.16)", "link": "#2F6BD6"
     }
   },
+  "avatar_palette_order": ["blue","amber","green","purple","coral","teal","pink","lime"],
+  "dataviz_series_order": ["blue","amber","green","purple","coral","teal","pink","lime"],
+  "dataviz_red_reserved": "thresholds / alerts / over-markers only — never a normal series",
   "radius_px": { "sm": 8, "md": 14, "lg": 20, "pill": 999 },
   "shadow": {
     "card_dark": "0 3px 0 #0C0A08", "hover_dark": "0 7px 0 #0C0A08",
@@ -764,13 +1509,21 @@ this and §15.1 win.
     "display-xl": 72, "display-l": 44, "display-m": 30,
     "title": 18, "lead": 19, "body": 16, "small": 13.5, "meta": 12, "eyebrow": 17
   },
+  "app_type_ramp_px": {
+    "page-title": 24, "section-header": 18, "card-title": 15, "reading-body": 16,
+    "ui-text": 14, "table-cell": 13.5, "caption": 12, "badge": 11, "button": 14
+  },
+  "icon_px": [16, 20, 24, 42],
   "rules": {
     "card_border": { "dark": "2px solid var(--line-2)", "light": "2px solid var(--ink)" },
-    "one_accent": "red = primary action + active/live state + alerts only",
+    "one_accent": "red = primary action + active/live state + alerts only; never a module/avatar/chart-series colour",
     "no_gradients": true,
     "dark_light_pops_max": 3,
     "status_requires_label": true,
-    "min_font_px": 11
+    "min_font_px": 11,
+    "reading_body_min_px": 16,
+    "components_reference_tokens_not_hex": true,
+    "photography": "allowed — warm grade + 2px tactile frame (§10.1)"
   }
 }
 ```
