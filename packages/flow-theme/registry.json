@@ -1,0 +1,72 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "rvlt-flow",
+  "homepage": "https://github.com/RVLT-Labs/rvlt-designlanguage",
+  "items": [
+    {
+      "name": "theme",
+      "type": "registry:style",
+      "title": "RVLT Flow theme",
+      "description": "Espresso-dark theme tokens (globals.css) — drop-in app/globals.css.",
+      "files": [
+        {
+          "path": "dist/globals.css",
+          "type": "registry:file",
+          "target": "app/globals.css"
+        }
+      ]
+    },
+    {
+      "name": "utils",
+      "type": "registry:lib",
+      "title": "cn()",
+      "description": "clsx + tailwind-merge helper.",
+      "dependencies": ["clsx", "tailwind-merge"],
+      "files": [
+        { "path": "registry/rvlt/lib/utils.ts", "type": "registry:lib" }
+      ]
+    },
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "title": "Button",
+      "description": "RVLT pill button — primary/halo/line/ghost/cream, tactile press.",
+      "dependencies": ["class-variance-authority", "@radix-ui/react-slot"],
+      "registryDependencies": ["utils"],
+      "files": [
+        { "path": "registry/rvlt/ui/button.tsx", "type": "registry:ui" }
+      ]
+    },
+    {
+      "name": "badge",
+      "type": "registry:ui",
+      "title": "Badge",
+      "description": "Labelled status soft-fill pill (ok/warn/overbooked/repair).",
+      "dependencies": ["class-variance-authority"],
+      "registryDependencies": ["utils"],
+      "files": [
+        { "path": "registry/rvlt/ui/badge.tsx", "type": "registry:ui" }
+      ]
+    },
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "title": "Card",
+      "description": "2px outline + hard offset shadow; `live` for the active card.",
+      "registryDependencies": ["utils"],
+      "files": [
+        { "path": "registry/rvlt/ui/card.tsx", "type": "registry:ui" }
+      ]
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "title": "Input",
+      "description": "2px outline, red focus ring, 16px text (no iOS zoom), aria-invalid error state.",
+      "registryDependencies": ["utils"],
+      "files": [
+        { "path": "registry/rvlt/ui/input.tsx", "type": "registry:ui" }
+      ]
+    }
+  ]
+}

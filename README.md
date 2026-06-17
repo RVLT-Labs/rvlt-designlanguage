@@ -12,6 +12,7 @@ inside Two Toned Productions).
 | [`index.html`](index.html) | Canonical homepage mockup — **dark "espresso", spotlit** (the brand's primary surface). |
 | [`light.html`](light.html) | Light "Paper" twin — same copy &amp; system, light surface. |
 | [`preview.html`](preview.html) | **Token &amp; component catalog** — every token and component from `DESIGN.md` rendered (dark-first, light toggle; swatch hexes read live from the CSS vars). The visual companion to the spec. |
+| [`packages/flow-theme/`](packages/flow-theme) | **`@rvlt/flow-theme`** — the installable theme: `tokens.json` (source) → generated Tailwind v4 / shadcn `globals.css` + a shadcn component registry. The canonical *code* form of the design system; the app consumes this instead of hand-copying tokens. |
 | `assets/` | Logo — full RVLT LABS wordmark + RVLT-only mark (SVG). |
 
 ## Preview
