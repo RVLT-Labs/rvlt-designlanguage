@@ -28,10 +28,11 @@ npm i @rvlt/flow-theme
 **1 · Theme** — install the animation peer (the theme imports it) and wire your `app/globals.css`:
 
 ```bash
-npm i tw-animate-css        # required — globals.css @imports it for component animations
+npm i tw-animate-css        # required peer — must be imported BEFORE globals.css
 ```
 ```css
 @import "tailwindcss";
+@import "tw-animate-css";                 /* animate-in/out, fade, zoom, slide utilities */
 @import "@rvlt/flow-theme/globals.css";   /* tokens, @theme utilities, accordion keyframes */
 ```
 

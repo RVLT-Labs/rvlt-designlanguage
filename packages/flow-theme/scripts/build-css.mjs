@@ -73,9 +73,10 @@ ${textMap}
   --animate-accordion-up: accordion-up 0.2s ease-out;
 }`;
 
-// the overlay/menu components use tw-animate-css utilities (animate-in/fade/zoom/slide);
-// accordion uses the keyframes below. Import must precede style rules.
-const importLine = `@import "tw-animate-css";`;
+// tw-animate-css is a peer dep — consumers must import it in their own globals.css
+// BEFORE importing this file. Accordion keyframes are inlined here so no external
+// @import is needed from within the package (avoids CSS resolver issues with local
+// file: deps and monorepos where tw-animate-css isn't in the package's own node_modules).
 const keyframes = `@keyframes accordion-down {
   from { height: 0 }
   to { height: var(--radix-accordion-content-height) }
@@ -88,7 +89,7 @@ const keyframes = `@keyframes accordion-down {
   *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; }
 }`;
 
-const css = [importLine, header, rootBlock, lightBlock, themeBlock, keyframes].join("\n\n") + "\n";
+const css = [header, rootBlock, lightBlock, themeBlock, keyframes].join("\n\n") + "\n";
 
 mkdirSync(join(root, "dist"), { recursive: true });
 writeFileSync(join(root, "dist", "globals.css"), css);

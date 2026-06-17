@@ -1,0 +1,8 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "@rvlt/flow-theme/globals.css";
+
+/* Preview-only: smooth theme transition */
+html {
+  transition: background-color 0.2s ease, color 0.2s ease;
+}

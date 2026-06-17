@@ -1,0 +1,64 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: apps/preview-v2/package-lock.json
+
+      - name: Build flow-theme (generates dist/globals.css)
+        working-directory: packages/flow-theme
+        run: node scripts/build-css.mjs
+
+      - name: Install preview-v2 deps
+        working-directory: apps/preview-v2
+        run: npm ci
+
+      - name: Build preview-v2 (Next.js static export)
+        working-directory: apps/preview-v2
+        run: npm run build
+
+      - name: Assemble site
+        run: |
+          mkdir -p _site/preview-v2
+          # root static files
+          cp index.html light.html preview.html _site/
+          cp -r assets _site/assets
+          # Next.js export into /preview-v2/
+          cp -r apps/preview-v2/out/. _site/preview-v2/
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - id: deploy
+        uses: actions/deploy-pages@v4
