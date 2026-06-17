@@ -26,9 +26,11 @@ jobs:
           cache: npm
           cache-dependency-path: apps/preview-v2/package-lock.json
 
-      - name: Build flow-theme (generates dist/globals.css)
+      - name: Build flow-theme (CSS + resolved registry)
         working-directory: packages/flow-theme
-        run: node scripts/build-css.mjs
+        run: |
+          node scripts/build-css.mjs
+          node scripts/build-registry.mjs
 
       - name: Install preview-v2 deps
         working-directory: apps/preview-v2
@@ -40,12 +42,15 @@ jobs:
 
       - name: Assemble site
         run: |
-          mkdir -p _site/preview-v2
+          mkdir -p _site/preview-v2 _site/r
           # root static files
           cp index.html light.html preview.html _site/
           cp -r assets _site/assets
           # Next.js export into /preview-v2/
           cp -r apps/preview-v2/out/. _site/preview-v2/
+          # shadcn registry — /r/<name>.json + /registry.json
+          cp -r packages/flow-theme/dist/r/. _site/r/
+          cp packages/flow-theme/dist/registry.json _site/registry.json
 
       - uses: actions/configure-pages@v5
 

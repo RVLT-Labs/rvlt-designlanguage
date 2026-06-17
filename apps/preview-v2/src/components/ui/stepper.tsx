@@ -22,7 +22,7 @@ export interface Step {
 const ring: Record<StepState, string> = {
   done: "border-ink bg-ink text-paper",
   now: "border-red text-red shadow-[0_0_0_5px_var(--red-soft)]",
-  future: "border-line-2 bg-card text-faint",
+  future: "border-border bg-card text-faint",
 };
 const labelCls: Record<StepState, string> = {
   done: "text-ink-2",
