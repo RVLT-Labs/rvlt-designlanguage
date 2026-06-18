@@ -601,6 +601,43 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "feature-patch",
+      "type": "registry:ui",
+      "title": "Feature patch",
+      "description": "Module wayfinding icon badge (§9.2/§10/§15.5). `sticker` = full hue fill + 2px cream border + --sh-stk; `soft` = hue-soft fill + tinted icon for nav/launcher tiles.",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/rvlt/ui/feature-patch.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "crew-scheduler",
+      "type": "registry:ui",
+      "title": "Crew scheduler",
+      "description": "Horizontal Gantt timeline (§15.4c) — sticky name+avatar column, scrollable hour track, shift bars in categorical colours, clash detection (bg-out-soft + border-t-out), dashed open slots.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "avatar"
+      ],
+      "files": [
+        {
+          "path": "registry/rvlt/ui/crew-scheduler.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }
