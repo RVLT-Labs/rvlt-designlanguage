@@ -14,7 +14,7 @@ description: >
   #C12229 on light) is the only accent — primary action, live/active state, alerts
   — never a gradient, never one-of-many. Depth is a luminance ladder + 2px outlines
   + hard offset shadows (no soft blur), tactile like flight cases and enamel
-  patches. Type pairs pipe-cut BC Alphapipe display against quiet Hanken Grotesk
+  patches. Type pairs bold Archivo display against quiet Hanken Grotesk
   body and legible Kalam handwriting; a die-cut gear-sticker collage and a
   moving-head mascot ("Flow") carry the personality. Voice is a production manager,
   not a marketer. The app runs the same tokens at the Functional end of the dial:
@@ -92,9 +92,8 @@ this spec. It is authoritative. Follow these rules:**
   sticker/doodle density, into the app.
 - **Self-audit every screen/component before returning** (§15.3 for app, §12 ship
   checklist for marketing).
-- **Escalate to the human only for:** the BC Alphapipe Typekit URL, real
-  data/content, or brand calls not covered here. Otherwise proceed with the
-  documented defaults — don't stall.
+- **Escalate to the human only for:** real data/content, or brand calls not
+  covered here. Otherwise proceed with the documented defaults — don't stall.
 - **Section applicability:** §§2, 4, 9–11, 14 lean **marketing**; §§3, 5–8, 12–13,
   15 + Appendix A apply directly to **app code**; **§16 (mobile) applies to both**.
   When unsure for the app, prefer the Functional guidance.
@@ -147,7 +146,7 @@ generic SaaS pattern.** Log the gap (§18.1).
 
 - **Names:** RVLT Flow (product), RVLT Labs (company), born inside **Two Toned
   Productions** (Sydney audio / lighting / theatre / events).
-- **Lockup:** red `RVLT` mark (BC Alphapipe) + `Flow` in **Baloo 2** — a
+- **Lockup:** red `RVLT` mark (BC Alphapipe SVG outlines — static, not a loaded web font) + `Flow` in **Baloo 2** — a
   deliberate pairing of the hard, pipe-cut mark against a soft, rounded wordmark
   (§6.4).
 - **Primary colour:** RVLT red — `#C12229` on light, brightened to `#E0363D` on
@@ -409,19 +408,15 @@ touch. Baloo 2 = the wordmark only.**
 
 | Role | Family | Weights | Notes |
 |---|---|---|---|
-| Display | **BC Alphapipe** (Adobe Fonts) | 700 / 800 / 900 | Logo mark + all headlines + step numbers + stat figures. Pipe-cut terminals = the fingerprint. |
-| Display fallback | **Archivo** (Google) | 700 / 800 / 900 | Holds layout until the Adobe kit loads. |
+| Display | **Archivo** (Google Fonts) | 700 / 800 / 900 | All headlines + step numbers + stat figures. Wide, punchy grotesque. |
 | Body | **Hanken Grotesk** (Google) | 400 / 500 / 600 | Paragraphs, UI, nav, labels. Readable — *not* Inter. |
 | Handwriting | **Kalam** (Google) | 400 / 700 | Eyebrows/kickers + doodle annotations + the cream-tier note. Playful **and legible** (replaced Caveat, which was too hard to read). Often red, slight rotation. |
 | Wordmark "Flow" | **Baloo 2** (Google) | 700 | The "Flow" half of the lockup *only* — rounded counterweight to the pipe-cut mark. Not a headline face. |
 
-Wire display through a CSS var so the Adobe swap is one line:
+Wire display through a CSS var:
 ```css
---fd: "bc-alphapipe", "Archivo", sans-serif;
+--fd: "Archivo", sans-serif;
 ```
-**BC Alphapipe** is web-licensed via the RVLT Adobe subscription — embed an Adobe
-**Web Project** kit (`<link rel="stylesheet" href="https://use.typekit.net/XXXXXXX.css">`,
-then `font-family:"bc-alphapipe"`). Kit URL is account-specific. *(Still pending.)*
 
 ### 5.1 Type scale (from the build)
 
@@ -685,8 +680,7 @@ eyes with highlights, faint beam lines. The helpful roadie.
 - ❌ Cold-slate or pure-black dark mode; light sections that take a whole screen
   (breaks the spotlight rule).
 
-**Ship checklist:** zero gradients (one ≤.12 stage-wash ok) · BC Alphapipe/Archivo
-display · one red accent, tiered · ≤3 light pops on dark · luminance-ladder depth
+**Ship checklist:** zero gradients (one ≤.12 stage-wash ok) · Archivo display · one red accent, tiered · ≤3 light pops on dark · luminance-ladder depth
 + 2px outline + offset shadow · operator-voice headline, no banned words, no fake
 proof · real icon set · Kalam handwriting legible · motion only on state change +
 parallax on hero stickers only + reduced-motion · gear personality in the framing,
@@ -811,7 +805,7 @@ transitions + the sanctioned moment animations; no scroll parallax in-app.
   --color-purple:var(--purple); --color-coral:var(--coral); --color-teal:var(--teal);
   --color-pink:var(--pink); --color-lime:var(--lime); --color-link:var(--link);
   --color-border:var(--border); --color-input:var(--input); --color-ring:var(--ring);
-  --font-display:"bc-alphapipe","Archivo",sans-serif;
+  --font-display:"Archivo",sans-serif;
   --font-sans:"Hanken Grotesk",system-ui,sans-serif;
   --font-hand:"Kalam",cursive;
   --font-mono:"Geist Mono",ui-monospace,monospace;
@@ -924,7 +918,7 @@ edge + a coloured/red left indicator pill. Tuck the **Flow mascot** at the botto
 (idle); collapses to an icon rail. Rounded, tactile, a little alive.
 
 **Modals / dialogs** — an `--elev` (or cream) panel: 2px outline + `--sh-card` +
-`--lit` edge, bold BC Alphapipe title, chunky pill buttons (red primary, tactile
+`--lit` edge, bold Archivo display title, chunky pill buttons (red primary, tactile
 press). One small sticker/doodle accent in the header corner is allowed (sparingly).
 Copy is human even when destructive: *"This kit's booked on Saturday — pull it off
 that job anyway?"*
@@ -1198,7 +1192,7 @@ soft-fills) — just shaped for touch:
 - **Bottom sheet** (replaces the centered modal/dialog from §15.5 on phone): slides
   up from the bottom, `--elev` (or cream for a moment), 2px outline + `--lit` edge,
   rounded top corners (`--r-lg`), a small grab handle, **swipe-down to dismiss** +
-  a full-width primary pill. BC Alphapipe title. Human copy even when destructive
+  a full-width primary pill. Archivo display title. Human copy even when destructive
   (*"This kit's booked Saturday — pull it anyway?"*). Respects safe-area bottom.
 - **Sticky action bar:** the screen's primary action(s) pinned to the bottom above
   the home indicator — `--card`/`--elev`, 2px top hairline, red primary pill +
@@ -1413,8 +1407,6 @@ from the nearest token + the documented rationale, keep it on-system, leave a
 `/* TODO: confirm with brand */`, and surface it** (§15.6). Escalate to a human only
 for the starred items.
 
-- **★ BC Alphapipe Adobe Typekit URL** — not wired (kit is account-specific, §5).
-  Until then **Archivo** holds all display type. *Human-only.*
 - **★ Real content / data / copy** — headlines, pricing numbers, testimonials, logos.
   Never fabricate proof or logos (§2). *Human-only.*
 - **Illustration & mascot set** — current SVGs are concept sketches; the full
@@ -1436,10 +1428,10 @@ for the starred items.
 
 ### 18.2 Next steps (prioritised)
 
-1. Wire the BC Alphapipe kit · 2. Illustrator pass on stickers + mascot expressions ·
-3. Port these tokens into the app's Tailwind/shadcn theme (paste §15.1) ·
-4. Build the mobile mockups (phone hero + the three signature screens, §16) ·
-5. Spec the offline/sync + scan flows · 6. Spec data-viz + the remaining app chrome.
+1. Illustrator pass on stickers + mascot expressions ·
+2. Port these tokens into the app's Tailwind/shadcn theme (paste §15.1) ·
+3. Build the mobile mockups (phone hero + the three signature screens, §16) ·
+4. Spec the offline/sync + scan flows · 5. Spec data-viz + the remaining app chrome.
 
 ### 18.3 Changelog
 
@@ -1545,7 +1537,7 @@ this and §15.1 win.
     "button": "0 3px 0 var(--red-700)"
   },
   "fonts": {
-    "display": "bc-alphapipe, Archivo, sans-serif",
+    "display": "Archivo, sans-serif",
     "sans": "Hanken Grotesk, system-ui, sans-serif",
     "hand": "Kalam, cursive",
     "wordmark": "Baloo 2, cursive",
