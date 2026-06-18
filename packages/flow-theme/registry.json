@@ -514,6 +514,93 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "page-header",
+      "type": "registry:ui",
+      "title": "Page header",
+      "description": "Title + description + actions block for the top of every list/detail page. 24px display 800, Kalam eyebrow, right-aligned actions slot.",
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/rvlt/ui/page-header.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "breadcrumb",
+      "type": "registry:ui",
+      "title": "Breadcrumb",
+      "description": "Semantic nav trail for detail pages (Jobs / #24 / Overview). --muted ancestors → hover --ink; ChevronRight separator; red focus ring.",
+      "dependencies": [
+        "@radix-ui/react-slot",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/rvlt/ui/breadcrumb.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "section-header",
+      "type": "registry:ui",
+      "title": "Section header",
+      "description": "Overline chip + extending --line-2 rule for separating content zones. `default` = muted mono ALL-CAPS; `prominent` = Kalam red eyebrow.",
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/rvlt/ui/section-header.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "combobox",
+      "type": "registry:ui",
+      "title": "Combobox",
+      "description": "Searchable single/multi-select built on Command + Popover. Input-style trigger, red check ticks, inline clear button.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "command",
+        "popover"
+      ],
+      "files": [
+        {
+          "path": "registry/rvlt/ui/combobox.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "status-indicator",
+      "type": "registry:ui",
+      "title": "Status indicator",
+      "description": "Compact dot / dot+glow / inline-label variants for tight spaces. `live` = pulsing green dot with --ok-soft ring. Maps to §3.3 status palette.",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/rvlt/ui/status-indicator.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }
