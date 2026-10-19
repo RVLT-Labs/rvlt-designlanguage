@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RVLT Design System</title>
+<meta name="description" content="RVLT's design system for Flow, Binder and the site: tokens, live components, artwork and brand assets. Mirrors the claude.ai RVLT design system.">
+<script>
+  try { var t = localStorage.getItem("rvlt-ds-theme"); if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t); } catch (e) {}
+</script>
+<link rel="icon" href="assets/Logos/r-mark-dark.svg" type="image/svg+xml">
+<link rel="stylesheet" href="tokens.css">
+<script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body { background: var(--paper); color: var(--ink); font-family: var(--font-sans); font-size: 13.5px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+  a { color: var(--link); }
+  :focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+  .shell { display: grid; grid-template-columns: 248px minmax(0, 1fr); min-height: 100vh; }
+  .side { position: sticky; top: 0; height: 100vh; overflow-y: auto; background: var(--paper-2); border-right: 1px solid var(--line); padding: 20px 14px 24px; }
+  .brand { display: flex; align-items: baseline; gap: 8px; padding: 0 8px 16px; text-decoration: none; color: var(--ink); }
+  .brand b { font-family: var(--font-display); font-weight: 800; font-size: 22px; letter-spacing: -0.03em; color: var(--red); }
+  .brand span { font-size: 12px; color: var(--muted); }
+  .theme { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; padding: 3px; margin: 0 4px 18px; border-radius: 10px; border: 1px solid var(--line-2); background: var(--paper); }
+  .theme button { border: 0; border-radius: 8px; padding: 6px 0; font: inherit; font-size: 12px; font-weight: 600; color: var(--muted); background: transparent; cursor: pointer; min-height: 32px; }
+  .theme button[aria-pressed="true"] { background: var(--elev); color: var(--ink); box-shadow: var(--lit); }
+  .nav h2 { margin: 16px 8px 4px; font-size: 11px; font-weight: 600; letter-spacing: 0.02em; color: var(--faint); }
+  .nav a { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 6px 8px; border-radius: 8px; color: var(--ink-2); text-decoration: none; font-weight: 500; }
+  .nav a:hover { background: var(--elev); color: var(--ink); }
+  .nav a[aria-current="page"] { background: var(--elev); color: var(--ink); box-shadow: var(--lit); }
+  .nav a small { font-size: 11px; color: var(--faint); font-weight: 500; }
+  .navtoggle { display: none; }
+
+  main { min-width: 0; padding: 32px 40px 64px; }
+  .page { max-width: 960px; }
+  .kicker { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 6px; font-size: 12px; color: var(--muted); }
+  .chip { display: inline-flex; align-items: center; height: 20px; padding: 0 8px; border-radius: 999px; font-size: 11px; font-weight: 700; background: var(--paper-2); color: var(--ink-2); border: 1px solid var(--line-2); }
+  .chip.live { background: var(--ok-soft); color: var(--ok); border-color: transparent; }
+  .ds-title { margin: 0 0 4px; font-family: var(--font-display); font-weight: 800; font-size: 24px; line-height: 1.2; letter-spacing: -0.02em; }
+  .lede { margin: 0 0 20px; color: var(--muted); }
+
+  .frame { position: relative; margin: 0 0 28px; border: 2px solid var(--line-2); border-radius: var(--r-lg); overflow: hidden; background: var(--paper); box-shadow: var(--sh-card); }
+  .frame iframe { display: block; width: 100%; border: 0; }
+  .frame .open { position: absolute; top: 8px; right: 8px; font-size: 11px; font-weight: 600; text-decoration: none; color: var(--muted); background: var(--paper-2); border: 1px solid var(--line-2); padding: 2px 8px; border-radius: 999px; }
+  .cover { overflow: hidden; border-radius: var(--r-lg); border: 2px solid var(--line-2); margin-bottom: 28px; }
+  .cover iframe { display: block; width: 960px; height: 288px; border: 0; transform-origin: 0 0; }
+
+  .md { max-width: 760px; }
+  .md h1 { font-family: var(--font-display); font-weight: 800; font-size: 24px; letter-spacing: -0.02em; margin: 0 0 12px; }
+  .md h2 { font-family: var(--font-display); font-weight: 700; font-size: 18px; letter-spacing: -0.01em; margin: 28px 0 8px; }
+  .md h3 { font-size: 14px; font-weight: 700; margin: 20px 0 6px; }
+  .md p, .md ul, .md ol { margin: 0 0 12px; }
+  .md ul, .md ol { padding-left: 20px; }
+  .md li { margin: 3px 0; }
+  .md code { font-family: var(--font-mono); font-size: 12px; background: var(--paper-2); border: 1px solid var(--line); border-radius: 5px; padding: 0 4px; }
+  .md pre { background: var(--paper-2); border: 1px solid var(--line); border-radius: 10px; padding: 12px; overflow-x: auto; }
+  .md pre code { border: 0; padding: 0; background: none; }
+  .md table, table.tok { width: 100%; border-collapse: collapse; margin: 8px 0 16px; font-size: 13px; }
+  .md th, .md td, table.tok th, table.tok td { text-align: left; vertical-align: top; padding: 7px 10px; border-bottom: 1px solid var(--line); }
+  .md th, table.tok th { font-size: 11px; font-weight: 600; color: var(--muted); }
+  .scroll { overflow-x: auto; }
+
+  section.found { margin-bottom: 36px; }
+  section.found h2 { font-family: var(--font-display); font-weight: 700; font-size: 18px; margin: 0 0 4px; }
+  section.found > p { margin: 0 0 12px; color: var(--muted); max-width: 760px; }
+  .sw { display: flex; align-items: center; gap: 8px; white-space: nowrap; font-family: var(--font-mono); font-size: 11.5px; color: var(--ink-2); }
+  .sw i { width: 28px; height: 20px; border-radius: 6px; border: 1px solid var(--line-2); flex: none; }
+  .tname { font-family: var(--font-mono); font-size: 12px; white-space: nowrap; }
+  .usage { color: var(--muted); min-width: 240px; }
+  .typerow { padding: 14px 0; border-bottom: 1px solid var(--line); }
+  .typerow .meta { font-family: var(--font-mono); font-size: 11px; color: var(--muted); margin-bottom: 4px; }
+  .typerow .sample { color: var(--ink); overflow-wrap: anywhere; }
+  .bars { display: grid; gap: 6px; }
+  .bar { display: grid; grid-template-columns: 110px 64px 1fr; align-items: center; gap: 10px; font-family: var(--font-mono); font-size: 12px; }
+  .bar span:last-child { height: 12px; background: var(--red); border-radius: 3px; }
+  .boxes { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 16px; }
+  .box { background: var(--card); border: 2px solid var(--line-2); height: 72px; }
+  .boxlabel { margin-top: 6px; font-family: var(--font-mono); font-size: 11.5px; color: var(--ink-2); }
+  .boxlabel small { display: block; color: var(--muted); font-family: var(--font-sans); }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; margin-top: 16px; }
+  .tile { display: flex; flex-direction: column; border: 1px solid var(--line-2); border-radius: 12px; overflow: hidden; background: var(--card); text-decoration: none; color: inherit; }
+  .tile .img { display: grid; place-items: center; height: 120px; padding: 12px; }
+  .tile .img.dark { background: #141210; }
+  .tile .img.paper { background: #f4eee1; }
+  .tile img { max-width: 100%; max-height: 96px; }
+  .tile .cap { padding: 6px 8px; font-family: var(--font-mono); font-size: 11px; color: var(--ink-2); border-top: 1px solid var(--line); overflow-wrap: anywhere; }
+
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+  .card { display: block; padding: 14px; border-radius: var(--r); border: 2px solid var(--line-2); background: var(--card); box-shadow: var(--sh-card); color: var(--ink); text-decoration: none; transition: transform 150ms, box-shadow 150ms; }
+  .card:hover { transform: translateY(-3px); box-shadow: var(--sh-hover); }
+  .card b { display: block; font-size: 14px; }
+  .card span { font-size: 12px; color: var(--muted); }
+  .note { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 12px; color: var(--muted); max-width: 760px; }
+
+  @media (max-width: 767px) {
+    .shell { display: block; }
+    .side { position: static; height: auto; border-right: 0; border-bottom: 1px solid var(--line); padding: 12px 16px; }
+    .side .top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .brand { padding: 0; }
+    .theme { margin: 0; min-width: 150px; }
+    .navtoggle { display: inline-flex; align-items: center; min-height: 44px; padding: 0 12px; border-radius: 10px; border: 1px solid var(--line-2); background: var(--paper); color: var(--ink); font: inherit; font-weight: 600; }
+    .nav { display: none; padding-top: 8px; }
+    .side.open .nav { display: block; }
+    .nav a { min-height: 44px; }
+    main { padding: 20px 16px 48px; }
+  }
+  @media (prefers-reduced-motion: reduce) { .card { transition: none; } .card:hover { transform: none; } }
+</style>
+</head>
+<body>
+<div class="shell">
+  <aside class="side" id="side">
+    <div class="top">
+      <a class="brand" href="#/"><b>RVLT</b><span>Design system</span></a>
+      <button class="navtoggle" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
+    </div>
+    <div class="theme" role="group" aria-label="Theme">
+      <button type="button" data-theme-choice="dark">Espresso</button>
+      <button type="button" data-theme-choice="light">Paper</button>
+    </div>
+    <nav class="nav" id="nav" aria-label="Design system"></nav>
+  </aside>
+  <main><div class="page" id="page" aria-live="polite"></div></main>
+</div>
+<script>
+(function () {
+  "use strict";
+  var REPO = "https://github.com/RVLT-Labs/rvlt-designlanguage/tree/main/design-system/";
+  var GROUP_ORDER = ["Actions", "Status", "Surfaces", "Forms", "Navigation", "Data", "Identity", "Binder", "Illustration"];
+  var DARK_TILE = /(^|-)(dark|line|cream|espresso)(-|\.|$)|labs-logo|wordmark\.svg$/;
+  var PAPER_TILE = /(^|-)light(-|\.|$)|^rvlt-mark\.svg$/;
+  var root = document.documentElement, page = document.getElementById("page"), nav = document.getElementById("nav");
+  var data = {};
+
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+  function get(url, type) { return fetch(url).then(function (r) { if (!r.ok) throw new Error(url + " " + r.status); return type === "json" ? r.json() : r.text(); }); }
+  function md(text) { return '<div class="md">' + (window.marked ? window.marked.parse(text) : "<pre>" + esc(text) + "</pre>") + "</div>"; }
+  function theme() { return root.getAttribute("data-theme") === "light" ? "light" : "dark"; }
+
+  function setTheme(t) {
+    root.setAttribute("data-theme", t);
+    try { localStorage.setItem("rvlt-ds-theme", t); } catch (e) {}
+    document.querySelectorAll("[data-theme-choice]").forEach(function (b) { b.setAttribute("aria-pressed", String(b.getAttribute("data-theme-choice") === t)); });
+    document.querySelectorAll("iframe[data-view]").forEach(function (f) { f.src = f.getAttribute("data-view") + "?theme=" + t; });
+  }
+
+  function frame(card, cover) {
+    var src = "components/" + card.name + "/view.html";
+    if (cover) return '<div class="cover" id="cover"><iframe data-view="' + src + '" src="' + src + "?theme=" + theme() + '" title="Cover" loading="lazy"></iframe></div>';
+    return '<div class="frame"><iframe data-view="' + src + '" src="' + src + "?theme=" + theme() + '" title="' + esc(card.name) + ' preview" style="height:' + card.height + 'px" data-min="' + card.height + '"></iframe>' +
+      '<a class="open" href="' + src + "?theme=" + theme() + '" target="_blank" rel="noopener">Open</a></div>';
+  }
+  function fit(f) {
+    try { var h = f.contentDocument.documentElement.scrollHeight; f.style.height = Math.max(Number(f.getAttribute("data-min")) || 0, h) + "px"; } catch (e) {}
+  }
+  function wireFrames() {
+    page.querySelectorAll(".frame iframe").forEach(function (f) { f.addEventListener("load", function () { fit(f); setTimeout(function () { fit(f); }, 400); }); });
+    var c = document.getElementById("cover");
+    if (c) { var s = function () { var k = Math.min(1, c.clientWidth / 960); c.firstChild.style.transform = "scale(" + k + ")"; c.style.height = 288 * k + "px"; }; s(); window.addEventListener("resize", s); }
+  }
+
+  function buildNav() {
+    var cards = data.cards.filter(function (c) { return c.readme; });
+    cards.sort(function (a, b) { return (GROUP_ORDER.indexOf(a.group) - GROUP_ORDER.indexOf(b.group)) || a.name.localeCompare(b.name); });
+    var h = '<h2>Start</h2><a href="#/">Overview</a><a href="#/foundations">Foundations</a>';
+    var last = null;
+    cards.forEach(function (c) {
+      if (c.group !== last) { h += "<h2>" + esc(c.group) + "</h2>"; last = c.group; }
+      h += '<a href="#/components/' + esc(c.name) + '">' + esc(c.name) + (c.live ? "<small>live</small>" : "") + "</a>";
+    });
+    h += '<h2>Guides</h2><a href="#/artwork">Stickers and wordmarks</a><a href="#/albert">Albert</a><h2>Assets</h2>';
+    data.assets.forEach(function (g) { h += '<a href="#/assets/' + esc(g.name) + '">' + esc(g.name) + "<small>" + g.files.length + "</small></a>"; });
+    nav.innerHTML = h;
+  }
+
+  function foundations() {
+    var t = data.tokens, h = '<div class="kicker">tokens.json</div><h1 class="ds-title">Foundations</h1><p class="lede">Every value comes from <code>tokens.json</code>, which matches <code>packages/flow-theme/tokens.json</code> in both themes.</p>';
+    function val(v, th) { return typeof v === "string" ? v : v[th]; }
+    function sw(v) { var col = /^(#|rgb)/.test(v) ? v : "var(--" + v.replace(/[{}]/g, "") + ")"; return '<span class="sw"><i style="background:' + esc(col) + '"></i>' + esc(v) + "</span>"; }
+    h += '<section class="found"><h2>Colour</h2><div class="scroll"><table class="tok"><thead><tr><th>Token</th><th>Espresso</th><th>Paper</th><th>Use</th></tr></thead><tbody>';
+    t.color.tokens.forEach(function (c) { h += '<tr><td class="tname">' + esc(c.name) + "</td><td>" + sw(val(c.value, "dark")) + "</td><td>" + sw(val(c.value, "light")) + '</td><td class="usage">' + esc(c.usage || "") + "</td></tr>"; });
+    h += "</tbody></table></div></section>";
+    h += '<section class="found"><h2>Type</h2>';
+    t.type.groups.forEach(function (g) {
+      h += "<h3>" + esc(g.name) + "</h3>";
+      g.styles.forEach(function (s) {
+        h += '<div class="typerow"><div class="meta">' + esc(s.name) + " · " + esc(s.fontSize) + " / " + esc(s.fontWeight) + (s.lineHeight ? " / " + esc(s.lineHeight) : "") + '</div><div class="sample ' + esc(s.name) + '">' + esc(s.sample || s.name) + '</div><div class="usage">' + esc(s.usage || "") + "</div></div>";
+      });
+    });
+    h += "</section>";
+    h += '<section class="found"><h2>Spacing</h2><div class="bars">';
+    t.spacing.tokens.forEach(function (s) { h += '<div class="bar"><span>' + esc(s.name) + "</span><span>" + esc(s.value) + '</span><span style="width:' + esc(s.value) + '"></span></div>'; });
+    h += "</div></section>";
+    h += '<section class="found"><h2>Radius</h2><div class="boxes">';
+    t.radius.tokens.forEach(function (r) { h += '<div><div class="box" style="border-radius:' + esc(r.value) + '"></div><div class="boxlabel">' + esc(r.name) + " · " + esc(r.value) + "<small>" + esc(r.usage || "") + "</small></div></div>"; });
+    h += "</div></section>";
+    h += '<section class="found"><h2>Shadow</h2><div class="boxes">';
+    t.shadow.tokens.forEach(function (s) { h += '<div><div class="box" style="border-radius:var(--r);box-shadow:var(--' + esc(s.name) + ')"></div><div class="boxlabel">' + esc(s.name) + "<small>" + esc(s.usage || "") + "</small></div></div>"; });
+    h += "</div></section>";
+    h += '<section class="found"><h2>Layout</h2><div class="scroll"><table class="tok"><thead><tr><th>Token</th><th>Value</th><th>Use</th></tr></thead><tbody>';
+    t.layout.tokens.forEach(function (l) { h += '<tr><td class="tname">' + esc(l.name) + '</td><td class="tname">' + esc(l.value) + '</td><td class="usage">' + esc(l.usage || "") + "</td></tr>"; });
+    return h + "</tbody></table></div></section>";
+  }
+
+  function tileClass(group, name) {
+    if (group === "Linework" || group === "Lettering") return "dark";
+    if (group === "Logos") return DARK_TILE.test(name) ? "dark" : PAPER_TILE.test(name) ? "paper" : "";
+    return "";
+  }
+
+  function route() {
+    var parts = (location.hash.replace(/^#\/?/, "") || "").split("/").map(decodeURIComponent);
+    nav.querySelectorAll("a").forEach(function (a) { a.toggleAttribute("aria-current", a.getAttribute("href") === "#/" + parts.join("/")); if (a.hasAttribute("aria-current")) a.setAttribute("aria-current", "page"); });
+    document.getElementById("side").classList.remove("open");
+    var job;
+    if (!parts[0]) {
+      var cover = data.cards.filter(function (c) { return c.name === "Cover"; })[0];
+      job = get("README.md").then(function (t) {
+        var groups = {};
+        data.cards.forEach(function (c) { if (c.readme) (groups[c.group] = groups[c.group] || []).push(c); });
+        var list = '<h2 class="ds-title" style="font-size:18px;margin:32px 0 12px">Components</h2><div class="cards">' + data.cards.filter(function (c) { return c.readme; }).map(function (c) {
+          return '<a class="card" href="#/components/' + esc(c.name) + '"><b>' + esc(c.name) + "</b><span>" + esc(c.group) + " · " + (c.live ? "live" : "static") + "</span></a>";
+        }).join("") + "</div>";
+        return '<div class="kicker">Flow · Binder · the site</div><h1 class="ds-title">RVLT design system</h1>' +
+          '<p class="lede">Tokens, live components, artwork and brand assets for every RVLT product.</p>' +
+          (cover ? frame(cover, true) : "") + md(t) + list;
+      });
+    } else if (parts[0] === "foundations") {
+      job = Promise.resolve(foundations());
+    } else if (parts[0] === "components" && parts[1]) {
+      var card = data.cards.filter(function (c) { return c.name === parts[1]; })[0];
+      if (!card) job = Promise.resolve("<p>No such component.</p>");
+      else job = get("components/" + card.name + "/README.md").then(function (t) {
+        return '<div class="kicker"><span class="chip">' + esc(card.group) + '</span><span class="chip' + (card.live ? " live" : "") + '">' + (card.live ? "Live" : "Static") + "</span>" + esc(card.subtitle) + "</div>" +
+          frame(card) + md(t) + '<p class="note">Source: <a href="' + REPO + "components/" + esc(card.name) + '">design-system/components/' + esc(card.name) + "</a></p>";
+      });
+    } else if (parts[0] === "artwork" || parts[0] === "albert") {
+      job = get(parts[0] + ".md").then(md);
+    } else if (parts[0] === "assets" && parts[1]) {
+      var g = data.assets.filter(function (x) { return x.name === parts[1]; })[0];
+      if (!g) job = Promise.resolve("<p>No such asset group.</p>");
+      else job = get("assets/" + g.name + "/README.md").then(function (t) {
+        return md(t) + '<div class="grid">' + g.files.slice().sort(function (a, b) { return a.name.localeCompare(b.name); }).map(function (f) {
+          return '<a class="tile" href="' + esc(f.src) + '" target="_blank" rel="noopener"><span class="img ' + tileClass(g.name, f.name) + '"><img src="' + esc(f.src) + '" alt="" loading="lazy"></span><span class="cap">' + esc(f.name) + "</span></a>";
+        }).join("") + "</div>";
+      });
+    } else job = Promise.resolve("<p>Page not found.</p>");
+    job.then(function (h) {
+      page.innerHTML = h + '<p class="note">This site mirrors the claude.ai RVLT design system from <a href="' + REPO + '">design-system/</a> in RVLT-Labs/rvlt-designlanguage. Token values are checked against <code>packages/flow-theme/tokens.json</code>; the rules live in <code>DESIGN.md</code>.</p>';
+      wireFrames(); window.scrollTo(0, 0);
+    }).catch(function (e) { page.innerHTML = "<p>Couldn't load this page: " + esc(e.message) + "</p>"; });
+  }
+
+  document.querySelectorAll("[data-theme-choice]").forEach(function (b) { b.addEventListener("click", function () { setTheme(b.getAttribute("data-theme-choice")); }); });
+  document.querySelector(".navtoggle").addEventListener("click", function () { var s = document.getElementById("side"); var o = s.classList.toggle("open"); this.setAttribute("aria-expanded", String(o)); });
+  setTheme(theme());
+  Promise.all([get("cards.json", "json"), get("assets.json", "json"), get("tokens.json", "json")]).then(function (r) {
+    data.cards = r[0]; data.assets = r[1]; data.tokens = r[2];
+    buildNav(); route(); window.addEventListener("hashchange", route);
+  }).catch(function (e) { page.innerHTML = "<p>Couldn't load the design system: " + esc(e.message) + "</p>"; });
+})();
+</script>
+</body>
+</html>
