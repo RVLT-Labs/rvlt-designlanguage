@@ -491,7 +491,8 @@ is allowed and is **not** a violation of the body-size rule.
 - **High-contrast jump still applies** (§5.2): a 24px display title over 13.5px quiet
   rows. Don't flatten everything to one size.
 - **One page title across RVLT:** every app's page `h1` is **24px / 800 / -.02em
-  Archivo**. Flow's and Binder's own `t-title` utilities resolve to this role.
+  Archivo**, exposed in each app as the **`t-page-title`** utility (Flow and Binder keep
+  `t-title` for dialog, card and section titles).
 
 ---
 
