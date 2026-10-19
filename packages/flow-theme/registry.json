@@ -196,7 +196,7 @@
       "name": "dialog",
       "type": "registry:ui",
       "title": "Dialog",
-      "description": "Modal — --scrim overlay, 2px outline + --lit elevated panel, BC Alphapipe title.",
+      "description": "Modal — --scrim overlay, 2px outline + --lit elevated panel, Archivo display title.",
       "dependencies": [
         "@radix-ui/react-dialog",
         "lucide-react",
@@ -396,6 +396,21 @@
       "files": [
         {
           "path": "registry/rvlt/ui/table.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "kbd",
+      "type": "registry:ui",
+      "title": "Kbd",
+      "description": "Key cap — Geist Mono 11px on --paper-2, 1px --line-2 + 2px bottom edge. One spec across RVLT.",
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/rvlt/ui/kbd.tsx",
           "type": "registry:ui"
         }
       ]
