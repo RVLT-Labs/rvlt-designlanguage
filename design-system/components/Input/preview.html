@@ -1,0 +1,22 @@
+<!-- @dsCard group="Forms" height=330 subtitle="Live — the real component" -->
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Input — preview</title></head>
+<body>
+<div id="root" style="padding:16px"></div>
+<script>
+var h = React.createElement, R = window.Rvlt, F = React.Fragment;
+var row = function () { return h.apply(null, ['div', { style: { display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '12px', marginBottom: '12px' } }].concat([].slice.call(arguments))); };
+var hint = function (text, err) { return h('p', { style: { margin: 0, fontSize: '11px', fontWeight: 500, color: err ? 'var(--t-out)' : 'var(--muted)' } }, text); };
+var field = function () { return h.apply(null, ['div', { style: { display: 'flex', flexDirection: 'column', gap: '6px' } }].concat([].slice.call(arguments))); };
+function Demo() {
+  return h('div', { style: { maxWidth: '360px', display: 'flex', flexDirection: 'column', gap: '14px' } },
+    field(h(R.Label, { htmlFor: 'a' }, 'Job name ', h('span', { style: { color: 'var(--red)' } }, '*')), h(R.Input, { id: 'a', placeholder: 'e.g. Hilton gala dinner' }), hint('Shows on quotes and dockets.')),
+    field(h(R.Label, { htmlFor: 'b' }, 'Crew needed'), h(R.Input, { id: 'b', defaultValue: '0', 'aria-invalid': true }), hint('Needs at least one crew member.', true)),
+    h(R.SearchInput, { placeholder: 'Search gear, tags, models' }),
+    h(R.Textarea, { placeholder: 'Notes for the warehouse', rows: 2 }));
+}
+ReactDOM.createRoot(document.getElementById('root')).render(h(Demo));
+</script>
+</body>
+</html>

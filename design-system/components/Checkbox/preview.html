@@ -1,0 +1,15 @@
+<!-- @dsCard group="Forms" height=64 subtitle="Live — the real component" -->
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Checkbox — preview</title></head>
+<body>
+<div id="root" style="padding:16px"></div>
+<script>
+var h = React.createElement, R = window.Rvlt, F = React.Fragment;
+var row = function () { return h.apply(null, ['div', { style: { display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '12px', marginBottom: '12px' } }].concat([].slice.call(arguments))); };
+var item = function (id, label, props) { return h('div', { style: { display: 'flex', alignItems: 'center', gap: '8px' } }, h(R.Checkbox, Object.assign({ id: id }, props)), h(R.Label, { htmlFor: id }, label)); };
+function Demo() { return row(item('c1', 'Include accessories', {}), item('c2', 'Tested & tagged', { defaultChecked: true }), item('c3', 'Locked', { defaultChecked: true, disabled: true })); }
+ReactDOM.createRoot(document.getElementById('root')).render(h(Demo));
+</script>
+</body>
+</html>

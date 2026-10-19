@@ -8,3 +8,6 @@ Thumbs.db
 # Editor
 .vscode/
 .idea/
+
+# Local Pages builds (scripts/design-system/build-site.mjs)
+_site/

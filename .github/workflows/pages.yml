@@ -26,6 +26,9 @@ jobs:
           cache: npm
           cache-dependency-path: apps/preview-v2/package-lock.json
 
+      - name: Check the design-system mirror against flow-theme
+        run: node scripts/design-system/check.mjs
+
       - name: Build flow-theme (CSS + resolved registry)
         working-directory: packages/flow-theme
         run: |
@@ -51,6 +54,8 @@ jobs:
           # shadcn registry — /r/<name>.json + /registry.json
           cp -r packages/flow-theme/dist/r/. _site/r/
           cp packages/flow-theme/dist/registry.json _site/registry.json
+          # the RVLT design system, live: /design-system/
+          node scripts/design-system/build-site.mjs _site
 
       - uses: actions/configure-pages@v5
 

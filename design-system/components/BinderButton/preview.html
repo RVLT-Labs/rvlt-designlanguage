@@ -1,0 +1,17 @@
+<!-- @dsCard group="Binder" height=110 subtitle="Live — the real component" -->
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>BinderButton — preview</title></head>
+<body>
+<div id="root" style="padding:16px"></div>
+<script>
+var h = React.createElement, R = window.Rvlt, F = React.Fragment;
+var row = function () { return h.apply(null, ['div', { style: { display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '12px', marginBottom: '12px' } }].concat([].slice.call(arguments))); };
+function Demo() {
+  return row(h(R.BinderButton, null, 'Calling mode'), h(R.BinderButton, { variant: 'line' }, h(R.BinderPrintIcon), 'Print'), h(R.BinderButton, { variant: 'ghost' }, 'Undo'),
+    h(R.BinderButton, { variant: 'line', size: 'sm' }, 'Details'), h(R.BinderButton, { size: 'lg' }, 'Go'), h(R.BinderButton, { variant: 'line', disabled: true }, 'Redo'));
+}
+ReactDOM.createRoot(document.getElementById('root')).render(h(Demo));
+</script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="96" height="96" fill="none" role="img" aria-label="Flow mascot">
+  <title>Flow</title>
+  <!-- Idle pose. Body in dark-theme "muted" (#9E9483), eyes "blue" (#5B8DEF), glints "cream" (#F5EFE2). -->
+  <g fill="#9E9483">
+    <rect x="11" y="27" width="26" height="7" rx="2"/>
+    <rect x="16" y="34" width="16" height="5" rx="1.5"/>
+    <rect x="16" y="9" width="16" height="17" rx="6"/>
+  </g>
+  <circle cx="20.5" cy="17" r="2.7" fill="#5B8DEF"/>
+  <circle cx="27.5" cy="17" r="2.7" fill="#5B8DEF"/>
+  <circle cx="21.4" cy="16.1" r="0.9" fill="#F5EFE2"/>
+  <circle cx="28.4" cy="16.1" r="0.9" fill="#F5EFE2"/>
+  <path d="M14 26l-4-5M34 26l4-5" stroke="#9E9483" stroke-width="2.4" stroke-linecap="round" opacity=".5"/>
+</svg>

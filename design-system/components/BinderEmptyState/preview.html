@@ -1,0 +1,17 @@
+<!-- @dsCard group="Binder" height=240 subtitle="Live — the real component" -->
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>BinderEmptyState — preview</title></head>
+<body>
+<div id="root" style="padding:16px"></div>
+<script>
+var h = React.createElement, R = window.Rvlt, F = React.Fragment;
+var row = function () { return h.apply(null, ['div', { style: { display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '12px', marginBottom: '12px' } }].concat([].slice.call(arguments))); };
+function Demo() {
+  return h('div', { style: { maxWidth: '360px' } }, h(R.BinderEmptyState, { icon: R.BinderDocsIcon, heading: 'No documents yet', hand: 'the quiet before the pad comes in',
+    action: h(R.BinderButton, { variant: 'line' }, 'Upload a PDF') }, 'Upload the script or a score as a PDF. Scans are read for text.'));
+}
+ReactDOM.createRoot(document.getElementById('root')).render(h(Demo));
+</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+.rf-row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3); padding: var(--space-4); }
+.rf-col { display: flex; flex-direction: column; gap: var(--space-3); padding: var(--space-4); }
+.rf-num { font-variant-numeric: tabular-nums; }
+.rf-mono { font-family: var(--font-mono); font-size: 12px; color: var(--muted); }
+.rf-panel { overflow: hidden; border-radius: var(--r); border: 1px solid var(--line); background: var(--card);
+  box-shadow: var(--sh-card); padding: var(--space-5); }
+/* ── Notice + OfflineBanner (Notices.tsx, OfflineBanner.tsx) ─ */
+.rf-notice { position: relative; display: flex; align-items: center; gap: var(--space-3); overflow: hidden; max-width: 416px;
+  border-radius: var(--r-md); border: 2px solid var(--line-2); background: var(--elev); padding: 6px 8px 6px 16px;
+  font-size: 13.5px; color: var(--ink); box-shadow: var(--sh-stk); }
+.rf-notice--problem::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 3px; background: var(--red); }
+.rf-notice__msg { flex: 1; min-width: 0; padding: 4px 0; }
+.rf-notice__action { min-height: 32px; flex-shrink: 0; border: 0; border-radius: var(--r-pill); background: transparent; padding: 0 var(--space-3);
+  font: inherit; font-size: 13px; font-weight: 600; color: var(--blue); cursor: pointer; }
+.rf-notice__action:hover { text-decoration: underline; }
+.rf-notice__x { display: flex; width: 32px; height: 32px; flex-shrink: 0; align-items: center; justify-content: center; border: 0;
+  border-radius: var(--r-pill); background: transparent; font-size: 18px; line-height: 1; color: var(--muted); cursor: pointer; }
+.rf-notice__x:hover { color: var(--ink); }
+.rf-offline { display: flex; min-height: 44px; align-items: center; gap: var(--space-3); border-radius: var(--r-md);
+  border: 2px solid var(--line-2); background: var(--elev); padding: var(--space-2) var(--space-4); font-size: 13.5px; color: var(--ink-2); }
+.rf-offline svg { width: 16px; height: 16px; flex-shrink: 0; color: var(--muted); }
+
+/* ── SyncStatus (SyncStatus.tsx) ─ */
+.rf-sync { display: inline-flex; flex-shrink: 0; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); }
+.rf-sync__dot { width: 7px; height: 7px; border-radius: 9999px; }
+.rf-sync--synced .rf-sync__dot { background: var(--ok); box-shadow: 0 0 0 2px var(--ok-soft); }
+.rf-sync--syncing .rf-sync__dot { background: var(--warn); box-shadow: 0 0 0 2px var(--warn-soft); }
+.rf-sync--offline .rf-sync__dot { background: var(--muted); box-shadow: 0 0 0 2px var(--muted-soft); }
+.rf-sync .rf-num { font-family: var(--font-mono); }
+/* ── CueTag (markup/CueMarker.tsx + core cueTags.ts): drawn on the white page ─ */
+.rf-stage { background: var(--stage); padding: var(--space-6); display: flex; justify-content: center; }
+.rf-page { background: var(--page); color: var(--page-ink); }
+.rf-page text { font-family: Helvetica, Arial, sans-serif; }

@@ -1,0 +1,19 @@
+<!-- @dsCard group="Identity" height=110 subtitle="Live — the real component" -->
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>PersonAvatar — preview</title></head>
+<body>
+<div id="root" style="padding:16px"></div>
+<script>
+var h = React.createElement, R = window.Rvlt, F = React.Fragment;
+var row = function () { return h.apply(null, ['div', { style: { display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '12px', marginBottom: '12px' } }].concat([].slice.call(arguments))); };
+var names = ['Mia Tran', 'Josh Kelly', 'Priya Nair', 'Tom Ruiz', 'Noah Wilson'];
+function Demo() {
+  return h(F, null, row.apply(null, names.map(function (n) { return h(R.PersonAvatar, { key: n, name: n }); })),
+    row(h('div', { style: { display: 'flex' } }, names.map(function (n, i) { return h(R.PersonAvatar, { key: n, name: n, style: { marginLeft: i ? '-8px' : 0 } }); })),
+        h('span', { style: { fontFamily: 'var(--font-mono)', fontSize: '12px', color: 'var(--muted)' } }, '5 crew booked')));
+}
+ReactDOM.createRoot(document.getElementById('root')).render(h(Demo));
+</script>
+</body>
+</html>

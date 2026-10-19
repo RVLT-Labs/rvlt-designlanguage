@@ -1,0 +1,69 @@
+<!-- @dsCard height=288 -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>RVLT</title>
+<style>
+  html, body { margin: 0; height: 100%; }
+  body { background: var(--paper); color: var(--ink); font-family: var(--font-sans); overflow: hidden; }
+  .cover { position: relative; width: 960px; height: 288px; overflow: hidden; }
+  .art { position: absolute; top: 0; left: 480px; width: 480px; height: 288px; overflow: hidden; }
+  .art svg { display: block; width: 480px; height: 288px; overflow: visible; }
+  .red { fill: var(--red); }
+  .red-deep { fill: var(--red-700); }
+  .ink { fill: var(--ink); }
+  .cut { fill: var(--paper); }
+  .hue { fill: var(--blue); }
+  .drop { fill: var(--dark); }
+  .slab { rx: var(--r-lg); }
+  .pill-24 { rx: 12px; }
+  .pill-16 { rx: 8px; }
+  .words { position: absolute; left: var(--space-6); bottom: var(--space-6); max-width: 440px; }
+  .name { margin: 0; font-family: var(--font-display); font-weight: 800; font-size: 120px; line-height: .95;
+          letter-spacing: -0.035em; color: var(--ink); }
+  .tag { margin: var(--space-3) 0 0 4px; font-size: 14px; line-height: 20px; color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="cover">
+  <div class="art" aria-hidden="true">
+    <svg viewBox="0 0 480 288" width="480" height="288">
+      <!--
+        blocks      red 176×232 slab bled off the top (the one accent, largest) · ink 136×184 (the warm off-white / near-black text colour) · red-700 152×168 bled off the right · blue 72×24 pill once (the first module hue, small) — ≈36% of 960×288
+        arrangement one tall red slab with satellites; slab and red-700 bottoms share y=208, ink block and the ground pills share y=256; space-4 gutters
+        pattern     pills with hard offset drops, from "pill buttons, tactile press, hard offset shadows — never blurred": every block and pill sits on a solid drop (red-700 under red at 7px = sh-hover, dark under the rest at 3px = sh-card); five r-sm-tall switch tracks cut into the ink block in paper
+        scales      gutters space-4 (16); pill heights space-6 (24) and space-4 (16) with rx at half; slab corners r-lg (20); drops 3px and 7px from sh-card / sh-hover
+      -->
+      <!-- red slab + its 7px red-700 drop -->
+      <rect class="red-deep slab" x="16" y="-17" width="176" height="232" rx="20"/>
+      <rect class="red slab" x="16" y="-24" width="176" height="232" rx="20"/>
+      <!-- ink block + 3px drop, with paper-cut switch tracks -->
+      <rect class="drop slab" x="208" y="75" width="136" height="184" rx="20"/>
+      <rect class="ink slab" x="208" y="72" width="136" height="184" rx="20"/>
+      <rect class="cut pill-16" x="224" y="96" width="72" height="16" rx="8"/>
+      <rect class="cut pill-16" x="224" y="128" width="104" height="16" rx="8"/>
+      <rect class="cut pill-16" x="224" y="160" width="56" height="16" rx="8"/>
+      <rect class="cut pill-16" x="224" y="192" width="88" height="16" rx="8"/>
+      <rect class="cut pill-16" x="224" y="224" width="40" height="16" rx="8"/>
+      <!-- red-700 block bleeding off the right -->
+      <rect class="drop slab" x="360" y="43" width="152" height="168" rx="20"/>
+      <rect class="red-deep slab" x="360" y="40" width="152" height="168" rx="20"/>
+      <!-- ground pills: three primary buttons and one blue module chip -->
+      <rect class="red-deep pill-24" x="16" y="235" width="64" height="24" rx="12"/>
+      <rect class="red pill-24" x="16" y="232" width="64" height="24" rx="12"/>
+      <rect class="red-deep pill-24" x="96" y="235" width="40" height="24" rx="12"/>
+      <rect class="red pill-24" x="96" y="232" width="40" height="24" rx="12"/>
+      <rect class="red-deep pill-24" x="152" y="235" width="40" height="24" rx="12"/>
+      <rect class="red pill-24" x="152" y="232" width="40" height="24" rx="12"/>
+      <rect class="drop pill-24" x="360" y="235" width="72" height="24" rx="12"/>
+      <rect class="hue pill-24" x="360" y="232" width="72" height="24" rx="12"/>
+    </svg>
+  </div>
+  <div class="words">
+    <h1 class="name">RVLT</h1>
+    <p class="tag">Crew-made software for production companies — Flow and Binder.</p>
+  </div>
+</div>
+</body>
+</html>
