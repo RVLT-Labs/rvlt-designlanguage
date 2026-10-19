@@ -1,8 +1,10 @@
-# RVLT Flow — website &amp; design language
+# RVLT — design language, brand &amp; website
 
-Marketing site mockups and the brand/design system for **RVLT Flow** —
-production operations software built by a production company (RVLT Labs, born
-inside Two Toned Productions).
+The brand and design system for **RVLT Labs** and every RVLT product — **RVLT Flow**
+(production operations) and **RVLT Binder** (the stage manager's script binder) —
+plus the marketing site mockups. Software built by a production company (RVLT Labs,
+born inside Two Toned Productions). This repo is the **master copy**: products and the
+RVLT design-system artifact sync from it.
 
 ## What's here
 
@@ -14,6 +16,8 @@ inside Two Toned Productions).
 | [`preview.html`](preview.html) | **Token &amp; component catalog** — every token and component from `DESIGN.md` rendered (dark-first, light toggle; swatch hexes read live from the CSS vars). The visual companion to the spec. |
 | [`packages/flow-theme/`](packages/flow-theme) | **`@rvlt/flow-theme`** — the installable theme: `tokens.json` (source) → generated Tailwind v4 / shadcn `globals.css` + a shadcn component registry. The canonical *code* form of the design system; the app consumes this instead of hand-copying tokens. |
 | `assets/` | Logo — full RVLT LABS wordmark + RVLT-only mark (SVG). |
+| `assets/stickers/` | **Stickers &amp; Wordmarks pack 1.1.0** — 19 gear illustrations (sticker + line) and 7 word patches (patch + lettering), manifest, palette, style guide, licences (`DESIGN.md` §10). |
+| `assets/albert/` | **Albert**, RVLT's character — coloured SVG heads, expressions, stickers, full-body derivatives, the three locked illustrations and the pack's manifest/design lock (`DESIGN.md` §11). |
 
 ## Preview
 
@@ -28,10 +32,9 @@ python3 -m http.server 8000
 
 ## Notes
 
-- **Fonts:** headlines use **BC Alphapipe** (Adobe Fonts, licensed) with
-  **Archivo** as the fallback until the Adobe Web Project kit URL is wired in
-  (one commented `<link>` in each file). Body = Hanken Grotesk · handwriting =
-  Kalam · the "Flow" wordmark = Baloo 2.
+- **Fonts:** **Archivo** is the official display face (2026-10-19); BC Alphapipe
+  survives only as the drawn RVLT mark (SVG outlines). Body = Hanken Grotesk ·
+  data = Geist Mono · handwriting = Kalam · the "Flow" wordmark = Baloo 2.
 - **Brand red:** `#C12229` (light) / `#E0363D` (dark). One accent, no gradients.
 - The design language is **dark-first** and built on a "calm data, fun chrome"
   principle — see `DESIGN.md` §15 for how it maps onto the app

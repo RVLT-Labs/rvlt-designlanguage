@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"><title>Beltpack transmitter — RVLT Flow</title><g transform="translate(2 4)"><circle cx="64" cy="64" r="57" fill="#0C0A08"/></g><circle cx="64" cy="64" r="57" fill="#5B8DEF" stroke="#FFFDF8" stroke-width="3"/><g color="#FFFDF8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M47 40V31q0-7-3-12M74 40v-8h7v8"/>
+         <path d="M85 53h3q4 0 4 4v25q0 4-4 4h-3"/>
+         <rect x="39" y="40" width="46" height="62" rx="5"/>
+         <rect x="48" y="50" width="28" height="14" rx="2"/>
+         <path d="M54 57h12M39 80h46"/>
+         <circle cx="62" cy="72" r="1.8" fill="currentColor" stroke="none"/></g></svg>

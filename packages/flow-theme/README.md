@@ -52,11 +52,11 @@ and references semantic tokens (`bg-red`, `text-ok`, `border-border`), never raw
 (§3.6) — so they re-theme automatically. The agent installs and goes; it shouldn't need to
 re-derive look-and-feel from `DESIGN.md`.
 
-**The kit (27):**
+**The kit (28):**
 
 | Group | Components |
 |---|---|
-| **Core** | `button` (primary/halo/line/ghost/cream · loading) · `badge` (status) · `card` (interactive/live) · `input` · `textarea` · `label` |
+| **Core** | `button` (primary/halo/line/ghost/cream · loading) · `badge` (status) · `card` (interactive/live) · `input` · `textarea` · `label` · `kbd` (key cap, 11px) |
 | **Overlays** | `dialog` (modal + scrim) · `sheet` (off-canvas) · `drawer` (mobile, vaul) · `popover` · `dropdown-menu` · `tooltip` · `command` (palette) · `sonner` (toasts) |
 | **Forms/structure** | `select` · `checkbox` · `switch` · `tabs` · `accordion` (FAQ) · `table` · `separator` · `skeleton` |
 | **RVLT signature** | `avatar` (8-hue palette, AA-safe initials · `PersonAvatar name=…`) · `stat` · `stepper` (lifecycle spine) · `empty-state` (mascot) · `flow-mascot` |
