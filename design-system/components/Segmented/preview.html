@@ -1,0 +1,18 @@
+<!-- @dsCard group="Binder" height=72 subtitle="Live — the real component" -->
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Segmented — preview</title></head>
+<body>
+<div id="root" style="padding:16px"></div>
+<script>
+var h = React.createElement, R = window.Rvlt, F = React.Fragment;
+var row = function () { return h.apply(null, ['div', { style: { display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '12px', marginBottom: '12px' } }].concat([].slice.call(arguments))); };
+function Demo() {
+  var a = React.useState('go'), b = React.useState('page');
+  return row(h(R.Segmented, { 'aria-label': 'Cue type', value: a[0], onValueChange: a[1], options: [{ value: 'go', label: 'Go' }, { value: 'standby', label: 'Standby' }, { value: 'warn', label: 'Warn' }] }),
+    h(R.Segmented, { 'aria-label': 'Go to', value: b[0], onValueChange: b[1], options: [{ value: 'cue', label: 'Cue' }, { value: 'page', label: 'Page' }] }));
+}
+ReactDOM.createRoot(document.getElementById('root')).render(h(Demo));
+</script>
+</body>
+</html>

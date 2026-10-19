@@ -1,0 +1,1001 @@
+{
+  "v": 3,
+  "assetGroups": {
+    "Icons": {
+      "files": {
+        "calendar-range.svg": {
+          "blob": "3f64c04673686c55e22563e1fd829eb3",
+          "name": "calendar-range.svg",
+          "size": 444,
+          "type": "image/svg+xml"
+        },
+        "check.svg": {
+          "blob": "c838031577f8b10185c8b79301e1ae6c",
+          "name": "check.svg",
+          "size": 219,
+          "type": "image/svg+xml"
+        },
+        "folder-open.svg": {
+          "blob": "e4d0c0adad8a903f237930b7e9894074",
+          "name": "folder-open.svg",
+          "size": 381,
+          "type": "image/svg+xml"
+        },
+        "hard-hat.svg": {
+          "blob": "6b595f85ca55bb973adb5c5aa9db119d",
+          "name": "hard-hat.svg",
+          "size": 387,
+          "type": "image/svg+xml"
+        },
+        "landmark.svg": {
+          "blob": "c9b7068e60f58ea1bd94005c96f545ca",
+          "name": "landmark.svg",
+          "size": 437,
+          "type": "image/svg+xml"
+        },
+        "layout-dashboard.svg": {
+          "blob": "0dc5b9fff2d048297263f0430cec90a1",
+          "name": "layout-dashboard.svg",
+          "size": 411,
+          "type": "image/svg+xml"
+        },
+        "package.svg": {
+          "blob": "94b3ebe23c3bb43927ede83b3e2e9fd1",
+          "name": "package.svg",
+          "size": 445,
+          "type": "image/svg+xml"
+        },
+        "search.svg": {
+          "blob": "cf2c6ee38ba479922749bdfdf219a89b",
+          "name": "search.svg",
+          "size": 262,
+          "type": "image/svg+xml"
+        },
+        "shield-check.svg": {
+          "blob": "d19cdbf8c760eb001add6bdd0ddaaf0e",
+          "name": "shield-check.svg",
+          "size": 400,
+          "type": "image/svg+xml"
+        },
+        "triangle-alert.svg": {
+          "blob": "28f571c0b7743f5ab7bf7591625136c8",
+          "name": "triangle-alert.svg",
+          "size": 335,
+          "type": "image/svg+xml"
+        },
+        "truck.svg": {
+          "blob": "ec5f76f68791153eb4e15764d50c22d8",
+          "name": "truck.svg",
+          "size": 473,
+          "type": "image/svg+xml"
+        },
+        "users.svg": {
+          "blob": "36620a774c61c7955aac5d8c2b5ba345",
+          "name": "users.svg",
+          "size": 380,
+          "type": "image/svg+xml"
+        },
+        "warehouse.svg": {
+          "blob": "22bffb291eb566ce2a1a00f696b65c0a",
+          "name": "warehouse.svg",
+          "size": 442,
+          "type": "image/svg+xml"
+        },
+        "wrench.svg": {
+          "blob": "f3afef674fdfd35e0c93f47511cf66a3",
+          "name": "wrench.svg",
+          "size": 397,
+          "type": "image/svg+xml"
+        }
+      },
+      "name": "Icons",
+      "order": [
+        "layout-dashboard.svg",
+        "folder-open.svg",
+        "landmark.svg",
+        "calendar-range.svg",
+        "hard-hat.svg",
+        "package.svg",
+        "warehouse.svg",
+        "shield-check.svg",
+        "wrench.svg",
+        "users.svg",
+        "truck.svg",
+        "search.svg",
+        "triangle-alert.svg",
+        "check.svg"
+      ],
+      "tile": "xs"
+    },
+    "Logos": {
+      "files": {
+        "flow-mascot.svg": {
+          "blob": "dc86d02bedaf97d558ec0c70a79480e7",
+          "name": "flow-mascot.svg",
+          "size": 738,
+          "type": "image/svg+xml"
+        },
+        "rvlt-flow-wordmark-dark.svg": {
+          "blob": "19eb262b316eee08100f58333c1b81a9",
+          "name": "rvlt-flow-wordmark-dark.svg",
+          "size": 3060,
+          "type": "image/svg+xml"
+        },
+        "rvlt-flow-wordmark-light.svg": {
+          "blob": "8d9184217b4b1a255eddefed3f41c954",
+          "name": "rvlt-flow-wordmark-light.svg",
+          "size": 3060,
+          "type": "image/svg+xml"
+        },
+        "r-mark-dark.svg": {
+          "blob": "a530e72df81763f1fc12fd3f8db2ca5a",
+          "name": "r-mark-dark.svg",
+          "size": 621,
+          "type": "image/svg+xml"
+        },
+        "r-mark-light.svg": {
+          "blob": "45f224dfec931c8bad682972e7ec239c",
+          "name": "r-mark-light.svg",
+          "size": 621,
+          "type": "image/svg+xml"
+        },
+        "rvlt-mark.svg": {
+          "name": "rvlt-mark.svg",
+          "blob": "d1a13ad6c9d4199a338eb5a4c301a47c",
+          "size": 1329,
+          "type": "image/svg+xml"
+        },
+        "rvlt-labs-logo.svg": {
+          "name": "rvlt-labs-logo.svg",
+          "blob": "8a16fbfe195397f5be349cb97741d5fe",
+          "size": 3185,
+          "type": "image/svg+xml"
+        },
+        "binder-mark.svg": {
+          "name": "binder-mark.svg",
+          "blob": "175e0a73e8d3957e092999e1acdeb408",
+          "size": 421,
+          "type": "image/svg+xml"
+        }
+      },
+      "name": "Logos",
+      "order": [
+        "rvlt-mark.svg",
+        "rvlt-labs-logo.svg",
+        "rvlt-flow-wordmark-dark.svg",
+        "rvlt-flow-wordmark-light.svg",
+        "r-mark-dark.svg",
+        "r-mark-light.svg",
+        "binder-mark.svg",
+        "flow-mascot.svg"
+      ],
+      "tile": "l"
+    },
+    "Stickers": {
+      "name": "Stickers",
+      "tile": "m",
+      "order": [
+        "road-case-sticker.svg",
+        "gaff-tape-sticker.svg",
+        "microphone-sticker.svg",
+        "monitor-sticker.svg",
+        "production-van-sticker.svg",
+        "wrench-sticker.svg",
+        "calendar-sticker.svg",
+        "batteries-sticker.svg",
+        "aaa-pass-sticker.svg",
+        "clipboard-sticker.svg",
+        "speaker-sticker.svg",
+        "moving-head-sticker.svg",
+        "mixing-console-sticker.svg",
+        "beltpack-sticker.svg",
+        "walkie-talkie-sticker.svg",
+        "coffee-mug-sticker.svg",
+        "ticket-stub-sticker.svg",
+        "stage-curtains-sticker.svg",
+        "pelican-sticker.svg"
+      ],
+      "files": {
+        "road-case-sticker.svg": {
+          "name": "road-case-sticker.svg",
+          "blob": "2b91662f67aee3a283eaaea751da6b41",
+          "size": 2703,
+          "type": "image/svg+xml"
+        },
+        "gaff-tape-sticker.svg": {
+          "name": "gaff-tape-sticker.svg",
+          "blob": "040660f092dd9cd01d09e6d76ca36069",
+          "size": 587,
+          "type": "image/svg+xml"
+        },
+        "microphone-sticker.svg": {
+          "name": "microphone-sticker.svg",
+          "blob": "2632729a279b1463d6fe6c3071fa64d1",
+          "size": 2095,
+          "type": "image/svg+xml"
+        },
+        "monitor-sticker.svg": {
+          "name": "monitor-sticker.svg",
+          "blob": "03c6fc484ba32292fedf7a677e1c8766",
+          "size": 2224,
+          "type": "image/svg+xml"
+        },
+        "production-van-sticker.svg": {
+          "name": "production-van-sticker.svg",
+          "blob": "f94d85e4e413911997135dea096ff7d0",
+          "size": 3006,
+          "type": "image/svg+xml"
+        },
+        "wrench-sticker.svg": {
+          "name": "wrench-sticker.svg",
+          "blob": "78c33e57a73db5f735a5ef1b519c3d34",
+          "size": 2041,
+          "type": "image/svg+xml"
+        },
+        "calendar-sticker.svg": {
+          "name": "calendar-sticker.svg",
+          "blob": "6ff7e72414c65bc597b0d1ec03632268",
+          "size": 2865,
+          "type": "image/svg+xml"
+        },
+        "batteries-sticker.svg": {
+          "name": "batteries-sticker.svg",
+          "blob": "a9e86ad223d4bf3ed1fa893b6961c202",
+          "size": 656,
+          "type": "image/svg+xml"
+        },
+        "aaa-pass-sticker.svg": {
+          "name": "aaa-pass-sticker.svg",
+          "blob": "c84267f73135363a3339075b2b0cff85",
+          "size": 2436,
+          "type": "image/svg+xml"
+        },
+        "clipboard-sticker.svg": {
+          "name": "clipboard-sticker.svg",
+          "blob": "32904d191fdce6ecfe6b7eb1c533f64d",
+          "size": 2541,
+          "type": "image/svg+xml"
+        },
+        "speaker-sticker.svg": {
+          "name": "speaker-sticker.svg",
+          "blob": "865101c4f741c260849869061f90cbb8",
+          "size": 2229,
+          "type": "image/svg+xml"
+        },
+        "moving-head-sticker.svg": {
+          "name": "moving-head-sticker.svg",
+          "blob": "86603064876fc381ab1ab8c846d794f9",
+          "size": 685,
+          "type": "image/svg+xml"
+        },
+        "mixing-console-sticker.svg": {
+          "name": "mixing-console-sticker.svg",
+          "blob": "4696a3b037eb08596e85f0254566c8d4",
+          "size": 1143,
+          "type": "image/svg+xml"
+        },
+        "beltpack-sticker.svg": {
+          "name": "beltpack-sticker.svg",
+          "blob": "8af918413e4fab96fb8deef2c445805c",
+          "size": 790,
+          "type": "image/svg+xml"
+        },
+        "walkie-talkie-sticker.svg": {
+          "name": "walkie-talkie-sticker.svg",
+          "blob": "2e9ea13e72281957c44e59851c880ee1",
+          "size": 752,
+          "type": "image/svg+xml"
+        },
+        "coffee-mug-sticker.svg": {
+          "name": "coffee-mug-sticker.svg",
+          "blob": "f280e11ce2480283114d3a9b0c7153aa",
+          "size": 669,
+          "type": "image/svg+xml"
+        },
+        "ticket-stub-sticker.svg": {
+          "name": "ticket-stub-sticker.svg",
+          "blob": "f68ce87d1ba6aef1a7bdf05de7c404ba",
+          "size": 2142,
+          "type": "image/svg+xml"
+        },
+        "stage-curtains-sticker.svg": {
+          "name": "stage-curtains-sticker.svg",
+          "blob": "cc57accb7f6f9658c143cb588c49c2ca",
+          "size": 825,
+          "type": "image/svg+xml"
+        },
+        "pelican-sticker.svg": {
+          "name": "pelican-sticker.svg",
+          "blob": "34bbbe7ad3127abd7f44007711d80c7a",
+          "size": 844,
+          "type": "image/svg+xml"
+        }
+      }
+    },
+    "Patches": {
+      "name": "Patches",
+      "tile": "m",
+      "order": [
+        "standby-patch.svg",
+        "go-patch.svg",
+        "crew-patch.svg",
+        "load-in-patch.svg",
+        "on-air-patch.svg",
+        "show-time-patch.svg",
+        "rvlt-flow-patch.svg"
+      ],
+      "files": {
+        "standby-patch.svg": {
+          "name": "standby-patch.svg",
+          "blob": "f86585d5ec695200bce7349f79742194",
+          "size": 12083,
+          "type": "image/svg+xml"
+        },
+        "go-patch.svg": {
+          "name": "go-patch.svg",
+          "blob": "902e0357331c35d2737b2254c57467bf",
+          "size": 9190,
+          "type": "image/svg+xml"
+        },
+        "crew-patch.svg": {
+          "name": "crew-patch.svg",
+          "blob": "fd92a04ecd817ece4a561bd105088449",
+          "size": 9398,
+          "type": "image/svg+xml"
+        },
+        "load-in-patch.svg": {
+          "name": "load-in-patch.svg",
+          "blob": "c2111c8104f5bf6ff66ada9e7c6cd4b9",
+          "size": 10274,
+          "type": "image/svg+xml"
+        },
+        "on-air-patch.svg": {
+          "name": "on-air-patch.svg",
+          "blob": "047408001faba3adc88dad8f7776e897",
+          "size": 9158,
+          "type": "image/svg+xml"
+        },
+        "show-time-patch.svg": {
+          "name": "show-time-patch.svg",
+          "blob": "645e3577225689df2643d7852a2e6e2f",
+          "size": 13645,
+          "type": "image/svg+xml"
+        },
+        "rvlt-flow-patch.svg": {
+          "name": "rvlt-flow-patch.svg",
+          "blob": "cce868e0777fc89810f98ede8a41ea9a",
+          "size": 14261,
+          "type": "image/svg+xml"
+        }
+      }
+    },
+    "Linework": {
+      "name": "Linework",
+      "tile": "s",
+      "order": [
+        "road-case-line.svg",
+        "gaff-tape-line.svg",
+        "microphone-line.svg",
+        "monitor-line.svg",
+        "production-van-line.svg",
+        "wrench-line.svg",
+        "calendar-line.svg",
+        "batteries-line.svg",
+        "aaa-pass-line.svg",
+        "clipboard-line.svg",
+        "speaker-line.svg",
+        "moving-head-line.svg",
+        "mixing-console-line.svg",
+        "beltpack-line.svg",
+        "walkie-talkie-line.svg",
+        "coffee-mug-line.svg",
+        "ticket-stub-line.svg",
+        "stage-curtains-line.svg",
+        "pelican-line.svg"
+      ],
+      "files": {
+        "road-case-line.svg": {
+          "name": "road-case-line.svg",
+          "blob": "40b813e876b1c686fafbd7ba6271eece",
+          "size": 2489,
+          "type": "image/svg+xml"
+        },
+        "gaff-tape-line.svg": {
+          "name": "gaff-tape-line.svg",
+          "blob": "ef74b7df1330d27bc8a7967b519758f9",
+          "size": 409,
+          "type": "image/svg+xml"
+        },
+        "microphone-line.svg": {
+          "name": "microphone-line.svg",
+          "blob": "9ba87de8fcb4ab443b9b46f227b5d000",
+          "size": 1881,
+          "type": "image/svg+xml"
+        },
+        "monitor-line.svg": {
+          "name": "monitor-line.svg",
+          "blob": "eb5ac0e2dc065f958191e4514aa4021d",
+          "size": 2046,
+          "type": "image/svg+xml"
+        },
+        "production-van-line.svg": {
+          "name": "production-van-line.svg",
+          "blob": "cb26b18befdb26a9195d09de95e47b75",
+          "size": 2792,
+          "type": "image/svg+xml"
+        },
+        "wrench-line.svg": {
+          "name": "wrench-line.svg",
+          "blob": "7ab4b5fd760cfc9a7dd13cd6286e6526",
+          "size": 1863,
+          "type": "image/svg+xml"
+        },
+        "calendar-line.svg": {
+          "name": "calendar-line.svg",
+          "blob": "46ceb2655ee5febb0bcb7b8f32038552",
+          "size": 2651,
+          "type": "image/svg+xml"
+        },
+        "batteries-line.svg": {
+          "name": "batteries-line.svg",
+          "blob": "36fe17d450ef076b4ee5a1b8da690dab",
+          "size": 478,
+          "type": "image/svg+xml"
+        },
+        "aaa-pass-line.svg": {
+          "name": "aaa-pass-line.svg",
+          "blob": "2b0b1035edae2434f10c1ac876e2e300",
+          "size": 2222,
+          "type": "image/svg+xml"
+        },
+        "clipboard-line.svg": {
+          "name": "clipboard-line.svg",
+          "blob": "a19d8a7eed96828e17e8f1eec315a764",
+          "size": 2327,
+          "type": "image/svg+xml"
+        },
+        "speaker-line.svg": {
+          "name": "speaker-line.svg",
+          "blob": "c5e0a4ea9305c5f50db45677a022a95f",
+          "size": 2051,
+          "type": "image/svg+xml"
+        },
+        "moving-head-line.svg": {
+          "name": "moving-head-line.svg",
+          "blob": "3c08722e6270b561bab26e3b4b7ba967",
+          "size": 471,
+          "type": "image/svg+xml"
+        },
+        "mixing-console-line.svg": {
+          "name": "mixing-console-line.svg",
+          "blob": "8bae3493c2058b4f83bfe09956b8ad29",
+          "size": 929,
+          "type": "image/svg+xml"
+        },
+        "beltpack-line.svg": {
+          "name": "beltpack-line.svg",
+          "blob": "b0900ad3a923e6e2bba376b5714cceb4",
+          "size": 612,
+          "type": "image/svg+xml"
+        },
+        "walkie-talkie-line.svg": {
+          "name": "walkie-talkie-line.svg",
+          "blob": "b1eca8a26b32f51a711e3a9c9156705c",
+          "size": 538,
+          "type": "image/svg+xml"
+        },
+        "coffee-mug-line.svg": {
+          "name": "coffee-mug-line.svg",
+          "blob": "ebf9ebeb28cb835e8a19d9eca5f98eb2",
+          "size": 491,
+          "type": "image/svg+xml"
+        },
+        "ticket-stub-line.svg": {
+          "name": "ticket-stub-line.svg",
+          "blob": "bc535573be1cd653bf31141a61678f1a",
+          "size": 1928,
+          "type": "image/svg+xml"
+        },
+        "stage-curtains-line.svg": {
+          "name": "stage-curtains-line.svg",
+          "blob": "84a75fd67837a2eb87fd29354c479196",
+          "size": 492,
+          "type": "image/svg+xml"
+        },
+        "pelican-line.svg": {
+          "name": "pelican-line.svg",
+          "blob": "e66e1c1dcdf1f4184caf48441e71f81c",
+          "size": 666,
+          "type": "image/svg+xml"
+        }
+      }
+    },
+    "Lettering": {
+      "name": "Lettering",
+      "tile": "m",
+      "order": [
+        "standby-wordmark.svg",
+        "go-wordmark.svg",
+        "crew-wordmark.svg",
+        "load-in-wordmark.svg",
+        "on-air-wordmark.svg",
+        "show-time-wordmark.svg",
+        "rvlt-flow-wordmark.svg"
+      ],
+      "files": {
+        "standby-wordmark.svg": {
+          "name": "standby-wordmark.svg",
+          "blob": "5ca1a096301a6f8f03a43fa02dcb47e4",
+          "size": 11560,
+          "type": "image/svg+xml"
+        },
+        "go-wordmark.svg": {
+          "name": "go-wordmark.svg",
+          "blob": "1a12210cd76ada6ab7ffccd4e1a27afb",
+          "size": 6676,
+          "type": "image/svg+xml"
+        },
+        "crew-wordmark.svg": {
+          "name": "crew-wordmark.svg",
+          "blob": "f78c23bba2d569ab13972ec8e86c5594",
+          "size": 8922,
+          "type": "image/svg+xml"
+        },
+        "load-in-wordmark.svg": {
+          "name": "load-in-wordmark.svg",
+          "blob": "8f67df60e4fa50049ef06c2f5f8b8e17",
+          "size": 9653,
+          "type": "image/svg+xml"
+        },
+        "on-air-wordmark.svg": {
+          "name": "on-air-wordmark.svg",
+          "blob": "cdf3d56bb0d7703597a4b151e1ad5c43",
+          "size": 8687,
+          "type": "image/svg+xml"
+        },
+        "show-time-wordmark.svg": {
+          "name": "show-time-wordmark.svg",
+          "blob": "6c17358c1ee9c4c1a0170f621895fa7f",
+          "size": 13173,
+          "type": "image/svg+xml"
+        },
+        "rvlt-flow-wordmark.svg": {
+          "name": "rvlt-flow-wordmark.svg",
+          "blob": "557c27423bf783b7a46f5876d03dfcc7",
+          "size": 13812,
+          "type": "image/svg+xml"
+        }
+      }
+    },
+    "Albert": {
+      "name": "Albert",
+      "tile": "m",
+      "order": [
+        "albert-avatar.svg",
+        "albert-expression-blep.svg",
+        "albert-expression-catch.svg",
+        "albert-expression-content.svg",
+        "albert-expression-curious.svg",
+        "albert-expression-focused.svg",
+        "albert-expression-listening.svg",
+        "albert-expression-puzzled.svg",
+        "albert-expression-reassuring.svg",
+        "albert-expression-sleepy.svg",
+        "albert-expression-surprised.svg",
+        "albert-expression-thinking.svg",
+        "albert-expression-wink.svg",
+        "albert-happy.svg",
+        "albert-head-line-espresso.svg",
+        "albert-icon-cream.svg",
+        "albert-icon.svg",
+        "albert-master.svg",
+        "albert-peek.svg",
+        "albert-seated-on-case.svg",
+        "albert-sitting.svg",
+        "albert-sticker-amber.svg",
+        "albert-sticker-red.svg"
+      ],
+      "files": {
+        "albert-avatar.svg": {
+          "name": "albert-avatar.svg",
+          "blob": "5451de893bc26215a16d3802dacb1133",
+          "size": 2522,
+          "type": "image/svg+xml"
+        },
+        "albert-expression-blep.svg": {
+          "name": "albert-expression-blep.svg",
+          "blob": "5de5d1fdeb06276105b8c6742bdfb197",
+          "size": 2644,
+          "type": "image/svg+xml"
+        },
+        "albert-expression-catch.svg": {
+          "name": "albert-expression-catch.svg",
+          "blob": "04648899f3382dc4fe2f8d24d9bd838c",
+          "size": 2659,
+          "type": "image/svg+xml"
+        },
+        "albert-expression-content.svg": {
+          "name": "albert-expression-content.svg",
+          "blob": "6df85931355718904577ce9fea5f9548",
+          "size": 2319,
+          "type": "image/svg+xml"
+        },
+        "albert-expression-curious.svg": {
+          "name": "albert-expression-curious.svg",
+          "blob": "92dd7989464d23f1e836a5e795300fce",
+          "size": 2540,
+          "type": "image/svg+xml"
+        },
+        "albert-expression-focused.svg": {
+          "name": "albert-expression-focused.svg",
+          "blob": "efb086546596e39b9cdfeba2acad32a1",
+          "size": 2775,
+          "type": "image/svg+xml"
+        },
+        "albert-expression-listening.svg": {
+          "name": "albert-expression-listening.svg",
+          "blob": "9ea67bd3b488f01af3a23f126d4e9b62",
+          "size": 2538,
+          "type": "image/svg+xml"
+        },
+        "albert-expression-puzzled.svg": {
+          "name": "albert-expression-puzzled.svg",
+          "blob": "b267bc3fce9727bcd612bc4e3a8cb5a9",
+          "size": 2528,
+          "type": "image/svg+xml"
+        },
+        "albert-expression-reassuring.svg": {
+          "name": "albert-expression-reassuring.svg",
+          "blob": "aa0b390fa79cde30773e1f1480a0940b",
+          "size": 2494,
+          "type": "image/svg+xml"
+        },
+        "albert-expression-sleepy.svg": {
+          "name": "albert-expression-sleepy.svg",
+          "blob": "8b99ace4fda4a6f34351a3c1efb24eda",
+          "size": 2326,
+          "type": "image/svg+xml"
+        },
+        "albert-expression-surprised.svg": {
+          "name": "albert-expression-surprised.svg",
+          "blob": "dfc81e9972a1525d903c0d8b26470fcf",
+          "size": 2445,
+          "type": "image/svg+xml"
+        },
+        "albert-expression-thinking.svg": {
+          "name": "albert-expression-thinking.svg",
+          "blob": "5e09147c1c61ef2e855fb126969f56be",
+          "size": 2486,
+          "type": "image/svg+xml"
+        },
+        "albert-expression-wink.svg": {
+          "name": "albert-expression-wink.svg",
+          "blob": "e1c31d8d6d9fbbea7630a5ffc8c95f7e",
+          "size": 2473,
+          "type": "image/svg+xml"
+        },
+        "albert-happy.svg": {
+          "name": "albert-happy.svg",
+          "blob": "5648fdbd11016e0b06586f599d1a5516",
+          "size": 2347,
+          "type": "image/svg+xml"
+        },
+        "albert-head-line-espresso.svg": {
+          "name": "albert-head-line-espresso.svg",
+          "blob": "87153d3222282b3cc82aae9900fc7c98",
+          "size": 1423,
+          "type": "image/svg+xml"
+        },
+        "albert-icon-cream.svg": {
+          "name": "albert-icon-cream.svg",
+          "blob": "ac29a48dd632f170ee48bc7e448798b5",
+          "size": 2213,
+          "type": "image/svg+xml"
+        },
+        "albert-icon.svg": {
+          "name": "albert-icon.svg",
+          "blob": "f99d6179334c823ae4ce565c7bfa4d0e",
+          "size": 1840,
+          "type": "image/svg+xml"
+        },
+        "albert-master.svg": {
+          "name": "albert-master.svg",
+          "blob": "8636d2d931a52b18ae42a977789a1009",
+          "size": 53605,
+          "type": "image/svg+xml"
+        },
+        "albert-peek.svg": {
+          "name": "albert-peek.svg",
+          "blob": "abd291d3da8f61b35ade9ecba6ee9dca",
+          "size": 2923,
+          "type": "image/svg+xml"
+        },
+        "albert-seated-on-case.svg": {
+          "name": "albert-seated-on-case.svg",
+          "blob": "14cb3b2337e13e09df4d0c866a2708a4",
+          "size": 74568,
+          "type": "image/svg+xml"
+        },
+        "albert-sitting.svg": {
+          "name": "albert-sitting.svg",
+          "blob": "c843e6e18e1b7095752138ede005bba1",
+          "size": 57363,
+          "type": "image/svg+xml"
+        },
+        "albert-sticker-amber.svg": {
+          "name": "albert-sticker-amber.svg",
+          "blob": "b718ba75d6edd31a0338c73154bed74c",
+          "size": 2707,
+          "type": "image/svg+xml"
+        },
+        "albert-sticker-red.svg": {
+          "name": "albert-sticker-red.svg",
+          "blob": "660498bf05774b9d45cfa177e221babd",
+          "size": 2705,
+          "type": "image/svg+xml"
+        }
+      }
+    },
+    "Albert-illustrations": {
+      "name": "Albert-illustrations",
+      "tile": "l",
+      "order": [
+        "albert-sitting-v4.png",
+        "albert-on-the-case-v4.png",
+        "albert-rest-v4.png",
+        "albert-basking-v9.png",
+        "albert-blep-v8.png",
+        "albert-content-v8.png",
+        "albert-listening-v9.png",
+        "albert-peeking-v9.png",
+        "albert-tongue-v9.png",
+        "albert-core-clipboard-v10.png",
+        "albert-core-microphone-v10.png",
+        "albert-core-calendar-v10.png",
+        "albert-core-hardhat-v10.png",
+        "albert-core-highvis-v10.png",
+        "albert-core-hardhat-highvis-v10.png",
+        "albert-core-suit-v10.png",
+        "albert-core-coffee-v10.png",
+        "albert-core-energy-v10.png",
+        "albert-work-headset-v11.png",
+        "albert-work-walkie-v11.png",
+        "albert-work-lanyard-v11.png",
+        "albert-work-cable-v11.png",
+        "albert-work-gaff-v11.png",
+        "albert-work-laptop-v11.png",
+        "albert-work-invoice-v11.png",
+        "albert-work-calculator-v11.png",
+        "albert-work-delivery-v11.png",
+        "albert-work-toolbox-v11.png",
+        "albert-work-run-sheet-v11.png",
+        "albert-work-wrap-time-v11.png"
+      ],
+      "files": {
+        "albert-sitting-v4.png": {
+          "name": "albert-sitting-v4.png",
+          "blob": "0bcf130c2db775899f073e0722e1c6fc",
+          "size": 849178,
+          "type": "image/png"
+        },
+        "albert-on-the-case-v4.png": {
+          "name": "albert-on-the-case-v4.png",
+          "blob": "7b07202d86c43f4e0ea4e9d1aa2f9b4a",
+          "size": 954933,
+          "type": "image/png"
+        },
+        "albert-rest-v4.png": {
+          "name": "albert-rest-v4.png",
+          "blob": "c9dee764c8c1f47fc4a4fbf0312a7908",
+          "size": 1309133,
+          "type": "image/png"
+        },
+        "albert-basking-v9.png": {
+          "name": "albert-basking-v9.png",
+          "blob": "c3dc807d8dfd8b411ec534623575f213",
+          "size": 1267171,
+          "type": "image/png"
+        },
+        "albert-blep-v8.png": {
+          "name": "albert-blep-v8.png",
+          "blob": "ef573760265b2ef2446d983f53f4e84f",
+          "size": 809940,
+          "type": "image/png"
+        },
+        "albert-content-v8.png": {
+          "name": "albert-content-v8.png",
+          "blob": "31eb0749da33c56786951551dc37fee3",
+          "size": 1292036,
+          "type": "image/png"
+        },
+        "albert-listening-v9.png": {
+          "name": "albert-listening-v9.png",
+          "blob": "8db325580d60a5bc3a0cbc2f61612176",
+          "size": 868398,
+          "type": "image/png"
+        },
+        "albert-peeking-v9.png": {
+          "name": "albert-peeking-v9.png",
+          "blob": "5050753c011911a400b5db130bff4dc5",
+          "size": 1180206,
+          "type": "image/png"
+        },
+        "albert-tongue-v9.png": {
+          "name": "albert-tongue-v9.png",
+          "blob": "03e4ffd66ff799b76b5b1e3ca757c30f",
+          "size": 1291844,
+          "type": "image/png"
+        },
+        "albert-core-clipboard-v10.png": {
+          "name": "albert-core-clipboard-v10.png",
+          "blob": "c411224ba3b41a36483b48ae62f32487",
+          "size": 894976,
+          "type": "image/png"
+        },
+        "albert-core-microphone-v10.png": {
+          "name": "albert-core-microphone-v10.png",
+          "blob": "d2537942d8c54873a7d04c59d8c5b82d",
+          "size": 883155,
+          "type": "image/png"
+        },
+        "albert-core-calendar-v10.png": {
+          "name": "albert-core-calendar-v10.png",
+          "blob": "5fade548265af6629872256f00255770",
+          "size": 882557,
+          "type": "image/png"
+        },
+        "albert-core-hardhat-v10.png": {
+          "name": "albert-core-hardhat-v10.png",
+          "blob": "846b4fbe0df7aaa526b5f53889a096cc",
+          "size": 873669,
+          "type": "image/png"
+        },
+        "albert-core-highvis-v10.png": {
+          "name": "albert-core-highvis-v10.png",
+          "blob": "2c497f6315a3ce76ae715c4d7fdb9f4c",
+          "size": 859851,
+          "type": "image/png"
+        },
+        "albert-core-hardhat-highvis-v10.png": {
+          "name": "albert-core-hardhat-highvis-v10.png",
+          "blob": "d35dd7f2d9348eb047a30884f87c29af",
+          "size": 894169,
+          "type": "image/png"
+        },
+        "albert-core-suit-v10.png": {
+          "name": "albert-core-suit-v10.png",
+          "blob": "c32ff40f02476b8163ed5b2265393092",
+          "size": 873200,
+          "type": "image/png"
+        },
+        "albert-core-coffee-v10.png": {
+          "name": "albert-core-coffee-v10.png",
+          "blob": "226d3814f76f51ba086f666bd4e13e3a",
+          "size": 886446,
+          "type": "image/png"
+        },
+        "albert-core-energy-v10.png": {
+          "name": "albert-core-energy-v10.png",
+          "blob": "32c7ec687354d1fcd89e538d5e3bde78",
+          "size": 888520,
+          "type": "image/png"
+        },
+        "albert-work-headset-v11.png": {
+          "name": "albert-work-headset-v11.png",
+          "blob": "04f9254edb9ca68259e221df141fd7d7",
+          "size": 884012,
+          "type": "image/png"
+        },
+        "albert-work-walkie-v11.png": {
+          "name": "albert-work-walkie-v11.png",
+          "blob": "e129b9a5329485efca3d52593a09bc43",
+          "size": 890485,
+          "type": "image/png"
+        },
+        "albert-work-lanyard-v11.png": {
+          "name": "albert-work-lanyard-v11.png",
+          "blob": "58c3bd6e004c2deb21d98654f295ebfb",
+          "size": 948754,
+          "type": "image/png"
+        },
+        "albert-work-cable-v11.png": {
+          "name": "albert-work-cable-v11.png",
+          "blob": "eabbca91fc2995fa5036954d50815e17",
+          "size": 896085,
+          "type": "image/png"
+        },
+        "albert-work-gaff-v11.png": {
+          "name": "albert-work-gaff-v11.png",
+          "blob": "231508b95da7303c5b9ad6a3d9f2735c",
+          "size": 1025334,
+          "type": "image/png"
+        },
+        "albert-work-laptop-v11.png": {
+          "name": "albert-work-laptop-v11.png",
+          "blob": "b29f97bbc5fd0355c7399e87b54b8d37",
+          "size": 813259,
+          "type": "image/png"
+        },
+        "albert-work-invoice-v11.png": {
+          "name": "albert-work-invoice-v11.png",
+          "blob": "cad66ac527ae4f94877cd4ae71b7453f",
+          "size": 938273,
+          "type": "image/png"
+        },
+        "albert-work-calculator-v11.png": {
+          "name": "albert-work-calculator-v11.png",
+          "blob": "d63c3b663e2582665f6cb345b87f8b4a",
+          "size": 862878,
+          "type": "image/png"
+        },
+        "albert-work-delivery-v11.png": {
+          "name": "albert-work-delivery-v11.png",
+          "blob": "fe04041a38eec6873518ac955ca0c4e7",
+          "size": 941360,
+          "type": "image/png"
+        },
+        "albert-work-toolbox-v11.png": {
+          "name": "albert-work-toolbox-v11.png",
+          "blob": "3a208366ce782b3aefebbf12c12cbdd6",
+          "size": 741636,
+          "type": "image/png"
+        },
+        "albert-work-run-sheet-v11.png": {
+          "name": "albert-work-run-sheet-v11.png",
+          "blob": "753074eccbe482ec69f3b9e01a8837c2",
+          "size": 958238,
+          "type": "image/png"
+        },
+        "albert-work-wrap-time-v11.png": {
+          "name": "albert-work-wrap-time-v11.png",
+          "blob": "ff0911e452a1bb89a8780135ad52b512",
+          "size": 618629,
+          "type": "image/png"
+        }
+      }
+    }
+  },
+  "blobs": {},
+  "createdOnFiles": {
+    "at": "2026-10-19T03:20:00Z",
+    "v": 1
+  },
+  "docs": {
+    "readme": "project/README.md",
+    "sections": []
+  },
+  "groups": [
+    "Logos",
+    "Albert",
+    "Albert-illustrations",
+    "Stickers",
+    "Patches",
+    "Linework",
+    "Lettering",
+    "Icons"
+  ],
+  "lastChange": {
+    "by": "Claude",
+    "at": "2026-10-19T05:22:00Z",
+    "via": "GitHub \u00b7 TwoToned/gearflow@5a85e40 + RVLT-Labs/binder@f822fdb",
+    "note": "Live components: 20 cards now mount the real React source (bundle.js, window.Rvlt) styled by Tailwind compiled from it; Notice, SyncStatus, CueTag, Sticker and Albert stay static."
+  },
+  "layout": "files",
+  "libraries": [
+    {
+      "name": "react",
+      "version": "18.3.1",
+      "global": "React",
+      "file": "components/lib/react.production.min.js"
+    },
+    {
+      "name": "react-dom",
+      "version": "18.3.1",
+      "global": "ReactDOM",
+      "file": "components/lib/react-dom.production.min.js"
+    }
+  ],
+  "namespace": "Rvlt",
+  "sections": {},
+  "title": "RVLT"
+}

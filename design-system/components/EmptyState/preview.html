@@ -1,0 +1,17 @@
+<!-- @dsCard group="Surfaces" height=220 subtitle="Live — the real component" -->
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>EmptyState — preview</title></head>
+<body>
+<div id="root" style="padding:16px"></div>
+<script>
+var h = React.createElement, R = window.Rvlt, F = React.Fragment;
+var row = function () { return h.apply(null, ['div', { style: { display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '12px', marginBottom: '12px' } }].concat([].slice.call(arguments))); };
+function Demo() {
+  return h('div', { style: { maxWidth: '420px' } }, h(R.EmptyState, { title: "Nothing booked yet — Flow's having a quiet one.",
+    description: 'Jobs you create or confirm show up here.', action: h(R.Button, { variant: 'line', size: 'sm' }, 'New job') }));
+}
+ReactDOM.createRoot(document.getElementById('root')).render(h(Demo));
+</script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!-- @dsCard group="Actions" height=172 subtitle="Live — the real component" -->
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Button — preview</title></head>
+<body>
+<div id="root" style="padding:16px"></div>
+<script>
+var h = React.createElement, R = window.Rvlt, F = React.Fragment;
+var row = function () { return h.apply(null, ['div', { style: { display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '12px', marginBottom: '12px' } }].concat([].slice.call(arguments))); };
+function Demo() {
+  return h(F, null,
+    row(h(R.Button, null, 'Book gear out'), h(R.Button, { variant: 'line' }, 'Save draft'), h(R.Button, { variant: 'ghost' }, 'Cancel'),
+        h(R.Button, { loading: true }, 'Sending quote'), h(R.Button, { disabled: true }, 'Disabled')),
+    row(h(R.Button, { variant: 'halo', size: 'lg' }, 'Book a demo'), h(R.Button, { variant: 'line', size: 'sm' }, h(R.SearchIcon), 'Find gear'),
+        h(R.Button, { variant: 'line', size: 'icon', 'aria-label': 'Packages' }, h(R.PackageIcon)),
+        h('span', { style: { display: 'inline-flex', padding: '12px', borderRadius: '20px', background: 'var(--red)' } }, h(R.Button, { variant: 'cream' }, 'Book a workflow demo'))));
+}
+ReactDOM.createRoot(document.getElementById('root')).render(h(Demo));
+</script>
+</body>
+</html>

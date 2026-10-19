@@ -157,8 +157,9 @@ generic SaaS pattern.** Log the gap (§18.1).
   (§6.4).
 - **Primary colour:** RVLT red — `#C12229` on light, brightened to `#E0363D` on
   dark. The single signal colour; never a gradient, never one-of-many.
-- **Logo assets:** `assets/rvlt-labs-logo.svg` (full "RVLT LABS"), `assets/rvlt-mark.svg`
-  (RVLT-only, red, `viewBox 0 0 1258 450.7`). Ship as SVG.
+- **Logo assets:** `design-system/assets/Logos/rvlt-labs-logo.svg` (full "RVLT LABS"),
+  `design-system/assets/Logos/rvlt-mark.svg` (RVLT-only, red, `viewBox 0 0 1258 450.7`), plus
+  the Flow wordmarks, R marks, Binder's Rings B and Flow's mascot alongside them. Ship as SVG.
 - **Character:** **Albert** — RVLT's bearded dragon (§11). Flow's stage-light mascot
   stays as Flow's in-app empty-state mark.
 - **Personality:** competent + warm + a little cheeky. The reliable roadie who's
@@ -1445,12 +1446,16 @@ table with availability columns"); avoid vague style words; name an app to filte
   (source) → generated `dist/globals.css` (Tailwind v4 / shadcn) + a shadcn component
   registry. This is the canonical *code* form of §3/§5/§7 + §15.1; consume it instead of
   hand-copying. Keep `tokens.json` == Appendix A.
-- `assets/rvlt-labs-logo.svg`, `assets/rvlt-mark.svg` — logo (full wordmark + RVLT-only mark).
+- `design-system/` — **the RVLT design system, mirrored file for file** from the claude.ai
+  design-system artifact: overview README, `tokens.json`, the artwork and Albert guides,
+  25 component cards (README + preview; 20 mount the real Flow/Binder components from
+  `components/bundle.js`), the self-hosted fonts, and the Logos and Icons. Rendered live on
+  the Pages site at `/design-system/`. `scripts/design-system/check.mjs` keeps its colours
+  equal to `packages/flow-theme/tokens.json`.
 - `assets/stickers/` — the Stickers &amp; Wordmarks pack 1.1.0 (52 SVGs, manifest, palette,
   style guide, licences) — §10.
 - `assets/albert/` — the Albert static pack (SVGs, the three locked illustrations,
-  manifest, design lock, palette, README) — §11. The 28 companion illustration PNGs
-  (~25 MB) are kept out of git; they live in the pack and the RVLT design-system artifact.
+  manifest, design lock, palette, README) and all 30 illustration PNGs — §11.
 
 ### 18.1 Known gaps &amp; out of scope — *agent: do NOT invent; derive + flag*
 

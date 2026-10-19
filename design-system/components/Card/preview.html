@@ -1,0 +1,25 @@
+<!-- @dsCard group="Surfaces" height=250 subtitle="Live — the real component" -->
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Card — preview</title></head>
+<body>
+<div id="root" style="padding:16px"></div>
+<script>
+var h = React.createElement, R = window.Rvlt, F = React.Fragment;
+var row = function () { return h.apply(null, ['div', { style: { display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '12px', marginBottom: '12px' } }].concat([].slice.call(arguments))); };
+function C(props) {
+  return h(props.as || R.Card, { interactive: props.interactive, live: props.live, tabIndex: props.interactive ? 0 : undefined, style: { width: '220px' } },
+    h(R.CardHeader, null, h(R.CardTitle, null, props.title), h(R.CardDescription, null, props.desc)),
+    h(R.CardContent, null, h(R.StatusIndicator, { intent: props.intent, label: props.status, variant: 'pill' })));
+}
+function Demo() {
+  return h(F, null,
+    row(h(C, { title: 'Hilton ballroom', desc: 'Gala dinner · Fri 15 Nov', intent: 'success', status: 'Confirmed' }),
+        h(C, { title: 'Riverside festival', desc: 'Interactive — lifts 3px on hover', intent: 'info', status: 'Quoted', interactive: true }),
+        h(C, { title: 'Arena tour — night 2', desc: 'Live — elev + lit edge', intent: 'primary', status: 'On site', live: true })),
+    row(h(R.Panel, { style: { width: '220px' } }, h(R.SectionHeader, { label: 'Panel' }), h('div', { style: { marginTop: '4px' } }, '1px line border, same hard shadow.'))));
+}
+ReactDOM.createRoot(document.getElementById('root')).render(h(Demo));
+</script>
+</body>
+</html>
