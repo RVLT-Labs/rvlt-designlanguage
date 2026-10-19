@@ -976,9 +976,9 @@
   ],
   "lastChange": {
     "by": "Claude",
-    "at": "2026-10-19T05:22:00Z",
-    "via": "GitHub \u00b7 TwoToned/gearflow@5a85e40 + RVLT-Labs/binder@f822fdb",
-    "note": "Live components: 20 cards now mount the real React source (bundle.js, window.Rvlt) styled by Tailwind compiled from it; Notice, SyncStatus, CueTag, Sticker and Albert stay static."
+    "at": "2026-10-19T12:10:00Z",
+    "via": "GitHub \u00b7 RVLT-Labs/rvlt-designlanguage design-system/",
+    "note": "Mirrored into the design-language repo as design-system/ (live on its Pages site). Added font and Lucide licences, r-pill set to flow-theme's 999px, provenance refs moved to the merged mains."
   },
   "layout": "files",
   "libraries": [
