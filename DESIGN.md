@@ -1,8 +1,8 @@
 ---
 spec: design.md
-version: "1.1.1"
-status: authoritative — the build bible for the RVLT Flow app & site
-updated: 2026-06-17
+version: "1.2.0"
+status: authoritative — the build bible for every RVLT product (Flow, Binder) & the site
+updated: 2026-10-19
 canonical_tokens: "Appendix A (machine-readable JSON) + §15.1 (paste-ready globals.css)"
 reference_impl: "index.html (dark, primary) · light.html (light twin)"
 read_order: "§0 first → then §3/§5/§7 tokens → §15 (app) / §14 (site) → §16 (mobile)"
@@ -21,7 +21,13 @@ description: >
   "calm data, fun chrome."
 ---
 
-# RVLT Flow — Design Language &amp; Brand
+# RVLT — Design Language &amp; Brand
+
+> **Scope (v1.2.0).** This is the design language for **all of RVLT**: the company
+> mark, the marketing site, and every product. **RVLT Flow** (production ops) and
+> **RVLT Binder** (the stage manager's script binder) are product layers on top of it
+> — see §19. Where a product's own `DESIGN.md` adds to this file it may extend it;
+> where it conflicts, this file wins unless §19 records the difference as deliberate.
 
 > **Format.** This file follows the **design.md** convention (a single Markdown
 > design system an AI coding agent reads as the visual contract). It deliberately
@@ -122,12 +128,11 @@ categorical ramp (§15.5). The one allowed exception is **marketing** gear stick
 patches, where red is just one die-cut colour in the collage (e.g. the hero road-case
 sticker) — that's decoration, not a status or a module. If you're unsure, it's not red.
 
-**Mascot &amp; stickers — don't fabricate assets.** The "Flow" mascot expression set and
-the full sticker library are **pending an illustrator pass** (§18.1). Use only the
-existing SVGs in `assets/` + the simple inline Flow mark. For empty/loading/success
-states, reuse the **idle / scanning** poses with operator-voice copy — **never
-AI-generate a new mascot pose or gear sticker.** Personality there comes from *copy and
-placement*, not invented art.
+**Mascot &amp; stickers — don't fabricate assets.** Use only the supplied packs: the
+**Stickers &amp; Wordmarks pack** (`assets/stickers/`, §10) and the **Albert pack**
+(`assets/albert/`, §11), plus Flow's inline stage-light mark. **Never AI-generate,
+redraw, recolour or recombine a sticker, patch or Albert pose.** Personality comes from
+*copy and placement*, not invented art.
 
 **These shadcn primitives MUST be restyled (never ship stock):** Button, Card,
 Input/Select/Textarea, Dialog **and** Drawer (§16.14), Sheet, Sonner/Toast, Table,
@@ -144,8 +149,9 @@ generic SaaS pattern.** Log the gap (§18.1).
 
 ## 1. Brand foundations
 
-- **Names:** RVLT Flow (product), RVLT Labs (company), born inside **Two Toned
-  Productions** (Sydney audio / lighting / theatre / events).
+- **Names:** RVLT Labs (company), born inside **Two Toned Productions** (Sydney audio /
+  lighting / theatre / events). Products: **RVLT Flow** (production ops) and **RVLT
+  Binder** (the stage manager's script binder).
 - **Lockup:** red `RVLT` mark (BC Alphapipe SVG outlines — static, not a loaded web font) + `Flow` in **Baloo 2** — a
   deliberate pairing of the hard, pipe-cut mark against a soft, rounded wordmark
   (§6.4).
@@ -153,7 +159,8 @@ generic SaaS pattern.** Log the gap (§18.1).
   dark. The single signal colour; never a gradient, never one-of-many.
 - **Logo assets:** `assets/rvlt-labs-logo.svg` (full "RVLT LABS"), `assets/rvlt-mark.svg`
   (RVLT-only, red, `viewBox 0 0 1258 450.7`). Ship as SVG.
-- **Mascot:** "Flow" — a moving-head stage light with googly eyes (§12).
+- **Character:** **Albert** — RVLT's bearded dragon (§11). Flow's stage-light mascot
+  stays as Flow's in-app empty-state mark.
 - **Personality:** competent + warm + a little cheeky. The reliable roadie who's
   got it handled and still cracks a joke at load-out.
 
@@ -240,11 +247,11 @@ stickers/doodles glow against it.
 ```css
 .light {
   --paper:#F4EEE1; --paper-2:#EDE4D2; --card:#FFFDF8; --elev:#FFFDF8;
-  --ink:#1D1A15; --ink-2:#4B4539; --muted:#7D7565; --faint:#A89E89;
+  --ink:#1D1A15; --ink-2:#4B4539; --muted:#665E4F; --faint:#756B58;
   --line:#E4DAC3; --line-2:#D8CCB0;
   --red:#C12229; --red-700:#9C1B21; --red-soft:#FBE7E3;
-  --amber:#E79A2B; --blue:#2F6BD6; --green:#2EA65C; --purple:#7A5CD0; --dark:#241F1A;
-  --ok:#2EA65C; --warn:#C98A14; --rep:#8A8270; --t-out:#9C1B21;
+  --amber:#E79A2B; --blue:#2A65D0; --green:#007D36; --purple:#7A5CD0; --dark:#241F1A;
+  --ok:#007D36; --warn:#9B5F00; --rep:#706857; --t-out:#9C1B21;
   --ok-soft:#E7F5EC; --warn-soft:#FBF0D6; --rep-soft:#EFE9DC; --out-soft:#FBE7E3;
   /* on light, card outline = --ink; offset-shadow colour = --line-2 */
 }
@@ -270,17 +277,21 @@ full light token set onto it:
 
 ```css
 .lightui{ --card:#FFFDF8; --paper:#F4EEE1; --elev:#FFFDF8;
-  --ink:#1D1A15; --ink-2:#4B4539; --muted:#7D7565; --faint:#A89E89;
+  --ink:#1D1A15; --ink-2:#4B4539; --muted:#665E4F; --faint:#756B58;
   --line:#E4DAC3; --line-2:#D8CCB0; --red:#C12229; --red-soft:#FBE7E3;
-  --ok:#2EA65C; --warn:#C98A14; --rep:#8A8270; --t-out:#9C1B21;
+  --ok:#007D36; --warn:#9B5F00; --rep:#706857; --t-out:#9C1B21;
   --ok-soft:#E7F5EC; --warn-soft:#FBF0D6; --rep-soft:#EFE9DC; --out-soft:#FBE7E3; }
 .shot.lightui{ box-shadow:0 28px 64px -20px rgba(0,0,0,.75), inset 0 1px 0 rgba(255,253,248,.6); }
 ```
 Keep the UI *inside* clean — never put doodles/stickers over live data.
 
 ### 3.5 Usage
-- **One accent.** Red = the single primary action, active/live state, and alerts.
-  If everything's red, nothing is.
+- **One accent.** Red = primary action, active/live state, and alerts. If everything's
+  red, nothing is.
+- **One red primary per region** (every RVLT product). A region is a top bar, a dialog,
+  a panel, or a repeated row/card group — each gets at most one red primary action
+  (a list may repeat its row action in red, as Binder's script rows do). Never red as
+  decoration.
 - **Name semantically** in code (`--color-action-primary`, `--color-status-overbooked`).
 - Surfaces do the work; reach for inverted cream (on dark) only for the spotlight
   pops (§5).
@@ -326,12 +337,12 @@ Two hues are **added** to the ramp so every module is distinct:
 
 | Hue | Dark | Dark `-soft` | Light | Light `-soft` |
 |---|---|---|---|---|
-| `--blue` | `#5B8DEF` | `rgba(91,141,239,.15)` | `#2F6BD6` | `#E2ECFB` |
+| `--blue` | `#5B8DEF` | `rgba(91,141,239,.15)` | `#2A65D0` | `#E2ECFB` |
 | `--amber` | `#EBA53A` | `rgba(235,165,58,.15)` | `#E79A2B` | `#FBF0D6` |
-| `--green` | `#3ECF7A` | `rgba(62,207,122,.14)` | `#2EA65C` | `#E7F5EC` |
+| `--green` | `#3ECF7A` | `rgba(62,207,122,.14)` | `#007D36` | `#E7F5EC` |
 | `--purple` | `#9B82E6` | `rgba(155,130,230,.15)` | `#7A5CD0` | `#ECE6FA` |
-| `--coral` *(new)* | `#EF7E55` | `rgba(239,126,85,.15)` | `#CC5E2E` | `#FBE6DB` |
-| `--teal` *(new)* | `#3FC8BE` | `rgba(63,200,190,.15)` | `#1C8B83` | `#DBF1EF` |
+| `--coral` *(new)* | `#EF7E55` | `rgba(239,126,85,.15)` | `#C25524` | `#FBE6DB` |
+| `--teal` *(new)* | `#3FC8BE` | `rgba(63,200,190,.15)` | `#0E847C` | `#DBF1EF` |
 
 Module border/icon = the hue at full; active surface = the `-soft`; never colour-only
 (§3.3). Module→hue map is §15.5 (add Compliance=`--teal`, Maintenance=`--coral`).
@@ -339,7 +350,7 @@ Module border/icon = the hue at full; active surface = the `-soft`; never colour
 **Avatar / crew palette (8, deterministic).** Assign `hash(name) % 8` so a person keeps
 one colour everywhere (the scheduler antidote to a grey roster, §15.4c). Order =
 `blue · amber · green · purple · coral · teal · pink · lime`, where `--pink:#E875AC`/
-`#C2487E` (dark/light) and `--lime:#AFC44E`/`#6E8C12`. Red is never an avatar colour.
+`#C2487E` (dark/light) and `--lime:#AFC44E`/`#73911B`. Red is never an avatar colour.
 - **On-fill label rule (AA-safe, theme-aware) — applies to ANY text on a categorical
   fill:** avatar initials, **shift-bar labels (§15.4c)**, coloured chips/tags. On
   **dark** theme the fills are bright → use **`--dark`** text; on **light** theme the
@@ -363,7 +374,7 @@ Keep charts inside the "calm data" rule — colour encodes data, gridlines stay 
 |---|---|---|---|
 | `--scrim` | `rgba(14,12,10,.66)` | `rgba(40,30,15,.45)` | modal/drawer backdrop — espresso, **never black** |
 | `--select` | `rgba(224,54,61,.20)` | `rgba(193,34,41,.16)` | text-selection + selected-row wash (red-tinted) |
-| `--link` | `#5B8DEF` | `#2F6BD6` | inline links in body/docs — **blue, not red** (red = actions); underline on hover |
+| `--link` | `#5B8DEF` | `#2A65D0` | inline links in body/docs — **blue, not red** (red = actions); underline on hover |
 
 ---
 
@@ -408,7 +419,7 @@ touch. Baloo 2 = the wordmark only.**
 
 | Role | Family | Weights | Notes |
 |---|---|---|---|
-| Display | **Archivo** (Google Fonts) | 700 / 800 / 900 | All headlines + step numbers + stat figures. Wide, punchy grotesque. |
+| Display | **Archivo** (Google Fonts) | 700 / 800 / 900 | All headlines + step numbers + stat figures. Wide, punchy grotesque. **The official display face** in every product and on the site (2026-10-19); BC Alphapipe survives only as the drawn RVLT mark, never as a loaded font. |
 | Body | **Hanken Grotesk** (Google) | 400 / 500 / 600 | Paragraphs, UI, nav, labels. Readable — *not* Inter. |
 | Handwriting | **Kalam** (Google) | 400 / 700 | Eyebrows/kickers + doodle annotations + the cream-tier note. Playful **and legible** (replaced Caveat, which was too hard to read). Often red, slight rotation. |
 | Wordmark "Flow" | **Baloo 2** (Google) | 700 | The "Flow" half of the lockup *only* — rounded counterweight to the pipe-cut mark. Not a headline face. |
@@ -479,6 +490,8 @@ is allowed and is **not** a violation of the body-size rule.
   (emphasis, button, widget title) / 700 (badge). No other weights.
 - **High-contrast jump still applies** (§5.2): a 24px display title over 13.5px quiet
   rows. Don't flatten everything to one size.
+- **One page title across RVLT:** every app's page `h1` is **24px / 800 / -.02em
+  Archivo**. Flow's and Binder's own `t-title` utilities resolve to this role.
 
 ---
 
@@ -548,7 +561,8 @@ Weighty, physical, purposeful — never ambient decoration. Always honour
 | **Card** | `--card` + `2px` outline + `--r-lg` + `--sh-card`; hover `translateY(-3px)` + `--sh-hover`. |
 | **"Live" card** | One card lifted to `--elev` + `--lit` (the only resting lit-edge). |
 | **Badge / pill** | `--r-pill`, weight 700, status soft-fill + matching text (§3.3), 11px. |
-| **Patch (feature icon)** | 42px, categorical bg, `2px #FFFDF8` border, `--sh-stk`, white-stroke Lucide-style glyph. |
+| **Patch (feature icon)** | 42px, categorical bg, `2px` **`--patch-border`** (`#FFFDF8`, fixed in both themes) border, `--sh-stk`, white-stroke Lucide-style glyph. |
+| **Kbd (key cap)** | Geist Mono **11px**, `--muted` on `--paper-2`, `1px --line-2` border with a `2px` bottom edge, radius `5px`, `6px` side padding. Shown next to the action it triggers. One spec in every product. |
 | **Stat** | Figure in display; the *one* bright stat at 38px `--ink`, the rest 24px `--ink-2`; label `--faint`. |
 | **Stepper** | 28px rings; done = `--ink` fill, now = red ring + `--red-soft` glow, future = `--line-2`. |
 | **Pricing card** | Standard card; featured = the lone **cream** tier (`translateY(-6px)`, `0 9px 0 #0C0A08`, red tab). |
@@ -595,7 +609,8 @@ duotone moments. Never glyph characters or emoji as icons. Sizes — use only th
 - **Colour:** icons inherit text colour (`--ink-2` default); **module icons** take the
   module hue (§3.7/§15.5); status icons take the status colour + always a label.
 - **Alignment:** optical-center with text; don't scale an icon off the ramp to fit.
-- Patch glyphs keep the 2.6px white stroke (§10); regular UI icons stay 2px.
+- Patch glyphs keep the 2.6px white stroke (§10); regular UI icons stay **2px in every
+  product** — Binder's denser chrome included (2026-10-19).
 
 State changes use `transform`/`opacity`/colour only — no reflow.
 
@@ -607,10 +622,26 @@ The collage of **die-cut gear stickers** is the most ownable element — road ca
 are literally covered in tour stickers, so it's product-true, and the cream
 die-cut borders glow on the espresso canvas.
 
-**Sticker (patch) recipe:** a bold shape (rounded `16px` square or circle) in a
-categorical colour · `3px` cream (`#FFFDF8`) border = the die-cut edge ·
-`--sh-stk` offset · varied rotation `±6–11°` · a white `~2.6px`-stroke icon, or a
-short display word (`GAFF`, `AAA`).
+**The art is supplied — use the pack.** `assets/stickers/` holds the **RVLT Flow
+Stickers &amp; Wordmarks pack 1.1.0**: 19 illustrations (each `-sticker.svg` and a cream
+`-line.svg`) and 7 word patches (Standby, Go!, Crew, Load in, On air, Show time, RVLT
+Flow — each `-patch.svg` and a cream `-wordmark.svg`), with `manifest.json`, `palette.json`,
+the pack's `STYLE-GUIDE.md` and licence notices. Copy files unchanged; never redraw,
+recolour or re-letter them.
+
+**Sticker construction (from the pack):** a 128-unit canvas · a ramp-colour circle
+(r 57) or rounded square (114 × 114, r 23) · `~3.4`-unit cream (`#FFFDF8`,
+`--patch-border`) round strokes · a `3`-unit cream die-cut edge · a hard `#0C0A08`
+shadow offset 2,4 baked into the file · a white glyph or a short display word.
+**Tilt by context:** **2–5°** in apps (the pack's per-design gallery tilt, applied once)
+and up to **±11°** (6–11°) in marketing hero clusters. Curtains stay upright; never
+mirror words or gear; never animate continuously.
+
+**Placement:** apps get one illustration in a welcome, onboarding, empty or success
+state; marketing gets one focal piece plus one or two companions. Never on tables,
+controls, alerts or compliance messages. Go!, Standby and On air are decoration —
+never a status. Sizes: stickers 96–240px, patches 160–320px (each by eye — their
+viewBoxes differ); below 64px use a Lucide icon instead.
 
 **Gear vocabulary** (recurring cast): road/flight case · PAR can · moving head
 (= the mascot) · XLR connector · gaff-tape roll · "AAA" access pass · cable loom ·
@@ -653,15 +684,29 @@ it does not replace it.
 
 ---
 
-## 11. Mascot — "Flow"
+## 11. Character — Albert (RVLT) · Flow's stage light (the app)
 
-A **moving-head stage light with googly eyes** — base, yoke, rounded head, two
-eyes with highlights, faint beam lines. The helpful roadie.
-- **Use:** empty states, loading, 404, onboarding, scan-success, footer, swag.
-- **Avoid:** dense tables, forms — anything that needs to stay calm.
-- **Expressions to develop:** idle · scanning (beam on) · celebrating
-  (all-returned) · worried (overbooked). Flat enough to scale from 24px favicon
-  to hero sticker.
+**Albert is RVLT's character** (2026-10-19): a compact, solid **bearded dragon** with a
+broad low head, cream beard and belly, short splayed limbs, a substantial tail, coral
+cheek markings, rounded eyes and a restrained uneven smile. Approved 2026-09-17
+(revision 4); the three locked identity PNGs — *sitting*, *on the roadcase*, *resting*
+— are SHA-256 pinned in `assets/albert/Design-lock.json`. Palette: amber `#EBA53A`,
+cream `#FFFDF8`, espresso `#141210`, coral `#EF7E55`, RVLT red `#E0363D`.
+
+- **Assets** (`assets/albert/`): coloured SVG head, avatar, 14 expressions, icon (light
+  and cream-on-dark), amber and red stickers, a monochrome head drawing (light grounds
+  only), full-body SVG derivatives, and the locked illustrations. The pack's README maps
+  22 workday illustrations to app surfaces (equipment → roadcase, billing → invoice,
+  maintenance → toolbox, end of day → wrap-time …).
+- **Use:** assistant/chat surfaces (avatar at rest, listening, thinking, puzzled,
+  content/happy, reassuring — with the state always in live text), welcome and large
+  empty states, onboarding, success, marketing, stickers and swag — in every RVLT product.
+- **Never:** uncoloured full-body line art, a thin or humanoid redraw, translucent
+  silhouettes, detached props, stacked PNGs, recoloured pixels, a novelty cursor, or
+  Albert in alerts, compliance, conflict or destructive messages. He is always filled.
+- **Flow's stage light** (a moving-head light with googly eyes) stays as **Flow's
+  in-app** empty-state and loading mark (idle pose only). Binder uses Albert where it
+  wants a character; it has no mascot of its own.
 
 ---
 
@@ -775,21 +820,22 @@ transitions + the sanctioned moment animations; no scroll parallax in-app.
   /* 2px outline = --line-2 on dark, --ink on light (§7); --input follows it */
   --border:var(--line-2); --input:var(--border); --ring:var(--red);
   --cream:#F5EFE2; --cream-ink:#1D1A15;   /* fixed cream button on the red CTA (§9) */
+  --patch-border:#FFFDF8;                  /* fixed sticker/patch die-cut edge (§9/§10) */
 }
 .light {                         /* opt-in alternate */
   --paper:#F4EEE1; --paper-2:#EDE4D2; --card:#FFFDF8; --elev:#FFFDF8;
-  --ink:#1D1A15; --ink-2:#4B4539; --muted:#7D7565; --faint:#A89E89;
+  --ink:#1D1A15; --ink-2:#4B4539; --muted:#665E4F; --faint:#756B58;
   --line:#E4DAC3; --line-2:#D8CCB0;
   --red:#C12229; --red-700:#9C1B21; --red-soft:#FBE7E3;
-  --ok:#2EA65C; --warn:#C98A14; --rep:#8A8270; --t-out:#9C1B21;
+  --ok:#007D36; --warn:#9B5F00; --rep:#706857; --t-out:#9C1B21;
   --ok-soft:#E7F5EC; --warn-soft:#FBF0D6; --rep-soft:#EFE9DC; --out-soft:#FBE7E3;
-  --amber:#E79A2B; --blue:#2F6BD6; --green:#2EA65C; --purple:#7A5CD0; --dark:#241F1A;
+  --amber:#E79A2B; --blue:#2A65D0; --green:#007D36; --purple:#7A5CD0; --dark:#241F1A;
   /* extended module hues + tints (§3.7) */
-  --coral:#CC5E2E; --teal:#1C8B83; --pink:#C2487E; --lime:#6E8C12;
+  --coral:#C25524; --teal:#0E847C; --pink:#C2487E; --lime:#73911B;
   --blue-soft:#E2ECFB; --amber-soft:#FBF0D6; --green-soft:#E7F5EC;
   --purple-soft:#ECE6FA; --coral-soft:#FBE6DB; --teal-soft:#DBF1EF;
   /* utility (§3.7) */
-  --scrim:rgba(40,30,15,.45); --select:rgba(193,34,41,.16); --link:#2F6BD6;
+  --scrim:rgba(40,30,15,.45); --select:rgba(193,34,41,.16); --link:#2A65D0;
   --sh-card:0 3px 0 var(--line-2); --sh-hover:0 7px 0 var(--line-2);
   --border:var(--ink);   /* card/input/line 2px outline = --ink on light (§7) */
 }
@@ -1399,6 +1445,11 @@ table with availability columns"); avoid vague style words; name an app to filte
   registry. This is the canonical *code* form of §3/§5/§7 + §15.1; consume it instead of
   hand-copying. Keep `tokens.json` == Appendix A.
 - `assets/rvlt-labs-logo.svg`, `assets/rvlt-mark.svg` — logo (full wordmark + RVLT-only mark).
+- `assets/stickers/` — the Stickers &amp; Wordmarks pack 1.1.0 (52 SVGs, manifest, palette,
+  style guide, licences) — §10.
+- `assets/albert/` — the Albert static pack (SVGs, the three locked illustrations,
+  manifest, design lock, palette, README) — §11. The 28 companion illustration PNGs
+  (~25 MB) are kept out of git; they live in the pack and the RVLT design-system artifact.
 
 ### 18.1 Known gaps &amp; out of scope — *agent: do NOT invent; derive + flag*
 
@@ -1409,9 +1460,9 @@ for the starred items.
 
 - **★ Real content / data / copy** — headlines, pricing numbers, testimonials, logos.
   Never fabricate proof or logos (§2). *Human-only.*
-- **Illustration & mascot set** — current SVGs are concept sketches; the full
-  sticker library and the "Flow" expression set (idle/scanning/celebrating/worried,
-  §11) await an illustrator pass. Don't generate new gear stickers ad-hoc.
+- **Illustration & character set** — the sticker pack (§10) and Albert pack (§11) are
+  final. Flow's stage-light mascot has only its idle pose; new stickers or Albert poses
+  go through the packs' own review process, never ad-hoc generation.
 - **Mobile mockups** — §16 is the spec, but there's no canonical phone mockup yet the
   way `index.html` is the desktop one. Build to §16; flag divergences.
 - **Offline / sync & scan flows** — §16.11 assumes offline-first scanning; the state
@@ -1439,6 +1490,21 @@ This file is **versioned** (see front-matter `version`). When a token changes, c
 in §3/§5/§7 **and** Appendix A **and** §15.1 **and** `packages/flow-theme/tokens.json` in
 the same commit, then run the theme build, and add a line here.
 
+- **1.2.0** (2026-10-19) — **RVLT-wide.** The spec now covers every RVLT product
+  (Flow, Binder; §19) and the site. Decisions (Jayden, 2026-10-19): **page title**
+  24px/800 Archivo in every app (§5.5); **Archivo** is the official display face, BC
+  Alphapipe only as the drawn mark (§5); **one red primary per region** (§3.5);
+  sticker/patch edge is the fixed **`--patch-border` `#FFFDF8`** (§9, §10); **sticker
+  tilt** 2–5° in apps, up to ±11° in marketing hero clusters (§10); **2px icon stroke**
+  everywhere (§9.2); one **Kbd** spec at 11px (§9); **Albert** is RVLT's character and
+  Flow's stage light stays Flow's in-app mascot (§11); buttons stay **per product** —
+  pills for Flow and the site, rounded rectangles for Binder (§19). **Light theme
+  retoned** so every text pairing passes 4.5:1 (dark untouched): `--ok`/`--green`
+  `#2EA65C`→`#007D36`, `--warn` `#C98A14`→`#9B5F00`, `--rep` `#8A8270`→`#706857`,
+  `--blue`/`--link` `#2F6BD6`→`#2A65D0`, `--muted` `#7D7565`→`#665E4F`, `--faint`
+  `#A89E89`→`#756B58`, `--coral` `#CC5E2E`→`#C25524`, `--teal` `#1C8B83`→`#0E847C`
+  (white on fill ≥4.5), `--lime` `#6E8C12`→`#73911B` (dark ink on fill ≥4.5). Added
+  the sticker pack (`assets/stickers/`) and Albert pack (`assets/albert/`).
 - **2026-06-17** — `@rvlt/flow-theme` grew a **full component kit** (27 RVLT-styled shadcn
   registry items): overlays (dialog/sheet/drawer/popover/dropdown/tooltip/command/sonner),
   forms/structure (select/checkbox/switch/tabs/accordion/table/separator/skeleton/textarea/
@@ -1485,6 +1551,58 @@ the single generator and derive Appendix A + §15.1 from it, retiring the manual
 
 ---
 
+## 19. Product layers — RVLT Flow and RVLT Binder
+
+Both products run on this file's tokens, type, voice and states. Each keeps its own
+`DESIGN.md` for what only it needs; the differences below are **deliberate** and are the
+only places a product may depart from §§1–16.
+
+### 19.1 RVLT Flow — production ops (`TwoToned/gearflow`)
+- **Character:** "Field Premium" — sharp, practical, slightly dry; the full §15 app
+  build (calm data, fun chrome).
+- **Buttons:** pills (§9), red primary with the hard red-700 drop.
+- **Wayfinding hues:** Projects / Dashboard `--blue` · Assets `--amber` · Schedule and
+  Finance `--green` · Crew `--purple` · Maintenance `--coral` · Warehouse and Test & Tag
+  `--teal`. The sidebar item carries its hue (soft fill + hue text) when active; the
+  mobile bottom nav keeps red-active.
+- **Mascot:** the stage light (§11) in empty states; Albert for RVLT-wide moments.
+- **App icon:** Flow's compact R mark in cream on an RVLT-red tile (the same build as
+  Binder's icon).
+
+### 19.2 RVLT Binder — the prompt corner (`RVLT-Labs/binder`)
+Used in the dark (tech table, FOH, bio box): calm, quick, quiet. Three rules outrank
+everything else **inside Binder**:
+1. **The page is paper.** A script page is always `--page` white, in both themes, the
+   brightest thing on screen, on a `--stage` ground. Chrome never competes with it.
+2. **Department colour is the only colour on the page.** Defaults are tuned as ink on
+   white; in chrome a department shows as its ramp tint. Red is never a department —
+   the picker refuses anything within ΔE76 20 of RVLT red.
+3. **Two modes, one layout** — Markup (full shell) and Calling (page + strip, nothing
+   editable) draw the page identically, so what you mark is what you call and print.
+
+| Binder token | Value (every theme) | Use |
+|---|---|---|
+| `--page` / `--page-ink` | `#FFFFFF` / `#1A1715` | the PDF page and ink drawn on it |
+| `--stage` | `#0E0C0A` | the dark the page sits on |
+| `--page-hit` / `--page-hit-active` | `#FFD21F` / `#E8710A` | search hits on the page |
+| `--dept-lx` · `--dept-snd` · `--dept-tm` · `--dept-sm` | `#C9811F` · `#2F6BD6` · `#7A5CD0` · `#1C8B83` | department defaults (LX, Sound, TheatreMix, SM) |
+| `--dept-vid` · `--dept-stg` · `--dept-fly` · `--dept-personal` | `#C2487E` · `#CC5E2E` · `#6E8C12` · `#6B7280` | Video, Stage, Flys, personal layer |
+| `--muted-soft` / `--scrim-strong` / `--sh-dialog` | see Binder's `tokens.css` | offline dot halo, heavy overlay, dialog drop + cast |
+
+- **Buttons:** rounded rectangles — 30px / radius 10 at ≥768px, 44px / radius 12 on
+  phones (decided 2026-10-19: buttons are per product). Primary carries the sticker
+  shadow (hard drop + lit edge).
+- **Cue tags** on the page are Helvetica-metric (screen = print), 14pt pills, outline in
+  the department colour (go 1pt, standby dashed, warn 1.5pt); selection is a 2px red
+  outline. Every cue, page, version, time and count is Geist Mono, tabular.
+- **Rail hues:** Script `--blue` · Cues `--amber` · Docs `--teal` · Activity `--purple` ·
+  Exports `--green`. Offline is a muted state, never red. Kalam only in greetings,
+  sign-in and empty states.
+- **App icon:** the Rings B — a monoline B whose bowls are binder rings, cream on an
+  RVLT-red tile (radius 116/512).
+
+---
+
 ## Appendix A — tokens (machine-readable)
 
 Authoritative values for programmatic use. If this and the prose ever disagree,
@@ -1492,8 +1610,8 @@ this and §15.1 win.
 
 ```json
 {
-  "version": "1.1.1",
-  "updated": "2026-06-17",
+  "version": "1.2.0",
+  "updated": "2026-10-19",
   "default_theme": "dark",
   "themes": {
     "dark": {
@@ -1513,16 +1631,16 @@ this and §15.1 win.
     },
     "light": {
       "paper": "#F4EEE1", "paper-2": "#EDE4D2", "card": "#FFFDF8", "elev": "#FFFDF8",
-      "ink": "#1D1A15", "ink-2": "#4B4539", "muted": "#7D7565", "faint": "#A89E89",
+      "ink": "#1D1A15", "ink-2": "#4B4539", "muted": "#665E4F", "faint": "#756B58",
       "line": "#E4DAC3", "line-2": "#D8CCB0",
       "red": "#C12229", "red-700": "#9C1B21", "red-soft": "#FBE7E3",
-      "ok": "#2EA65C", "warn": "#C98A14", "rep": "#8A8270", "t-out": "#9C1B21",
+      "ok": "#007D36", "warn": "#9B5F00", "rep": "#706857", "t-out": "#9C1B21",
       "ok-soft": "#E7F5EC", "warn-soft": "#FBF0D6", "rep-soft": "#EFE9DC", "out-soft": "#FBE7E3",
-      "amber": "#E79A2B", "blue": "#2F6BD6", "green": "#2EA65C", "purple": "#7A5CD0", "dark": "#241F1A",
-      "coral": "#CC5E2E", "teal": "#1C8B83", "pink": "#C2487E", "lime": "#6E8C12",
+      "amber": "#E79A2B", "blue": "#2A65D0", "green": "#007D36", "purple": "#7A5CD0", "dark": "#241F1A",
+      "coral": "#C25524", "teal": "#0E847C", "pink": "#C2487E", "lime": "#73911B",
       "blue-soft": "#E2ECFB", "amber-soft": "#FBF0D6", "green-soft": "#E7F5EC",
       "purple-soft": "#ECE6FA", "coral-soft": "#FBE6DB", "teal-soft": "#DBF1EF",
-      "scrim": "rgba(40,30,15,.45)", "select": "rgba(193,34,41,.16)", "link": "#2F6BD6"
+      "scrim": "rgba(40,30,15,.45)", "select": "rgba(193,34,41,.16)", "link": "#2A65D0"
     }
   },
   "avatar_palette_order": ["blue","amber","green","purple","coral","teal","pink","lime"],
@@ -1561,7 +1679,13 @@ this and §15.1 win.
     "min_font_px": 11,
     "reading_body_min_px": 16,
     "components_reference_tokens_not_hex": true,
-    "photography": "allowed — warm grade + 2px tactile frame (§10.1)"
+    "photography": "allowed — warm grade + 2px tactile frame (§10.1)",
+    "red_per_region": "at most one red primary per region (top bar, dialog, panel, repeated row/card group); never decoration",
+    "page_title": "24px / 800 / -.02em Archivo in every RVLT app",
+    "icon_stroke_px": 2,
+    "patch_border": "#FFFDF8",
+    "sticker_tilt_deg": { "app": "2-5", "marketing_hero": "up to 11" },
+    "kbd": "Geist Mono 11px, --muted on --paper-2, 1px --line-2 + 2px bottom edge, radius 5px"
   }
 }
 ```
