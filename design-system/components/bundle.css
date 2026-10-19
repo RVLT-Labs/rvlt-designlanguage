@@ -770,7 +770,7 @@
     flex: 1;
   }
 
-  .shrink {
+  .flex-shrink, .shrink {
     flex-shrink: 1;
   }
 
@@ -1493,6 +1493,10 @@
 
   .text-white {
     color: var(--color-white);
+  }
+
+  .italic {
+    font-style: italic;
   }
 
   .tabular-nums {
