@@ -8,16 +8,16 @@
 var h = React.createElement, R = window.Rvlt, F = React.Fragment;
 var row = function () { return h.apply(null, ['div', { style: { display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '12px', marginBottom: '12px' } }].concat([].slice.call(arguments))); };
 function C(props) {
-  return h(props.as || R.Card, { interactive: props.interactive, live: props.live, tabIndex: props.interactive ? 0 : undefined, style: { width: '220px' } },
-    h(R.CardHeader, null, h(R.CardTitle, null, props.title), h(R.CardDescription, null, props.desc)),
-    h(R.CardContent, null, h(R.StatusIndicator, { intent: props.intent, label: props.status, variant: 'pill' })));
+  return h(props.as || R.Card, { interactive: props.interactive, live: props.live, style: { width: '220px' } },
+    h(R.CardHeader, null, h(R.CardTitle, null, props.interactive ? h(R.CardLink, { href: '#riverside' }, props.title) : props.title), h(R.CardDescription, null, props.desc)),
+    h(R.CardContent, null, h(R.StatusIndicator, { intent: props.intent, label: props.status })));
 }
 function Demo() {
   return h(F, null,
-    row(h(C, { title: 'Hilton ballroom', desc: 'Gala dinner · Fri 15 Nov', intent: 'success', status: 'Confirmed' }),
-        h(C, { title: 'Riverside festival', desc: 'Interactive — lifts 3px on hover', intent: 'info', status: 'Quoted', interactive: true }),
-        h(C, { title: 'Arena tour — night 2', desc: 'Live — elev + lit edge', intent: 'primary', status: 'On site', live: true })),
-    row(h(R.Panel, { style: { width: '220px' } }, h(R.SectionHeader, { label: 'Panel' }), h('div', { style: { marginTop: '4px' } }, '1px line border, same hard shadow.'))));
+    row(h(C, { title: 'Hilton ballroom', desc: 'Gala dinner · Fri 15 Nov', intent: 'ok', status: 'Confirmed' }),
+        h(C, { title: 'Riverside festival', desc: 'Interactive — lifts 3px on hover', intent: 'neutral', status: 'Quoted', interactive: true }),
+        h(C, { title: 'Arena tour — night 2', desc: 'Live — elev + lit edge', intent: 'neutral', status: 'On site', live: true })),
+    row(h(R.Card, { id: 'riverside', style: { width: '220px' } }, h(R.SectionHeader, { label: 'Panel' }), h('div', { style: { marginTop: '4px' } }, '1px line border, same hard shadow.'))));
 }
 ReactDOM.createRoot(document.getElementById('root')).render(h(Demo));
 </script>

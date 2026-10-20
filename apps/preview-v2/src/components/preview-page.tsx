@@ -128,11 +128,11 @@ function Section({
   children: React.ReactNode;
 }) {
   return (
-    <section id={id} className="scroll-mt-20 space-y-5">
-      <div className="flex items-center gap-3">
-        <span className="font-display font-extrabold text-[22px] tracking-tight text-ink">
+    <section id={id} className="min-w-0 scroll-mt-20 space-y-5">
+      <div className="flex min-w-0 flex-wrap items-center gap-3">
+        <h2 className="font-display font-extrabold text-[22px] tracking-tight text-ink">
           {label}
-        </span>
+        </h2>
         <Separator className="flex-1" />
       </div>
       {children}
@@ -146,9 +146,10 @@ function Row({ children, className = "" }: { children: React.ReactNode; classNam
   );
 }
 
+// sentence case everywhere (§5.2): sub-section labels are quiet headings, never ALL CAPS
 function Sub({ children }: { children: React.ReactNode }) {
   return (
-    <p className="text-[11px] font-semibold uppercase tracking-widest text-faint">{children}</p>
+    <h3 className="font-display text-[15px] font-bold tracking-tight text-ink-2">{children}</h3>
   );
 }
 
@@ -159,8 +160,8 @@ function Swatch({ token, label, hint }: { token: string; label: string; hint?: s
         className="h-10 w-full rounded-[var(--radius)] border border-line"
         style={{ background: `var(${token})` }}
       />
-      <span className="text-[11px] text-faint">{label}</span>
-      {hint && <span className="text-[10px] text-faint opacity-60">{hint}</span>}
+      <span className="text-[11px] text-muted">{label}</span>
+      {hint && <span className="text-[11px] text-muted">{hint}</span>}
     </div>
   );
 }
@@ -223,10 +224,11 @@ export function PreviewPage() {
     <TooltipProvider delayDuration={200}>
       <Toaster />
 
+      <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:bg-card focus:p-3">Skip to content</a>
       {/* sticky nav */}
       <header className="sticky top-0 z-40 flex items-center justify-between border-b-2 border-border bg-paper/90 px-5 py-3 backdrop-blur-sm">
         <div className="flex items-center gap-2.5">
-          <FlowMascot className="size-7 text-red" />
+          <FlowMascot className="size-7 text-red-text" />
           <span className="font-display font-extrabold tracking-tight text-ink">RVLT Flow</span>
           <Badge status="neutral" className="hidden sm:inline-flex">Preview v2</Badge>
         </div>
@@ -237,15 +239,22 @@ export function PreviewPage() {
           ))}
         </nav>
 
+        <details className="relative sm:hidden">
+          <summary className="flex min-h-11 items-center rounded-full border-2 border-input px-3">Sections</summary>
+          <nav aria-label="Preview sections" className="absolute right-0 z-50 grid w-48 rounded border-2 border-border bg-card p-2 shadow-[var(--sh-card)]">
+            {["colour","typography","buttons","forms","overlays","data","signature"].map(section=><a key={section} href={`#${section}`} className="flex min-h-11 items-center px-3">{section}</a>)}
+          </nav>
+        </details>
         <button
           onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-          className="flex size-9 items-center justify-center rounded-full border-2 border-border bg-card text-ink transition-colors hover:bg-elev"
+          className="flex size-11 items-center justify-center rounded-full border-2 border-border bg-card text-ink transition-colors hover:bg-elev"
           aria-label="Toggle theme"
         >
           {theme === "dark" ? <Sun className="size-4" /> : <Moon className="size-4" />}
         </button>
       </header>
 
+      <main id="main">
       {/* hero */}
       <div className="border-b-2 border-border bg-paper-2 px-5 py-12 text-center">
         <FlowMascot className="mx-auto mb-4 size-16 text-muted" eyeColor="var(--red)" />
@@ -266,7 +275,7 @@ export function PreviewPage() {
         </Row>
       </div>
 
-      <main className="mx-auto max-w-5xl space-y-16 px-5 py-12">
+      <div className="mx-auto max-w-5xl space-y-16 px-5 py-12">
 
         {/* ── COLOUR ── */}
         <Section id="colour" label="Colour (§3)">
@@ -293,7 +302,7 @@ export function PreviewPage() {
           </div>
 
           <Sub>Status colours + soft fills</Sub>
-          <div className="grid grid-cols-4 gap-3">
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
             {[
               { color: "--ok",    soft: "--ok-soft",   badge: "ok"         as const, label: "ok / ready"    },
               { color: "--warn",  soft: "--warn-soft",  badge: "warn"       as const, label: "warn / check"  },
@@ -316,7 +325,7 @@ export function PreviewPage() {
               <div key={h} className="space-y-1">
                 <div className="h-8 rounded-[var(--radius)] border border-line" style={{ background: `var(--${h})` }} />
                 <div className="h-5 rounded-[var(--radius)] border border-line opacity-70" style={{ background: `var(--${h}-soft)` }} />
-                <span className="block text-[10px] text-faint">{h}</span>
+                <span className="block text-[11px] text-muted">{h}</span>
               </div>
             ))}
           </div>
@@ -327,7 +336,7 @@ export function PreviewPage() {
               <div key={h} className="flex-1" style={{ background: `var(--${h})` }} />
             ))}
           </div>
-          <p className="text-[12px] text-faint">
+          <p className="text-[12px] text-muted">
             Always assign chart series in this order: {DATAVIZ_ORDER.join(" · ")}
           </p>
 
@@ -347,7 +356,7 @@ export function PreviewPage() {
             <p className="font-display font-extrabold leading-none tracking-[-0.035em] text-ink" style={{fontSize: "clamp(36px, 8vw, 72px)"}}>Flow</p>
             <p className="font-display font-extrabold text-[44px] leading-none tracking-tight text-ink">Run the show.</p>
             <p className="font-display font-bold text-[30px] leading-snug tracking-tight text-ink-2">Production software that keeps up.</p>
-            <p className="font-hand text-[17px] font-bold text-red">the spec, rendered</p>
+            <p className="font-hand text-[17px] font-bold text-red-text">the spec, rendered</p>
           </div>
 
           <Sub>App functional ramp (§5.5 — LOCKED, 11px floor)</Sub>
@@ -359,12 +368,12 @@ export function PreviewPage() {
               ["text-ui-text",      "14px", "UI text / label",""],
               ["text-table-cell",   "13.5px","Table cell",    "font-mono"],
               ["text-label",        "12px", "Caption / meta", "text-muted"],
-              ["text-micro",        "11px", "Micro (floor)",  "text-faint"],
+              ["text-micro",        "11px", "Micro (floor)",  "text-muted"],
             ].map(([cls, size, label, extra]) => (
               <div key={cls} className="flex items-baseline gap-3">
                 <span className={`${cls} ${extra} text-ink`}>{label}</span>
-                <span className="text-[11px] text-faint">{size}</span>
-                <code className="ml-auto text-[10px] text-faint hidden sm:block">{cls}</code>
+                <span className="text-[11px] text-muted">{size}</span>
+                <code className="ml-auto text-[11px] text-muted hidden sm:block">{cls}</code>
               </div>
             ))}
           </div>
@@ -372,16 +381,16 @@ export function PreviewPage() {
           <Sub>Typefaces</Sub>
           <div className="grid gap-3 sm:grid-cols-3">
             <div className="rounded-[var(--radius)] border-2 border-border bg-card p-4">
-              <p className="font-display font-extrabold text-[24px] text-ink">Alphapipe</p>
-              <p className="text-[12px] text-faint">BC Alphapipe / Archivo fallback · display, headings</p>
+              <p className="font-display font-extrabold text-[24px] text-ink">Archivo</p>
+              <p className="text-[12px] text-muted">font-display · headlines, page titles, figures (BC Alphapipe is only the drawn mark)</p>
             </div>
             <div className="rounded-[var(--radius)] border-2 border-border bg-card p-4">
-              <p className="font-sans text-[18px] text-ink">DM Sans</p>
-              <p className="text-[12px] text-faint">font-sans · all UI text</p>
+              <p className="font-sans text-[18px] text-ink">Hanken Grotesk</p>
+              <p className="text-[12px] text-muted">font-sans · body and UI text</p>
             </div>
             <div className="rounded-[var(--radius)] border-2 border-border bg-card p-4">
               <p className="font-mono text-[15px] text-ink-2">08:30 → 16:00</p>
-              <p className="text-[12px] text-faint">font-mono · figures, code</p>
+              <p className="text-[12px] text-muted">Geist Mono · font-mono · IDs, quantities, times, tabular</p>
             </div>
           </div>
         </Section>
@@ -400,23 +409,23 @@ export function PreviewPage() {
           <Row className="items-end">
             <div className="flex h-20 w-36 flex-col items-center justify-center rounded-[var(--radius)] border-2 border-border bg-card shadow-[var(--sh-card)]">
               <span className="text-[11px] text-muted">--sh-card</span>
-              <span className="text-[10px] text-faint">resting · 3px</span>
+              <span className="text-[11px] text-muted">resting · 3px</span>
             </div>
             <div className="flex h-20 w-36 -translate-y-[3px] flex-col items-center justify-center rounded-[var(--radius)] border-2 border-border bg-card shadow-[var(--sh-hover)]">
               <span className="text-[11px] text-muted">--sh-hover</span>
-              <span className="text-[10px] text-faint">lifted · 7px</span>
+              <span className="text-[11px] text-muted">lifted · 7px</span>
             </div>
             <div className="flex h-20 w-36 flex-col items-center justify-center rounded-[var(--radius)] border-2 border-border bg-elev shadow-[var(--sh-card),var(--lit)]">
               <span className="text-[11px] text-muted">--lit</span>
-              <span className="text-[10px] text-faint">live · top-edge glow</span>
+              <span className="text-[11px] text-muted">live · top-edge glow</span>
             </div>
-            <div className="flex h-20 w-36 flex-col items-center justify-center rounded-full border-2 border-border bg-red shadow-[var(--sh-halo)] text-white">
+            <div className="flex h-20 w-36 flex-col items-center justify-center rounded-full border-2 border-border bg-action-red shadow-[var(--sh-halo)] text-white">
               <span className="text-[11px]">--sh-halo</span>
-              <span className="text-[10px] opacity-70">hero CTA bloom</span>
+              <span className="text-[11px]">hero CTA bloom</span>
             </div>
           </Row>
 
-          <p className="text-[12px] text-faint">
+          <p className="text-[12px] text-muted">
             No blur on depth shadows. Blur is reserved for sticky nav only (§7).
           </p>
         </Section>
@@ -439,7 +448,7 @@ export function PreviewPage() {
             <Button size="sm">Small</Button>
             <Button size="default">Default</Button>
             <Button size="lg">Large</Button>
-            <Button size="icon" variant="line"><Wrench className="size-4" /></Button>
+            <Button size="icon" variant="line" aria-label="Equipment tools"><Wrench className="size-4" /></Button>
           </Row>
 
           <Sub>States</Sub>
@@ -466,7 +475,7 @@ export function PreviewPage() {
             <Badge status="repair">In repair</Badge>
             <Badge status="neutral">Neutral</Badge>
           </Row>
-          <p className="text-[12px] text-faint">Status encoded by colour AND label — never colour-only (§3.3).</p>
+          <p className="text-[12px] text-muted">Status encoded by colour AND label — never colour-only (§3.3).</p>
         </Section>
 
         {/* ── CARDS ── */}
@@ -517,7 +526,7 @@ export function PreviewPage() {
                 ].map((row, i, arr) => (
                   <div
                     key={row.name}
-                    className={`flex items-center gap-3 py-2.5 ${i < arr.length - 1 ? "border-b border-line" : ""}`}
+                    className={`flex flex-wrap items-center gap-3 py-2.5 ${i < arr.length - 1 ? "border-b border-line" : ""}`}
                   >
                     <span className="flex-1 text-[14px] text-ink">{row.name}</span>
                     <span className="font-mono text-[13px] text-muted">{row.qty}</span>
@@ -541,7 +550,7 @@ export function PreviewPage() {
                   return (
                     <div
                       key={label}
-                      className={`relative flex cursor-pointer items-center gap-3 px-4 py-2.5 transition-colors ${active ? "bg-elev shadow-[var(--lit)]" : "hover:bg-paper-2"}`}
+                      className={`relative flex items-center gap-3 px-4 py-2.5 transition-colors ${active ? "bg-elev shadow-[var(--lit)]" : "hover:bg-paper-2"}`}
                     >
                       {active && (
                         <span
@@ -568,7 +577,7 @@ export function PreviewPage() {
                   <Tooltip key={label}>
                     <TooltipTrigger asChild>
                       <div
-                        className={`flex size-[42px] -rotate-[4deg] cursor-pointer items-center justify-center rounded-[10px] border-2 border-[var(--cream)] ${color} shadow-[2px_4px_0_rgba(0,0,0,0.5)] transition-transform hover:rotate-0`}
+                        className={`flex size-[42px] -rotate-[4deg] items-center justify-center rounded-[10px] border-2 border-[var(--cream)] ${color} shadow-[2px_4px_0_rgba(0,0,0,0.5)] transition-transform hover:rotate-0`}
                         style={{ borderColor: "var(--cream)" }}
                       >
                         <Icon className="size-5 text-dark" />
@@ -615,8 +624,8 @@ export function PreviewPage() {
 
             <div className="space-y-2">
               <Label htmlFor="err">Error state — ≥16px, no iOS zoom</Label>
-              <Input id="err" placeholder="bad@entry" aria-invalid defaultValue="bad@" />
-              <p className="text-[12px] text-red">Please enter a valid email.</p>
+              <Input id="err" type="email" aria-describedby="err-message" placeholder="bad@entry" aria-invalid defaultValue="bad@" />
+              <p id="err-message" className="text-[12px] text-t-out">Please enter a valid email.</p>
             </div>
           </div>
 
@@ -696,7 +705,7 @@ export function PreviewPage() {
 
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="line" size="icon"><MoreHorizontal className="size-4" /></Button>
+                <Button variant="line" size="icon" aria-label="More actions"><MoreHorizontal className="size-4" /></Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
                 <DropdownMenuLabel>Actions</DropdownMenuLabel>
@@ -704,18 +713,18 @@ export function PreviewPage() {
                 <DropdownMenuItem><User className="size-4" />View profile</DropdownMenuItem>
                 <DropdownMenuItem><Settings className="size-4" />Settings</DropdownMenuItem>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem className="text-red"><LogOut className="size-4" />Sign out</DropdownMenuItem>
+                <DropdownMenuItem className="text-red-text"><LogOut className="size-4" />Sign out</DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
 
             <Tooltip>
               <TooltipTrigger asChild>
-                <Button variant="ghost" size="icon"><Bell className="size-4" /></Button>
+                <Button variant="ghost" size="icon" aria-label="Notifications"><Bell className="size-4" /></Button>
               </TooltipTrigger>
               <TooltipContent>Notifications</TooltipContent>
             </Tooltip>
 
-            <Button variant="line" onClick={() => toast.success("Booking confirmed — crew notified.")}>
+            <Button variant="line" onClick={() => toast.success("Simulated booking confirmation. No crew member was notified.")}>
               Toast success
             </Button>
             <Button variant="line" onClick={() => toast.warning("Double-booking detected on Saturday.")}>
@@ -777,7 +786,7 @@ export function PreviewPage() {
           <Card>
             <CardContent className="pt-5">
               <p className="mb-4 text-[13px] text-muted">Summer Gala 2026 · vertical on mobile, horizontal on md+</p>
-              <LifecycleStepper steps={STEPS} />
+              <LifecycleStepper label="Summer Gala 2026 lifecycle" steps={STEPS} />
             </CardContent>
           </Card>
         </Section>
@@ -796,15 +805,15 @@ export function PreviewPage() {
                   return (
                     <div
                       key={c.name}
-                      className={`flex items-center gap-3 py-2.5 ${i < arr.length - 1 ? "border-b border-line" : ""}`}
+                      className={`flex flex-wrap items-center gap-3 py-2.5 ${i < arr.length - 1 ? "border-b border-line" : ""}`}
                     >
                       <PersonAvatar name={c.name} className="size-8 shrink-0" />
-                      <div className="w-28 shrink-0">
+                      <div className="min-w-0 flex-1 sm:w-28 sm:flex-none">
                         <p className="text-[13.5px] font-medium text-ink">{c.name}</p>
                         <p className="text-[11px] text-muted">{c.role}</p>
                       </div>
                       {/* shift bar */}
-                      <div className="relative flex-1 overflow-hidden rounded-full bg-paper-2 h-5">
+                      <div className="order-last relative min-w-0 basis-full flex-1 overflow-hidden rounded-full sm:order-none sm:basis-0 bg-paper-2 h-5">
                         <div
                           className={`absolute inset-y-0 rounded-full ${clash ? "bg-t-out opacity-80 outline outline-2 outline-red" : "bg-blue opacity-70"}`}
                           style={{
@@ -813,7 +822,7 @@ export function PreviewPage() {
                           }}
                         />
                       </div>
-                      <div className="w-24 shrink-0 text-right">
+                      <div className="shrink-0 text-right sm:w-24">
                         {clash
                           ? <Badge status="overbooked">{c.hours}</Badge>
                           : <Badge status={c.status}>{c.hours}</Badge>
@@ -823,16 +832,16 @@ export function PreviewPage() {
                   );
                 })}
                 {/* open slot */}
-                <div className="flex items-center gap-3 border-t border-line py-2.5">
-                  <div className="flex size-8 shrink-0 items-center justify-center rounded-full border-2 border-dashed border-line-2 text-[12px] text-faint">+</div>
-                  <div className="w-28 shrink-0">
-                    <p className="text-[13.5px] text-faint">Open slot</p>
-                    <p className="text-[11px] text-faint">Unfilled call</p>
+                <div className="flex flex-wrap items-center gap-3 border-t border-line py-2.5">
+                  <div className="flex size-8 shrink-0 items-center justify-center rounded-full border-2 border-dashed border-line-2 text-[12px] text-muted">+</div>
+                  <div className="min-w-0 flex-1 sm:w-28 sm:flex-none">
+                    <p className="text-[13.5px] text-muted">Open slot</p>
+                    <p className="text-[11px] text-muted">Unfilled call</p>
                   </div>
-                  <div className="relative flex-1 overflow-hidden rounded-full h-5">
+                  <div className="order-last relative min-w-0 basis-full flex-1 overflow-hidden rounded-full sm:order-none sm:basis-0 h-5">
                     <div className="absolute inset-0 rounded-full border-2 border-dashed border-rep" style={{ background: "var(--rep-soft)" }} />
                   </div>
-                  <div className="w-24 shrink-0 text-right">
+                  <div className="shrink-0 text-right sm:w-24">
                     <Badge status="repair">—</Badge>
                   </div>
                 </div>
@@ -947,7 +956,7 @@ export function PreviewPage() {
             ))}
             <Avatar><AvatarFallback className="bg-paper-2 text-muted">?</AvatarFallback></Avatar>
           </Row>
-          <p className="text-[12px] text-faint">
+          <p className="text-[12px] text-muted">
             Dark theme: bright fills → <code className="rounded bg-elev px-1 text-[11px]">--dark</code> ink.
             Light theme: white ink except amber/lime → <code className="rounded bg-elev px-1 text-[11px]">--dark</code>.
             Toggle above to verify AA-safe contrast.
@@ -958,7 +967,7 @@ export function PreviewPage() {
             <FlowMascot className="size-8 text-muted" />
             <FlowMascot className="size-12 text-muted" />
             <FlowMascot className="size-16 text-muted" />
-            <FlowMascot className="size-20 text-red" eyeColor="var(--amber)" />
+            <FlowMascot className="size-20 text-red-text" eyeColor="var(--amber)" />
             <FlowMascot className="size-20 text-ok" eyeColor="var(--blue)" />
           </Row>
 
@@ -992,7 +1001,7 @@ export function PreviewPage() {
                 }`}
               >
                 {highlight && (
-                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-red px-3 py-0.5 text-[11px] font-bold text-white">
+                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-action-red px-3 py-0.5 text-[11px] font-bold text-white">
                     Most crews
                   </span>
                 )}
@@ -1012,11 +1021,13 @@ export function PreviewPage() {
             <div className="flex items-center gap-3 border-b border-border px-4 py-3">
               <Search className="size-4 text-muted" />
               <input
-                className="flex-1 bg-transparent text-[14px] text-ink placeholder:text-faint outline-none"
+                aria-label="Search example"
+                type="search"
+                className="min-h-11 min-w-0 flex-1 bg-transparent text-[16px] text-ink placeholder:text-muted outline-none"
                 placeholder="Search crew, bookings, equipment…"
                 readOnly
               />
-              <kbd className="rounded border border-border bg-card px-1.5 py-0.5 font-mono text-[10px] text-muted">⌘K</kbd>
+              <kbd className="rounded border border-border bg-card px-1.5 py-0.5 font-mono text-[11px] text-muted">⌘K</kbd>
             </div>
             <div className="px-2 py-2">
               {[
@@ -1025,10 +1036,10 @@ export function PreviewPage() {
                 { icon: Wrench,  label: "12kW Spotlight #3", hint: "Equipment" },
                 { icon: Bell,    label: "Saturday 14 Jun",   hint: "Schedule"  },
               ].map(({ icon: Icon, label, hint }) => (
-                <div key={label} className="flex cursor-pointer items-center gap-3 rounded-[8px] px-3 py-2 transition-colors hover:bg-paper-2">
+                <div key={label} className="flex items-center gap-3 rounded-[8px] px-3 py-2 transition-colors hover:bg-paper-2">
                   <Icon className="size-4 text-muted" />
                   <span className="flex-1 text-[14px] text-ink">{label}</span>
-                  <span className="text-[12px] text-faint">{hint}</span>
+                  <span className="text-[12px] text-muted">{hint}</span>
                 </div>
               ))}
             </div>
@@ -1037,11 +1048,12 @@ export function PreviewPage() {
 
         {/* footer */}
         <footer className="border-t-2 border-border pt-8 text-center">
-          <FlowMascot className="mx-auto mb-3 size-8 text-faint" />
-          <p className="font-hand text-[16px] text-red">No clashes. Suspiciously calm.</p>
-          <p className="mt-2 text-[12px] text-faint">RVLT Flow · @rvlt/flow-theme v1.1.1 · DESIGN.md v1.1.1</p>
-          <p className="mt-1 text-[11px] text-faint">Built for production companies, by a production company.</p>
+          <FlowMascot className="mx-auto mb-3 size-8 text-muted" />
+          <p className="font-hand text-[16px] text-red-text">No clashes. Suspiciously calm.</p>
+          <p className="mt-2 text-[12px] text-muted">RVLT Flow · @rvlt/flow-theme v0.2.0 · DESIGN.md v1.3.0</p>
+          <p className="mt-1 text-[11px] text-muted">Built for production companies, by a production company.</p>
         </footer>
+      </div>
       </main>
     </TooltipProvider>
   );

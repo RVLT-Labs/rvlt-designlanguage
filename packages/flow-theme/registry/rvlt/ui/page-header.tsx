@@ -39,7 +39,7 @@ function PageHeader({
     >
       <div className="flex min-w-0 flex-col">
         {eyebrow && (
-          <p className="font-hand text-[16px] font-bold text-red leading-none mb-1">
+          <p className="font-hand text-[16px] font-bold text-red-text leading-none mb-1">
             {eyebrow}
           </p>
         )}

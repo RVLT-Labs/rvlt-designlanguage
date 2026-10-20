@@ -1,17 +1,7 @@
 # Input
 
-The text field: 2px `input` outline on `card`, 16px text, 44px minimum height, red focus ring.
+`Input` and `SearchInput` share a 44px minimum height, 16px text, accessible control outline and muted placeholder. SearchInput defaults to `type="search"`. A placeholder supplements a persistent label. Textarea retains the same text and outline contract.
 
-## Family
-- `Input` — `radius` corners, 8px × 14px padding, `faint` placeholder.
-- `SearchInput` — 40px list-toolbar search with a 16px leading Lucide `search` icon in `faint`, 14px text.
-- `Textarea` — same skin, 80px minimum, vertical resize.
-- `Label` — 14px medium `ink-2`. A field stacks label, control, then a `t-micro` hint in `muted` or error in `t-out`, 6px apart; a required marker is a `red` asterisk.
+Associate Label `htmlFor` with the control `id`. Set native `required` and a visible “required” label for mandatory fields. Use the appropriate native type, including `email` and `number`. Set `aria-invalid` after validation, and link hints/errors using `aria-describedby`. Announce newly inserted validation errors with `role="alert"`; do not announce errors on every keystroke. Keep entered values when validation fails and focus the invalid field on submission.
 
-## States
-Invalid: set `aria-invalid="true"` — border and focus ring turn `t-out`; pair it with a message. Disabled: 45% opacity.
-
-## Consumer provides
-A visible `Label`, placeholder in sentence case, validation message. Forms: `grid-cols-2`, 14px gap, actions right-aligned (secondary then primary).
-
-_Live: the real component, compiled into `bundle.js` from TwoToned/gearflow@5a85e40 `src/components/ui/input.tsx` — the RVLT registry primitive (RVLT-Labs/rvlt-designlanguage `packages/flow-theme/registry/rvlt/ui/`) as Flow ships it._
+Forms stack in one column on phones, with an optional two-column grid from medium widths. Source: `packages/flow-theme/examples/form-field.tsx`. This source is compiled against the registry and rendered at `/preview-v2/contracts/#form-field`.

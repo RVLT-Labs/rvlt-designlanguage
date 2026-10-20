@@ -1,0 +1,50 @@
+{
+  "$comment": "RVLT contrast contract (DESIGN.md §3.8). Which token may draw text, pills, fills, actions and control boundaries on which surface, per theme. Every pairing listed is verified against tokens.json by tests/unit/token-contrast.test.mjs (WCAG 2.x; soft fills composited over the real surface). Pairings not listed are not supported. There are no accepted exceptions.",
+  "version": "1.3.0",
+  "thresholds": { "text": 4.5, "nonText": 3 },
+  "surfaces": ["paper", "paper-2", "card", "elev"],
+  "text": [
+    { "token": "ink", "surfaces": "all", "use": "headings, body, values" },
+    { "token": "ink-2", "surfaces": "all", "use": "secondary body, table cells, icons by default" },
+    { "token": "muted", "surfaces": "all", "use": "meta, captions, placeholders, stat labels, hour labels, future steps" },
+    { "token": "red-text", "surfaces": "all", "use": "red words: Kalam eyebrows, doodle notes, inline red emphasis. Not core red." },
+    { "token": "link", "surfaces": { "dark": ["paper", "paper-2", "card", "elev"], "light": ["paper", "card", "elev"] }, "use": "inline links; on light paper-2 use ink with an underline" },
+    { "token": "ok", "tokens": ["warn", "t-out", "rep", "info"], "surfaces": { "dark": ["paper", "paper-2", "card", "elev"], "light": ["paper", "card", "elev"] }, "use": "standalone status words; on light paper-2 put the word in its pill" }
+  ],
+  "pills": [
+    { "fg": "ok", "bg": "ok-soft" },
+    { "fg": "warn", "bg": "warn-soft" },
+    { "fg": "t-out", "bg": "out-soft" },
+    { "fg": "rep", "bg": "rep-soft" },
+    { "fg": "info", "bg": "blue-soft" },
+    { "fg": "ink", "bg": "red-soft" }
+  ],
+  "onFill": {
+    "dark": { "blue": "dark", "amber": "dark", "green": "dark", "purple": "dark", "coral": "dark", "teal": "dark", "pink": "dark", "lime": "dark" },
+    "light": { "blue": "#ffffff", "amber": "dark", "green": "#ffffff", "purple": "#ffffff", "coral": "#ffffff", "teal": "#ffffff", "pink": "#ffffff", "lime": "dark" }
+  },
+  "actions": [
+    { "fg": "primary-foreground", "bg": "action-red", "use": "primary, halo and destructive buttons, the live pill, the full-red CTA block" },
+    { "fg": "cream-ink", "bg": "cream", "use": "cream button and cream spotlight tier" }
+  ],
+  "nonText": [
+    { "token": "control-line", "surfaces": "all", "use": "input, select, textarea, combobox, checkbox and switch boundaries" },
+    { "token": "red", "surfaces": "all", "use": "focus ring, now ring, selection edge" }
+  ],
+  "moduleIcons": [
+    { "hue": "blue" },
+    { "hue": "amber", "icon": { "light": "warn" } },
+    { "hue": "green" },
+    { "hue": "purple" },
+    { "hue": "coral" },
+    { "hue": "teal" }
+  ],
+  "moduleText": "An active module item draws its label in ink; the hue carries the icon, the indicator and the soft fill.",
+  "nonTextOnly": ["faint", "line", "line-2", "red-soft", "select"],
+  "binder": {
+    "marks": ["dept-lx", "dept-snd", "dept-tm", "dept-sm", "dept-vid", "dept-stg", "dept-fly", "dept-personal"],
+    "text": "page-ink",
+    "rule": "Department hue draws the cue outline, leader and dash pattern (3:1 on the page). The department abbreviation and cue number are page-ink."
+  },
+  "exceptions": []
+}

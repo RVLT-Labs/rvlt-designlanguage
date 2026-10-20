@@ -7,4 +7,4 @@ Unchecked: 2px `border` outline on `paper-2`. Focus ring and 45% disabled as sta
 ## Consumer provides
 A label beside it, `checked` / `onCheckedChange` (Radix).
 
-_Live: the real component, compiled into `bundle.js` from TwoToned/gearflow@5a85e40 `src/components/ui/checkbox.tsx` — the RVLT registry primitive (RVLT-Labs/rvlt-designlanguage `packages/flow-theme/registry/rvlt/ui/`) as Flow ships it._
+_Published Flow preview: local registry source, compiled by `scripts/design-system/bundle/build-registry.mjs`. The pinned external bundle is retained for Binder adapters._

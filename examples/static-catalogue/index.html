@@ -4,13 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>RVLT Flow — Design Tokens &amp; Components Preview</title>
-<!-- Display = Archivo (fallback until BC Alphapipe Adobe kit) · Body = Hanken Grotesk · Hand = Kalam · Wordmark = Baloo 2 · Mono = JetBrains Mono (§5.4-sanctioned alt to Geist Mono) -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Hanken+Grotesk:wght@400;500;600;700&family=Kalam:wght@400;700&family=Baloo+2:wght@600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared/tokens.css">
 <style>
 /* ============================================================
-   TOKENS — mirror DESIGN.md §15.1 / Appendix A (v1.1.0).
+   TOKENS — mirror DESIGN.md §15.1 / Appendix A (v1.3.0).
    (shadcn role aliases + @theme inline omitted — not needed for
    static HTML; in the app they're wired per §15.1.)
    ============================================================ */
@@ -34,7 +31,7 @@
   --r:14px; --r-lg:20px; --radius:0.875rem;
   --fd:"Archivo",sans-serif;            /* swap to "bc-alphapipe" when kit lands */
   --fb:"Hanken Grotesk",system-ui,sans-serif;
-  --fh:"Kalam",cursive; --fw:"Baloo 2",cursive; --fm:"JetBrains Mono",ui-monospace,monospace;
+  --fh:"Kalam",cursive; --fw:"Baloo 2",cursive; --fm:"Geist Mono",ui-monospace,monospace;
 }
 .light {                         /* opt-in alternate "Paper" */
   --paper:#F4EEE1; --paper-2:#EDE4D2; --card:#FFFDF8; --elev:#FFFDF8;
@@ -64,10 +61,11 @@ html{scroll-behavior:smooth}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--fb);
   font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;transition:background .2s,color .2s}
 a{color:var(--link)}
+header a{color:var(--ink-2);text-decoration:underline}
 h1,h2,h3,h4{font-family:var(--fd);font-weight:800;letter-spacing:-.02em;margin:0}
 code,.mono{font-family:var(--fm);font-variant-numeric:tabular-nums}
 .wrap{max-width:1140px;margin:0 auto;padding:0 28px}
-.eyebrow{font-family:var(--fh);font-weight:700;color:var(--red);font-size:17px;margin:0 0 6px}
+.eyebrow{font-family:var(--fh);font-weight:700;color:var(--red-text);font-size:17px;margin:0 0 6px}
 
 /* topbar */
 .top{position:sticky;top:0;z-index:50;background:rgba(18,16,13,.93);
@@ -75,9 +73,9 @@ code,.mono{font-family:var(--fm);font-variant-numeric:tabular-nums}
 .light .top{background:rgba(244,238,225,.93)}
 .top .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
 .brand{display:flex;align-items:center;gap:9px;font-family:var(--fd);font-weight:800;font-size:20px}
-.brand .mark{color:var(--red);letter-spacing:.02em}
+.brand .mark{color:var(--red-text);letter-spacing:.02em}
 .brand .fl{font-family:var(--fw);font-weight:700;letter-spacing:-.01em;font-size:21px}
-.ver{font-family:var(--fm);font-size:12px;color:var(--faint);border:1px solid var(--line-2);
+.ver{font-family:var(--fm);font-size:12px;color:var(--muted);border:1px solid var(--line-2);
   border-radius:99px;padding:3px 9px}
 .toggle{font-family:var(--fb);font-weight:600;font-size:14px;cursor:pointer;background:transparent;
   color:var(--ink);border:2px solid var(--line-2);border-radius:99px;padding:7px 16px;display:flex;gap:7px;align-items:center}
@@ -89,8 +87,8 @@ section{padding:54px 0;border-bottom:1px solid var(--line)}
 .sec-h{font-family:var(--fd);font-weight:800;font-size:30px;letter-spacing:-.02em;margin-bottom:6px}
 .sec-d{color:var(--muted);max-width:680px;margin-bottom:28px;font-size:15px}
 .sub{font-family:var(--fd);font-weight:700;font-size:18px;margin:30px 0 14px;letter-spacing:-.01em}
-.note{font-size:13px;color:var(--faint);margin-top:10px}
-.ref{font-family:var(--fm);font-size:11px;color:var(--faint)}
+.note{font-size:13px;color:var(--muted);margin-top:10px}
+.ref{font-family:var(--fm);font-size:11px;color:var(--muted)}
 
 /* swatch grid */
 .sw-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}
@@ -99,7 +97,7 @@ section{padding:54px 0;border-bottom:1px solid var(--line)}
 .sw .meta{padding:9px 11px}
 .sw .tname{font-family:var(--fm);font-size:12px;font-weight:600}
 .sw .thex{font-family:var(--fm);font-size:11px;color:var(--muted);margin-top:2px}
-.sw .trole{font-size:11.5px;color:var(--faint);margin-top:4px;line-height:1.35}
+.sw .trole{font-size:11.5px;color:var(--muted);margin-top:4px;line-height:1.35}
 .sw.ring .chip{box-shadow:inset 0 0 0 1px var(--line-2)}
 
 /* ladder */
@@ -110,7 +108,7 @@ section{padding:54px 0;border-bottom:1px solid var(--line)}
 /* type */
 .type-row{display:flex;align-items:baseline;gap:18px;padding:12px 0;border-bottom:1px solid var(--line)}
 .type-row:last-child{border-bottom:none}
-.type-row .tk{font-family:var(--fm);font-size:11px;color:var(--faint);width:150px;flex:none}
+.type-row .tk{font-family:var(--fm);font-size:11px;color:var(--muted);width:150px;flex:none}
 .type-row .sample{flex:1;min-width:0}
 .type-row .spec{font-family:var(--fm);font-size:11px;color:var(--muted);width:190px;flex:none;text-align:right}
 
@@ -130,7 +128,7 @@ section{padding:54px 0;border-bottom:1px solid var(--line)}
 .light .btn-line{border-color:var(--ink)}
 .btn-line:hover{background:var(--ink);color:var(--paper)}
 .btn-ghost{background:transparent;color:var(--ink)}
-.btn-ghost:hover{color:var(--red)}
+.btn-ghost:hover{color:var(--red-text)}
 .btn-cream{background:var(--cream);color:var(--cream-ink);box-shadow:0 3px 0 rgba(0,0,0,.25)}
 .btn:focus-visible{outline:2px solid var(--red);outline-offset:3px}
 .btn[disabled]{opacity:.45;cursor:not-allowed;box-shadow:none;transform:none}
@@ -162,14 +160,14 @@ section{padding:54px 0;border-bottom:1px solid var(--line)}
 .patch svg{width:24px;height:24px}
 .iconrow{display:flex;align-items:flex-end;gap:24px}
 .iconrow .i{display:flex;flex-direction:column;align-items:center;gap:7px;color:var(--ink-2)}
-.iconrow .i .lab{font-family:var(--fm);font-size:11px;color:var(--faint)}
+.iconrow .i .lab{font-family:var(--fm);font-size:11px;color:var(--muted)}
 
 /* input (§15.2) */
 .field{display:flex;flex-direction:column;gap:6px;max-width:280px}
 .field label{font-size:14px;font-weight:500;color:var(--ink-2)}
 .inp{font-family:var(--fb);font-size:16px;background:var(--card);color:var(--ink);
   border:2px solid var(--line-2);border-radius:var(--radius);padding:10px 13px;min-height:44px}
-.inp::placeholder{color:var(--faint)}
+.inp::placeholder{color:var(--muted)}
 .inp:focus-visible{outline:2px solid var(--red);outline-offset:2px;border-color:var(--line-2)}
 .inp.invalid{border-color:var(--t-out)}.inp.invalid:focus-visible{outline-color:var(--t-out)}
 .err{font-size:12px;color:var(--t-out);display:flex;gap:5px;align-items:center}
@@ -178,10 +176,10 @@ section{padding:54px 0;border-bottom:1px solid var(--line)}
 .stepper{display:flex;align-items:center;gap:0;overflow-x:auto;padding:6px 0}
 .step{display:flex;flex-direction:column;align-items:center;gap:8px;min-width:92px}
 .ring{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;
-  font-family:var(--fm);font-size:12px;font-weight:700;border:2px solid var(--line-2);color:var(--faint);background:var(--card)}
+  font-family:var(--fm);font-size:12px;font-weight:700;border:2px solid var(--line-2);color:var(--muted);background:var(--card)}
 .ring.done{background:var(--ink);color:var(--paper);border-color:var(--ink)}
-.ring.now{border-color:var(--red);color:var(--red);box-shadow:0 0 0 5px var(--red-soft)}
-.step .lab{font-size:12px;color:var(--faint)}.step.now-l .lab{color:var(--ink);font-weight:600}
+.ring.now{border-color:var(--red-text);color:var(--red-text);box-shadow:0 0 0 5px var(--red-soft)}
+.step .lab{font-size:12px;color:var(--muted)}.step.now-l .lab{color:var(--ink);font-weight:600}
 .conn{height:2px;flex:1;min-width:24px;background:var(--line-2);position:relative}.conn.done{background:var(--ink)}
 /* active segment = solid red growing left→right (no gradient); animates per §15.4a */
 .conn.active::after{content:"";position:absolute;inset:0;background:var(--red);transform-origin:left;
@@ -247,15 +245,15 @@ section{padding:54px 0;border-bottom:1px solid var(--line)}
   border:2px solid var(--card-outline);border-radius:var(--r-lg);box-shadow:var(--sh-card)}
 
 /* misc */
-.legend{font-size:12px;color:var(--faint);margin-top:8px}
-.pill-state{font-family:var(--fm);font-size:11px;color:var(--faint);margin-bottom:7px}
+.legend{font-size:12px;color:var(--muted);margin-top:8px}
+.pill-state{font-family:var(--fm);font-size:11px;color:var(--muted);margin-bottom:7px}
 .stcategory{display:flex;flex-direction:column;gap:7px;align-items:flex-start}
-footer{padding:40px 0 80px;color:var(--faint);font-size:13px}
+footer{padding:40px 0 80px;color:var(--muted);font-size:13px}
 
 /* stat (§9) */
 .stat .fig{font-family:var(--fd);font-weight:800;font-size:38px;color:var(--ink);letter-spacing:-.02em;line-height:1}
 .stat .fig.dim{font-size:24px;color:var(--ink-2)}
-.stat .lab{font-size:12px;color:var(--faint);margin-top:4px}
+.stat .lab{font-size:12px;color:var(--muted);margin-top:4px}
 
 /* chiplogo row */
 .chipwrap{display:flex;flex-wrap:wrap;gap:10px}
@@ -267,7 +265,7 @@ footer{padding:40px 0 80px;color:var(--faint);font-size:13px}
 .faq summary{list-style:none;cursor:pointer;padding:14px 16px;font-weight:600;font-size:15px;
   display:flex;justify-content:space-between;align-items:center}
 .faq summary::-webkit-details-marker{display:none}
-.faq summary .pl{transition:transform .2s;color:var(--red);font-size:20px}
+.faq summary .pl{transition:transform .2s;color:var(--red-text);font-size:20px}
 .faq details[open] summary .pl{transform:rotate(45deg)}
 .faq .ans{padding:0 16px 14px;font-size:13.5px;color:var(--muted)}
 
@@ -277,7 +275,7 @@ footer{padding:40px 0 80px;color:var(--faint);font-size:13px}
 .plan.cream{background:var(--cream);color:var(--cream-ink);border-color:var(--cream);transform:translateY(-6px);
   box-shadow:0 9px 0 #0C0A08,inset 0 0 0 1px rgba(255,253,248,.6)}
 .light .plan.cream{box-shadow:0 9px 0 var(--line-2)}
-.plan.cream .tab{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--red);
+.plan.cream .tab{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--action-red);
   color:white;font-family:var(--fd);font-weight:700;font-size:12px;padding:4px 14px;border-radius:99px;white-space:nowrap}
 .plan .pname{font-family:var(--fd);font-weight:800;font-size:18px}
 .plan.cream .note{font-family:var(--fh);font-weight:400;font-size:14px;color:var(--cream-ink);transform:rotate(-3deg);margin-top:12px}
@@ -352,25 +350,36 @@ footer{padding:40px 0 80px;color:var(--faint);font-size:13px}
   .ring.now{box-shadow:0 0 0 5px var(--red-soft)}
 }
 </style>
+<link rel="stylesheet" href="../shared/tokens.css">
+<style>
+:root{--fd:var(--font-display);--fb:var(--font-sans);--fm:var(--font-mono);--fh:var(--font-hand)}
+.btn{min-height:44px;min-width:44px}.btn-primary,.btn-halo{background:var(--action-red)}
+.inp{border-color:var(--input)}.inp:focus-visible{border-color:var(--input)}
+body{overflow-wrap:break-word}.row{max-width:100%}.type-row{flex-wrap:wrap}
+@media(max-width:480px){.wrap{padding-left:16px;padding-right:16px}.type-row .spec{width:auto;text-align:left}.crew{overflow-x:auto}}
+</style>
 </head>
 <body>
+<header>
+<p style="padding:16px;margin:0;background:var(--paper-2)">Legacy static catalogue. <a href="../../design-system/">Open the current component gallery</a>. Figures are illustrative.</p>
 
 <div class="top">
   <div class="wrap">
     <div class="brand"><span class="mark">RVLT</span><span class="fl">Flow</span>
-      <span class="ver">DESIGN.md v1.1.0</span></div>
+      <span class="ver">DESIGN.md v1.3.0</span></div>
     <button class="toggle" id="themeBtn">◐ <span id="themeLbl">Light theme</span></button>
   </div>
 </div>
 
-<div class="wrap">
+</header>
+<main id="main" class="wrap">
   <section style="border-bottom:none;padding-bottom:18px">
     <p class="eyebrow">the spec, rendered</p>
     <h1 class="sec-h" style="font-size:44px;line-height:1.04;letter-spacing:-.03em">Design tokens &amp; components</h1>
-    <p class="sec-d">Every token and component from <code>DESIGN.md</code> v1.1.0, rendered on the
+    <p class="sec-d">Every token and component from <code>DESIGN.md</code> v1.3.0, rendered on the
       canonical <strong>espresso dark</strong> surface. Toggle to the light "Paper" twin top-right.
       Swatch hex labels are read <em>live</em> from the actual CSS variables, so they can't drift from
-      the spec. This is the system catalog — not the marketing page (that's <code>index.html</code>).</p>
+      the spec. This legacy catalogue shows static states. The component gallery and compiled reference compositions are the current implementation reference.</p>
   </section>
 
   <!-- ============ COLOUR ============ -->
@@ -417,14 +426,14 @@ footer{padding:40px 0 80px;color:var(--faint);font-size:13px}
   <section id="type">
     <p class="eyebrow">§5 · typography</p>
     <h2 class="sec-h">Typography</h2>
-    <p class="sec-d">Display = personality (BC Alphapipe, Archivo fallback). Body = quiet (Hanken Grotesk).
+    <p class="sec-d">Display = personality (Archivo, Archivo fallback). Body = quiet (Hanken Grotesk).
       Handwriting = Kalam. Wordmark = Baloo 2. Data = a tabular mono.</p>
 
     <div class="sub">Families</div>
     <div class="grid2">
       <div class="card"><div class="pill-state">var(--fd) · display</div><div style="font-family:var(--fd);font-weight:800;font-size:34px;letter-spacing:-.02em">Built by a crew</div></div>
       <div class="card"><div class="pill-state">var(--fb) · body</div><div style="font-size:18px">Stop promising gear you've already booked out.</div></div>
-      <div class="card"><div class="pill-state">var(--fh) · Kalam</div><div style="font-family:var(--fh);font-weight:700;color:var(--red);font-size:22px">why Flow exists</div></div>
+      <div class="card"><div class="pill-state">var(--fh) · Kalam</div><div style="font-family:var(--fh);font-weight:700;color:var(--red-text);font-size:22px">why Flow exists</div></div>
       <div class="card"><div class="pill-state">var(--fm) · data mono</div><div class="mono" style="font-size:18px">K2&nbsp;#04 · 99.9% · 0 clashes</div></div>
     </div>
 
@@ -432,7 +441,7 @@ footer{padding:40px 0 80px;color:var(--faint);font-size:13px}
     <div class="type-row"><div class="tk">display-xl</div><div class="sample" style="font-family:var(--fd);font-weight:800;font-size:72px;letter-spacing:-.035em;line-height:.97">Flow</div><div class="spec">72 / .97 / -.035em · 800</div></div>
     <div class="type-row"><div class="tk">display-l</div><div class="sample" style="font-family:var(--fd);font-weight:800;font-size:44px;line-height:1.04;letter-spacing:-.03em">Section heading</div><div class="spec">44 / 1.04 / -.03em · 800</div></div>
     <div class="type-row"><div class="tk">display-m</div><div class="sample" style="font-family:var(--fd);font-weight:800;font-size:30px;line-height:1.1;letter-spacing:-.02em">Sub-section</div><div class="spec">30 / 1.1 / -.02em · 800</div></div>
-    <div class="type-row"><div class="tk">eyebrow (Kalam)</div><div class="sample" style="font-family:var(--fh);font-weight:700;font-size:17px;color:var(--red)">built from the actual job flow</div><div class="spec">17 · Kalam 700</div></div>
+    <div class="type-row"><div class="tk">eyebrow (Kalam)</div><div class="sample" style="font-family:var(--fh);font-weight:700;font-size:17px;color:var(--red-text)">built from the actual job flow</div><div class="spec">17 · Kalam 700</div></div>
 
     <div class="sub">App functional ramp (§5.5) <span class="ref">LOCKED · 11px floor · reading-body ≥16</span></div>
     <div class="type-row"><div class="tk">page-title</div><div class="sample" style="font-family:var(--fd);font-weight:800;font-size:24px;line-height:1.2;letter-spacing:-.02em">Projects</div><div class="spec">24 / 1.2 / -.02em · 800</div></div>
@@ -493,9 +502,9 @@ footer{padding:40px 0 80px;color:var(--faint);font-size:13px}
     <p class="eyebrow">§9 · components</p>
     <h2 class="sec-h">Cards</h2>
     <div class="grid3">
-      <div class="card hover-demo"><h4>Standard card</h4><p>2px outline + hard offset. Hover me — lifts 3px to <code>--sh-hover</code>.</p></div>
-      <div class="card live"><div class="row" style="justify-content:space-between;margin-bottom:6px"><h4 style="margin:0">"Live" card</h4><span class="badge b-ok"><span class="dot live-dot"></span>live</span></div><p><code>--elev</code> + the one resting lit-edge. For the active / real-time widget.</p></div>
-      <div class="card"><h4 style="margin-bottom:10px">Availability row</h4>
+      <div class="card hover-demo"><h3>Standard card</h3><p>2px outline + hard offset. Hover me — lifts 3px to <code>--sh-hover</code>.</p></div>
+      <div class="card live"><div class="row" style="justify-content:space-between;margin-bottom:6px"><h3 style="margin:0">"Live" card</h3><span class="badge b-ok"><span class="dot live-dot"></span>live</span></div><p><code>--elev</code> + the one resting lit-edge. For the active / real-time widget.</p></div>
+      <div class="card"><h3 style="margin-bottom:10px">Availability row</h3>
         <div style="display:grid;grid-template-columns:1fr auto auto;gap:10px;align-items:center;font-size:13.5px">
           <span>K2 moving head</span><span class="mono" style="color:var(--ink-2)">×12</span><span class="badge b-ok">Ready</span>
           <span>SGM P-5</span><span class="mono" style="color:var(--ink-2)">×4</span><span class="badge b-out">Short 2</span>
@@ -522,9 +531,9 @@ footer{padding:40px 0 80px;color:var(--faint);font-size:13px}
     <p class="eyebrow">§9.1 · §15.2 · forms</p>
     <h2 class="sec-h">Inputs</h2>
     <div class="row" style="gap:26px;align-items:flex-start">
-      <div class="field"><label>Job name</label><input class="inp" placeholder="e.g. Theatre Royal — load-in"></div>
-      <div class="field"><label>Quantity</label><input class="inp mono" inputmode="numeric" value="12"></div>
-      <div class="field"><label>Crew email</label><input class="inp invalid" value="not-an-email" aria-invalid="true"><span class="err"><span class="dot"></span>Enter a valid email</span></div>
+      <div class="field"><label for="job-name">Job name (required)</label><input id="job-name" required class="inp" placeholder="e.g. Theatre Royal — load-in"></div>
+      <div class="field"><label for="quantity">Quantity</label><input id="quantity" type="number" min="1" class="inp mono" inputmode="numeric" value="12"></div>
+      <div class="field"><label for="crew-email">Crew email</label><input id="crew-email" type="email" aria-describedby="email-error" class="inp invalid" value="not-an-email" aria-invalid="true"><span class="err" id="email-error"><span class="dot"></span>Enter a valid email</span></div>
     </div>
     <p class="note">≥16px text (no iOS zoom) · 44px tall · 2px <code>--line-2</code> · red focus ring · label above.</p>
   </section>
@@ -619,7 +628,7 @@ footer{padding:40px 0 80px;color:var(--faint);font-size:13px}
         <div class="sub" style="margin-top:0">Modal + <code>--scrim</code> (§15.5 / §16.10)</div>
         <div class="modal-demo" style="margin-top:16px">
           <div class="scrim"></div>
-          <div class="modal-card"><h4>Pull this kit?</h4><p>K2 #04 is booked on Saturday's job. Pull it off that one anyway?</p><div class="row"><button class="btn btn-primary" style="padding:8px 16px">Pull it</button><button class="btn btn-line" style="padding:6px 14px">Cancel</button></div></div>
+          <div class="modal-card"><h3>Pull this kit?</h3><p>K2 #04 is booked on Saturday's job. Pull it off that one anyway?</p><div class="row"><button class="btn btn-primary" style="padding:8px 16px">Pull it</button><button class="btn btn-line" style="padding:6px 14px">Cancel</button></div></div>
         </div>
       </div>
     </div>
@@ -667,15 +676,15 @@ footer{padding:40px 0 80px;color:var(--faint);font-size:13px}
       <div class="mascot">
         <svg width="70" height="70" viewBox="0 0 48 48"><g fill="var(--ink)"><rect x="11" y="27" width="26" height="7" rx="2"/><rect x="16" y="34" width="16" height="5" rx="1.5"/><rect x="16" y="9" width="16" height="17" rx="6"/></g><circle cx="20.5" cy="17" r="2.8" fill="var(--blue)"/><circle cx="27.5" cy="17" r="2.8" fill="var(--blue)"/><circle cx="21.4" cy="16.1" r="1" fill="var(--cream)"/><circle cx="28.4" cy="16.1" r="1" fill="var(--cream)"/><path d="M14 26l-4-5M34 26l4-5" stroke="var(--ink)" stroke-width="2.4" stroke-linecap="round" fill="none" opacity=".5"/></svg>
       </div>
-      <p style="font-family:var(--fh);font-weight:700;color:var(--red);font-size:20px;transform:rotate(-3deg)">"No clashes. Suspiciously calm."</p>
+      <p style="font-family:var(--fh);font-weight:700;color:var(--red-text);font-size:20px;transform:rotate(-3deg)">"No clashes. Suspiciously calm."</p>
     </div>
   </section>
 
   <footer>
-    RVLT Flow · DESIGN.md v1.1.0 · this preview renders the spec — if a value here disagrees with §15.1 /
-    Appendix A, the doc wins. Display face is Archivo until the BC Alphapipe Adobe kit is wired.
+    RVLT Flow · DESIGN.md v1.3.0 · this preview renders the spec — if a value here disagrees with §15.1 /
+    Appendix A, the machine tokens and authority map decide. Display face is Archivo, loaded from local font files.
   </footer>
-</div>
+</main>
 
 <script>
 /* ---- theme toggle ---- */
@@ -701,7 +710,7 @@ document.querySelectorAll('[data-swatches]').forEach(el=>{
 
 /* ---- luminance ladder ---- */
 document.getElementById('ladder').innerHTML=[['--paper','base'],['--paper-2','alt section'],['--card','card'],['--elev','elevated/live']]
-  .map(([t,r])=>`<div style="background:var(${t})"><div class="lname">${r}</div><div class="mono lhex" data-hex="${t}">…</div><div class="mono" style="font-size:11px;color:var(--faint)">${t}</div></div>`).join('');
+  .map(([t,r])=>`<div style="background:var(${t})"><div class="lname">${r}</div><div class="mono lhex" data-hex="${t}">…</div><div class="mono" style="font-size:11px;color:var(--muted)">${t}</div></div>`).join('');
 
 /* ---- avatars ---- */
 const AV=[['--blue','JN'],['--amber','TM'],['--green','RS'],['--purple','KO'],['--coral','DW'],['--teal','LP'],['--pink','EH'],['--lime','AB']];
@@ -742,7 +751,7 @@ document.getElementById('crewBoard').innerHTML=CREW.map(([c,ini,name,time,left,w
      <div class="ptrack"><div class="shift${clash?' clash':''}${di(c)?' di':''}" style="left:${left}%;width:${w}%;background:var(${c})">${time}</div></div>
    </div>`).join('')+
   `<div class="prow">
-     <div class="pwho"><div class="av" style="background:var(--paper-2);border:2px dashed var(--line-2);color:var(--faint)">+2</div><span class="nm" style="color:var(--muted);font-weight:500">+2 open</span></div>
+     <div class="pwho"><div class="av" style="background:var(--paper-2);border:2px dashed var(--line-2);color:var(--muted)">+2</div><span class="nm" style="color:var(--muted);font-weight:500">+2 open</span></div>
      <div class="ptrack"><div class="shift open-slot" style="left:55%;width:24%">unfilled call</div></div>
    </div>`;
 

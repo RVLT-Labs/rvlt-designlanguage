@@ -8,7 +8,7 @@
 // and bundle.js (→ view.html). Asset-store links (/_blob/<id>) become paths to the repo's own
 // files, which the Pages workflow publishes under <siteRoot>/assets and <siteRoot>/design-system.
 // No dependencies.
-import { cpSync, mkdirSync, readFileSync, readdirSync, rmSync, statSync, writeFileSync } from "node:fs";
+import { cpSync, existsSync, mkdirSync, readFileSync, readdirSync, rmSync, statSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { resolveAssets } from "./assets.mjs";
@@ -25,6 +25,13 @@ cpSync(path.join(HERE, "site"), OUT, { recursive: true });
 
 const tokens = JSON.parse(readFileSync(path.join(SRC, "tokens.json"), "utf8"));
 const index = JSON.parse(readFileSync(path.join(SRC, "design-system.json"), "utf8"));
+
+// Flow cards use the local registry, with the pinned bundle retained for Binder adapters.
+const gallery = path.resolve(REPO, process.env.RVLT_GALLERY_DIR ?? "packages/flow-theme/dist/gallery");
+for (const file of ["registry-bundle.js", "registry-bundle.css"]) {
+  if (!existsSync(path.join(gallery,file))) throw new Error("Build the local gallery first: node scripts/design-system/bundle/build-registry.mjs");
+  cpSync(path.join(gallery,file),path.join(OUT,"components",file));
+}
 
 // ── tokens.css, compiled the way the design-system type documents it ────────
 const themes = tokens.color.themes.map((t) => t.id);
@@ -81,6 +88,8 @@ for (const name of readdirSync(compDir)) {
     `<link rel="stylesheet" href="../bundle.css">`,
     ...index.libraries.map((l) => `<script src="../../${l.file}"></script>`),
     `<script src="../bundle.js"></script>`,
+    `<link rel="stylesheet" href="../registry-bundle.css">`,
+    `<script src="../registry-bundle.js"></script>`,
   ].join("\n");
   // Like the design-system frame, the shared styles load before the preview's own <style>.
   let body = rest.join("\n").replace(/<head[^>]*>/i, (m) => m + "\n" + head);

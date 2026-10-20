@@ -39,23 +39,42 @@ jobs:
         working-directory: apps/preview-v2
         run: npm ci
 
+      - name: Compile local Flow gallery and check contracts
+        run: |
+          node scripts/design-system/bundle/build-registry.mjs
+          npm test
+          npm run check
+          npm --prefix apps/preview-v2 run typecheck
+
       - name: Build preview-v2 (Next.js static export)
         working-directory: apps/preview-v2
         run: npm run build
 
       - name: Assemble site
+        # root brand reference, examples, assets, /design-system/, /preview-v2/, /r/ and the
+        # compatibility redirects for the moved pages (light.html, preview.html)
+        run: node scripts/site/build.mjs _site --preview-v2 apps/preview-v2/out --registry packages/flow-theme/dist
+
+      - name: Check every internal link and asset
+        run: node scripts/site/check-links.mjs _site
+
+      - name: Install browser regression dependencies
+        working-directory: tests/browser
         run: |
-          mkdir -p _site/preview-v2 _site/r
-          # root static files
-          cp index.html light.html preview.html _site/
-          cp -r assets _site/assets
-          # Next.js export into /preview-v2/
-          cp -r apps/preview-v2/out/. _site/preview-v2/
-          # shadcn registry — /r/<name>.json + /registry.json
-          cp -r packages/flow-theme/dist/r/. _site/r/
-          cp packages/flow-theme/dist/registry.json _site/registry.json
-          # the RVLT design system, live: /design-system/
-          node scripts/design-system/build-site.mjs _site
+          npm ci
+          npx playwright install --with-deps chromium
+
+      - name: Verify built Pages site in Chromium
+        env:
+          RVLT_SITE_DIR: ${{ github.workspace }}/_site
+          RVLT_EVIDENCE_DIR: ${{ github.workspace }}/browser-evidence
+        run: npm run test:browser
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: browser-evidence
+          path: browser-evidence
 
       - uses: actions/configure-pages@v5
 

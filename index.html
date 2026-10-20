@@ -2,487 +2,423 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RVLT Flow — Character (dark, spotlit)</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Hanken+Grotesk:wght@400;500;600&family=Kalam:wght@400;700&family=Baloo+2:wght@600;700&display=swap" rel="stylesheet">
-<!-- BC Alphapipe (Adobe Fonts) — paste your Web Project kit here to activate:
-<link rel="stylesheet" href="https://use.typekit.net/XXXXXXX.css"> -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RVLT design language: brand reference</title>
+<meta name="description" content="The RVLT brand and design system for RVLT Labs, RVLT Flow and RVLT Binder: authority map, foundations, tokens with measured contrast, type, identity, components and product layers.">
+<script>
+  // theme before first paint: ?theme=light|dark, else the visitor's last choice, else Espresso
+  (function () {
+    var q = new URLSearchParams(location.search).get("theme");
+    var t = q === "light" || q === "dark" ? q : (function () { try { return localStorage.getItem("rvlt-theme"); } catch (e) { return null; } })();
+    if (t === "light") document.documentElement.classList.add("light");
+  })();
+</script>
 <style>
-  :root{
-    --fd:"bc-alphapipe","Archivo",sans-serif;
-    --paper:#141210; --paper-2:#1A1613; --card:#211C17; --elev:#2A241D;
-    --ink:#F5EFE2; --ink-2:#CDC4B2; --muted:#9E9483; --faint:#6E665A;
-    --line:#332C24; --line-2:#473E32;
-    --red:#E0363D; --red-700:#B21F26; --red-soft:rgba(224,54,61,.16);
-    --amber:#EBA53A; --blue:#5B8DEF; --green:#3ECF7A; --purple:#9b82e6; --dark:#0E0C0A;
-    --ok:#4FD888; --warn:#EBA53A; --rep:#B6AC9A; --t-out:#F26F73;
-    --ok-soft:rgba(62,207,122,.14); --warn-soft:rgba(235,165,58,.15); --rep-soft:rgba(158,148,131,.14); --out-soft:rgba(224,54,61,.18);
-    --sh-card:0 3px 0 #0C0A08; --sh-hover:0 7px 0 #0C0A08; --lit:inset 0 1px 0 rgba(255,253,248,.14);
-    --sh-stk:2px 4px 0 rgba(0,0,0,.5);
-    --r:14px; --r-lg:20px;
-  }
-  /* scope: a self-lit LIGHT product UI inside the dark page (hero dashboard pop) */
-  .lightui{
-    --card:#FFFDF8; --paper:#F4EEE1; --elev:#FFFDF8;
-    --ink:#1D1A15; --ink-2:#4B4539; --muted:#665E4F; --faint:#756B58;
-    --line:#E4DAC3; --line-2:#D8CCB0;
-    --red:#C12229; --red-soft:#FBE7E3;
-    --ok:#007D36; --warn:#9B5F00; --rep:#706857; --t-out:#9C1B21;
-    --ok-soft:#E7F5EC; --warn-soft:#FBF0D6; --rep-soft:#EFE9DC; --out-soft:#FBE7E3;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
-  body{background:var(--paper);color:var(--ink);font-family:'Hanken Grotesk',system-ui,sans-serif;-webkit-font-smoothing:antialiased;line-height:1.55;overflow-x:hidden}
-  .disp{font-family:var(--fd)}.hand{font-family:'Kalam',cursive}
-  .wrap{max-width:1140px;margin:0 auto;padding:0 28px}
-  a{color:inherit;text-decoration:none}.red{color:var(--red)}
-  .band{width:100%;padding:84px 0}.b1{background:var(--paper)}.b2{background:var(--paper-2)}
-  .divider{height:1px;background:linear-gradient(90deg,transparent,var(--line-2),transparent);max-width:1140px;margin:0 auto}
+@font-face{font-family:"Archivo";src:url("design-system/fonts/Archivo-Variable.woff2") format("woff2");font-weight:400 900;font-display:swap}
+@font-face{font-family:"Hanken Grotesk";src:url("design-system/fonts/HankenGrotesk-Variable.woff2") format("woff2");font-weight:400 800;font-display:swap}
+@font-face{font-family:"Geist Mono";src:url("design-system/fonts/GeistMono-Variable.woff2") format("woff2");font-weight:100 900;font-display:swap}
+@font-face{font-family:"Kalam";src:url("design-system/fonts/Kalam-Regular.woff2") format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Kalam";src:url("design-system/fonts/Kalam-Bold.woff2") format("woff2");font-weight:700;font-display:swap}
+@font-face{font-family:"Baloo 2";src:url("design-system/fonts/Baloo2-Variable.woff2") format("woff2");font-weight:400 700;font-display:swap}
+/* generated:css */
+:root,.dark{--paper:#141210; --paper-2:#1A1613; --card:#211C17; --elev:#2A241D; --ink:#F5EFE2; --ink-2:#CDC4B2; --muted:#9E9483; --faint:#6E665A; --line:#332C24; --line-2:#473E32; --red:#E0363D; --red-700:#B21F26; --red-soft:rgba(224,54,61,.16); --action-red:#D6323A; --red-text:#EE5A5F; --control-line:#857A69; --info:#82A8F3; --ok:#4FD888; --warn:#EBA53A; --rep:#B6AC9A; --t-out:#F26F73; --ok-soft:rgba(62,207,122,.14); --warn-soft:rgba(235,165,58,.15); --rep-soft:rgba(158,148,131,.14); --out-soft:rgba(224,54,61,.18); --amber:#EBA53A; --blue:#5B8DEF; --green:#3ECF7A; --purple:#9B82E6; --dark:#0E0C0A; --coral:#EF7E55; --teal:#3FC8BE; --pink:#E875AC; --lime:#AFC44E; --blue-soft:rgba(91,141,239,.15); --amber-soft:rgba(235,165,58,.15); --green-soft:rgba(62,207,122,.14); --purple-soft:rgba(155,130,230,.15); --coral-soft:rgba(239,126,85,.15); --teal-soft:rgba(63,200,190,.15); --scrim:rgba(14,12,10,.66); --select:rgba(224,54,61,.20); --link:#5B8DEF; --sh-card:0 3px 0 #0C0A08; --sh-hover:0 7px 0 #0C0A08; --lit:inset 0 1px 0 rgba(255,253,248,.14); --sh-stk:2px 4px 0 rgba(0,0,0,.5); --background:var(--paper); --foreground:var(--ink); --card-foreground:var(--ink); --popover:var(--card); --popover-foreground:var(--ink); --primary:var(--action-red); --primary-foreground:#fff; --secondary:var(--paper-2); --secondary-foreground:var(--ink); --muted-foreground:var(--muted); --accent:var(--elev); --accent-foreground:var(--ink); --destructive:var(--action-red); --destructive-foreground:#fff; --input:var(--control-line); --ring:var(--red); --cream:#F5EFE2; --cream-ink:#1D1A15; --patch-border:#FFFDF8; --sh-halo:0 3px 0 var(--red-700), 0 0 28px rgba(224,54,61,.5); --sh-cream:0 3px 0 rgba(0,0,0,.25); --sh-cream-press:0 1px 0 rgba(0,0,0,.25); --border:var(--line-2);
+  --font-display:"Archivo", sans-serif; --font-sans:"Hanken Grotesk", system-ui, sans-serif; --font-hand:"Kalam", cursive; --font-wordmark:"Baloo 2", cursive; --font-mono:"Geist Mono", ui-monospace, monospace;
+  --r:14px; --r-lg:20px; --r-sm:8px;}
+.light{--paper:#F4EEE1; --paper-2:#EDE4D2; --card:#FFFDF8; --elev:#FFFDF8; --ink:#1D1A15; --ink-2:#4B4539; --muted:#665E4F; --faint:#756B58; --line:#E4DAC3; --line-2:#D8CCB0; --red:#C12229; --red-700:#9C1B21; --red-soft:#FBE7E3; --action-red:#C12229; --red-text:#C12229; --control-line:var(--ink); --info:#2A65D0; --ok:#007D36; --warn:#9B5F00; --rep:#706857; --t-out:#9C1B21; --ok-soft:#E7F5EC; --warn-soft:#FBF0D6; --rep-soft:#EFE9DC; --out-soft:#FBE7E3; --amber:#E79A2B; --blue:#2A65D0; --green:#007D36; --purple:#7A5CD0; --dark:#241F1A; --coral:#C25524; --teal:#0E847C; --pink:#C2487E; --lime:#73911B; --blue-soft:#E2ECFB; --amber-soft:#FBF0D6; --green-soft:#E7F5EC; --purple-soft:#ECE6FA; --coral-soft:#FBE6DB; --teal-soft:#DBF1EF; --scrim:rgba(40,30,15,.45); --select:rgba(193,34,41,.16); --link:#2A65D0; --sh-card:0 3px 0 var(--line-2); --sh-hover:0 7px 0 var(--line-2); --lit:inset 0 1px 0 rgba(255,253,248,.14); --sh-stk:2px 4px 0 rgba(40,30,15,.13); --border:var(--ink);}
+/* /generated:css */
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;overflow-wrap:anywhere;background:var(--paper);color:var(--ink);font-family:var(--font-sans);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:var(--link);text-underline-offset:3px}
+a:hover{text-decoration-thickness:2px}
+:focus-visible{outline:2px solid var(--red);outline-offset:2px;border-radius:6px}
+code{font-family:var(--font-mono);font-size:.86em;font-variant-numeric:tabular-nums}
+h1,h2,h3{font-family:var(--font-display);margin:0;letter-spacing:-.02em}
+.wrap{max-width:1140px;margin:0 auto;padding:0 28px}
+.skip{position:absolute;left:12px;top:-60px;z-index:100;background:var(--action-red);color:#fff;padding:12px 18px;border-radius:999px;font-weight:600;text-decoration:none;min-height:44px}
+.skip:focus{top:12px}
 
-  .stk{position:absolute;display:grid;place-items:center;border-radius:16px;box-shadow:var(--sh-stk);border:3px solid #fffdf8;z-index:1}
-  .stk.round{border-radius:50%}.stk svg{display:block}
-  .stk-txt{font-family:var(--fd);font-weight:800;color:#fffdf8;letter-spacing:.02em}
+/* top bar */
+.top{position:sticky;top:0;z-index:50;background:var(--paper-2);border-bottom:1px solid var(--line-2);box-shadow:var(--lit)}
+.top .wrap{display:flex;align-items:center;gap:16px;min-height:64px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);min-height:44px}
+.brand img{height:18px;width:auto;display:block}
+.brand b{font-family:var(--font-display);font-weight:800;font-size:17px;letter-spacing:-.01em}
+.ver{font-family:var(--font-mono);font-size:12px;color:var(--muted);border:1px solid var(--line-2);border-radius:999px;padding:3px 9px}
+.toc{display:flex;gap:4px;flex-wrap:wrap;margin-left:auto}
+.toc a{display:inline-flex;align-items:center;min-height:44px;padding:0 10px;color:var(--ink-2);text-decoration:none;font-size:14px;font-weight:500;border-radius:10px}
+.toc a:hover{color:var(--ink);background:var(--elev)}
+.toggle{min-height:44px;padding:0 16px;border-radius:999px;border:2px solid var(--control-line);background:transparent;color:var(--ink);font:600 14px var(--font-sans);cursor:pointer}
+.toggle:hover{background:var(--ink);color:var(--paper)}
 
-  nav{position:sticky;top:0;z-index:60;background:rgba(18,16,13,.93);backdrop-filter:blur(14px) saturate(1.1);border-bottom:1px solid var(--line-2);box-shadow:var(--lit)}
-  @supports not ((backdrop-filter:blur(2px)) or (-webkit-backdrop-filter:blur(2px))){nav{background:var(--card)}}
-  .nav-in{display:flex;align-items:center;justify-content:space-between;height:70px}
-  .brand{display:flex;align-items:center;gap:10px}.brand svg{height:17px;width:auto;display:block}
-  .brand .fl{font-family:'Baloo 2',cursive;font-weight:700;font-size:21px;letter-spacing:-.01em}
-  .navlinks{display:flex;gap:28px;font-size:14.5px;font-weight:500;color:var(--ink-2)}
-  .navlinks a:hover{color:var(--ink)}
-  .nav-cta{display:flex;gap:11px;align-items:center}
-  .btn{font-size:14px;font-weight:600;padding:10px 18px;border-radius:99px;transition:.14s;border:2px solid transparent;cursor:pointer;display:inline-block}
-  .btn-ghost{color:var(--ink)}.btn-ghost:hover{color:var(--red)}
-  .btn-line{border-color:var(--line-2);background:transparent;color:var(--ink)}.btn-line:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
-  .btn-primary{background:var(--red);color:#fff;border-color:var(--red);box-shadow:0 3px 0 var(--red-700)}
-  .btn-primary:hover{transform:translateY(-1px);box-shadow:0 4px 0 var(--red-700)}
-  .btn-primary:active{transform:translateY(2px);box-shadow:0 1px 0 var(--red-700)}
-  .btn-lg{padding:14px 26px;font-size:15.5px}
-  .btn-halo{box-shadow:0 3px 0 var(--red-700),0 0 22px rgba(224,54,61,.32),0 0 52px rgba(224,54,61,.16)}
-  .btn-halo:hover{box-shadow:0 4px 0 var(--red-700),0 0 26px rgba(224,54,61,.42),0 0 60px rgba(224,54,61,.2)}
+/* hero */
+.hero{padding:64px 0 40px}
+.eyebrow{font-family:var(--font-hand);font-weight:700;font-size:17px;color:var(--red-text);margin:0 0 10px;transform:rotate(-1.5deg);display:inline-block}
+.hero h1{font-weight:800;font-size:clamp(40px,7vw,64px);line-height:1;letter-spacing:-.03em;max-width:880px}
+.lead{font-size:19px;color:var(--ink-2);max-width:720px;margin:20px 0 0}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.btn{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 20px;border-radius:999px;font:600 14px var(--font-sans);text-decoration:none;cursor:pointer;border:2px solid transparent}
+.btn-primary{background:var(--action-red);color:#fff;box-shadow:0 3px 0 var(--red-700)}
+.btn-primary:hover{transform:translateY(-1px)}
+.btn-primary:active{transform:translateY(2px);box-shadow:0 1px 0 var(--red-700)}
+.btn-line{border-color:var(--border);color:var(--ink)}
+.btn-line:hover{background:var(--ink);color:var(--paper)}
 
-  /* hero */
-  .hero{position:relative;padding:78px 0 44px;text-align:center;overflow:hidden}
-  .glow{position:absolute;top:-120px;left:50%;transform:translateX(-50%);width:820px;height:520px;background:radial-gradient(closest-side,rgba(235,165,58,.11),transparent 72%);pointer-events:none;z-index:0}
-  .hero-in{position:relative;max-width:860px;margin:0 auto;z-index:2}
-  .kick{font-family:'Kalam',cursive;font-weight:700;font-size:17px;color:var(--red);margin-bottom:12px}
-  h1{font-family:var(--fd);font-weight:800;font-size:72px;line-height:.97;letter-spacing:-.035em}
-  .kw{background:var(--red-soft);color:var(--red);padding:0 14px;border-radius:12px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
-  .sub{font-size:19px;color:var(--ink-2);margin:24px auto 0;max-width:540px;line-height:1.6}
-  .hero-cta{display:flex;gap:13px;justify-content:center;margin-top:32px}
-  .stats{display:flex;justify-content:center;gap:38px;margin-top:34px;flex-wrap:wrap}
-  .stat{text-align:center}
-  .stat .v{font-family:var(--fd);font-weight:800;font-size:24px;color:var(--ink-2);line-height:1}
-  .stat .k{font-size:12px;color:var(--faint);margin-top:5px}
-  .stat.bright .v{font-size:38px;color:var(--ink)}
-  .stat.bright .k{color:var(--muted)}
+section{padding:56px 0;border-top:1px solid var(--line)}
+section:nth-of-type(even){background:var(--paper-2)}
+.sec-h{font-weight:800;font-size:clamp(28px,4.5vw,40px);line-height:1.05;margin-bottom:10px}
+.sec-d{color:var(--ink-2);max-width:760px;margin:0 0 28px}
+.tgroup{font-weight:700;font-size:18px;margin:28px 0 12px;letter-spacing:-.01em}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:18px}
+.card{min-width:0;overflow-wrap:anywhere;background:var(--card);border:2px solid var(--border);border-radius:var(--r-lg);box-shadow:var(--sh-card);padding:20px}
+.card h3{font-weight:700;font-size:17px;margin-bottom:6px}
+.card p{margin:0;color:var(--ink-2);font-size:15px}
+.card ul{margin:8px 0 0;padding-left:18px;color:var(--ink-2);font-size:15px}
+.card a.more{display:inline-flex;align-items:center;min-height:44px;font-weight:600}
+.layers{counter-reset:l;list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.layers li{overflow-wrap:anywhere;counter-increment:l;display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:start;background:var(--card);border:2px solid var(--border);border-radius:var(--r);padding:14px 16px;box-shadow:var(--sh-card)}
+.layers li::before{content:counter(l);font-family:var(--font-display);font-weight:900;font-size:28px;line-height:1;color:var(--ink)}
+.layers li.marketing{background:var(--paper-2)}
+.layers li.marketing a{color:var(--ink-2);text-decoration:underline}
+.layers b{font-family:var(--font-display);font-size:17px}
+.layers span{display:block;color:var(--ink-2);font-size:15px}
 
-  .stage{position:relative;margin:50px auto 0;max-width:940px}
-  /* POP #1: the glowing light-mode dashboard */
-  .shot.lightui{background:var(--card);border:1px solid var(--line-2);border-radius:var(--r-lg);overflow:hidden;text-align:left;position:relative;z-index:2;box-shadow:0 28px 64px -20px rgba(0,0,0,.75),inset 0 1px 0 rgba(255,253,248,.6)}
-  .shot-top{display:flex;align-items:center;gap:11px;padding:13px 18px;border-bottom:1px solid var(--line)}
-  .dots{display:flex;gap:6px}.dots i{width:11px;height:11px;border-radius:50%;background:var(--line-2)}.dots i:first-child{background:var(--red)}
-  .shot-top .t{font-weight:600;font-size:14px}
-  .shot-top .live{margin-left:auto;display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:600;color:var(--ok);background:var(--ok-soft);padding:4px 11px;border-radius:99px}
-  .shot-top .live .d{width:7px;height:7px;border-radius:50%;background:var(--ok);animation:pulse 1.7s infinite}
-  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
-  .steps{display:flex;align-items:center;padding:20px 24px 4px}
-  .stp{display:flex;flex-direction:column;align-items:center;gap:8px;flex:0 0 auto;z-index:2}
-  .stp .ring{width:28px;height:28px;border-radius:50%;background:var(--card);border:2px solid var(--line-2);display:grid;place-items:center;font-size:12px;font-weight:700;color:var(--faint)}
-  .stp.done .ring{background:var(--ink);border-color:var(--ink);color:var(--card)}
-  .stp.now .ring{border-color:var(--red);color:var(--red);box-shadow:0 0 0 5px var(--red-soft)}
-  .stp .lab{font-size:12px;color:var(--muted);white-space:nowrap}.stp.now .lab{color:var(--ink);font-weight:600}
-  .seg{flex:1;height:2px;background:var(--line-2);margin:0 6px;position:relative;top:-18px;border-radius:2px;overflow:hidden}
-  .seg.fill{background:var(--ink)}
-  .seg.active::after{content:"";position:absolute;inset:0;background:var(--red);transform-origin:left;animation:grow 2.4s ease-in-out infinite}
-  @keyframes grow{0%{transform:scaleX(0)}60%,100%{transform:scaleX(1)}}
-  .avrow{display:grid;grid-template-columns:1fr auto auto;gap:14px;align-items:center;padding:13px 24px;border-top:1px solid var(--line);font-size:13.5px}
-  .avrow .nm{font-weight:500}.avrow .meta{font-size:11.5px;color:var(--faint);margin-top:2px}
-  .avrow .qty{font-variant-numeric:tabular-nums;color:var(--ink-2)}
-  .pill{font-size:11px;font-weight:700;padding:4px 11px;border-radius:99px}
-  .p-ok{color:var(--ok);background:var(--ok-soft)}.p-out{color:var(--t-out);background:var(--out-soft)}.p-warn{color:var(--warn);background:var(--warn-soft)}.p-rep{color:var(--rep);background:var(--rep-soft)}
-  .doodle{position:absolute;z-index:3;pointer-events:none}
-  .annot{font-family:'Kalam',cursive;font-weight:700;font-size:18px;color:var(--red);line-height:1.1;transform:rotate(-6deg)}
-  .d-circle{position:absolute;z-index:3;pointer-events:none}
+pre{max-width:100%;overflow-x:auto}
 
-  .logos{text-align:center}
-  .logos p{font-family:'Kalam',cursive;font-weight:700;font-size:16px;color:var(--muted);margin-bottom:18px}
-  .logorow{display:flex;justify-content:center;gap:42px;flex-wrap:wrap;font-family:var(--fd);font-weight:800;font-size:19px;color:var(--ink-2);opacity:.6;letter-spacing:-.01em}
+/* tables */
+.table-wrap{overflow-x:auto;border:2px solid var(--border);border-radius:var(--r);background:var(--card);box-shadow:var(--sh-card)}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{text-align:left;padding:10px 12px;border-top:1px solid var(--line);vertical-align:middle}
+thead th{border-top:none;color:var(--ink-2);font-weight:600;background:var(--paper-2)}
+tbody th{font-weight:500}
+.sw{display:inline-block;width:22px;height:22px;border-radius:6px;vertical-align:middle;margin-right:8px;border:1px solid var(--line-2)}
+.contrast td{white-space:nowrap}
+.contrast td span{font-weight:600}
+.contrast td.na span{color:var(--muted);font-weight:400;font-style:italic}
+.cm{padding:12px;border-radius:var(--r-lg);background:var(--paper);color:var(--ink);margin-bottom:18px}
+.pill{display:inline-block;border-radius:999px;padding:4px 10px;font-size:11px;font-weight:700}
+.act{display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border-radius:999px;background:var(--action-red);color:#fff;font-weight:600}
+.ctl{display:inline-block;min-width:88px;padding:8px 10px;border:2px solid var(--input);border-radius:var(--r);background:var(--card);color:var(--ink)}
 
-  .sec-head{text-align:center;max-width:640px;margin:0 auto 48px;position:relative}
-  .kicker{font-family:'Kalam',cursive;font-weight:700;font-size:17px;color:var(--red);margin-bottom:8px}
-  .sec-head h2{font-family:var(--fd);font-weight:800;font-size:44px;letter-spacing:-.03em;line-height:1.04}
-  .sec-head p{color:var(--ink-2);font-size:17px;margin-top:14px;line-height:1.6}
+/* type */
+.fam{display:grid;gap:14px}
+.fam .card .sample{font-size:28px;line-height:1.15;margin:8px 0}
+.f-display{font-family:var(--font-display);font-weight:800;letter-spacing:-.02em}
+.f-sans{font-family:var(--font-sans)}
+.f-mono{font-family:var(--font-mono);font-variant-numeric:tabular-nums}
+.f-hand{font-family:var(--font-hand);font-weight:700;color:var(--red-text)}
+.f-word{font-family:var(--font-wordmark);font-weight:700}
 
-  .how{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;position:relative}
-  .step-c{background:var(--card);border:2px solid var(--line-2);border-radius:var(--r-lg);padding:22px 20px;box-shadow:var(--sh-card);position:relative}
-  .step-c .n{font-family:var(--fd);font-weight:900;font-size:40px;color:var(--red);line-height:.9}
-  .step-c h4{font-family:var(--fd);font-weight:700;font-size:18px;margin:10px 0 6px;letter-spacing:-.01em}
-  .step-c p{font-size:13.5px;color:var(--muted);line-height:1.55}
-  .step-c .ar{position:absolute;right:-26px;top:42%;z-index:4;color:var(--line-2)}
+/* identity */
+.marks{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:18px;align-items:stretch}
+.mark{display:grid;place-items:center;gap:10px;padding:22px;background:var(--card);border:2px solid var(--border);border-radius:var(--r-lg);box-shadow:var(--sh-card);text-align:center}
+.mark img{max-width:100%;height:auto}
+.mark figcaption{font-size:13.5px;color:var(--ink-2)}
+.mark.page{background:#FFFFFF;color:#1A1715}
+.mark.page figcaption{color:#1A1715}
+.light .labs{display:none}
 
-  .fgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-  .feat{background:var(--card);border:2px solid var(--line-2);border-radius:var(--r-lg);overflow:hidden;transition:.16s;box-shadow:var(--sh-card)}
-  .feat:hover{transform:translateY(-3px);box-shadow:var(--sh-hover),var(--lit)}
-  .feat.live{background:var(--elev);box-shadow:var(--sh-card),var(--lit)}
-  .fhead{display:flex;align-items:center;gap:11px;padding:16px 18px 0}
-  .patch{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;border:2px solid #fffdf8;box-shadow:var(--sh-stk);flex:none}
-  .fhead h4{font-family:var(--fd);font-weight:700;font-size:17px;letter-spacing:-.01em}
-  .livetag{margin-left:auto;font-size:11px;font-weight:700;color:var(--ok);background:var(--ok-soft);padding:3px 8px;border-radius:99px;display:inline-flex;gap:5px;align-items:center}
-  .livetag .d{width:6px;height:6px;border-radius:50%;background:var(--ok);animation:pulse 1.7s infinite}
-  .mini{height:118px;background:var(--paper);border-top:2px solid var(--line);border-bottom:2px solid var(--line);margin-top:15px;padding:13px 16px 0;overflow:hidden}
-  .feat.live .mini{background:var(--paper-2)}
-  .feat .body{padding:14px 18px 20px}.feat p{font-size:13.5px;color:var(--muted);line-height:1.55}
-  .mchip{display:flex;gap:6px;align-items:center;font-size:11px;color:var(--ink-2);background:var(--card);border:1px solid var(--line-2);border-radius:8px;padding:7px 9px;margin-bottom:6px}
-  .mchip.flag{color:var(--t-out);border-color:var(--red)}
-  .mbar{height:7px;border-radius:99px;background:var(--line);overflow:hidden;margin-top:5px}.mbar i{display:block;height:100%}
-  .mrow{display:flex;align-items:center;justify-content:space-between;background:var(--card);border:1px solid var(--line-2);border-radius:8px;padding:7px 10px;margin-bottom:6px;font-size:11.5px}
-  .mtag{font-size:11px;font-weight:700;padding:3px 8px;border-radius:99px}
-  .gantt{display:flex;flex-direction:column;gap:7px}
-  .gline{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--muted)}
-  .gtrack{flex:1;height:13px;border-radius:5px;background:var(--card);border:1px solid var(--line-2);position:relative}
-  .gbar{position:absolute;top:1px;bottom:1px;border-radius:4px}
-  .doc{background:var(--card);border:1px solid var(--line-2);border-radius:8px;padding:10px;font-size:11px}
-  .doc .l{height:6px;background:var(--line);border-radius:99px;margin:5px 0}
+/* Binder page sample */
+.binder{grid-template-columns:minmax(0,1fr);background:#0E0C0A;border-radius:var(--r-lg);padding:22px;display:grid;gap:12px}
+.page-sheet{background:#FFFFFF;color:#1A1715;border-radius:6px;padding:18px 20px;font-family:Helvetica,Arial,sans-serif;font-size:15px;line-height:1.6;max-width:520px}
+.cue{display:inline-flex;align-items:center;gap:6px;border:1.5px solid var(--c);border-radius:999px;padding:1px 9px;font-family:var(--font-mono);font-size:13px;color:#1A1715;background:#FFFFFF}
+.cue.standby{border-style:dashed}
+.cue i{font-style:normal;font-weight:700}
 
-  .showcase{background:var(--card);border:2px solid var(--line-2);border-radius:var(--r-lg);box-shadow:var(--sh-card);overflow:hidden}
-  .sc-grid{display:grid;grid-template-columns:1fr 1.25fr;align-items:stretch}
-  .sc-copy{padding:44px 40px;position:relative}.sc-copy .kicker{text-align:left}
-  .sc-copy h3{font-family:var(--fd);font-weight:800;font-size:30px;letter-spacing:-.02em;line-height:1.1}
-  .sc-copy p{color:var(--muted);font-size:15.5px;margin-top:14px;line-height:1.6}
-  .sc-metric{margin-top:20px;font-family:var(--fd);font-weight:800;font-size:15px;color:var(--ink-2)}
-  .sc-metric b{font-size:30px;color:var(--ink);display:block;line-height:1}
-  .sc-vis{background:var(--paper);border-left:2px solid var(--line);padding:22px;position:relative}
-  .tl-head{display:flex;padding-left:96px;margin-bottom:8px}.tl-head span{flex:1;font-size:11px;color:var(--faint);text-align:center}
-  .tl-row{display:flex;align-items:center;gap:10px;margin-bottom:9px}
-  .tl-name{width:86px;display:flex;align-items:center;gap:8px;font-size:12px;font-weight:500}
-  .av{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:11px;font-weight:700;color:#fff;flex:none}
-  .tl-track{flex:1;height:26px;border-radius:6px;background:var(--card);border:1px solid var(--line-2);position:relative}
-  .shift{position:absolute;top:3px;bottom:3px;border-radius:5px;display:flex;align-items:center;padding:0 8px;font-size:11px;font-weight:600;color:#fff;white-space:nowrap;overflow:hidden}
-  .sc-doodle{position:absolute;right:18px;bottom:14px;font-family:'Kalam',cursive;font-weight:700;font-size:15px;color:var(--red);transform:rotate(-5deg)}
+footer{padding:40px 0 64px;color:var(--ink-2);font-size:14px;border-top:1px solid var(--line)}
 
-  /* POP #3: bounded inverted-cream testimonial panel (NOT full-bleed) */
-  .qwrap{max-width:860px;margin:0 auto}
-  .qbox{text-align:center;background:#F5EFE2;color:#1D1A15;border-radius:var(--r-lg);padding:50px 56px;box-shadow:inset 0 0 0 1px rgba(255,253,248,.5)}
-  .qbox .mark{font-family:var(--fd);font-weight:900;font-size:74px;line-height:.5;color:#C12229;height:34px}
-  .qbox .tt{font-family:var(--fd);font-weight:800;font-size:30px;line-height:1.24;letter-spacing:-.02em;margin:6px auto 0;max-width:660px}
-  .uline{position:relative;white-space:nowrap}
-  .uline svg{position:absolute;left:-3%;bottom:-12px;width:106%;height:14px}
-  .qbox .who{margin-top:22px;font-size:14px;color:#665E4F}.qbox .who b{color:#1D1A15;font-weight:600}
-
-  .price{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:center}
-  .plan{background:var(--card);border:2px solid var(--line-2);border-radius:var(--r-lg);padding:28px 26px;box-shadow:var(--sh-card);position:relative}
-  .plan .pn{font-family:var(--fd);font-weight:700;font-size:21px}
-  .plan .pp{font-family:var(--fd);font-weight:800;font-size:44px;letter-spacing:-.02em;margin-top:10px;line-height:1}
-  .plan .pp small{font-family:'Hanken Grotesk';font-weight:500;font-size:14px;color:var(--muted)}
-  .plan .pd{font-size:13.5px;color:var(--muted);margin:8px 0 18px;min-height:38px}
-  .plan ul{list-style:none;margin-top:18px;display:flex;flex-direction:column;gap:11px}
-  .plan li{display:flex;gap:9px;font-size:13.5px;color:var(--ink-2)}.plan li .ck{color:var(--ok);font-weight:700;flex:none}
-  .plan .btn{width:100%;text-align:center;margin-top:4px}
-  /* POP #2: the lone cream spotlight tier */
-  .plan.cream{background:#FFFDF8;color:#1D1A15;border-color:#FFFDF8;transform:translateY(-6px);box-shadow:0 9px 0 #0C0A08,inset 0 0 0 1px rgba(255,253,248,.6)}
-  .plan.cream .pp small{color:#665E4F}.plan.cream .pd{color:#665E4F}.plan.cream li{color:#4B4539}.plan.cream li .ck{color:#007D36}
-  .plan.cream .tab{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--red);color:#fff;font-family:var(--fd);font-weight:700;font-size:12px;padding:4px 14px;border-radius:99px;white-space:nowrap}
-  .plan.cream .note{font-family:'Kalam',cursive;font-weight:400;font-size:14px;color:#1D1A15;margin-top:14px;transform:rotate(-3deg)}
-
-  .integ{text-align:center}
-  .integ .row{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:8px}
-  .chiplogo{background:var(--card);border:2px solid var(--line-2);border-radius:99px;padding:10px 18px;font-family:var(--fd);font-weight:700;font-size:15px;color:var(--muted)}
-  .chiplogo:hover{color:var(--ink);border-color:var(--line)}
-
-  .faq{max-width:760px;margin:0 auto}
-  .faq details{background:var(--card);border:2px solid var(--line-2);border-radius:var(--r);margin-bottom:12px;box-shadow:var(--sh-card);overflow:hidden}
-  .faq details[open]{background:var(--elev);box-shadow:var(--sh-card),var(--lit)}
-  .faq summary{list-style:none;cursor:pointer;padding:18px 22px;font-family:var(--fd);font-weight:700;font-size:17px;display:flex;justify-content:space-between;align-items:center}
-  .faq summary::-webkit-details-marker{display:none}
-  .faq summary .pm{font-size:24px;color:var(--red);transition:.2s;line-height:1}
-  .faq details[open] summary .pm{transform:rotate(45deg)}
-  .faq .ans{padding:0 22px 20px;font-size:14.5px;color:var(--ink-2);line-height:1.6}
-
-  /* Final CTA: the red beacon (chroma accent, used once) */
-  .cta-box{position:relative;background:var(--red);color:#fff;border-radius:24px;padding:66px 40px;text-align:center;overflow:hidden;box-shadow:0 5px 0 var(--red-700)}
-  .cta-box h2{font-family:var(--fd);font-weight:800;font-size:46px;letter-spacing:-.03em;line-height:1.03}
-  .cta-box p{font-size:17px;margin:14px auto 28px;max-width:440px;opacity:.94}
-  .btn-cream{background:#F5EFE2;color:#1d1a15;border-color:#F5EFE2;box-shadow:0 3px 0 rgba(0,0,0,.3)}.btn-cream:hover{transform:translateY(-1px)}
-  .cta-stk{position:absolute;z-index:1}
-
-  footer{border-top:1px solid var(--line);padding:54px 0 40px;background:var(--paper)}
-  .foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:30px}
-  .foot-brand p{font-size:13.5px;color:var(--muted);max-width:240px;margin-top:10px}
-  .foot-col h5{font-family:var(--fd);font-weight:700;font-size:14px;margin-bottom:14px}
-  .foot-col a{display:block;font-size:13.5px;color:var(--muted);margin-bottom:9px}.foot-col a:hover{color:var(--ink)}
-  .foot-bot{display:flex;justify-content:space-between;align-items:center;margin-top:40px;padding-top:22px;border-top:1px solid var(--line);font-size:13px;color:var(--faint);flex-wrap:wrap;gap:12px}
-
-  @media(prefers-reduced-motion:reduce){.seg.active::after{animation:none;transform:scaleX(.5)}.live .d,.livetag .d{animation:none}}
-  @media(max-width:880px){
-    h1{font-size:46px}.fgrid,.how,.price{grid-template-columns:1fr}.navlinks{display:none}
-    .stk{display:none}.doodle,.d-circle{display:none}.steps{overflow-x:auto}
-    .sc-grid{grid-template-columns:1fr}.sc-vis{border-left:none;border-top:2px solid var(--line)}
-    .step-c .ar{display:none}.foot-grid{grid-template-columns:1fr 1fr}.plan.cream{transform:none}
-  }
+@media (max-width:760px){
+  .wrap{padding:0 20px}
+  .toc{margin-left:0;width:100%;flex-wrap:wrap}
+  .toc a{flex-shrink:0}
+  .top .wrap{padding-top:8px;padding-bottom:8px}
+  section{padding:40px 0}
+  .lead{font-size:17px}
+}
+@media (max-width:359px){ .wrap{padding:0 16px} }
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  html{scroll-behavior:auto}
+  .btn-primary:hover,.btn-primary:active{transform:none}
+}
 </style>
 </head>
 <body>
-
-<nav>
-  <div class="wrap nav-in">
-    <a href="#" class="brand">
-      <svg viewBox="0 0 1258 450.7" aria-label="RVLT"><g fill="#E0363D"><path d="M0,42C0,21.94,16.92,5.64,36.98,5.64h106.56c82.12,0,137.91,58.92,137.91,131.64,0,60.18-37.61,101.55-81.49,112.21l-8.15.63,116.59,139.16c6.9,8.15,8.78,15.67,8.78,24.45,0,20.06-16.3,36.36-36.36,36.36-11.28,0-21.31-4.39-28.83-13.79l-146.68-174.26c-5.01-6.27-11.28-16.3-11.28-28.83,0-18.81,15.04-33.22,33.22-33.22h13.79c37.61,0,63.94-28.21,63.94-62.68s-26.33-63.31-63.94-63.31h-67.07v339.12c0,20.06-16.92,36.98-36.98,36.98S0,433.15,0,413.09V42Z"/><path d="M366.7,36.98c0-20.69,16.92-36.98,36.98-36.98s36.98,16.3,36.98,36.98v282.08L697.67,12.54c6.27-8.15,16.92-12.54,26.33-12.54,19.43,0,34.48,15.04,34.48,34.48,0,6.9-1.25,14.42-8.15,21.94l-317.18,378.62c-8.78,11.28-19.43,15.04-29.46,15.04-20.06,0-36.98-16.92-36.98-36.98V36.98Z"/><path d="M804.85,36.98c0-20.69,16.92-36.98,36.98-36.98s36.98,16.3,36.98,36.98v338.5h132.26c18.81,0,33.85,15.04,33.85,34.48s-15.04,34.48-33.85,34.48h-169.25c-20.06,0-36.98-16.92-36.98-36.98V36.98Z"/><path d="M1100.72,73.97h-83.37c-19.43,0-34.48-15.04-34.48-34.48s15.04-33.85,34.48-33.85h240.71c19.43,0,34.48,15.04,34.48,33.85s-15.04,34.48-34.48,34.48h-83.37v339.12c0,20.06-16.92,36.98-36.98,36.98s-36.98-16.92-36.98-36.98V73.97Z"/></g></svg>
-      <span class="fl">Flow</span>
-    </a>
-    <div class="navlinks"><a href="#how">How it works</a><a href="#features">What's included</a><a href="#why">Why Flow</a><a href="#faq">FAQ</a></div>
-    <div class="nav-cta"><a href="#" class="btn btn-ghost">Sign in</a><a href="#" class="btn btn-primary">Book a demo</a></div>
-  </div>
-</nav>
-
-<!-- HERO — POP #1 glowing dashboard + amber stage-wash + 1 bright stat -->
-<header class="hero">
-  <div class="glow"></div>
-  <!-- gear sticker collage — glows on the espresso canvas -->
-  <div class="stk" style="left:2%;top:80px;width:80px;height:80px;background:var(--red);transform:rotate(-11deg)" title="Road case">
-    <svg width="48" height="48" viewBox="0 0 48 48"><g fill="none" stroke="#fffdf8" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"><rect x="7" y="13" width="34" height="23" rx="2.5"/><path d="M7 21h34"/><rect x="9.5" y="10.5" width="6" height="3" rx="1"/><rect x="32.5" y="10.5" width="6" height="3" rx="1"/><rect x="20" y="24" width="8" height="5" rx="1.5"/><circle cx="14" cy="40" r="2.6"/><circle cx="34" cy="40" r="2.6"/></g></svg>
-  </div>
-  <div class="stk round" style="left:7%;top:256px;width:74px;height:74px;background:var(--amber);transform:rotate(8deg)" title="PAR light">
-    <svg width="44" height="44" viewBox="0 0 48 48"><g fill="none" stroke="#fffdf8" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"><rect x="13" y="11" width="22" height="20" rx="3"/><circle cx="24" cy="21" r="6"/><path d="M13 18l-4-2M13 24l-4 2M24 31v6M17 39h14"/></g></svg>
-  </div>
-  <div class="stk" style="left:2%;top:428px;width:78px;height:78px;background:var(--blue);transform:rotate(7deg)" title="Flow the mascot">
-    <svg width="46" height="46" viewBox="0 0 48 48"><g fill="#fffdf8"><rect x="11" y="27" width="26" height="7" rx="2"/><rect x="16" y="34" width="16" height="5" rx="1.5"/><rect x="16" y="9" width="16" height="17" rx="6"/></g><circle cx="20.5" cy="17" r="2.6" fill="#2a65d0"/><circle cx="27.5" cy="17" r="2.6" fill="#2a65d0"/><circle cx="21.3" cy="16.2" r=".9" fill="#fffdf8"/><circle cx="28.3" cy="16.2" r=".9" fill="#fffdf8"/><path d="M14 26l-4-5M34 26l4-5" stroke="#fffdf8" stroke-width="2.4" stroke-linecap="round" fill="none" opacity=".5"/></svg>
-  </div>
-  <div class="stk round" style="right:5%;top:72px;width:72px;height:72px;background:var(--dark);transform:rotate(-9deg)" title="Gaff tape"><span class="stk-txt" style="font-size:14px">GAFF</span></div>
-  <div class="stk" style="right:8%;top:250px;width:76px;height:76px;background:var(--green);transform:rotate(10deg)" title="XLR cable">
-    <svg width="44" height="44" viewBox="0 0 48 48"><g fill="none" stroke="#fffdf8" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="14" r="8"/><circle cx="21" cy="13" r="1.5" fill="#fffdf8"/><circle cx="27" cy="13" r="1.5" fill="#fffdf8"/><circle cx="24" cy="17.5" r="1.5" fill="#fffdf8"/><path d="M24 22c0 8-12 6-12 13s13 4 13 10"/></g></svg>
-  </div>
-  <div class="stk round" style="right:2%;top:424px;width:68px;height:68px;background:var(--red);transform:rotate(6deg)" title="Access pass"><span class="stk-txt" style="font-size:15px">AAA</span></div>
-
-  <div class="wrap hero-in">
-    <div class="kick">built for production companies, by a production company</div>
-    <h1>Flow wasn't built to sell software.<br>It was built to <span class="uline red">solve problems.<svg viewBox="0 0 300 18" preserveAspectRatio="none" style="height:18px;bottom:-16px"><path d="M3 11 C 60 4, 130 4, 175 9 S 250 15, 297 6" fill="none" stroke="#E0363D" stroke-width="5" stroke-linecap="round"/></svg></span></h1>
-    <p class="sub">RVLT Flow was built inside Two Toned Productions to fix the problems we hit running real AV, theatre, hire and event jobs: gear clashes, quote changes, crew gaps, missing accessories, compliance checks, damaged returns and all the tiny operational details that make or break a show.</p>
-    <div class="hero-cta"><a href="#" class="btn btn-primary btn-lg btn-halo">See how Flow works</a><a href="#" class="btn btn-line btn-lg">Book a workflow demo</a></div>
-    <div class="stats">
-      <div class="stat bright"><div class="v">99.9<span class="red">%</span></div><div class="k">gear accounted for</div></div>
-      <div class="stat"><div class="v">0</div><div class="k">double-bookings / mo</div></div>
-      <div class="stat"><div class="v">3.2d</div><div class="k">quote → invoice</div></div>
-    </div>
-  </div>
-
+<a class="skip" href="#main">Skip to content</a>
+<header class="top">
   <div class="wrap">
-    <div class="stage">
-      <div class="annot doodle" style="left:-1%;top:120px;width:120px;text-align:right">caught before<br>the truck leaves
-        <svg width="60" height="40" viewBox="0 0 60 40" style="position:absolute;right:-46px;top:18px"><path d="M2 6 C 30 0, 48 14, 54 30" fill="none" stroke="#E0363D" stroke-width="2.5" stroke-linecap="round"/><path d="M46 28 L 55 32 L 50 22" fill="none" stroke="#E0363D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </div>
-      <div class="annot doodle" style="right:-5%;top:250px;transform:rotate(5deg)">one change,<br>everywhere</div>
-
-      <div class="shot lightui">
-        <div class="shot-top"><span class="dots"><i></i><i></i><i></i></span><span class="t">Enmore Theatre — Weekend Production</span><span class="live"><span class="d"></span>Prepping now</span></div>
-        <div class="steps">
-          <div class="stp done"><span class="ring">✓</span><span class="lab">Enquiry</span></div><div class="seg fill"></div>
-          <div class="stp done"><span class="ring">✓</span><span class="lab">Quote</span></div><div class="seg fill"></div>
-          <div class="stp now"><span class="ring">3</span><span class="lab">Confirmed</span></div><div class="seg active"></div>
-          <div class="stp"><span class="ring">4</span><span class="lab">Prep</span></div><div class="seg"></div>
-          <div class="stp"><span class="ring">5</span><span class="lab">On site</span></div><div class="seg"></div>
-          <div class="stp"><span class="ring">6</span><span class="lab">Return</span></div>
-        </div>
-        <div class="avrow"><div><div class="nm">Yamaha CL5 — FOH console</div><div class="meta">Reserved for Saturday · due back Monday 10:00</div></div><span class="qty">Available</span><span class="pill p-ok">Ready</span></div>
-        <div class="avrow"><div><div class="nm">Robe MegaPointe — moving head</div><div class="meta">2 short after another hold converted</div></div><span class="qty">Needs action</span><span class="pill p-out">Short</span></div>
-        <div class="avrow"><div><div class="nm">32A 3-phase loom</div><div class="meta">Test tag expires before load-out</div></div><span class="qty">Compliance</span><span class="pill p-warn">Check</span></div>
-      </div>
-    </div>
+    <a class="brand" href="./" aria-label="RVLT design language, home">
+      <img src="design-system/assets/Logos/rvlt-mark.svg" alt="" width="50" height="18">
+      <b>design language</b>
+    </a>
+    <span class="ver" title="DESIGN.md and tokens.json version"><!-- generated:version -->v1.3.0<!-- /generated:version --></span>
+    <nav class="toc" aria-label="Sections">
+      <a href="#authority">Authority</a><a href="#foundations">Foundations</a><a href="#tokens">Tokens</a><a href="#typography">Type</a><a href="#identity">Identity</a><a href="#components">Components</a><a href="#product-layers">Products</a><a href="#using">Using</a>
+    </nav>
+    <button class="toggle" type="button" id="theme" aria-pressed="false">Paper theme</button>
   </div>
 </header>
 
-<!-- LOGOS — rest valley -->
-<div class="band b1 logos"><div class="wrap">
-  <p>built from real production work, not imaginary SaaS personas</p>
-  <div class="logorow"><span>Dry hire</span><span>Full production</span><span>Theatre</span><span>AV</span><span>Events</span></div>
-</div></div>
-<div class="divider"></div>
-
-<!-- HOW — paper-2 step -->
-<div class="band b2"><div class="wrap" id="how">
-  <div class="sec-head"><div class="kicker">built from the actual job flow</div><h2>From first enquiry to the gear coming home.</h2><p>Flow follows the path a production job actually takes: enquiry, quote, confirmation, prep, load-out, show, return, repair, invoice and notes for next time.</p></div>
-  <div class="how">
-    <div class="step-c"><div class="n">1</div><h4>Quote the job</h4><p>Build quotes with gear, kits, labour, suppliers and production notes together — because real jobs are not just a list of SKUs.</p><svg class="ar" width="26" height="26" viewBox="0 0 26 26"><path d="M3 13h18M15 6l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-    <div class="step-c"><div class="n">2</div><h4>Lock the plan</h4><p>Confirmed jobs reserve gear, surface clashes, carry venue details and turn the quote into prep work for the team.</p><svg class="ar" width="26" height="26" viewBox="0 0 26 26"><path d="M3 13h18M15 6l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-    <div class="step-c"><div class="n">3</div><h4>Run the floor</h4><p>Scan gear out, track returns, flag faults, manage substitutions and keep the warehouse aligned with what the office promised.</p><svg class="ar" width="26" height="26" viewBox="0 0 26 26"><path d="M3 13h18M15 6l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-    <div class="step-c"><div class="n">4</div><h4>Learn from it</h4><p>Close the job with return status, maintenance notes, missing items, costs and the weird little lessons you'll need next time.</p></div>
+<main id="main">
+<div class="hero"><div class="wrap">
+  <p class="eyebrow">built for production companies, by a production company</p>
+  <h1>One design language for RVLT Labs, RVLT Flow and RVLT Binder.</h1>
+  <p class="lead">This is the brand source of truth: the rules, the machine tokens with their measured contrast, the type, the identity assets, the components and how each product departs from the core. <a href="https://github.com/RVLT-Labs/rvlt-designlanguage/blob/main/DESIGN.md">DESIGN.md</a> is the full spec; this page renders it.</p>
+  <div class="chips">
+    <a class="btn btn-primary" href="design-system/">Open the component gallery</a>
+    <a class="btn btn-line" href="examples/flows/">Reference compositions</a>
+    <a class="btn btn-line" href="https://github.com/RVLT-Labs/rvlt-designlanguage/blob/main/DESIGN.md">Read DESIGN.md</a>
   </div>
 </div></div>
 
-<!-- FEATURES — paper, one card lifted to --elev -->
-<div class="band b1"><div class="wrap" id="features">
-  <div class="sec-head"><div class="kicker">what Flow connects</div><h2>Production work does not happen in neat software-shaped boxes.</h2><p>A job is never just a quote. Or a gear list. Or a calendar entry. It is all of those things changing at once while the truck is being packed and someone is asking if you can "just add a couple of lights." Flow connects the parts that production companies actually manage.</p></div>
-  <div class="fgrid">
-    <div class="feat">
-      <div class="fhead"><span class="patch" style="background:var(--red)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M4 4v16M8 4v16M12 4v16M16 4v16M20 4v16"/></svg></span><h4>Gear registry</h4></div>
-      <div class="mini"><div class="mchip"><span style="color:var(--ok)">✓</span> Scanned · CL5 #01 — ready for prep</div><div class="mchip"><span style="color:var(--ok)">✓</span> Scanned · QLXD handheld kit — complete</div><div class="mchip flag">! Flag · MegaPointe #08 — fault on return</div></div>
-      <div class="body"><p>Track assets, models, kits and accessories across dry hire and full production work. Know what you own, where it lives, what it belongs to and whether it can actually go on the next job.</p></div>
-    </div>
-    <div class="feat live">
-      <div class="fhead"><span class="patch" style="background:var(--blue)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M4 19V9M10 19V5M16 19v-7M22 19H2"/></svg></span><h4>Live availability</h4><span class="livetag"><span class="d"></span>live</span></div>
-      <div class="mini"><div style="font-size:11px;color:var(--muted)">Consoles <span style="float:right;color:var(--ok);font-weight:700">6 free</span></div><div class="mbar"><i style="width:60%;background:var(--ok)"></i></div><div style="font-size:11px;color:var(--muted);margin-top:8px">Moving heads <span style="float:right;color:var(--t-out);font-weight:700">−2</span></div><div class="mbar"><i style="width:100%;background:var(--red)"></i></div><div style="font-size:11px;color:var(--muted);margin-top:8px">Wireless kits <span style="float:right;font-weight:700">73%</span></div><div class="mbar"><i style="width:73%;background:var(--ink)"></i></div></div>
-      <div class="body"><p>Availability updates from quotes, holds, confirmed projects, maintenance and returns — so you catch shortages before the client catches you.</p></div>
-    </div>
-    <div class="feat">
-      <div class="fhead"><span class="patch" style="background:var(--green)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linejoin="round"><path d="M14 3v5h5M14 3l5 5v11a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/></svg></span><h4>Projects from quote to close</h4></div>
-      <div class="mini"><div class="doc"><div style="display:flex;justify-content:space-between;font-weight:700"><span>Job #1042</span><span class="red">Enmore Theatre</span></div><div class="l" style="width:80%"></div><div class="l" style="width:60%"></div><div style="display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-top:6px"><span>Gear · Crew · Logistics</span><span>PDF →</span></div></div></div>
-      <div class="body"><p>Manage enquiries, quotes, job details, internal notes, prep lists and close-out records in one place. The job becomes the source of truth, not a folder full of PDFs and regret.</p></div>
-    </div>
-    <div class="feat">
-      <div class="fhead"><span class="patch" style="background:var(--amber)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span><h4>People and suppliers</h4></div>
-      <div class="mini"><div class="gantt"><div class="gline"><span style="width:54px">Crew</span><span class="gtrack"><span class="gbar" style="left:8%;width:46%;background:var(--red)"></span></span></div><div class="gline"><span style="width:54px">Suppliers</span><span class="gtrack"><span class="gbar" style="left:30%;width:55%;background:var(--blue)"></span></span></div><div class="gline"><span style="width:54px">Venues</span><span class="gtrack"><span class="gbar" style="left:14%;width:30%;background:var(--green)"></span></span></div></div></div>
-      <div class="body"><p>Keep clients, venues, freelancers, staff and suppliers connected to the work they're part of. See availability, skills, contacts, notes and history without asking three group chats.</p></div>
-    </div>
-    <div class="feat">
-      <div class="fhead"><span class="patch" style="background:var(--purple)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><path d="M12 3l7 4v5c0 5-3.5 8-7 9-3.5-1-7-4-7-9V7z"/></svg></span><h4>Compliance without archaeology</h4></div>
-      <div class="mini"><div class="mrow">Console SD12 <span class="mtag p-ok">Pass</span></div><div class="mrow">Cable loom 32A <span class="mtag p-warn">Due</span></div><div class="mrow">Dimmer rack <span class="mtag p-ok">Pass</span></div></div>
-      <div class="body"><p>Track inspection dates, test tags, certificates and compliance status. Items that are damaged, expired or unsafe cannot quietly sneak onto a job.</p></div>
-    </div>
-    <div class="feat">
-      <div class="fhead"><span class="patch" style="background:var(--dark)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M21 12a9 9 0 1 1-3-6.7M21 4v5h-5"/></svg></span><h4>Maintenance</h4></div>
-      <div class="mini"><div class="mrow">MegaPointe #08 <span class="mtag p-rep">In repair</span></div><div class="mrow">Lens kit #2 <span class="mtag p-rep">Awaiting part</span></div><div class="mrow" style="color:var(--muted)">Unavailable until signed off</div></div>
-      <div class="body"><p>Faults raised on return become workshop work, not memory tests. Damaged gear drops out of availability until someone fixes it and signs it back in.</p></div>
+<section id="authority" aria-labelledby="authority-h"><div class="wrap">
+  <h2 class="sec-h" id="authority-h">Which source wins</h2>
+  <p class="sec-d">One authority map, highest first. A higher layer always wins; fix the lower one in the same change. Machine copy: <a href="authority.json">authority.json</a>. Full text: <a href="https://github.com/RVLT-Labs/rvlt-designlanguage/blob/main/docs/AUTHORITY.md">docs/AUTHORITY.md</a>.</p>
+  <ol class="layers">
+    <li><div><b>Normative RVLT rules</b><span>DESIGN.md §0 to §18: meaning, accessibility, voice, budgets, the contrast contract, touch targets.</span></div></li>
+    <li><div><b>Product contracts</b><span>DESIGN.md §19: Flow and Binder, and only the differences recorded there as deliberate.</span></div></li>
+    <li><div><b>Canonical machine tokens</b><span><a href="tokens/tokens.json">tokens.json</a> and <a href="tokens/contrast.json">contrast.json</a>. Appendix A, §15.1 and the design-system tokens are checked mirrors.</span></div></li>
+    <li><div><b>Implementation</b><span>The <code>@rvlt/flow-theme</code> registry: the public component contract.</span></div></li>
+    <li><div><b>Verified examples</b><span>Reference compositions, the static catalogue, preview-v2 and the gallery cards. Flow live cards render this repository's registry. Binder cards retain labelled, pinned app adapters.</span></div></li>
+    <li class="marketing"><div><b>Marketing expression</b><span>The <a href="examples/flow-marketing/">Flow marketing mockups</a>. Marketing never wins a conflict; its figures are illustrative.</span></div></li>
+  </ol>
+</div></section>
+
+<section id="foundations" aria-labelledby="foundations-h"><div class="wrap">
+  <h2 class="sec-h" id="foundations-h">Foundations</h2>
+  <p class="sec-d">A production company's software should feel made by a live-events crew, not generated from a template.</p>
+  <div class="grid">
+    <div class="card"><h3>Dark first, warm</h3><p>Espresso is the primary surface; Paper is the opt-in alternate. Depth is a luminance ladder (paper, paper-2, card, elev), never a glow.</p></div>
+    <div class="card"><h3>The dial</h3><p>Marketing sits at the expressive end. Apps sit at the functional end: <strong>calm data, fun chrome</strong>. Personality goes into empty states, toasts, the sidebar and success moments, never onto the data.</p></div>
+    <div class="card"><h3>The spotlight rule</h3><p>About 90% of a dark viewport stays in the espresso ramp. Brightness is spent as at most three lit objects per page, two on a phone.</p></div>
+    <div class="card"><h3>Physical edges</h3><p>A 2px outline and a hard offset shadow, like flight-case labels and enamel patches. No soft blur except the two sanctioned marketing floats.</p></div>
+    <div class="card"><h3>One red, three roles</h3><p>Core red (<code>#E0363D</code> / <code>#C12229</code>, locked) draws the mark, rings and strokes. <code>--action-red</code> fills anything with white text. <code>--red-text</code> draws red words. Never decoration, never a module, avatar, department or chart colour.</p></div>
+    <div class="card"><h3>Field first</h3><p>Phones on the dock, gloves, sun and dead spots. 44px targets (48px for scan and confirm), labels above fields, status always carries a word, offline is honest, motion honours reduced-motion completely.</p></div>
+    <div class="card"><h3>Voice</h3><p>A production manager, not a marketer: trade words, concrete numbers, dry wit, no fake logos or testimonials. Plain words in alerts, conflicts and destructive confirmations.</p></div>
+    <div class="card"><h3>Contrast is a contract</h3><p>Every text, pill, fill and control boundary is a role on a surface, verified in both themes. There are no accepted exceptions; <code>--faint</code> is never text.</p></div>
+  </div>
+</div></section>
+
+<section id="tokens" aria-labelledby="tokens-h"><div class="wrap">
+  <h2 class="sec-h" id="tokens-h">Tokens</h2>
+  <p class="sec-d">Generated from <code>packages/flow-theme/tokens.json</code> (the canonical values). Components reference tokens, never raw values; install them with <code>@import "@rvlt/flow-theme/globals.css"</code>.</p>
+  <!-- generated:tokens -->
+<h3 class="tgroup">Surfaces (the luminance ladder)</h3>
+<div class="table-wrap" tabindex="0"><table class="tokens"><thead><tr><th scope="col">Token</th><th scope="col">Espresso</th><th scope="col">Paper</th><th scope="col">Role</th></tr></thead><tbody>
+<tr><th scope="row"><code>--paper</code></th><td><span class="sw" style="background:#141210" aria-hidden="true"></span><code>#141210</code></td><td><span class="sw" style="background:#F4EEE1" aria-hidden="true"></span><code>#F4EEE1</code></td><td>page</td></tr>
+<tr><th scope="row"><code>--paper-2</code></th><td><span class="sw" style="background:#1A1613" aria-hidden="true"></span><code>#1A1613</code></td><td><span class="sw" style="background:#EDE4D2" aria-hidden="true"></span><code>#EDE4D2</code></td><td>alternate sections, rails</td></tr>
+<tr><th scope="row"><code>--card</code></th><td><span class="sw" style="background:#211C17" aria-hidden="true"></span><code>#211C17</code></td><td><span class="sw" style="background:#FFFDF8" aria-hidden="true"></span><code>#FFFDF8</code></td><td>cards, inputs</td></tr>
+<tr><th scope="row"><code>--elev</code></th><td><span class="sw" style="background:#2A241D" aria-hidden="true"></span><code>#2A241D</code></td><td><span class="sw" style="background:#FFFDF8" aria-hidden="true"></span><code>#FFFDF8</code></td><td>the one hovered, active or live surface</td></tr>
+</tbody></table></div>
+<h3 class="tgroup">Text</h3>
+<div class="table-wrap" tabindex="0"><table class="tokens"><thead><tr><th scope="col">Token</th><th scope="col">Espresso</th><th scope="col">Paper</th><th scope="col">Role</th></tr></thead><tbody>
+<tr><th scope="row"><code>--ink</code></th><td><span class="sw" style="background:#F5EFE2" aria-hidden="true"></span><code>#F5EFE2</code></td><td><span class="sw" style="background:#1D1A15" aria-hidden="true"></span><code>#1D1A15</code></td><td>headings, body</td></tr>
+<tr><th scope="row"><code>--ink-2</code></th><td><span class="sw" style="background:#CDC4B2" aria-hidden="true"></span><code>#CDC4B2</code></td><td><span class="sw" style="background:#4B4539" aria-hidden="true"></span><code>#4B4539</code></td><td>secondary text, cells</td></tr>
+<tr><th scope="row"><code>--muted</code></th><td><span class="sw" style="background:#9E9483" aria-hidden="true"></span><code>#9E9483</code></td><td><span class="sw" style="background:#665E4F" aria-hidden="true"></span><code>#665E4F</code></td><td>meta, captions, placeholders</td></tr>
+</tbody></table></div>
+<h3 class="tgroup">Non-text only</h3>
+<div class="table-wrap" tabindex="0"><table class="tokens"><thead><tr><th scope="col">Token</th><th scope="col">Espresso</th><th scope="col">Paper</th><th scope="col">Role</th></tr></thead><tbody>
+<tr><th scope="row"><code>--faint</code></th><td><span class="sw" style="background:#6E665A" aria-hidden="true"></span><code>#6E665A</code></td><td><span class="sw" style="background:#756B58" aria-hidden="true"></span><code>#756B58</code></td><td>dividers, disabled marks (never text)</td></tr>
+<tr><th scope="row"><code>--line</code></th><td><span class="sw" style="background:#332C24" aria-hidden="true"></span><code>#332C24</code></td><td><span class="sw" style="background:#E4DAC3" aria-hidden="true"></span><code>#E4DAC3</code></td><td>1px hairlines</td></tr>
+<tr><th scope="row"><code>--line-2</code></th><td><span class="sw" style="background:#473E32" aria-hidden="true"></span><code>#473E32</code></td><td><span class="sw" style="background:#D8CCB0" aria-hidden="true"></span><code>#D8CCB0</code></td><td>2px card outline on Espresso</td></tr>
+</tbody></table></div>
+<h3 class="tgroup">Red roles</h3>
+<div class="table-wrap" tabindex="0"><table class="tokens"><thead><tr><th scope="col">Token</th><th scope="col">Espresso</th><th scope="col">Paper</th><th scope="col">Role</th></tr></thead><tbody>
+<tr><th scope="row"><code>--red</code></th><td><span class="sw" style="background:#E0363D" aria-hidden="true"></span><code>#E0363D</code></td><td><span class="sw" style="background:#C12229" aria-hidden="true"></span><code>#C12229</code></td><td>core red: mark, rings, strokes (locked)</td></tr>
+<tr><th scope="row"><code>--action-red</code></th><td><span class="sw" style="background:#D6323A" aria-hidden="true"></span><code>#D6323A</code></td><td><span class="sw" style="background:#C12229" aria-hidden="true"></span><code>#C12229</code></td><td>fills under white text</td></tr>
+<tr><th scope="row"><code>--red-text</code></th><td><span class="sw" style="background:#EE5A5F" aria-hidden="true"></span><code>#EE5A5F</code></td><td><span class="sw" style="background:#C12229" aria-hidden="true"></span><code>#C12229</code></td><td>red words</td></tr>
+<tr><th scope="row"><code>--red-700</code></th><td><span class="sw" style="background:#B21F26" aria-hidden="true"></span><code>#B21F26</code></td><td><span class="sw" style="background:#9C1B21" aria-hidden="true"></span><code>#9C1B21</code></td><td>button drop shadow</td></tr>
+<tr><th scope="row"><code>--red-soft</code></th><td><span class="sw" style="background:rgba(224,54,61,.16)" aria-hidden="true"></span><code>rgba(224,54,61,.16)</code></td><td><span class="sw" style="background:#FBE7E3" aria-hidden="true"></span><code>#FBE7E3</code></td><td>now-ring glow, tint</td></tr>
+</tbody></table></div>
+<h3 class="tgroup">Controls and links</h3>
+<div class="table-wrap" tabindex="0"><table class="tokens"><thead><tr><th scope="col">Token</th><th scope="col">Espresso</th><th scope="col">Paper</th><th scope="col">Role</th></tr></thead><tbody>
+<tr><th scope="row"><code>--control-line</code></th><td><span class="sw" style="background:#857A69" aria-hidden="true"></span><code>#857A69</code></td><td><span class="sw" style="background:#1D1A15" aria-hidden="true"></span><code>var(--ink)</code></td><td>control boundaries (--input)</td></tr>
+<tr><th scope="row"><code>--link</code></th><td><span class="sw" style="background:#5B8DEF" aria-hidden="true"></span><code>#5B8DEF</code></td><td><span class="sw" style="background:#2A65D0" aria-hidden="true"></span><code>#2A65D0</code></td><td>inline links</td></tr>
+<tr><th scope="row"><code>--info</code></th><td><span class="sw" style="background:#82A8F3" aria-hidden="true"></span><code>#82A8F3</code></td><td><span class="sw" style="background:#2A65D0" aria-hidden="true"></span><code>#2A65D0</code></td><td>info status</td></tr>
+</tbody></table></div>
+<h3 class="tgroup">Status</h3>
+<div class="table-wrap" tabindex="0"><table class="tokens"><thead><tr><th scope="col">Token</th><th scope="col">Espresso</th><th scope="col">Paper</th><th scope="col">Role</th></tr></thead><tbody>
+<tr><th scope="row"><code>--ok</code></th><td><span class="sw" style="background:#4FD888" aria-hidden="true"></span><code>#4FD888</code></td><td><span class="sw" style="background:#007D36" aria-hidden="true"></span><code>#007D36</code></td><td>pass, ready</td></tr>
+<tr><th scope="row"><code>--warn</code></th><td><span class="sw" style="background:#EBA53A" aria-hidden="true"></span><code>#EBA53A</code></td><td><span class="sw" style="background:#9B5F00" aria-hidden="true"></span><code>#9B5F00</code></td><td>check, due</td></tr>
+<tr><th scope="row"><code>--t-out</code></th><td><span class="sw" style="background:#F26F73" aria-hidden="true"></span><code>#F26F73</code></td><td><span class="sw" style="background:#9C1B21" aria-hidden="true"></span><code>#9C1B21</code></td><td>short, overdue, error</td></tr>
+<tr><th scope="row"><code>--rep</code></th><td><span class="sw" style="background:#B6AC9A" aria-hidden="true"></span><code>#B6AC9A</code></td><td><span class="sw" style="background:#706857" aria-hidden="true"></span><code>#706857</code></td><td>in repair, neutral</td></tr>
+<tr><th scope="row"><code>--ok-soft</code></th><td><span class="sw" style="background:rgba(62,207,122,.14)" aria-hidden="true"></span><code>rgba(62,207,122,.14)</code></td><td><span class="sw" style="background:#E7F5EC" aria-hidden="true"></span><code>#E7F5EC</code></td><td>ok pill</td></tr>
+<tr><th scope="row"><code>--warn-soft</code></th><td><span class="sw" style="background:rgba(235,165,58,.15)" aria-hidden="true"></span><code>rgba(235,165,58,.15)</code></td><td><span class="sw" style="background:#FBF0D6" aria-hidden="true"></span><code>#FBF0D6</code></td><td>warn pill</td></tr>
+<tr><th scope="row"><code>--out-soft</code></th><td><span class="sw" style="background:rgba(224,54,61,.18)" aria-hidden="true"></span><code>rgba(224,54,61,.18)</code></td><td><span class="sw" style="background:#FBE7E3" aria-hidden="true"></span><code>#FBE7E3</code></td><td>error pill</td></tr>
+<tr><th scope="row"><code>--rep-soft</code></th><td><span class="sw" style="background:rgba(158,148,131,.14)" aria-hidden="true"></span><code>rgba(158,148,131,.14)</code></td><td><span class="sw" style="background:#EFE9DC" aria-hidden="true"></span><code>#EFE9DC</code></td><td>neutral pill</td></tr>
+</tbody></table></div>
+<h3 class="tgroup">Categorical (modules, avatars, charts; never red)</h3>
+<div class="table-wrap" tabindex="0"><table class="tokens"><thead><tr><th scope="col">Token</th><th scope="col">Espresso</th><th scope="col">Paper</th><th scope="col">Role</th></tr></thead><tbody>
+<tr><th scope="row"><code>--blue</code></th><td><span class="sw" style="background:#5B8DEF" aria-hidden="true"></span><code>#5B8DEF</code></td><td><span class="sw" style="background:#2A65D0" aria-hidden="true"></span><code>#2A65D0</code></td><td>Projects</td></tr>
+<tr><th scope="row"><code>--amber</code></th><td><span class="sw" style="background:#EBA53A" aria-hidden="true"></span><code>#EBA53A</code></td><td><span class="sw" style="background:#E79A2B" aria-hidden="true"></span><code>#E79A2B</code></td><td>Gear</td></tr>
+<tr><th scope="row"><code>--green</code></th><td><span class="sw" style="background:#3ECF7A" aria-hidden="true"></span><code>#3ECF7A</code></td><td><span class="sw" style="background:#007D36" aria-hidden="true"></span><code>#007D36</code></td><td>Availability</td></tr>
+<tr><th scope="row"><code>--purple</code></th><td><span class="sw" style="background:#9B82E6" aria-hidden="true"></span><code>#9B82E6</code></td><td><span class="sw" style="background:#7A5CD0" aria-hidden="true"></span><code>#7A5CD0</code></td><td>Crew</td></tr>
+<tr><th scope="row"><code>--coral</code></th><td><span class="sw" style="background:#EF7E55" aria-hidden="true"></span><code>#EF7E55</code></td><td><span class="sw" style="background:#C25524" aria-hidden="true"></span><code>#C25524</code></td><td>Maintenance</td></tr>
+<tr><th scope="row"><code>--teal</code></th><td><span class="sw" style="background:#3FC8BE" aria-hidden="true"></span><code>#3FC8BE</code></td><td><span class="sw" style="background:#0E847C" aria-hidden="true"></span><code>#0E847C</code></td><td>Compliance</td></tr>
+<tr><th scope="row"><code>--pink</code></th><td><span class="sw" style="background:#E875AC" aria-hidden="true"></span><code>#E875AC</code></td><td><span class="sw" style="background:#C2487E" aria-hidden="true"></span><code>#C2487E</code></td><td>avatars, charts</td></tr>
+<tr><th scope="row"><code>--lime</code></th><td><span class="sw" style="background:#AFC44E" aria-hidden="true"></span><code>#AFC44E</code></td><td><span class="sw" style="background:#73911B" aria-hidden="true"></span><code>#73911B</code></td><td>avatars, charts</td></tr>
+<tr><th scope="row"><code>--dark</code></th><td><span class="sw" style="background:#0E0C0A" aria-hidden="true"></span><code>#0E0C0A</code></td><td><span class="sw" style="background:#241F1A" aria-hidden="true"></span><code>#241F1A</code></td><td>ink on Espresso fills</td></tr>
+</tbody></table></div>
+<h3 class="tgroup">Utility</h3>
+<div class="table-wrap" tabindex="0"><table class="tokens"><thead><tr><th scope="col">Token</th><th scope="col">Espresso</th><th scope="col">Paper</th><th scope="col">Role</th></tr></thead><tbody>
+<tr><th scope="row"><code>--scrim</code></th><td><span class="sw" style="background:rgba(14,12,10,.66)" aria-hidden="true"></span><code>rgba(14,12,10,.66)</code></td><td><span class="sw" style="background:rgba(40,30,15,.45)" aria-hidden="true"></span><code>rgba(40,30,15,.45)</code></td><td>overlay backdrop</td></tr>
+<tr><th scope="row"><code>--select</code></th><td><span class="sw" style="background:rgba(224,54,61,.20)" aria-hidden="true"></span><code>rgba(224,54,61,.20)</code></td><td><span class="sw" style="background:rgba(193,34,41,.16)" aria-hidden="true"></span><code>rgba(193,34,41,.16)</code></td><td>selection wash</td></tr>
+</tbody></table></div>
+<!-- /generated:tokens -->
+  <h3 class="tgroup" id="contrast">Measured contrast, both themes</h3>
+  <p class="sec-d">Every pairing <code>contrast.json</code> allows, drawn with the real tokens on each surface. Soft fills are composited over the surface; the numbers are WCAG 2.x ratios. Text needs 4.5:1, control boundaries 3:1.</p>
+  <!-- generated:contrast -->
+<div class="cm dark" data-theme-sample="dark">
+<h3 class="tgroup">Espresso</h3>
+<div class="table-wrap" tabindex="0"><table class="contrast"><thead><tr><th scope="col">Role</th><th scope="col"><code>paper</code></th><th scope="col"><code>paper-2</code></th><th scope="col"><code>card</code></th><th scope="col"><code>elev</code></th></tr></thead><tbody>
+<tr><th scope="row"><code>--ink</code></th><td style="background:var(--paper)" data-pair="ink|paper" data-ratio="16.31"><span style="color:var(--ink)">Aa 16.31</span></td><td style="background:var(--paper-2)" data-pair="ink|paper-2" data-ratio="15.69"><span style="color:var(--ink)">Aa 15.69</span></td><td style="background:var(--card)" data-pair="ink|card" data-ratio="14.74"><span style="color:var(--ink)">Aa 14.74</span></td><td style="background:var(--elev)" data-pair="ink|elev" data-ratio="13.39"><span style="color:var(--ink)">Aa 13.39</span></td></tr>
+<tr><th scope="row"><code>--ink-2</code></th><td style="background:var(--paper)" data-pair="ink-2|paper" data-ratio="10.80"><span style="color:var(--ink-2)">Aa 10.80</span></td><td style="background:var(--paper-2)" data-pair="ink-2|paper-2" data-ratio="10.39"><span style="color:var(--ink-2)">Aa 10.39</span></td><td style="background:var(--card)" data-pair="ink-2|card" data-ratio="9.76"><span style="color:var(--ink-2)">Aa 9.76</span></td><td style="background:var(--elev)" data-pair="ink-2|elev" data-ratio="8.87"><span style="color:var(--ink-2)">Aa 8.87</span></td></tr>
+<tr><th scope="row"><code>--muted</code></th><td style="background:var(--paper)" data-pair="muted|paper" data-ratio="6.24"><span style="color:var(--muted)">Aa 6.24</span></td><td style="background:var(--paper-2)" data-pair="muted|paper-2" data-ratio="6.01"><span style="color:var(--muted)">Aa 6.01</span></td><td style="background:var(--card)" data-pair="muted|card" data-ratio="5.64"><span style="color:var(--muted)">Aa 5.64</span></td><td style="background:var(--elev)" data-pair="muted|elev" data-ratio="5.13"><span style="color:var(--muted)">Aa 5.13</span></td></tr>
+<tr><th scope="row"><code>--red-text</code></th><td style="background:var(--paper)" data-pair="red-text|paper" data-ratio="5.57"><span style="color:var(--red-text)">Aa 5.57</span></td><td style="background:var(--paper-2)" data-pair="red-text|paper-2" data-ratio="5.36"><span style="color:var(--red-text)">Aa 5.36</span></td><td style="background:var(--card)" data-pair="red-text|card" data-ratio="5.04"><span style="color:var(--red-text)">Aa 5.04</span></td><td style="background:var(--elev)" data-pair="red-text|elev" data-ratio="4.58"><span style="color:var(--red-text)">Aa 4.58</span></td></tr>
+<tr><th scope="row"><code>--link</code></th><td style="background:var(--paper)" data-pair="link|paper" data-ratio="5.79"><span style="color:var(--link)">Aa 5.79</span></td><td style="background:var(--paper-2)" data-pair="link|paper-2" data-ratio="5.57"><span style="color:var(--link)">Aa 5.57</span></td><td style="background:var(--card)" data-pair="link|card" data-ratio="5.23"><span style="color:var(--link)">Aa 5.23</span></td><td style="background:var(--elev)" data-pair="link|elev" data-ratio="4.75"><span style="color:var(--link)">Aa 4.75</span></td></tr>
+<tr><th scope="row"><code>--ok</code></th><td style="background:var(--paper)" data-pair="ok|paper" data-ratio="10.24"><span style="color:var(--ok)">Aa 10.24</span></td><td style="background:var(--paper-2)" data-pair="ok|paper-2" data-ratio="9.85"><span style="color:var(--ok)">Aa 9.85</span></td><td style="background:var(--card)" data-pair="ok|card" data-ratio="9.26"><span style="color:var(--ok)">Aa 9.26</span></td><td style="background:var(--elev)" data-pair="ok|elev" data-ratio="8.41"><span style="color:var(--ok)">Aa 8.41</span></td></tr>
+<tr><th scope="row"><code>--warn</code></th><td style="background:var(--paper)" data-pair="warn|paper" data-ratio="8.88"><span style="color:var(--warn)">Aa 8.88</span></td><td style="background:var(--paper-2)" data-pair="warn|paper-2" data-ratio="8.54"><span style="color:var(--warn)">Aa 8.54</span></td><td style="background:var(--card)" data-pair="warn|card" data-ratio="8.02"><span style="color:var(--warn)">Aa 8.02</span></td><td style="background:var(--elev)" data-pair="warn|elev" data-ratio="7.29"><span style="color:var(--warn)">Aa 7.29</span></td></tr>
+<tr><th scope="row"><code>--t-out</code></th><td style="background:var(--paper)" data-pair="t-out|paper" data-ratio="6.49"><span style="color:var(--t-out)">Aa 6.49</span></td><td style="background:var(--paper-2)" data-pair="t-out|paper-2" data-ratio="6.25"><span style="color:var(--t-out)">Aa 6.25</span></td><td style="background:var(--card)" data-pair="t-out|card" data-ratio="5.87"><span style="color:var(--t-out)">Aa 5.87</span></td><td style="background:var(--elev)" data-pair="t-out|elev" data-ratio="5.33"><span style="color:var(--t-out)">Aa 5.33</span></td></tr>
+<tr><th scope="row"><code>--rep</code></th><td style="background:var(--paper)" data-pair="rep|paper" data-ratio="8.33"><span style="color:var(--rep)">Aa 8.33</span></td><td style="background:var(--paper-2)" data-pair="rep|paper-2" data-ratio="8.01"><span style="color:var(--rep)">Aa 8.01</span></td><td style="background:var(--card)" data-pair="rep|card" data-ratio="7.53"><span style="color:var(--rep)">Aa 7.53</span></td><td style="background:var(--elev)" data-pair="rep|elev" data-ratio="6.84"><span style="color:var(--rep)">Aa 6.84</span></td></tr>
+<tr><th scope="row"><code>--info</code></th><td style="background:var(--paper)" data-pair="info|paper" data-ratio="7.87"><span style="color:var(--info)">Aa 7.87</span></td><td style="background:var(--paper-2)" data-pair="info|paper-2" data-ratio="7.57"><span style="color:var(--info)">Aa 7.57</span></td><td style="background:var(--card)" data-pair="info|card" data-ratio="7.11"><span style="color:var(--info)">Aa 7.11</span></td><td style="background:var(--elev)" data-pair="info|elev" data-ratio="6.46"><span style="color:var(--info)">Aa 6.46</span></td></tr>
+<tr><th scope="row"><code>--ok</code> on <code>--ok-soft</code></th><td style="background:var(--paper)" data-pair="ok|ok-soft|paper" data-ratio="8.05"><span class="pill" style="color:var(--ok);background:var(--ok-soft)">8.05</span></td><td style="background:var(--paper-2)" data-pair="ok|ok-soft|paper-2" data-ratio="7.66"><span class="pill" style="color:var(--ok);background:var(--ok-soft)">7.66</span></td><td style="background:var(--card)" data-pair="ok|ok-soft|card" data-ratio="7.12"><span class="pill" style="color:var(--ok);background:var(--ok-soft)">7.12</span></td><td style="background:var(--elev)" data-pair="ok|ok-soft|elev" data-ratio="6.43"><span class="pill" style="color:var(--ok);background:var(--ok-soft)">6.43</span></td></tr>
+<tr><th scope="row"><code>--warn</code> on <code>--warn-soft</code></th><td style="background:var(--paper)" data-pair="warn|warn-soft|paper" data-ratio="6.82"><span class="pill" style="color:var(--warn);background:var(--warn-soft)">6.82</span></td><td style="background:var(--paper-2)" data-pair="warn|warn-soft|paper-2" data-ratio="6.47"><span class="pill" style="color:var(--warn);background:var(--warn-soft)">6.47</span></td><td style="background:var(--card)" data-pair="warn|warn-soft|card" data-ratio="6.00"><span class="pill" style="color:var(--warn);background:var(--warn-soft)">6.00</span></td><td style="background:var(--elev)" data-pair="warn|warn-soft|elev" data-ratio="5.41"><span class="pill" style="color:var(--warn);background:var(--warn-soft)">5.41</span></td></tr>
+<tr><th scope="row"><code>--t-out</code> on <code>--out-soft</code></th><td style="background:var(--paper)" data-pair="t-out|out-soft|paper" data-ratio="5.53"><span class="pill" style="color:var(--t-out);background:var(--out-soft)">5.53</span></td><td style="background:var(--paper-2)" data-pair="t-out|out-soft|paper-2" data-ratio="5.28"><span class="pill" style="color:var(--t-out);background:var(--out-soft)">5.28</span></td><td style="background:var(--card)" data-pair="t-out|out-soft|card" data-ratio="4.95"><span class="pill" style="color:var(--t-out);background:var(--out-soft)">4.95</span></td><td style="background:var(--elev)" data-pair="t-out|out-soft|elev" data-ratio="4.52"><span class="pill" style="color:var(--t-out);background:var(--out-soft)">4.52</span></td></tr>
+<tr><th scope="row"><code>--rep</code> on <code>--rep-soft</code></th><td style="background:var(--paper)" data-pair="rep|rep-soft|paper" data-ratio="6.86"><span class="pill" style="color:var(--rep);background:var(--rep-soft)">6.86</span></td><td style="background:var(--paper-2)" data-pair="rep|rep-soft|paper-2" data-ratio="6.53"><span class="pill" style="color:var(--rep);background:var(--rep-soft)">6.53</span></td><td style="background:var(--card)" data-pair="rep|rep-soft|card" data-ratio="6.08"><span class="pill" style="color:var(--rep);background:var(--rep-soft)">6.08</span></td><td style="background:var(--elev)" data-pair="rep|rep-soft|elev" data-ratio="5.50"><span class="pill" style="color:var(--rep);background:var(--rep-soft)">5.50</span></td></tr>
+<tr><th scope="row"><code>--info</code> on <code>--blue-soft</code></th><td style="background:var(--paper)" data-pair="info|blue-soft|paper" data-ratio="6.50"><span class="pill" style="color:var(--info);background:var(--blue-soft)">6.50</span></td><td style="background:var(--paper-2)" data-pair="info|blue-soft|paper-2" data-ratio="6.21"><span class="pill" style="color:var(--info);background:var(--blue-soft)">6.21</span></td><td style="background:var(--card)" data-pair="info|blue-soft|card" data-ratio="5.79"><span class="pill" style="color:var(--info);background:var(--blue-soft)">5.79</span></td><td style="background:var(--elev)" data-pair="info|blue-soft|elev" data-ratio="5.25"><span class="pill" style="color:var(--info);background:var(--blue-soft)">5.25</span></td></tr>
+<tr><th scope="row"><code>--ink</code> on <code>--red-soft</code></th><td style="background:var(--paper)" data-pair="ink|red-soft|paper" data-ratio="14.20"><span class="pill" style="color:var(--ink);background:var(--red-soft)">14.20</span></td><td style="background:var(--paper-2)" data-pair="ink|red-soft|paper-2" data-ratio="13.57"><span class="pill" style="color:var(--ink);background:var(--red-soft)">13.57</span></td><td style="background:var(--card)" data-pair="ink|red-soft|card" data-ratio="12.72"><span class="pill" style="color:var(--ink);background:var(--red-soft)">12.72</span></td><td style="background:var(--elev)" data-pair="ink|red-soft|elev" data-ratio="11.59"><span class="pill" style="color:var(--ink);background:var(--red-soft)">11.59</span></td></tr>
+<tr><th scope="row">white on <code>--action-red</code></th><td colspan="4"><span class="act" data-pair="primary-foreground|action-red" data-ratio="4.80">Book gear out 4.80</span></td></tr>
+<tr><th scope="row"><code>--input</code> boundary (3:1)</th><td style="background:var(--paper)" data-pair="control-line|paper" data-ratio="4.44"><span class="ctl">4.44</span></td><td style="background:var(--paper-2)" data-pair="control-line|paper-2" data-ratio="4.27"><span class="ctl">4.27</span></td><td style="background:var(--card)" data-pair="control-line|card" data-ratio="4.01"><span class="ctl">4.01</span></td><td style="background:var(--elev)" data-pair="control-line|elev" data-ratio="3.64"><span class="ctl">3.64</span></td></tr>
+</tbody></table></div></div>
+<div class="cm light" data-theme-sample="light">
+<h3 class="tgroup">Paper</h3>
+<div class="table-wrap" tabindex="0"><table class="contrast"><thead><tr><th scope="col">Role</th><th scope="col"><code>paper</code></th><th scope="col"><code>paper-2</code></th><th scope="col"><code>card</code></th><th scope="col"><code>elev</code></th></tr></thead><tbody>
+<tr><th scope="row"><code>--ink</code></th><td style="background:var(--paper)" data-pair="ink|paper" data-ratio="15.00"><span style="color:var(--ink)">Aa 15.00</span></td><td style="background:var(--paper-2)" data-pair="ink|paper-2" data-ratio="13.73"><span style="color:var(--ink)">Aa 13.73</span></td><td style="background:var(--card)" data-pair="ink|card" data-ratio="17.06"><span style="color:var(--ink)">Aa 17.06</span></td><td style="background:var(--elev)" data-pair="ink|elev" data-ratio="17.06"><span style="color:var(--ink)">Aa 17.06</span></td></tr>
+<tr><th scope="row"><code>--ink-2</code></th><td style="background:var(--paper)" data-pair="ink-2|paper" data-ratio="8.22"><span style="color:var(--ink-2)">Aa 8.22</span></td><td style="background:var(--paper-2)" data-pair="ink-2|paper-2" data-ratio="7.53"><span style="color:var(--ink-2)">Aa 7.53</span></td><td style="background:var(--card)" data-pair="ink-2|card" data-ratio="9.35"><span style="color:var(--ink-2)">Aa 9.35</span></td><td style="background:var(--elev)" data-pair="ink-2|elev" data-ratio="9.35"><span style="color:var(--ink-2)">Aa 9.35</span></td></tr>
+<tr><th scope="row"><code>--muted</code></th><td style="background:var(--paper)" data-pair="muted|paper" data-ratio="5.54"><span style="color:var(--muted)">Aa 5.54</span></td><td style="background:var(--paper-2)" data-pair="muted|paper-2" data-ratio="5.07"><span style="color:var(--muted)">Aa 5.07</span></td><td style="background:var(--card)" data-pair="muted|card" data-ratio="6.30"><span style="color:var(--muted)">Aa 6.30</span></td><td style="background:var(--elev)" data-pair="muted|elev" data-ratio="6.30"><span style="color:var(--muted)">Aa 6.30</span></td></tr>
+<tr><th scope="row"><code>--red-text</code></th><td style="background:var(--paper)" data-pair="red-text|paper" data-ratio="5.15"><span style="color:var(--red-text)">Aa 5.15</span></td><td style="background:var(--paper-2)" data-pair="red-text|paper-2" data-ratio="4.71"><span style="color:var(--red-text)">Aa 4.71</span></td><td style="background:var(--card)" data-pair="red-text|card" data-ratio="5.85"><span style="color:var(--red-text)">Aa 5.85</span></td><td style="background:var(--elev)" data-pair="red-text|elev" data-ratio="5.85"><span style="color:var(--red-text)">Aa 5.85</span></td></tr>
+<tr><th scope="row"><code>--link</code></th><td style="background:var(--paper)" data-pair="link|paper" data-ratio="4.69"><span style="color:var(--link)">Aa 4.69</span></td><td class="na" style="background:var(--paper-2)"><span>not used</span></td><td style="background:var(--card)" data-pair="link|card" data-ratio="5.34"><span style="color:var(--link)">Aa 5.34</span></td><td style="background:var(--elev)" data-pair="link|elev" data-ratio="5.34"><span style="color:var(--link)">Aa 5.34</span></td></tr>
+<tr><th scope="row"><code>--ok</code></th><td style="background:var(--paper)" data-pair="ok|paper" data-ratio="4.56"><span style="color:var(--ok)">Aa 4.56</span></td><td class="na" style="background:var(--paper-2)"><span>not used</span></td><td style="background:var(--card)" data-pair="ok|card" data-ratio="5.18"><span style="color:var(--ok)">Aa 5.18</span></td><td style="background:var(--elev)" data-pair="ok|elev" data-ratio="5.18"><span style="color:var(--ok)">Aa 5.18</span></td></tr>
+<tr><th scope="row"><code>--warn</code></th><td style="background:var(--paper)" data-pair="warn|paper" data-ratio="4.51"><span style="color:var(--warn)">Aa 4.51</span></td><td class="na" style="background:var(--paper-2)"><span>not used</span></td><td style="background:var(--card)" data-pair="warn|card" data-ratio="5.13"><span style="color:var(--warn)">Aa 5.13</span></td><td style="background:var(--elev)" data-pair="warn|elev" data-ratio="5.13"><span style="color:var(--warn)">Aa 5.13</span></td></tr>
+<tr><th scope="row"><code>--t-out</code></th><td style="background:var(--paper)" data-pair="t-out|paper" data-ratio="7.01"><span style="color:var(--t-out)">Aa 7.01</span></td><td class="na" style="background:var(--paper-2)"><span>not used</span></td><td style="background:var(--card)" data-pair="t-out|card" data-ratio="7.97"><span style="color:var(--t-out)">Aa 7.97</span></td><td style="background:var(--elev)" data-pair="t-out|elev" data-ratio="7.97"><span style="color:var(--t-out)">Aa 7.97</span></td></tr>
+<tr><th scope="row"><code>--rep</code></th><td style="background:var(--paper)" data-pair="rep|paper" data-ratio="4.77"><span style="color:var(--rep)">Aa 4.77</span></td><td class="na" style="background:var(--paper-2)"><span>not used</span></td><td style="background:var(--card)" data-pair="rep|card" data-ratio="5.43"><span style="color:var(--rep)">Aa 5.43</span></td><td style="background:var(--elev)" data-pair="rep|elev" data-ratio="5.43"><span style="color:var(--rep)">Aa 5.43</span></td></tr>
+<tr><th scope="row"><code>--info</code></th><td style="background:var(--paper)" data-pair="info|paper" data-ratio="4.69"><span style="color:var(--info)">Aa 4.69</span></td><td class="na" style="background:var(--paper-2)"><span>not used</span></td><td style="background:var(--card)" data-pair="info|card" data-ratio="5.34"><span style="color:var(--info)">Aa 5.34</span></td><td style="background:var(--elev)" data-pair="info|elev" data-ratio="5.34"><span style="color:var(--info)">Aa 5.34</span></td></tr>
+<tr><th scope="row"><code>--ok</code> on <code>--ok-soft</code></th><td style="background:var(--paper)" data-pair="ok|ok-soft|paper" data-ratio="4.68"><span class="pill" style="color:var(--ok);background:var(--ok-soft)">4.68</span></td><td style="background:var(--paper-2)" data-pair="ok|ok-soft|paper-2" data-ratio="4.68"><span class="pill" style="color:var(--ok);background:var(--ok-soft)">4.68</span></td><td style="background:var(--card)" data-pair="ok|ok-soft|card" data-ratio="4.68"><span class="pill" style="color:var(--ok);background:var(--ok-soft)">4.68</span></td><td style="background:var(--elev)" data-pair="ok|ok-soft|elev" data-ratio="4.68"><span class="pill" style="color:var(--ok);background:var(--ok-soft)">4.68</span></td></tr>
+<tr><th scope="row"><code>--warn</code> on <code>--warn-soft</code></th><td style="background:var(--paper)" data-pair="warn|warn-soft|paper" data-ratio="4.60"><span class="pill" style="color:var(--warn);background:var(--warn-soft)">4.60</span></td><td style="background:var(--paper-2)" data-pair="warn|warn-soft|paper-2" data-ratio="4.60"><span class="pill" style="color:var(--warn);background:var(--warn-soft)">4.60</span></td><td style="background:var(--card)" data-pair="warn|warn-soft|card" data-ratio="4.60"><span class="pill" style="color:var(--warn);background:var(--warn-soft)">4.60</span></td><td style="background:var(--elev)" data-pair="warn|warn-soft|elev" data-ratio="4.60"><span class="pill" style="color:var(--warn);background:var(--warn-soft)">4.60</span></td></tr>
+<tr><th scope="row"><code>--t-out</code> on <code>--out-soft</code></th><td style="background:var(--paper)" data-pair="t-out|out-soft|paper" data-ratio="6.81"><span class="pill" style="color:var(--t-out);background:var(--out-soft)">6.81</span></td><td style="background:var(--paper-2)" data-pair="t-out|out-soft|paper-2" data-ratio="6.81"><span class="pill" style="color:var(--t-out);background:var(--out-soft)">6.81</span></td><td style="background:var(--card)" data-pair="t-out|out-soft|card" data-ratio="6.81"><span class="pill" style="color:var(--t-out);background:var(--out-soft)">6.81</span></td><td style="background:var(--elev)" data-pair="t-out|out-soft|elev" data-ratio="6.81"><span class="pill" style="color:var(--t-out);background:var(--out-soft)">6.81</span></td></tr>
+<tr><th scope="row"><code>--rep</code> on <code>--rep-soft</code></th><td style="background:var(--paper)" data-pair="rep|rep-soft|paper" data-ratio="4.56"><span class="pill" style="color:var(--rep);background:var(--rep-soft)">4.56</span></td><td style="background:var(--paper-2)" data-pair="rep|rep-soft|paper-2" data-ratio="4.56"><span class="pill" style="color:var(--rep);background:var(--rep-soft)">4.56</span></td><td style="background:var(--card)" data-pair="rep|rep-soft|card" data-ratio="4.56"><span class="pill" style="color:var(--rep);background:var(--rep-soft)">4.56</span></td><td style="background:var(--elev)" data-pair="rep|rep-soft|elev" data-ratio="4.56"><span class="pill" style="color:var(--rep);background:var(--rep-soft)">4.56</span></td></tr>
+<tr><th scope="row"><code>--info</code> on <code>--blue-soft</code></th><td style="background:var(--paper)" data-pair="info|blue-soft|paper" data-ratio="4.55"><span class="pill" style="color:var(--info);background:var(--blue-soft)">4.55</span></td><td style="background:var(--paper-2)" data-pair="info|blue-soft|paper-2" data-ratio="4.55"><span class="pill" style="color:var(--info);background:var(--blue-soft)">4.55</span></td><td style="background:var(--card)" data-pair="info|blue-soft|card" data-ratio="4.55"><span class="pill" style="color:var(--info);background:var(--blue-soft)">4.55</span></td><td style="background:var(--elev)" data-pair="info|blue-soft|elev" data-ratio="4.55"><span class="pill" style="color:var(--info);background:var(--blue-soft)">4.55</span></td></tr>
+<tr><th scope="row"><code>--ink</code> on <code>--red-soft</code></th><td style="background:var(--paper)" data-pair="ink|red-soft|paper" data-ratio="14.57"><span class="pill" style="color:var(--ink);background:var(--red-soft)">14.57</span></td><td style="background:var(--paper-2)" data-pair="ink|red-soft|paper-2" data-ratio="14.57"><span class="pill" style="color:var(--ink);background:var(--red-soft)">14.57</span></td><td style="background:var(--card)" data-pair="ink|red-soft|card" data-ratio="14.57"><span class="pill" style="color:var(--ink);background:var(--red-soft)">14.57</span></td><td style="background:var(--elev)" data-pair="ink|red-soft|elev" data-ratio="14.57"><span class="pill" style="color:var(--ink);background:var(--red-soft)">14.57</span></td></tr>
+<tr><th scope="row">white on <code>--action-red</code></th><td colspan="4"><span class="act" data-pair="primary-foreground|action-red" data-ratio="5.95">Book gear out 5.95</span></td></tr>
+<tr><th scope="row"><code>--input</code> boundary (3:1)</th><td style="background:var(--paper)" data-pair="control-line|paper" data-ratio="15.00"><span class="ctl">15.00</span></td><td style="background:var(--paper-2)" data-pair="control-line|paper-2" data-ratio="13.73"><span class="ctl">13.73</span></td><td style="background:var(--card)" data-pair="control-line|card" data-ratio="17.06"><span class="ctl">17.06</span></td><td style="background:var(--elev)" data-pair="control-line|elev" data-ratio="17.06"><span class="ctl">17.06</span></td></tr>
+</tbody></table></div></div>
+<!-- /generated:contrast -->
+</div></section>
+
+<section id="typography" aria-labelledby="typography-h"><div class="wrap">
+  <h2 class="sec-h" id="typography-h">Typography</h2>
+  <p class="sec-d">Five SIL OFL families, self-hosted (<code>design-system/fonts/</code>, shipped as <code>@rvlt/flow-theme/fonts.css</code>). Sentence case everywhere, nothing below 11px, reading body at 16px or more. BC Alphapipe survives only as the drawn RVLT mark.</p>
+  <div class="grid fam">
+    <div class="card"><h3>Archivo</h3><p>Display: headlines, page titles, stat figures.</p><p class="sample f-display">From first enquiry to the gear coming home.</p></div>
+    <div class="card"><h3>Hanken Grotesk</h3><p>Body and UI.</p><p class="sample f-sans" style="font-size:19px">Confirmed jobs reserve gear, surface clashes and turn the quote into prep work.</p></div>
+    <div class="card"><h3>Geist Mono</h3><p>Data: IDs, quantities, times, cue numbers. Always tabular.</p><p class="sample f-mono" style="font-size:20px">LX-01188 · ×12 · 06:30 · Q 14.5</p></div>
+    <div class="card"><h3>Kalam</h3><p>Handwritten eyebrows and doodle notes only.</p><p class="sample f-hand">caught before the truck leaves</p></div>
+    <div class="card"><h3>Baloo 2</h3><p>The "Flow" half of the lockup only.</p><p class="sample f-word">Flow</p></div>
+  </div>
+  <h3 class="tgroup">App type ramp (the only UI sizes)</h3>
+  <!-- generated:ramp -->
+<div class="table-wrap" tabindex="0"><table class="tokens"><thead><tr><th scope="col">Role</th><th scope="col">Size</th><th scope="col">Sample</th></tr></thead><tbody>
+<tr><th scope="row"><code>text-page-title</code></th><td>24px</td><td><span style="font-size:24px">Enmore Theatre weekend</span></td></tr>
+<tr><th scope="row"><code>text-section-header</code></th><td>18px</td><td><span style="font-size:18px">Load-out at 06:30, dock 2</span></td></tr>
+<tr><th scope="row"><code>text-card-title</code></th><td>15px</td><td><span style="font-size:15px">Load-out at 06:30, dock 2</span></td></tr>
+<tr><th scope="row"><code>text-reading-body</code></th><td>16px</td><td><span style="font-size:16px">Load-out at 06:30, dock 2</span></td></tr>
+<tr><th scope="row"><code>text-ui-text</code></th><td>14px</td><td><span style="font-size:14px">Load-out at 06:30, dock 2</span></td></tr>
+<tr><th scope="row"><code>text-table-cell</code></th><td>13.5px</td><td><span style="font-size:13.5px">Load-out at 06:30, dock 2</span></td></tr>
+<tr><th scope="row"><code>text-caption</code></th><td>12px</td><td><span style="font-size:12px">Load-out at 06:30, dock 2</span></td></tr>
+<tr><th scope="row"><code>text-badge</code></th><td>11px</td><td><span style="font-size:11px">Load-out at 06:30, dock 2</span></td></tr>
+<tr><th scope="row"><code>text-button</code></th><td>14px</td><td><span style="font-size:14px">Load-out at 06:30, dock 2</span></td></tr>
+</tbody></table></div>
+<!-- /generated:ramp -->
+</div></section>
+
+<section id="identity" aria-labelledby="identity-h"><div class="wrap">
+  <h2 class="sec-h" id="identity-h">Identity and assets</h2>
+  <p class="sec-d">Marks ship as SVG and are never retyped, recoloured or redrawn. The sticker pack and Albert are supplied artwork: use the files unchanged.</p>
+  <div class="marks">
+    <figure class="mark"><img src="design-system/assets/Logos/rvlt-mark.svg" alt="RVLT mark" width="160" height="57"><figcaption>RVLT mark (drawn from BC Alphapipe outlines)</figcaption></figure>
+    <figure class="mark labs"><img src="design-system/assets/Logos/rvlt-labs-logo.svg" alt="RVLT Labs logo" width="200" height="60"><figcaption>RVLT Labs (dark grounds only)</figcaption></figure>
+    <figure class="mark"><img src="design-system/assets/Logos/binder-mark.svg" alt="RVLT Binder Rings B mark" width="72" height="72"><figcaption>Binder's Rings B</figcaption></figure>
+    <figure class="mark"><img src="design-system/assets/Logos/flow-mascot.svg" alt="Flow's stage-light mascot" width="72" height="72"><figcaption>Flow's stage light (Flow's in-app mascot)</figcaption></figure>
+    <figure class="mark"><img src="assets/albert/svg/albert-avatar.svg" alt="Albert, RVLT's bearded dragon" width="96" height="96"><figcaption>Albert, RVLT's character</figcaption></figure>
+    <figure class="mark"><img src="assets/albert/illustrations/albert-sitting-v4.png" alt="Albert sitting (locked illustration)" width="160" height="160" loading="lazy"><figcaption>Locked illustration: sitting</figcaption></figure>
+    <figure class="mark"><img src="assets/stickers/svg/road-case-sticker.svg" alt="Road case sticker" width="120" height="120" loading="lazy"><figcaption>Sticker pack 1.1.0: road case</figcaption></figure>
+    <figure class="mark"><img src="assets/stickers/svg/go-patch.svg" alt="Go! patch" width="160" height="90" loading="lazy"><figcaption>Phrase patch: Go! (decoration, never a status)</figcaption></figure>
+  </div>
+  <p class="sec-d" style="margin-top:18px">Files: <a href="design-system/assets/Logos/rvlt-mark.svg">Logos</a>, <a href="assets/stickers/README.md">sticker pack</a>, <a href="assets/albert/README.md">Albert pack</a>. Apps get one illustration in a welcome, onboarding, empty or success state; never on data, alerts or controls.</p>
+</div></section>
+
+<section id="components" aria-labelledby="components-h"><div class="wrap">
+  <h2 class="sec-h" id="components-h">Components</h2>
+  <p class="sec-d">The <code>@rvlt/flow-theme</code> registry is the public component contract. Everything below is built and tested from it or labelled as an app adapter.</p>
+  <div class="grid">
+    <div class="card"><h3>Component gallery</h3><p>Every card with its README. Live cards mount the Flow and Binder app adapters; static cards are labelled renditions.</p><a class="more" href="design-system/">Open the gallery</a></div>
+    <div class="card"><h3>Reference compositions</h3><p>Scan and return, the offline queue, clash recovery, the responsive scheduler and accessible forms, at 320px to desktop. Front-end only: no backend, no user testing claimed.</p><a class="more" href="examples/flows/">Open the compositions</a></div>
+    <div class="card"><h3>Registry showcase</h3><p>preview-v2: every registry component compiled against the registry source, both themes.</p><a class="more" href="preview-v2/">Open preview-v2</a></div>
+    <div class="card"><h3>Static catalogue</h3><p>Plain HTML and CSS states for every token and component, for non-React surfaces. The old <code>preview.html</code> URL redirects here.</p><a class="more" href="examples/static-catalogue/">Open the catalogue</a></div>
+  </div>
+</div></section>
+
+<section id="product-layers" aria-labelledby="product-layers-h"><div class="wrap">
+  <h2 class="sec-h" id="product-layers-h">Product layers</h2>
+  <p class="sec-d">Both products run on the same tokens, type, voice and states. These differences are deliberate, and the only places a product departs from the core (DESIGN.md §19).</p>
+  <div class="grid">
+    <div class="card"><h3>RVLT Flow: production operations</h3>
+      <ul><li>Pill buttons with the hard red-700 drop.</li><li>Module hues for wayfinding: Projects blue, Assets amber, Crew purple, Schedule green, Maintenance coral, Warehouse teal. Active items keep an ink label; the hue carries the icon and indicator.</li><li>The stage-light mascot in empty states; Albert for RVLT-wide moments.</li><li>Phone: bottom tab bar, scan action in the thumb zone, scheduler as an agenda.</li></ul></div>
+    <div class="card"><h3>RVLT Binder: the prompt corner</h3>
+      <ul><li>Rounded-rectangle buttons (30px desktop, 44px phone).</li><li>The script page is always white paper, in both themes, on a dark stage.</li><li>Department colour is the only colour on the page, and it draws marks: outline, leader, dash. Abbreviations and numbers stay page ink.</li><li>Markup and Calling draw the page identically; offline is a muted state, never red.</li></ul></div>
+  </div>
+  <h3 class="tgroup">Binder's fixed page (app chrome themes; the page does not)</h3>
+  <div class="binder" aria-label="Binder script page sample">
+    <div class="page-sheet">
+      <p style="margin:0 0 8px">HELEN crosses to the window. <span class="cue" style="--c:#C9811F"><i>LX</i> 14</span> The lights fade to a single lamp.</p>
+      <p style="margin:0">A car passes outside. <span class="cue standby" style="--c:#2F6BD6"><i>SND</i> 7</span> <span class="cue" style="--c:#6E8C12"><i>FLY</i> 2</span></p>
     </div>
   </div>
-</div></div>
+</div></section>
 
-<!-- CREW SHOWCASE — paper-2, dark-mode UI, quarantined colour + 1 bright metric -->
-<div class="band b2"><div class="wrap" id="why">
-  <div class="showcase"><div class="sc-grid">
-    <div class="sc-copy">
-      <div class="kicker">why Flow exists</div>
-      <h3>We didn't start with a product idea. We started with a problem.</h3>
-      <p>Two Toned Productions was growing past the point where spreadsheets, group chats, memory and "ask Jayden" could hold the operation together. Gear was moving across dry hires and full productions. Quotes were changing. Crew needed context. Compliance had to be tracked. Returns created maintenance work. Every job left behind knowledge we needed again later.</p>
-      <div class="sc-metric"><b>0</b> double-bookings this month</div>
-    </div>
-    <div class="sc-vis">
-      <div class="tl-head"><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span></div>
-      <div class="tl-row"><div class="tl-name"><span class="av" style="background:var(--red)">SL</span>Sam L.</div><div class="tl-track"><span class="shift" style="left:6%;width:40%;background:var(--red)">Theatre show · prep</span></div></div>
-      <div class="tl-row"><div class="tl-name"><span class="av" style="background:var(--blue)">AK</span>Alex K.</div><div class="tl-track"><span class="shift" style="left:30%;width:55%;background:var(--blue)">Corporate AV · show</span></div></div>
-      <div class="tl-row"><div class="tl-name"><span class="av" style="background:var(--green)">JD</span>Jo D.</div><div class="tl-track"><span class="shift" style="left:10%;width:26%;background:var(--green)">Dry hire · return</span></div></div>
-      <div class="tl-row"><div class="tl-name"><span class="av" style="background:var(--amber)">MR</span>Maya R.</div><div class="tl-track"><span class="shift" style="left:52%;width:38%;background:var(--amber)">Workshop · repair</span></div></div>
-      <div class="tl-row"><div class="tl-name"><span class="av" style="background:var(--rep)">+3</span>Open</div><div class="tl-track"></div></div>
-      <div class="sc-doodle">no clashes ✦</div>
-    </div>
-  </div></div>
-</div></div>
-
-<!-- TESTIMONIAL — POP #3 bounded cream panel -->
-<div class="band b1"><div class="wrap"><div class="qwrap">
-  <div class="qbox">
-    <div class="mark">”</div>
-    <p class="tt">Flow wasn't built to sell software. It was built because our own production company needed a better way to stop the same problems happening twice.</p>
-    <p class="who"><b>Built inside Two Toned Productions</b> · tested on real jobs from day one</p>
+<section id="using" aria-labelledby="using-h"><div class="wrap">
+  <h2 class="sec-h" id="using-h">Using and building</h2>
+  <div class="grid">
+    <div class="card"><h3>Install the theme</h3><p><code>npm i @rvlt/flow-theme tw-animate-css</code>, then in <code>app/globals.css</code>:</p><pre tabindex="0" role="region" aria-label="Theme installation code"><code>@import "tailwindcss";
+@import "tw-animate-css";
+@import "@rvlt/flow-theme/fonts.css";
+@import "@rvlt/flow-theme/globals.css";</code></pre></div>
+    <div class="card"><h3>Add components</h3><p>With the shadcn CLI from this site's registry, for example <code>npx shadcn@latest add https://rvlt-labs.github.io/rvlt-designlanguage/r/field.json</code>. Restyle stock shadcn through the role aliases, never raw hex.</p></div>
+    <div class="card"><h3>Change a token</h3><p>Edit <code>tokens.json</code>, mirror Appendix A, §15.1 and <code>design-system/tokens.json</code>, run <code>build-css.mjs</code>, then <code>npm test</code>. The contrast guard fails if any allowed pairing drops below AA.</p></div>
+    <div class="card"><h3>Before you ship</h3><p>Run the self-audits: §15.3 for app screens, §16.15 for anything responsive, §12 for marketing. Check reduced motion, 44px targets, labels and status words.</p></div>
   </div>
-</div></div></div>
-
-<!-- PRICING — POP #2 lone cream tier -->
-<div class="band b2"><div class="wrap" id="pricing">
-  <div class="sec-head"><div class="kicker">choose your starting point</div><h2>Start with Core. Add modules. Unlock Flow when everything needs to talk.</h2><p>RVLT is modular, so smaller teams can start with the basics and grow into the full connected suite. Flow is for teams who want the whole operation joined up from day one.</p></div>
-  <div class="price">
-    <div class="plan">
-      <div class="pn">Core</div><div class="pp" style="font-size:24px;line-height:1.1">Start here</div><div class="pd">For teams replacing spreadsheets with a proper job and equipment foundation.</div>
-      <a href="#" class="btn btn-line">Talk through Core</a>
-      <ul><li><span class="ck">✓</span> Projects and job records</li><li><span class="ck">✓</span> Gear registry basics</li><li><span class="ck">✓</span> Clients and venues</li><li><span class="ck">✓</span> Quotes and internal notes</li><li><span class="ck">✓</span> Simple availability views</li></ul>
-    </div>
-    <div class="plan cream">
-      <div class="tab">complete suite</div><div class="pn">Flow</div><div class="pp" style="font-size:23px;line-height:1.15">Best for growing teams</div><div class="pd">The connected RVLT bundle: Gear, Projects, People, Logistics and Compliance working together.</div>
-      <a href="#" class="btn btn-primary">Book a Flow demo</a>
-      <ul><li><span class="ck">✓</span> Everything in Core</li><li><span class="ck">✓</span> Full gear, kits and accessories</li><li><span class="ck">✓</span> Live availability and clash detection</li><li><span class="ck">✓</span> Crew, supplier and venue management</li><li><span class="ck">✓</span> Warehouse prep, scan-out and returns</li><li><span class="ck">✓</span> Maintenance, damage and compliance workflows</li></ul>
-      <div class="note">priced per warehouse, not per headache</div>
-    </div>
-    <div class="plan">
-      <div class="pn">Network</div><div class="pp" style="font-size:24px;line-height:1.1">Custom</div><div class="pd">For multi-site operators, hire networks and teams with deeper workflow or integration needs.</div>
-      <a href="#" class="btn btn-line">Design a rollout</a>
-      <ul><li><span class="ck">✓</span> Multiple warehouses or business units</li><li><span class="ck">✓</span> Advanced roles and permissions</li><li><span class="ck">✓</span> Custom workflows and reporting</li><li><span class="ck">✓</span> API and accounting integrations</li><li><span class="ck">✓</span> Migration and onboarding support</li></ul>
-    </div>
-  </div>
-</div></div>
-
-<!-- INTEGRATIONS — rest valley -->
-<div class="band b1 integ"><div class="wrap">
-  <div class="sec-head" style="margin-bottom:24px"><div class="kicker">connect the boring bits</div><h2>Built to fit the tools around your operation.</h2><p>Flow is designed to connect with the systems production teams already rely on — accounting, calendars, documents, barcode scanning, reporting and the strange spreadsheet that somehow became mission-critical.</p></div>
-  <div class="row"><span class="chiplogo">Xero</span><span class="chiplogo">Google Calendar</span><span class="chiplogo">Stripe</span><span class="chiplogo">CSV import/export</span><span class="chiplogo">Barcode / QR scanning</span><span class="chiplogo">API</span><span class="chiplogo">Webhooks</span><span class="chiplogo">Zapier</span></div>
-</div></div>
-
-<!-- FAQ -->
-<div class="band b2"><div class="wrap" id="faq">
-  <div class="sec-head"><div class="kicker">the bit before you ask</div><h2>Questions, answered.</h2></div>
-  <div class="faq">
-    <details open><summary>Why did you build RVLT Flow?<span class="pm">+</span></summary><div class="ans">Because we needed it. Two Toned Productions was juggling audio, lighting, theatre, events, dry hire, full production, crew, venues, quotes, gear movement and compliance. The existing tools either treated us like a simple rental shop or a generic project team. We were neither, so we built the system we kept wishing existed.</div></details>
-    <details><summary>Is this proven on real jobs?<span class="pm">+</span></summary><div class="ans">Yes. Flow has been used by our own team from day one. That means the awkward parts showed up early: missing accessories, late quote changes, damaged gear, overbooking risks, venue quirks, compliance gaps and warehouse shortcuts. Those problems shaped the product directly.</div></details>
-    <details><summary>How is this different from rental software?<span class="pm">+</span></summary><div class="ans">Rental software usually starts with inventory. Flow starts with the production job. Inventory matters, obviously, but so do labour, suppliers, prep, venue history, compliance, repairs, substitutions, client rates and the operational notes that stop your team learning the same lesson twice.</div></details>
-    <details><summary>Can we start small?<span class="pm">+</span></summary><div class="ans">Yes. Start with Core or a single module, then add more as the operation grows. Flow is for teams who want the full connected system from the start.</div></details>
-    <details><summary>Can Flow track damaged, missing or unavailable gear?<span class="pm">+</span></summary><div class="ans">Yes. Assets can be marked damaged, missing, in repair, expired, reserved or unavailable. Those statuses affect availability, so broken or non-compliant gear does not accidentally end up on a quote. Revolutionary concept: broken things should not be booked.</div></details>
-    <details><summary>Can you migrate our existing inventory?<span class="pm">+</span></summary><div class="ans">Yes. Most teams will start with spreadsheets, exports or whatever the current system allows. RVLT can import equipment, models, categories, kits, clients and job data depending on what you have. The messier the sheet, the less judgement we promise out loud.</div></details>
-  </div>
-</div></div>
-
-<!-- FINAL CTA — the red beacon (once) -->
-<div class="band b1"><div class="wrap">
-  <div class="cta-box">
-    <div class="stk cta-stk" style="left:7%;top:24px;width:62px;height:62px;background:var(--dark);border-radius:50%;transform:rotate(-10deg)"><span class="stk-txt" style="font-size:12px">GAFF</span></div>
-    <div class="stk cta-stk" style="right:8%;bottom:22px;width:60px;height:60px;background:#F5EFE2;transform:rotate(9deg)"><svg width="34" height="34" viewBox="0 0 48 48"><g fill="none" stroke="#c12229" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"><rect x="9" y="15" width="30" height="20" rx="2.5"/><path d="M9 22h30"/><circle cx="15" cy="39" r="2.4"/><circle cx="33" cy="39" r="2.4"/></g></svg></div>
-    <h2>If these problems sound familiar, Flow was probably built for you too.</h2>
-    <p>We built RVLT Flow to solve our own production headaches first. If your team is juggling gear, crew, quotes, venues, logistics, compliance and the same spreadsheet with four "final" versions, we should talk.</p>
-    <a href="#" class="btn btn-cream btn-lg">Book a workflow demo</a>
-  </div>
-</div></div>
+</div></section>
+</main>
 
 <footer><div class="wrap">
-  <div class="foot-grid">
-    <div class="foot-brand">
-      <a href="#" class="brand"><svg viewBox="0 0 1258 450.7" style="height:16px" aria-label="RVLT"><g fill="#E0363D"><path d="M0,42C0,21.94,16.92,5.64,36.98,5.64h106.56c82.12,0,137.91,58.92,137.91,131.64,0,60.18-37.61,101.55-81.49,112.21l-8.15.63,116.59,139.16c6.9,8.15,8.78,15.67,8.78,24.45,0,20.06-16.3,36.36-36.36,36.36-11.28,0-21.31-4.39-28.83-13.79l-146.68-174.26c-5.01-6.27-11.28-16.3-11.28-28.83,0-18.81,15.04-33.22,33.22-33.22h13.79c37.61,0,63.94-28.21,63.94-62.68s-26.33-63.31-63.94-63.31h-67.07v339.12c0,20.06-16.92,36.98-36.98,36.98S0,433.15,0,413.09V42Z"/><path d="M366.7,36.98c0-20.69,16.92-36.98,36.98-36.98s36.98,16.3,36.98,36.98v282.08L697.67,12.54c6.27-8.15,16.92-12.54,26.33-12.54,19.43,0,34.48,15.04,34.48,34.48,0,6.9-1.25,14.42-8.15,21.94l-317.18,378.62c-8.78,11.28-19.43,15.04-29.46,15.04-20.06,0-36.98-16.92-36.98-36.98V36.98Z"/><path d="M804.85,36.98c0-20.69,16.92-36.98,36.98-36.98s36.98,16.3,36.98,36.98v338.5h132.26c18.81,0,33.85,15.04,33.85,34.48s-15.04,34.48-33.85,34.48h-169.25c-20.06,0-36.98-16.92-36.98-36.98V36.98Z"/><path d="M1100.72,73.97h-83.37c-19.43,0-34.48-15.04-34.48-34.48s15.04-33.85,34.48-33.85h240.71c19.43,0,34.48,15.04,34.48,33.85s-15.04,34.48-34.48,34.48h-83.37v339.12c0,20.06-16.92,36.98-36.98,36.98s-36.98-16.92-36.98-36.98V73.97Z"/></g></svg><span class="fl" style="font-size:18px">Flow</span></a>
-      <p>Production operations software built by RVLT Labs from the real workflow of Two Toned Productions.</p>
-    </div>
-    <div class="foot-col"><h5>Product</h5><a href="#features">What's included</a><a href="#how">How it works</a><a href="#pricing">Starting points</a><a href="#">Gear &amp; logistics</a><a href="#">Changelog</a></div>
-    <div class="foot-col"><h5>Company</h5><a href="#">About RVLT Labs</a><a href="#">Two Toned story</a><a href="#">Careers</a><a href="#">Contact</a></div>
-    <div class="foot-col"><h5>Resources</h5><a href="#">Help centre</a><a href="#">Migrating in</a><a href="#">API docs</a><a href="#">Status</a></div>
-  </div>
-  <div class="foot-bot"><span>© 2026 RVLT Labs · Built for production companies, by a production company</span><span>Privacy · Terms · The show still has to go on</span></div>
+  <p>© RVLT Labs. Built for production companies, by a production company. Source: <a href="https://github.com/RVLT-Labs/rvlt-designlanguage">RVLT-Labs/rvlt-designlanguage</a>.</p>
 </div></footer>
 
 <script>
-(function(){
-  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  var els = Array.prototype.slice.call(document.querySelectorAll('.hero .stk'));
-  if (!els.length) return;
-  var data = els.map(function(el, i){
-    var cs = getComputedStyle(el).transform;
-    var base = (cs && cs !== 'none') ? cs : '';
-    var r = el.getBoundingClientRect();
-    var dir = (i % 2 === 0) ? 1 : -1;        // interleave so they scatter, not march
-    var amp = 44 + (i % 5) * 18;             // 44..116 — varied drift = parallax depth
-    el.style.willChange = 'transform';
-    return { el: el, base: base, mid: r.top + window.pageYOffset + r.height / 2, amp: amp, dir: dir };
-  });
-  var ticking = false;
-  function update(){
-    ticking = false;
-    var vc = window.pageYOffset + window.innerHeight / 2;
-    for (var i = 0; i < data.length; i++){
-      var d = data[i];
-      var rel = (vc - d.mid) / window.innerHeight;     // ~ -0.5..0.5 as it crosses the viewport
-      var o = Math.round(rel * d.amp * d.dir);
-      d.el.style.transform = 'translate3d(0,' + o + 'px,0) ' + d.base;  // translate first, rotation kept
+  (function () {
+    var btn = document.getElementById("theme");
+    var root = document.documentElement;
+    function sync() {
+      var light = root.classList.contains("light");
+      btn.setAttribute("aria-pressed", String(light));
     }
-  }
-  function onScroll(){ if (!ticking){ ticking = true; requestAnimationFrame(update); } }
-  window.addEventListener('scroll', onScroll, { passive: true });
-  window.addEventListener('resize', function(){
-    for (var i = 0; i < data.length; i++){
-      var d = data[i], t = d.el.style.transform;
-      d.el.style.transform = d.base;
-      var r = d.el.getBoundingClientRect();
-      d.mid = r.top + window.pageYOffset + r.height / 2;
-      d.el.style.transform = t;
-    }
-    update();
-  });
-  update();
-})();
+    btn.addEventListener("click", function () {
+      root.classList.toggle("light");
+      try { localStorage.setItem("rvlt-theme", root.classList.contains("light") ? "light" : "dark"); } catch (e) {}
+      sync();
+    });
+    sync();
+  })();
 </script>
 </body>
 </html>

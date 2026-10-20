@@ -1,59 +1,133 @@
-# RVLT — design language, brand &amp; website
+# RVLT design language
 
-The brand and design system for **RVLT Labs** and every RVLT product — **RVLT Flow**
-(production operations) and **RVLT Binder** (the stage manager's script binder) —
-plus the marketing site mockups. Software built by a production company (RVLT Labs,
-born inside Two Toned Productions). This repo is the **master copy**: products and the
-RVLT design-system artifact sync from it.
+The brand and design system for **RVLT Labs** and every RVLT product: **RVLT Flow** (production
+operations) and **RVLT Binder** (the stage manager's script binder). RVLT Labs was born inside Two
+Toned Productions; the system is built for production companies, by a production company. This
+repository is the **master copy**. The products and the claude.ai design-system artifact sync from it.
 
-## What's here
+- **The spec:** [`DESIGN.md`](DESIGN.md) is the build bible. Agents read §0 first.
+- **Which source wins:** [`docs/AUTHORITY.md`](docs/AUTHORITY.md) (machine copy: [`authority.json`](authority.json)).
+- **Browse it:** the published reference at
+  [rvlt-labs.github.io/rvlt-designlanguage](https://rvlt-labs.github.io/rvlt-designlanguage/)
+  ([`index.html`](index.html)), with the component gallery at `/design-system/`.
 
-| File | What it is |
+## Authority
+
+One map decides which source wins, highest first:
+
+1. **Normative RVLT rules**: `DESIGN.md` §0 to §18.
+2. **Product contracts**: `DESIGN.md` §19 (Flow and Binder, and only the differences recorded there).
+3. **Canonical machine tokens**: `packages/flow-theme/tokens.json` and `contrast.json`. Appendix A,
+   §15.1 and `design-system/tokens.json` are checked mirrors.
+4. **Implementation**: the `@rvlt/flow-theme` registry, the public component contract.
+5. **Verified examples**: `examples/`, `apps/preview-v2` and the design-system cards, all built and
+   tested. Live cards render the Flow and Binder app adapters at pinned commits and say so.
+6. **Marketing expression**: [`examples/flow-marketing/`](examples/flow-marketing/). Marketing
+   never wins a conflict, and its figures are illustrative.
+
+## Foundations
+
+- **Dark first.** Espresso (`--paper #141210`) is the primary surface; Paper (light) is the opt-in
+  alternate. Tint the dark warm, never cold slate or pure black.
+- **The dial.** Marketing sits at the expressive end (stickers, big display type, doodles, the
+  spotlight). Apps sit at the functional end: **calm data, fun chrome**.
+- **The spotlight rule.** About 90% of a dark viewport stays in the espresso ramp; brightness is
+  spent as at most three lit objects per page (two on a phone).
+- **Physical edges.** A 2px outline plus a hard offset shadow, never a soft blur.
+- **One red.** RVLT red is the only accent: primary action, live state, alerts. Never decoration,
+  never a module, avatar, department or chart colour.
+- **Voice.** A production manager, not a marketer. Trade words, concrete numbers, dry wit, no fake
+  proof.
+
+## Tokens
+
+[`packages/flow-theme/tokens.json`](packages/flow-theme/tokens.json) holds every value: the two
+themes, radii, fonts, the marketing type scale and the app type ramp, icon sizes, the avatar and
+chart order, and the rules. [`contrast.json`](packages/flow-theme/contrast.json) lists which token
+may draw text, pills, fills and control boundaries on which surface; every pairing meets WCAG AA in
+both themes and there are no accepted exceptions (`DESIGN.md` §3.8).
+
+| Role | Espresso | Paper |
+|---|---|---|
+| Surfaces `paper` · `paper-2` · `card` · `elev` | `#141210` · `#1A1613` · `#211C17` · `#2A241D` | `#F4EEE1` · `#EDE4D2` · `#FFFDF8` · `#FFFDF8` |
+| Text `ink` · `ink-2` · `muted` | `#F5EFE2` · `#CDC4B2` · `#9E9483` | `#1D1A15` · `#4B4539` · `#665E4F` |
+| Core red (mark, rings, strokes) | `#E0363D` | `#C12229` |
+| Action red (white-text fills) | `#D6323A` | `#C12229` |
+| Red words | `#EE5A5F` | `#C12229` |
+| Control boundary (`--input`) | `#857A69` | `#1D1A15` |
+| `faint` (non-text only) | `#6E665A` | `#756B58` |
+
+Install the generated theme with `@import "@rvlt/flow-theme/globals.css"`; see
+[`packages/flow-theme/README.md`](packages/flow-theme/README.md).
+
+## Typography
+
+Five SIL OFL families, self-hosted in [`design-system/fonts/`](design-system/fonts) and shipped
+as `@rvlt/flow-theme/fonts.css`:
+
+| Family | Role |
 |---|---|
-| [`DESIGN.md`](DESIGN.md) | **The brand bible &amp; build spec.** Tokens, type, voice, the spotlight rule, components, the signature product screens, and a paste-ready app theme. Written for AI build agents — **read §0 first.** |
-| [`index.html`](index.html) | Canonical homepage mockup — **dark "espresso", spotlit** (the brand's primary surface). |
-| [`light.html`](light.html) | Light "Paper" twin — same copy &amp; system, light surface. |
-| [`preview.html`](preview.html) | **Token &amp; component catalog** — every token and component from `DESIGN.md` rendered (dark-first, light toggle; swatch hexes read live from the CSS vars). The visual companion to the spec. |
-| [`packages/flow-theme/`](packages/flow-theme) | **`@rvlt/flow-theme`** — the installable theme: `tokens.json` (source) → generated Tailwind v4 / shadcn `globals.css` + a shadcn component registry. The canonical *code* form of the design system; the app consumes this instead of hand-copying tokens. |
-| [`design-system/`](design-system) | **The RVLT design system, mirrored file for file** from the claude.ai design-system artifact: overview, `tokens.json`, the artwork and Albert guides, 25 component cards (README + preview; 20 mount the real Flow and Binder components), the live bundle, self-hosted fonts, and every logo and icon. **Live at [`/design-system/`](https://rvlt-labs.github.io/rvlt-designlanguage/design-system/).** |
-| `assets/stickers/` | **Stickers &amp; Wordmarks pack 1.1.0** — 19 gear illustrations (sticker + line) and 7 word patches (patch + lettering), manifest, palette, style guide, licences (`DESIGN.md` §10). |
-| `assets/albert/` | **Albert**, RVLT's character — coloured SVG heads, expressions, stickers, full-body derivatives, all 30 illustrations (the three locked ones included) and the pack's manifest/design lock (`DESIGN.md` §11). |
+| **Archivo** | Display: headlines, page titles (24px / 800 in every app), stat figures |
+| **Hanken Grotesk** | Body and UI |
+| **Geist Mono** | Data: IDs, quantities, times, cue and page numbers, always tabular |
+| **Kalam** | Handwritten eyebrows and doodle notes only, sentence case |
+| **Baloo 2** | The "Flow" half of the lockup only |
 
-## The design-system mirror
+BC Alphapipe survives only as the drawn RVLT mark (SVG outlines), never as a loaded font. Sentence
+case everywhere; nothing below 11px; reading body at 16px or more.
 
-`design-system/` has the same layout as the claude.ai design system's `project/` folder, so a
-file there and its counterpart in the artifact are one and the same. The asset groups are the
-one exception: the artifact keeps them in its asset store, and here they are the repo's own files
-(Logos and Icons in `design-system/assets/`, the sticker pack and Albert in `assets/`; the mapping
-is `scripts/design-system/assets.mjs`).
+## Identity and assets
+
+- **Marks:** [`design-system/assets/Logos/`](design-system/assets/Logos): `rvlt-mark.svg`,
+  `rvlt-labs-logo.svg`, the Flow wordmarks, R marks, Binder's Rings B and Flow's mascot. Ship as
+  SVG; never retype, recolour or redraw.
+- **Stickers and wordmarks pack 1.1.0:** [`assets/stickers/`](assets/stickers) (19 gear
+  illustrations, 7 phrase patches, style guide, licences; `DESIGN.md` §10).
+- **Albert**, RVLT's character: [`assets/albert/`](assets/albert) (SVGs, the three locked
+  illustrations pinned in `Design-lock.json`, the workday set; `DESIGN.md` §11).
+- **Icons:** Lucide at 16 / 20 / 24px, 2px stroke; the 42px patch icon at 2.6px.
+
+The packs are supplied artwork. Use the files unchanged; never generate, redraw or recombine them.
+
+## Components
+
+- **Registry:** [`packages/flow-theme/registry/`](packages/flow-theme/registry), installed with
+  the shadcn CLI. RVLT-styled primitives plus the signature set (lifecycle stepper, status
+  indicator, crew scheduler with a phone agenda, empty state, feature patch, `SearchInput`).
+- **Gallery:** [`design-system/components/`](design-system/components), live at
+  `/design-system/` on the Pages site.
+- **Reference compositions:** [`examples/flows/`](examples/flows) for scan and return, the
+  offline queue, clash recovery, the responsive scheduler and accessible forms. Front-end
+  only: no backend, no user testing claimed.
+- **Static catalogue:** [`examples/static-catalogue/`](examples/static-catalogue) (plain
+  HTML/CSS states; the old `/preview.html` redirects here).
+
+## Product layers
+
+- **RVLT Flow:** pill buttons, module hues for wayfinding (Projects blue, Assets amber, Crew
+  purple, Schedule green, Maintenance coral, Warehouse teal), the stage-light mascot in empty
+  states. `DESIGN.md` §19.1.
+- **RVLT Binder:** rounded-rectangle buttons; the script page is always white paper in both
+  themes; department colour is the only colour on the page and draws marks, not text; Markup and
+  Calling draw the page identically. `DESIGN.md` §19.2.
+
+## Using and building
+
+The repository has no runtime dependencies at its root. Node 22.
 
 | Command | What it does |
 |---|---|
-| `node scripts/design-system/check.mjs` | Fails if a mirrored colour, shadow, radius or font stack drifts from `packages/flow-theme/tokens.json` (both themes), or a font, asset, preview or README is missing. Pages runs it before every deploy. |
-| `node scripts/design-system/build-site.mjs [_site]` | Builds the browsable copy at `_site/design-system/` (tokens.css, each preview wrapped with the bundle, the gallery). |
-| `GEARFLOW_DIR=… BINDER_DIR=… node scripts/design-system/bundle/build.mjs` | Rebuilds `components/bundle.js` and `bundle.css` from the real component source in Flow and Binder (needs both checkouts with dependencies installed). |
+| `npm test` | Unit guards: token contrast, authority map, docs and examples parity, registry contracts, site links (builds the site into a temp folder) |
+| `npm run test:browser` | Browser regressions against a built site (needs `RVLT_SITE_DIR` and Playwright from `tests/browser`) |
+| `node packages/flow-theme/scripts/check-sync.mjs` | `tokens.json` equals `DESIGN.md` Appendix A |
+| `node scripts/design-system/check.mjs` | The design-system mirror equals `tokens.json`; assets, fonts and cards resolve |
+| `node packages/flow-theme/scripts/build-css.mjs` | Regenerates `dist/` (globals, tokens, font faces) from `tokens.json` |
+| `npm ci --prefix apps/preview-v2` | Installs locked project-local build dependencies |
+| `node scripts/design-system/bundle/build-registry.mjs` | Builds local Flow gallery JS and CSS using preview dependencies, required before unit site tests |
+| `node scripts/site/build.mjs _site [--preview-v2 apps/preview-v2/out]` | Assembles the Pages site, including compatibility redirects |
+| `GEARFLOW_DIR=… BINDER_DIR=… node scripts/design-system/bundle/build.mjs --write` | Rebuilds the Flow/Binder live bundle; writes only the generated bundle files |
 
-Change the design system here first, then publish the same files to the artifact.
+Change the design system here first, then publish the same files to the artifact. The Pages
+workflow runs every check before it deploys.
 
-## Preview
-
-The mockups are self-contained static HTML (web fonts via Google Fonts; the
-RVLT logo is inlined SVG). Open directly, or serve the folder:
-
-```bash
-python3 -m http.server 8000
-# → http://localhost:8000/index.html  (dark)
-# → http://localhost:8000/light.html  (light)
-```
-
-## Notes
-
-- **Fonts:** **Archivo** is the official display face (2026-10-19); BC Alphapipe
-  survives only as the drawn RVLT mark (SVG outlines). Body = Hanken Grotesk ·
-  data = Geist Mono · handwriting = Kalam · the "Flow" wordmark = Baloo 2.
-- **Brand red:** `#C12229` (light) / `#E0363D` (dark). One accent, no gradients.
-- The design language is **dark-first** and built on a "calm data, fun chrome"
-  principle — see `DESIGN.md` §15 for how it maps onto the app
-  (Next.js · Tailwind v4 · shadcn/ui).
-
-— © RVLT Labs. Built for production companies, by a production company.
+© RVLT Labs. Built for production companies, by a production company.

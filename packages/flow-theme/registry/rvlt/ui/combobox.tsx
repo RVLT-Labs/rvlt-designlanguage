@@ -111,37 +111,24 @@ function Combobox({
     : (options.find((o) => o.value === selectedValues[0])?.label ?? placeholder);
 
   return (
-    <div className="relative">
+    <div className="flex items-center gap-2">
     <Popover open={open} onOpenChange={setOpen}>
-      {/* Clear button sits outside the trigger (siblings in the DOM) to avoid
-          nested <button> which is invalid HTML. Positioned absolutely over the trigger. */}
-      {hasValue && (
-        <button
-          type="button"
-          aria-label="Clear selection"
-          disabled={disabled}
-          onClick={clearAll}
-          className="absolute right-9 top-1/2 z-10 -translate-y-1/2 rounded p-0.5 text-muted transition-colors hover:bg-paper-2 hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red disabled:pointer-events-none"
-        >
-          <X className="size-3.5" />
-        </button>
-      )}
       <PopoverTrigger asChild>
         <button
           type="button"
           role="combobox"
+          aria-label={triggerLabel}
           aria-expanded={open}
           aria-haspopup="listbox"
           disabled={disabled}
           className={cn(
             // Input-style trigger: 2px outline, bg-card, red focus ring (§15.2)
-            "flex h-11 w-full items-center justify-between gap-2 rounded-[var(--radius)]",
+            "flex h-11 w-full min-w-0 flex-1 items-center justify-between gap-2 rounded-[var(--radius)]",
             "border-2 border-input bg-card px-3 text-[14px] transition-colors",
-            hasValue ? "text-ink" : "text-faint",
+            hasValue ? "text-ink" : "text-muted",
             "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red",
             "focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--paper)]",
             "disabled:cursor-not-allowed disabled:opacity-45",
-            hasValue && "pr-16",
           )}
         >
           <span className="truncate">{triggerLabel}</span>
@@ -191,6 +178,19 @@ function Combobox({
         </Command>
       </PopoverContent>
     </Popover>
+    {/* Clear is its own 44px control beside the trigger (§16.8): a sibling, never nested in the
+        trigger button, and never overlapping its press area. */}
+    {hasValue && (
+      <button
+        type="button"
+        aria-label="Clear selection"
+        disabled={disabled}
+        onClick={clearAll}
+        className="grid size-11 shrink-0 place-items-center rounded-full border-2 border-input text-muted transition-colors hover:bg-paper-2 hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red focus-visible:ring-offset-2 focus-visible:ring-offset-paper disabled:cursor-not-allowed disabled:opacity-45"
+      >
+        <X className="size-5" aria-hidden="true" />
+      </button>
+    )}
     </div>
   );
 }

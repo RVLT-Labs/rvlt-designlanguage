@@ -11,10 +11,10 @@ var hint = function (text, err) { return h('p', { style: { margin: 0, fontSize: 
 var field = function () { return h.apply(null, ['div', { style: { display: 'flex', flexDirection: 'column', gap: '6px' } }].concat([].slice.call(arguments))); };
 function Demo() {
   return h('div', { style: { maxWidth: '360px', display: 'flex', flexDirection: 'column', gap: '14px' } },
-    field(h(R.Label, { htmlFor: 'a' }, 'Job name ', h('span', { style: { color: 'var(--red)' } }, '*')), h(R.Input, { id: 'a', placeholder: 'e.g. Hilton gala dinner' }), hint('Shows on quotes and dockets.')),
-    field(h(R.Label, { htmlFor: 'b' }, 'Crew needed'), h(R.Input, { id: 'b', defaultValue: '0', 'aria-invalid': true }), hint('Needs at least one crew member.', true)),
-    h(R.SearchInput, { placeholder: 'Search gear, tags, models' }),
-    h(R.Textarea, { placeholder: 'Notes for the warehouse', rows: 2 }));
+    field(h(R.Label, { htmlFor: 'a' }, 'Job name ', h('span', { style: { color: 'var(--red)' } }, '*')), h(R.Input, { id: 'a', required: true, 'aria-describedby': 'a-hint', placeholder: 'e.g. Hilton gala dinner' }), h('p', { id: 'a-hint' }, 'Shows on quotes and dockets.')),
+    field(h(R.Label, { htmlFor: 'b' }, 'Crew needed'), h(R.Input, { id: 'b', type: 'number', min: 1, defaultValue: '0', 'aria-invalid': true, 'aria-describedby': 'b-error' }), h('p', { id: 'b-error', role: 'alert', style: { color: 'var(--t-out)' } }, 'Needs at least one crew member.')),
+    field(h(R.Label, { htmlFor: 'search' }, 'Search gear'), h(R.SearchInput, { id: 'search', placeholder: 'Tags or models' })),
+    field(h(R.Label, { htmlFor: 'notes' }, 'Warehouse notes'), h(R.Textarea, { id: 'notes', rows: 2 })));
 }
 ReactDOM.createRoot(document.getElementById('root')).render(h(Demo));
 </script>

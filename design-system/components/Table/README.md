@@ -11,4 +11,4 @@ Heads: semibold `ink-2`, left aligned, 8px × 12px. Cells: `ink-2`, 8px × 12px.
 - Full width — tables escape the 1080px content max.
 - Mobile switches to a card list.
 
-_Live: the real component, compiled into `bundle.js` from TwoToned/gearflow@5a85e40 `src/components/ui/table.tsx` — the RVLT registry primitive (RVLT-Labs/rvlt-designlanguage `packages/flow-theme/registry/rvlt/ui/`) as Flow ships it._
+_Published Flow preview: local registry source, compiled by `scripts/design-system/bundle/build-registry.mjs`. The pinned external bundle is retained for Binder adapters._

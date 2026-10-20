@@ -5,7 +5,9 @@
 //   2. every font it lists is in design-system/fonts/;
 //   3. every asset in design-system.json resolves to exactly one repo file of the same size;
 //   4. every /_blob/<id> a preview references is one of those assets;
-//   5. every component the bundle exports has a live preview, and every card has a README.
+//   5. every component the bundle exports has a live preview, and every card has a README;
+//   6. bundle.css Part 2 is exactly scripts/design-system/bundle/static.css (a local contract the
+//      Flow/Binder generator must not overwrite).
 // Exits non-zero on any failure. No dependencies: node scripts/design-system/check.mjs
 import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import path from "node:path";
@@ -89,6 +91,15 @@ for (const card of cards) {
   const marker = readFileSync(path.join(DS, "components", card, "preview.html"), "utf8").split("\n")[0];
   if (!marker.startsWith("<!-- @dsCard")) fail(`${card}/preview.html: line 1 is not a @dsCard marker`);
   if (card !== "Cover" && !existsSync(path.join(DS, "components", card, "README.md"))) fail(`${card} has no README.md`);
+}
+
+// 6. bundle.css Part 2 (static renditions) is the locally owned static.css, byte for byte
+{
+  const { splitBundleCss } = await import("./bundle/write-policy.mjs");
+  const { part2 } = splitBundleCss(read("design-system/components/bundle.css"));
+  if (part2 !== read("scripts/design-system/bundle/static.css")) {
+    fail("bundle.css Part 2 differs from scripts/design-system/bundle/static.css (run bundle/splice-static.mjs)");
+  }
 }
 
 if (errors.length) {

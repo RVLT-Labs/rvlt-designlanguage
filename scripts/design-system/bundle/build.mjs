@@ -2,14 +2,24 @@
 // Rebuilds design-system/components/bundle.js and bundle.css from the real component source in
 // TwoToned/gearflow (the RVLT registry primitives as Flow ships them) and RVLT-Labs/binder.
 //
-//   GEARFLOW_DIR=../gearflow BINDER_DIR=../binder node scripts/design-system/bundle/build.mjs
+//   GEARFLOW_DIR=../gearflow BINDER_DIR=../binder node scripts/design-system/bundle/build.mjs [--write]
 //
 // Both checkouts need their dependencies installed (pnpm install). esbuild, PostCSS and Tailwind
 // are borrowed from gearflow's node_modules, so this repo stays dependency-free.
+//
+// Without --write the result is staged in a temp folder and the changed files are listed. With
+// --write it replaces design-system/components/bundle.js and bundle.css, and nothing else: the
+// write policy (write-policy.mjs) refuses any path authority.json does not mark generated-external,
+// so card READMEs, previews, tokens and the registry (local contracts) can never be overwritten
+// from the products. Part 2 of bundle.css always comes from this repo's static.css.
 import { createRequire } from "node:module";
-import { existsSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
+import { existsSync, mkdtempSync, readFileSync, readdirSync } from "node:fs";
+import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { PART2_MARKER, writeOutputs } from "./write-policy.mjs";
+
+const WRITE = process.argv.includes("--write");
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const REPO = path.resolve(HERE, "../../..");
@@ -87,7 +97,6 @@ const res = await esbuild.build({
 const header = "/* @ds-bundle: " + JSON.stringify({ format: 4, namespace: "Rvlt", components: COMPONENTS.map((name) => ({ name })) }) + " */\n";
 // The design-system frame inlines bundle.js, so it must not contain these literals.
 const js = header + res.outputFiles[0].text.replace(/<\/script/gi, "<\\/script").replace(/<!--/g, "<\\!--") + "\nwindow.Rvlt = Rvlt;\n";
-writeFileSync(path.join(OUT, "bundle.js"), js);
 
 // ── bundle.css ───────────────────────────────────────────────────────────────
 // Flow's @theme inline mapping, base and component layers, plus Binder's extra colour/shadow
@@ -133,8 +142,11 @@ const css = `/* RVLT components — bundle.css
    Albert). Every value reads a token. */
 ${tw}
 
-/* ── Part 2: static renditions ───────────────────────── */
+${PART2_MARKER}
 ${readFileSync(path.join(HERE, "static.css"), "utf8")}`;
-writeFileSync(path.join(OUT, "bundle.css"), css);
 
-console.log(`bundle.js ${(js.length / 1024).toFixed(1)} KB · bundle.css ${(css.length / 1024).toFixed(1)} KB`);
+const rel = (f) => path.relative(REPO, path.join(OUT, f)).split(path.sep).join("/");
+const stageDir = WRITE ? undefined : mkdtempSync(path.join(process.env.RVLT_WORK_DIR ?? os.tmpdir(), "rvlt-bundle-"));
+const written = writeOutputs(REPO, { [rel("bundle.js")]: js, [rel("bundle.css")]: css }, { write: WRITE, stageDir });
+for (const w of written) console.log(`${w.changed ? "changed  " : "unchanged"} ${w.path} (${(w.bytes / 1024).toFixed(1)} KB) → ${w.dest}`);
+if (!WRITE) console.log("staged only; re-run with --write to replace the repo files");

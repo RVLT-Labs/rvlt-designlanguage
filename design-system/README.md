@@ -3,7 +3,7 @@ RVLT Labs makes production software, built by a production company. It was born 
 - **RVLT Flow** — the hire business: jobs, quotes, gear, warehouse, crew, compliance.
 - **RVLT Binder** — the stage manager's script binder: cues marked on the page, calling the show.
 
-Both run on one design language: warm espresso dark, a single RVLT red, 2px outlines, hard offset shadows, and a voice that sounds like crew. Its master copy is the `RVLT-Labs/rvlt-designlanguage` repo (v1.2.0); this system is synced from it.
+Both run on one design language: warm espresso dark, a single RVLT red, 2px outlines, hard offset shadows, and a voice that sounds like crew. Its master copy is the `RVLT-Labs/rvlt-designlanguage` repo (v1.3.0); this system is synced from it. When two RVLT sources disagree, the repo's authority map (`docs/AUTHORITY.md`) decides: rules, then product contracts, then the machine tokens, then the `@rvlt/flow-theme` registry, then verified examples, and the marketing mockups last.
 
 The brand is used along a dial.
 - **Marketing** sits at the *expressive* end: gear stickers, big display type, hand-drawn doodles, spotlight pops.
@@ -38,7 +38,7 @@ Talk like a production manager, not a marketer. Read it aloud and ask whether a 
   - `paper-2`: alternate sections, rails, tab lists
   - `card`: cards, inputs
   - `elev`: the one hovered, active or "live" surface, menus
-- **Text:** `ink`, `ink-2`, `muted`, `faint`. In Paper every text colour now passes 4.5:1. On Espresso, `faint` is still 3.3:1, so never use it there for text someone has to act on.
+- **Text:** `ink`, `ink-2`, `muted`. All three pass 4.5:1 on every surface in both themes. `faint` is **not a text colour** (3.0 to 3.3:1 on Espresso, 4.2:1 on Paper `paper-2`): use it for dividers, decorative glyphs and disabled marks. Placeholders, stat labels, hour labels and future stepper labels are `muted`. Every allowed pairing is listed in `packages/flow-theme/contrast.json` and verified by the repo's tests.
 - **Lines:** `line` for 1px hairlines. `border` is the signature **2px outline**: `line-2` on Espresso, full `ink` on Paper.
 - **`red` is the one accent.** Use it for primary action, live/active state and alerts. It is `#E0363D` on dark and `#C12229` on light. Never use a gradient, and never make red one of many. In apps, red is never a module, department or avatar colour.
 - **One red primary per region.** A region is a top bar, a dialog, a panel, or a repeated row or card group. Each gets at most one red primary action, so a list may repeat its row action in red. Red is never decoration.
@@ -46,10 +46,10 @@ Talk like a production manager, not a marketer. Read it aloud and ask whether a 
 - **No gradients, ever.** The single exception is one ≤0.12-alpha amber stage-wash behind a marketing hero.
 
 **Red has two treatments.**
-- Solid `red` fill with white text means live / active / in use.
+- Solid `action-red` fill with white text means live / active / in use (and the primary action). `action-red` is a slightly deeper red so white text clears 4.5:1 on Espresso (4.8:1); the core `red` stays for the mark, focus and now rings, strokes and indicators.
 - `t-out` text on `out-soft` means a problem: overdue, failed, cancelled, conflict.
 
-White on Espresso `red` is 4.41:1. That is an accepted brand exception. Status always carries a word as well as the colour.
+Red words on a surface (Kalam eyebrows, doodle notes) use `red-text`, never core `red`. There are no contrast exceptions. Status always carries a word as well as the colour.
 
 **Status intents** (identical meaning in every product):
 
@@ -58,9 +58,9 @@ White on Espresso `red` is 4.41:1. That is an accepted brand exception. Status a
 | success | `ok` | `ok` on `ok-soft` |
 | warning | `warn` | `warn` on `warn-soft` |
 | error | `t-out` | `t-out` on `out-soft` |
-| info | `blue` | `blue` on `blue-soft` |
+| info | `info` | `info` on `blue-soft` |
 | neutral | `rep` | `rep` on `rep-soft` |
-| live | white | solid `red` |
+| live | white | solid `action-red` |
 
 **The categorical ramp** is used for wayfinding, avatars and charts. It runs `blue · amber · green · purple · coral · teal · pink · lime`. Each module or area gets one hue, and its `*-soft` fill marks the active state.
 - People get a hue from a stable hash of their name or id.
@@ -70,7 +70,7 @@ White on Espresso `red` is 4.41:1. That is an accepted brand exception. Status a
 **On-fill rule.** Never assume white text on a colour.
 - On Espresso, use `dark` text on every hue fill.
 - On Paper, use white, except on `amber` and `lime`, which keep `dark`.
-- `red` always takes white.
+- `action-red` always takes white.
 
 **Fixed tokens** stay the same in both themes:
 - `cream` / `cream-ink`: the cream button on a red block, the cream spotlight tier.
@@ -269,7 +269,7 @@ The rest of Binder:
 ## Not synced
 
 **Sources**
-- `RVLT-Labs/rvlt-designlanguage` (`DESIGN.md` v1.2.0, `packages/flow-theme`, `assets/`). This is the master copy, and its `design-system/` folder mirrors this design system file for file. The 2026-10-19 decisions are merged there (#12), in Flow (`TwoToned/gearflow` #1352) and in Binder (`RVLT-Labs/binder` #1).
+- `RVLT-Labs/rvlt-designlanguage` (`DESIGN.md` v1.3.0, `packages/flow-theme`, `assets/`). This is the master copy, and its `design-system/` folder mirrors this design system file for file. The 2026-10-19 decisions are merged there (#12), in Flow (`TwoToned/gearflow` #1352) and in Binder (`RVLT-Labs/binder` #1).
 - `TwoToned/gearflow` (`src/app/globals.css`, `DESIGN.md`, `src/components`)
 - `RVLT-Labs/binder` (`apps/web/src/styles`, `DESIGN.md`, `apps/web/src/components`, `packages/core` cue geometry)
 
@@ -277,7 +277,7 @@ The rest of Binder:
 - **BC Alphapipe** is only the drawn RVLT mark; Archivo is the official display face, so no font file is missing.
 - **Motion** durations are prose only, because the token format has no motion family.
 - **Org branding** red ramps (Flow's BrandingProvider) are not included.
-- **Marketing reference pages:** the `index.html` / `light.html` mockups are not imported as cards.
+- **Marketing reference pages:** the Flow marketing mockups (`examples/flow-marketing/` in the repo) are not imported as cards. They are expression only and never win a conflict.
 - **Registry components not rendered:** accordion, breadcrumb, combobox, command, dialog, drawer, dropdown-menu, popover, select, sheet, sonner, tooltip, page-header, crew-scheduler.
 - **Binder components not rendered:** AppShell, ContextPanel, CueEditor, LayerRow, ToolStrip, CueTable, ActivityRow, ReviewRow, DocumentRow, Presence, CommandPalette, CallingStrip, GoToKeypad, Confirm.
 - **Artwork not imported:** the sticker pack's illustrated Word guide and style figures (its text is condensed into *Stickers and wordmarks*). Also the Albert pack's PNG exports of his SVGs (the SVGs themselves are here).
@@ -285,3 +285,5 @@ The rest of Binder:
   - In Paper, the `amber` icon on `amber-soft` is about 2:1. It's a graphic, not text, but it's under 3:1.
   - Flow's email and PDF templates still default to the old teal; PDF branding is deferred in Flow's own `DESIGN.md`.
   - Binder's mockups still draw 22px titles, 1.8 icon strokes and 10.5px key caps. The code and `DESIGN.md` now follow the RVLT decisions, and the difference is recorded in Binder's decisions log.
+
+Connection freshness uses StatusIndicator `live`, a green dot and the words “Connection live”. It is distinct from an active selection edge and a domain label such as “Checked out”. Solid action-red pills describe active operational states only when a consumer explicitly chooses that composition. The public StatusIndicator API does not expose a red pill or domain mapping. Flow gallery cards use the local registry; pinned Binder adapters remain labelled separately.

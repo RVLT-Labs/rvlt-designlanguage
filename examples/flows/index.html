@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reference compositions · RVLT design language</title>
+<link rel="stylesheet" href="../shared/tokens.css">
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 var(--font-sans);-webkit-font-smoothing:antialiased}
+a{color:var(--link);text-underline-offset:3px}
+:focus-visible{outline:2px solid var(--red);outline-offset:2px;border-radius:6px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 28px}
+.skip{position:absolute;left:12px;top:-60px;background:var(--action-red);color:#fff;padding:12px 18px;border-radius:999px;font-weight:600;min-height:44px}
+.skip:focus{top:12px}
+header{padding:28px 0 8px}
+.back{display:inline-flex;align-items:center;min-height:44px;font-weight:600}
+h1{font-family:var(--font-display);font-weight:800;font-size:clamp(30px,6vw,44px);letter-spacing:-.03em;line-height:1.05;margin:8px 0 10px}
+.eyebrow{font-family:var(--font-hand);font-weight:700;color:var(--red-text);font-size:17px;margin:0}
+.lead{color:var(--ink-2);max-width:720px}
+.honest{background:var(--card);border:2px solid var(--border);border-radius:var(--r);padding:14px 16px;color:var(--ink-2);margin:18px 0 28px;box-shadow:var(--sh-card)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:18px;padding-bottom:64px}
+.card{background:var(--card);border:2px solid var(--border);border-radius:var(--r-lg);box-shadow:var(--sh-card);padding:20px;display:flex;flex-direction:column;gap:8px}
+.card h2{font-family:var(--font-display);font-weight:700;font-size:19px;letter-spacing:-.01em;margin:0}
+.card p,.card li{color:var(--ink-2);margin:0;font-size:15px}
+.card ul{margin:0;padding-left:18px}
+.card a.open{margin-top:auto;display:inline-flex;align-items:center;justify-content:center;min-height:44px;border-radius:999px;background:var(--action-red);color:#fff;font-weight:600;text-decoration:none;box-shadow:0 3px 0 var(--red-700)}
+@media (max-width:760px){.wrap{padding:0 20px}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header><div class="wrap">
+  <a class="back" href="../../">RVLT design language</a>
+  <p class="eyebrow">the jobs that happen on the dock</p>
+  <h1>Reference compositions</h1>
+  <p class="lead">Whole tasks, not isolated widgets: what the crew sees, what was saved, what is still pending and the next safe action. Each composition is built from the <code>@rvlt/flow-theme</code> registry, compiled with preview-v2. Browser regressions cover 320, 390 and 768px and desktop in both themes; consult the remediation matrix for actual run results.</p>
+  <p class="honest"><strong>What these are, honestly:</strong> front-end reference compositions with simulated data. There is no backend, no real sync and no scanner, and no user testing is claimed. Timed tasks with crews on the dock and stage managers in the prompt corner are still to be run.</p>
+</div></header>
+<main id="main"><div class="wrap">
+  <div class="grid">
+    <article class="card">
+      <h2>Scan out and return</h2>
+      <ul><li>Duplicate scan, caught in the row, not a toast</li><li>Return confirmation with undo</li><li>Unknown tag recovery with entered value retained</li><li>Explicit, local-only state throughout</li></ul>
+      <a class="open" href="../../preview-v2/contracts/#scan-return">Open scan and return</a>
+    </article>
+    <article class="card">
+      <h2>Offline queue and reconnect</h2>
+      <ul><li>In-memory pending state clearly distinguished from real device storage</li><li>A write the server rejected, with the fix</li><li>Reconnect retains pending changes for explicit retry</li><li>No automatic claim of successful sync</li></ul>
+      <a class="open" href="../../preview-v2/contracts/#scan-return">Open the offline queue</a>
+    </article>
+    <article class="card">
+      <h2>Crew clash recovery</h2>
+      <ul><li>Phone agenda with full names, jobs and times</li><li>Both clashing calls readable, with a choice and its effect</li><li>Short and adjacent calls, overnight work, someone unavailable</li><li>Desktop timeline stacks overlaps instead of hiding them</li></ul>
+      <a class="open" href="../../preview-v2/contracts/#scheduler-recovery">Open clash recovery</a>
+    </article>
+    <article class="card">
+      <h2>Returns, damage and safety</h2>
+      <p>Partial quantities, explicit substitute confirmation, expired-ticket load blocking and reconnect draft choices.</p>
+      <a class="open" href="../../preview-v2/contracts/#operational-recovery">Open operational recovery</a>
+    </article>
+    <article class="card">
+      <h2>Binder Calling</h2>
+      <p>Current/next cue, protected Go, keyboard controls, local offline notes, page navigation and a brightness experiment on the fixed script page.</p>
+      <a class="open" href="../../preview-v2/contracts/#binder-calling">Open Calling reference</a>
+    </article>
+    <article class="card">
+      <h2>Accessible forms</h2>
+      <ul><li>Labels above fields, required marked in words and semantics</li><li>Hints and errors linked with ids, announced on submit</li><li>Right keyboard for every field, one column on phones</li><li>Focus moves to the first problem</li></ul>
+      <a class="open" href="../../preview-v2/contracts/#form-field">Open forms</a>
+    </article>
+  </div>
+</div></main>
+</body>
+</html>
