@@ -1,0 +1,16 @@
+{
+  "name": "rvlt-designlanguage",
+  "private": true,
+  "description": "RVLT design language: rules, tokens, registry, examples and the Pages site. No runtime dependencies at the root.",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "test": "node --test tests/unit/*.test.mjs",
+    "test:browser": "node --test --test-concurrency=1 tests/browser/*.test.mjs",
+    "check": "node packages/flow-theme/scripts/check-sync.mjs && node scripts/design-system/check.mjs && node scripts/site/landing.mjs --check",
+    "build:theme": "node packages/flow-theme/scripts/build-css.mjs",
+    "build:site": "node scripts/site/build.mjs _site"
+  }
+}

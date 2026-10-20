@@ -7,7 +7,7 @@
       "name": "theme",
       "type": "registry:style",
       "title": "RVLT Flow theme",
-      "description": "Espresso-dark theme tokens (globals.css) — drop-in app/globals.css.",
+      "description": "Espresso-dark theme tokens (globals.css) \u2014 drop-in app/globals.css.",
       "files": [
         {
           "path": "dist/globals.css",
@@ -39,7 +39,7 @@
       "name": "button",
       "type": "registry:ui",
       "title": "Button",
-      "description": "RVLT pill button — primary/halo/line/ghost/cream, tactile press, loading state.",
+      "description": "RVLT pill button \u2014 primary/halo/line/ghost/cream, tactile press, loading state.",
       "dependencies": [
         "class-variance-authority",
         "@radix-ui/react-slot"
@@ -77,6 +77,7 @@
       "type": "registry:ui",
       "title": "Card",
       "description": "2px outline + hard offset shadow; `interactive` hover-lift, `live` active state.",
+      "dependencies": ["@radix-ui/react-slot"],
       "registryDependencies": [
         "utils"
       ],
@@ -106,7 +107,7 @@
       "name": "textarea",
       "type": "registry:ui",
       "title": "Textarea",
-      "description": "Input twin — 2px outline, red focus ring, 16px text.",
+      "description": "Input twin \u2014 2px outline, red focus ring, 16px text.",
       "registryDependencies": [
         "utils"
       ],
@@ -121,7 +122,7 @@
       "name": "label",
       "type": "registry:ui",
       "title": "Label",
-      "description": "Form label — 14px medium, --ink-2.",
+      "description": "Form label \u2014 14px medium, --ink-2.",
       "dependencies": [
         "@radix-ui/react-label"
       ],
@@ -196,7 +197,7 @@
       "name": "dialog",
       "type": "registry:ui",
       "title": "Dialog",
-      "description": "Modal — --scrim overlay, 2px outline + --lit elevated panel, Archivo display title.",
+      "description": "Modal \u2014 --scrim overlay, 2px outline + --lit elevated panel, Archivo display title.",
       "dependencies": [
         "@radix-ui/react-dialog",
         "lucide-react",
@@ -237,7 +238,7 @@
       "name": "drawer",
       "type": "registry:ui",
       "title": "Drawer",
-      "description": "Mobile bottom sheet (vaul) — grab handle, rounded-top elevated surface.",
+      "description": "Mobile bottom sheet (vaul) \u2014 grab handle, rounded-top elevated surface.",
       "dependencies": [
         "vaul"
       ],
@@ -274,7 +275,7 @@
       "name": "dropdown-menu",
       "type": "registry:ui",
       "title": "Dropdown Menu",
-      "description": "Menu surface — items highlight --paper-2, red check.",
+      "description": "Menu surface \u2014 items highlight --paper-2, red check.",
       "dependencies": [
         "@radix-ui/react-dropdown-menu",
         "lucide-react",
@@ -334,7 +335,7 @@
       "name": "sonner",
       "type": "registry:ui",
       "title": "Toaster (Sonner)",
-      "description": "Chunky status toasts — 2px outline + hard offset; bottom on mobile.",
+      "description": "Chunky status toasts \u2014 2px outline + hard offset; bottom on mobile.",
       "dependencies": [
         "sonner"
       ],
@@ -370,7 +371,7 @@
       "name": "accordion",
       "type": "registry:ui",
       "title": "Accordion / FAQ",
-      "description": "Native-feel FAQ — `+` rotates 45° on open, open item lifts to --elev.",
+      "description": "Native-feel FAQ \u2014 `+` rotates 45\u00b0 on open, open item lifts to --elev.",
       "dependencies": [
         "@radix-ui/react-accordion",
         "lucide-react"
@@ -389,7 +390,7 @@
       "name": "table",
       "type": "registry:ui",
       "title": "Table",
-      "description": "Calm data table — 1px row dividers, row hover --elev; pair figures with font-mono.",
+      "description": "Calm data table \u2014 1px row dividers, row hover --elev; pair figures with font-mono.",
       "registryDependencies": [
         "utils"
       ],
@@ -404,7 +405,7 @@
       "name": "kbd",
       "type": "registry:ui",
       "title": "Kbd",
-      "description": "Key cap — Geist Mono 11px on --paper-2, 1px --line-2 + 2px bottom edge. One spec across RVLT.",
+      "description": "Key cap \u2014 Geist Mono 11px on --paper-2, 1px --line-2 + 2px bottom edge. One spec across RVLT.",
       "registryDependencies": [
         "utils"
       ],
@@ -437,7 +438,7 @@
       "name": "skeleton",
       "type": "registry:ui",
       "title": "Skeleton",
-      "description": "Loading placeholder — solid --elev pulse (no gradient), motion-safe.",
+      "description": "Loading placeholder \u2014 solid --elev pulse (no gradient), motion-safe.",
       "registryDependencies": [
         "utils"
       ],
@@ -452,7 +453,7 @@
       "name": "avatar",
       "type": "registry:ui",
       "title": "Avatar",
-      "description": "Crew avatar — 8-hue deterministic palette + AA-safe theme-aware initials (§3.7). `PersonAvatar name=…`.",
+      "description": "Crew avatar \u2014 8-hue deterministic palette + AA-safe theme-aware initials (\u00a73.7). `PersonAvatar name=\u2026`.",
       "dependencies": [
         "@radix-ui/react-avatar"
       ],
@@ -470,7 +471,7 @@
       "name": "flow-mascot",
       "type": "registry:ui",
       "title": "Flow mascot",
-      "description": "The moving-head mascot SVG (concept idle pose, §11) — empty/loading/success.",
+      "description": "The moving-head mascot SVG (concept idle pose, \u00a711) \u2014 empty/loading/success.",
       "registryDependencies": [
         "utils"
       ],
@@ -485,7 +486,7 @@
       "name": "stat",
       "type": "registry:ui",
       "title": "Stat",
-      "description": "Display-type figure + faint label; `bright` for the one 38px stat (§9).",
+      "description": "Display-type figure + faint label; `bright` for the one 38px stat (\u00a79).",
       "registryDependencies": [
         "utils"
       ],
@@ -500,7 +501,7 @@
       "name": "empty-state",
       "type": "registry:ui",
       "title": "Empty state",
-      "description": "Mascot + operator-voice line — the sanctioned home for personality in-app (§15.5).",
+      "description": "Mascot + operator-voice line \u2014 the sanctioned home for personality in-app (\u00a715.5).",
       "registryDependencies": [
         "utils",
         "flow-mascot"
@@ -516,7 +517,7 @@
       "name": "stepper",
       "type": "registry:ui",
       "title": "Lifecycle stepper",
-      "description": "The signature project-status spine (§15.4a) — vertical on mobile, horizontal on desktop.",
+      "description": "The signature project-status spine (\u00a715.4a) \u2014 vertical on mobile, horizontal on desktop.",
       "dependencies": [
         "lucide-react"
       ],
@@ -549,7 +550,7 @@
       "name": "breadcrumb",
       "type": "registry:ui",
       "title": "Breadcrumb",
-      "description": "Semantic nav trail for detail pages (Jobs / #24 / Overview). --muted ancestors → hover --ink; ChevronRight separator; red focus ring.",
+      "description": "Semantic nav trail for detail pages (Jobs / #24 / Overview). --muted ancestors \u2192 hover --ink; ChevronRight separator; red focus ring.",
       "dependencies": [
         "@radix-ui/react-slot",
         "lucide-react"
@@ -603,7 +604,7 @@
       "name": "status-indicator",
       "type": "registry:ui",
       "title": "Status indicator",
-      "description": "Compact dot / dot+glow / inline-label variants for tight spaces. `live` = pulsing green dot with --ok-soft ring. Maps to §3.3 status palette.",
+      "description": "Compact dot / dot+glow / inline-label variants for tight spaces. `live` = pulsing green dot with --ok-soft ring. Maps to \u00a73.3 status palette.",
       "dependencies": [
         "class-variance-authority"
       ],
@@ -621,7 +622,7 @@
       "name": "feature-patch",
       "type": "registry:ui",
       "title": "Feature patch",
-      "description": "Module wayfinding icon badge (§9.2/§10/§15.5). `sticker` = full hue fill + 2px cream border + --sh-stk; `soft` = hue-soft fill + tinted icon for nav/launcher tiles.",
+      "description": "Module wayfinding icon badge (\u00a79.2/\u00a710/\u00a715.5). `sticker` = full hue fill + 2px cream border + --sh-stk; `soft` = hue-soft fill + tinted icon for nav/launcher tiles.",
       "dependencies": [
         "class-variance-authority"
       ],
@@ -639,7 +640,7 @@
       "name": "crew-scheduler",
       "type": "registry:ui",
       "title": "Crew scheduler",
-      "description": "Horizontal Gantt timeline (§15.4c) — sticky name+avatar column, scrollable hour track, shift bars in categorical colours, clash detection (bg-out-soft + border-t-out), dashed open slots.",
+      "description": "Horizontal Gantt timeline (\u00a715.4c) \u2014 sticky name+avatar column, scrollable hour track, shift bars in categorical colours, clash detection (bg-out-soft + border-t-out), dashed open slots.",
       "dependencies": [
         "lucide-react"
       ],
@@ -651,6 +652,21 @@
         {
           "path": "registry/rvlt/ui/crew-scheduler.tsx",
           "type": "registry:ui"
+        },
+        {
+          "path": "registry/rvlt/lib/scheduler.ts",
+          "type": "registry:lib",
+          "target": "lib/scheduler.ts"
+        },
+        {
+          "path": "registry/rvlt/lib/scheduler.mjs",
+          "type": "registry:lib",
+          "target": "lib/scheduler.mjs"
+        },
+        {
+          "path": "registry/rvlt/lib/scheduler.d.mts",
+          "type": "registry:lib",
+          "target": "lib/scheduler.d.mts"
         }
       ]
     }

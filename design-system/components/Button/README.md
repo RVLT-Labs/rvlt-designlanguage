@@ -22,4 +22,4 @@ The RVLT pill button with a tactile press — Flow and marketing; red `primary` 
 ## Consumer provides
 Label text in sentence case, an optional leading Lucide icon, `onClick` or `asChild` with a `<Link>` (Radix Slot). Shortcut hints go in a tooltip: "New asset (N)".
 
-_Live: the real component, compiled into `bundle.js` from TwoToned/gearflow@5a85e40 `src/components/ui/button.tsx` — the RVLT registry primitive (RVLT-Labs/rvlt-designlanguage `packages/flow-theme/registry/rvlt/ui/`) as Flow ships it._
+_Published Flow preview: local registry source, compiled by `scripts/design-system/bundle/build-registry.mjs`. The pinned external bundle is retained for Binder adapters._

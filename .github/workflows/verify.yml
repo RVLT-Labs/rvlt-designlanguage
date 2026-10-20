@@ -1,0 +1,36 @@
+name: Verify design contracts
+on:
+  pull_request:
+  push:
+    branches-ignore: [main]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci --prefix apps/preview-v2
+      - run: node packages/flow-theme/scripts/build-css.mjs
+      - run: node packages/flow-theme/scripts/build-registry.mjs
+      - run: node scripts/design-system/bundle/build-registry.mjs
+      - run: npm test && npm run check
+      - run: npm --prefix apps/preview-v2 run typecheck
+      - run: npm --prefix apps/preview-v2 run build
+      - run: node scripts/site/build.mjs _site --preview-v2 apps/preview-v2/out --registry packages/flow-theme/dist
+      - run: node scripts/site/check-links.mjs _site
+      - run: npm ci --prefix tests/browser
+      - run: npx playwright install --with-deps chromium
+        working-directory: tests/browser
+      - run: npm run test:browser
+        env:
+          RVLT_SITE_DIR: ${{ github.workspace }}/_site
+          RVLT_EVIDENCE_DIR: ${{ github.workspace }}/browser-evidence
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: browser-evidence
+          path: browser-evidence

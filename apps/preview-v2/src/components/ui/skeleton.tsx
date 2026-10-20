@@ -1,17 +1,2 @@
-import * as React from "react";
-
-import { cn } from "@/lib/utils";
-
-function Skeleton({
-  className,
-  ...props
-}: React.HTMLAttributes<HTMLDivElement>) {
-  return (
-    <div
-      className={cn("animate-pulse rounded-[8px] bg-elev", className)}
-      {...props}
-    />
-  );
-}
-
-export { Skeleton };
+// The registry source is the component; preview-v2 renders it unchanged (see tests/unit/preview-uses-registry.test.mjs).
+export * from "@registry/ui/skeleton";

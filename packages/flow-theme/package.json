@@ -1,6 +1,6 @@
 {
   "name": "@rvlt/flow-theme",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "RVLT Flow design tokens + Tailwind v4 / shadcn theme + component registry. Generated from DESIGN.md.",
   "type": "module",
   "license": "UNLICENSED",
@@ -14,6 +14,7 @@
   "files": [
     "dist",
     "tokens.json",
+    "contrast.json",
     "registry",
     "registry.json",
     "scripts",
@@ -21,13 +22,15 @@
   ],
   "exports": {
     "./globals.css": "./dist/globals.css",
+    "./fonts.css": "./dist/fonts.css",
     "./tokens": {
       "types": "./dist/tokens.d.ts",
       "default": "./dist/tokens.js"
     },
     "./tokens.json": "./tokens.json",
     "./registry.json": "./registry.json",
-    "./package.json": "./package.json"
+    "./package.json": "./package.json",
+    "./contrast.json": "./contrast.json"
   },
   "sideEffects": [
     "*.css"
@@ -35,7 +38,7 @@
   "scripts": {
     "build": "node scripts/build-css.mjs",
     "build:registry": "shadcn build",
-    "check": "node scripts/check-sync.mjs",
+    "check": "node scripts/check-sync.mjs && node scripts/build-css.mjs --check",
     "prepublishOnly": "npm run check && npm run build"
   },
   "peerDependencies": {

@@ -7,4 +7,4 @@ Off: 2px `border` outline on `paper-2`, `ink` thumb at 2px. On: thumb slides 20p
 ## Consumer provides
 A visible label, `checked` / `onCheckedChange` (Radix).
 
-_Live: the real component, compiled into `bundle.js` from TwoToned/gearflow@5a85e40 `src/components/ui/switch.tsx` — the RVLT registry primitive (RVLT-Labs/rvlt-designlanguage `packages/flow-theme/registry/rvlt/ui/`) as Flow ships it._
+_Published Flow preview: local registry source, compiled by `scripts/design-system/bundle/build-registry.mjs`. The pinned external bundle is retained for Binder adapters._

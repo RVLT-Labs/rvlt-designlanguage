@@ -17,3 +17,5 @@ A cue drawn on the script page: a white pill in the margin outlined in the depar
 - Markup type is Helvetica-metric so screen and paper measure identically — the one place RVLT's UI fonts aren't used.
 
 _Static rendition hand-written from RVLT-Labs/binder `packages/core/src/markup/cueTags.ts, apps/web/src/markup/CueMarker.tsx`._
+
+Department colour is for outlines and leaders (3:1 graphical floor). All cue words and numbers use page-ink on the fixed white page, with a 4.5:1 text floor. Go, standby and warn retain shape and dash distinctions. Actual script zoom, monochrome print and live calling still require Binder product validation.

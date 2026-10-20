@@ -3,3 +3,7 @@ public/
 node_modules/
 dist/r/
 dist/registry.json
+dist/fonts/
+
+# Locally compiled gallery overlay
+dist/gallery/

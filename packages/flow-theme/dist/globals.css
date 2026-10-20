@@ -1,6 +1,6 @@
 /* ----------------------------------------------------------------------------
  * @rvlt/flow-theme — GENERATED from tokens.json. Do not edit by hand.
- * Source of truth: tokens.json  ·  Design spec: DESIGN.md v1.2.0
+ * Source of truth: tokens.json  ·  Design spec: DESIGN.md v1.3.0
  * Tailwind v4 + shadcn convention (direct hex / var() aliases, @theme inline).
  * Dark "espresso" is the default; .light is the opt-in "Paper" alternate.
  * -------------------------------------------------------------------------- */
@@ -20,6 +20,10 @@
   --red: #E0363D;
   --red-700: #B21F26;
   --red-soft: rgba(224,54,61,.16);
+  --action-red: #D6323A;
+  --red-text: #EE5A5F;
+  --control-line: #857A69;
+  --info: #82A8F3;
   --ok: #4FD888;
   --warn: #EBA53A;
   --rep: #B6AC9A;
@@ -59,16 +63,16 @@
   --card-foreground: var(--ink);
   --popover: var(--card);
   --popover-foreground: var(--ink);
-  --primary: var(--red);
+  --primary: var(--action-red);
   --primary-foreground: #fff;
   --secondary: var(--paper-2);
   --secondary-foreground: var(--ink);
   --muted-foreground: var(--muted);
   --accent: var(--elev);
   --accent-foreground: var(--ink);
-  --destructive: var(--red);
+  --destructive: var(--action-red);
   --destructive-foreground: #fff;
-  --input: var(--border);
+  --input: var(--control-line);
   --ring: var(--red);
   --cream: #F5EFE2;
   --cream-ink: #1D1A15;
@@ -95,6 +99,10 @@
   --red: #C12229;
   --red-700: #9C1B21;
   --red-soft: #FBE7E3;
+  --action-red: #C12229;
+  --red-text: #C12229;
+  --control-line: var(--ink);
+  --info: #2A65D0;
   --ok: #007D36;
   --warn: #9B5F00;
   --rep: #706857;
@@ -143,6 +151,10 @@
   --color-line-2: var(--line-2);
   --color-red: var(--red);
   --color-red-700: var(--red-700);
+  --color-action-red: var(--action-red);
+  --color-red-text: var(--red-text);
+  --color-control-line: var(--control-line);
+  --color-info: var(--info);
   --color-ok: var(--ok);
   --color-warn: var(--warn);
   --color-rep: var(--rep);
@@ -223,5 +235,5 @@
   to { height: 0 }
 }
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; }
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }

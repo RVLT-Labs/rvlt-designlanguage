@@ -1,0 +1,10 @@
+{
+  "name": "rvlt-browser-tests",
+  "private": true,
+  "description": "Browser regressions for the assembled Pages site. Install here only (npm ci); the repository root stays dependency-free.",
+  "type": "module",
+  "devDependencies": {
+    "axe-core": "4.14.0",
+    "playwright": "1.64.1"
+  }
+}

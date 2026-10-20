@@ -8,11 +8,8 @@
 var h = React.createElement, R = window.Rvlt, F = React.Fragment;
 var row = function () { return h.apply(null, ['div', { style: { display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '12px', marginBottom: '12px' } }].concat([].slice.call(arguments))); };
 function Demo() {
-  var dots = [['success','Available'],['primary','On site'],['warning','Prepping'],['error','Overdue'],['info','Quoted'],['neutral','Enquiry']];
-  var pills = [['project','CONFIRMED','Confirmed'],['project','CHECKED_OUT','Checked out'],['project','AWAITING_PAYMENT','Awaiting payment'],['project','CANCELLED','Cancelled'],['asset','RESERVED','Reserved'],['asset','RETIRED','Retired']];
-  return h(F, null,
-    row.apply(null, dots.map(function (d) { return h(R.StatusIndicator, { key: d[1], intent: d[0], label: d[1] }); })),
-    row.apply(null, pills.map(function (p) { return h(R.StatusIndicator, { key: p[2], category: p[0], value: p[1], label: p[2], variant: 'pill' }); })));
+  var dots = [['ok','Available'],['live','Connection live'],['warn','Prepping'],['overbooked','Overdue'],['repair','In repair'],['neutral','Enquiry']];
+  return row.apply(null, dots.map(function (d) { return h(R.StatusIndicator, { key: d[1], intent: d[0], label: d[1] }); }));
 }
 ReactDOM.createRoot(document.getElementById('root')).render(h(Demo));
 </script>

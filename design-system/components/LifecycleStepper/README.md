@@ -9,4 +9,4 @@ Horizontal from 768px (shown); a vertical timeline on phones. Rings become butto
 ## Consumer provides
 `steps: { label, state }[]`, optional `onStepClick(index)`.
 
-_Live: the real component, compiled into `bundle.js` from TwoToned/gearflow@5a85e40 `src/components/ui/stepper.tsx` — the RVLT registry primitive (RVLT-Labs/rvlt-designlanguage `packages/flow-theme/registry/rvlt/ui/`) as Flow ships it._
+_Published Flow preview: local registry source, compiled by `scripts/design-system/bundle/build-registry.mjs`. The pinned external bundle is retained for Binder adapters._

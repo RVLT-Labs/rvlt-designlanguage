@@ -1,6 +1,6 @@
 // @rvlt/flow-theme — GENERATED from tokens.json. Do not edit.
 export const tokens = {
-  "version": "1.2.0",
+  "version": "1.3.0",
   "themes": {
     "dark": {
       "paper": "#141210",
@@ -16,6 +16,10 @@ export const tokens = {
       "red": "#E0363D",
       "red-700": "#B21F26",
       "red-soft": "rgba(224,54,61,.16)",
+      "action-red": "#D6323A",
+      "red-text": "#EE5A5F",
+      "control-line": "#857A69",
+      "info": "#82A8F3",
       "ok": "#4FD888",
       "warn": "#EBA53A",
       "rep": "#B6AC9A",
@@ -61,6 +65,10 @@ export const tokens = {
       "red": "#C12229",
       "red-700": "#9C1B21",
       "red-soft": "#FBE7E3",
+      "action-red": "#C12229",
+      "red-text": "#C12229",
+      "control-line": "var(--ink)",
+      "info": "#2A65D0",
       "ok": "#007D36",
       "warn": "#9B5F00",
       "rep": "#706857",

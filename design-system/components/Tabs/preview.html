@@ -10,7 +10,7 @@ var row = function () { return h.apply(null, ['div', { style: { display: 'flex',
 function Demo() {
   var tabs = ['Overview', 'Equipment', 'Crew', 'Finance', 'Documents'];
   return h(R.Tabs, { defaultValue: 'Overview' },
-    h.apply(null, [R.TabsList, null].concat(tabs.map(function (t) { return h(R.TabsTrigger, { key: t, value: t }, t); }))),
+    h.apply(null, [R.TabsList, { 'aria-label': 'Project sections', style: { maxWidth: '100%', overflowX: 'auto', justifyContent: 'flex-start' } }].concat(tabs.map(function (t) { return h(R.TabsTrigger, { key: t, value: t }, t); }))),
     tabs.map(function (t) { return h(R.TabsContent, { key: t, value: t }, h('span', { style: { color: 'var(--ink-2)', fontSize: '13.5px' } }, t + ' — click a tab, it really switches.')); }));
 }
 ReactDOM.createRoot(document.getElementById('root')).render(h(Demo));

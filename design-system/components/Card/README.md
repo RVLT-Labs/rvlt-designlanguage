@@ -16,4 +16,4 @@ The bordered content surface: 2px `border` outline, `card` fill and a hard `sh-c
 - Don't wrap every form section in a card — form sections are flat, separated by a top border.
 - No coloured left-border accents, no gradients, no soft shadows.
 
-_Live: the real component, compiled into `bundle.js` from TwoToned/gearflow@5a85e40 `src/components/ui/card.tsx` — the RVLT registry primitive (RVLT-Labs/rvlt-designlanguage `packages/flow-theme/registry/rvlt/ui/`) as Flow ships it._
+_Published Flow preview: local registry source, compiled by `scripts/design-system/bundle/build-registry.mjs`. The pinned external bundle is retained for Binder adapters._

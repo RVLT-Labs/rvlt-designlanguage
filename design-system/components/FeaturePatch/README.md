@@ -11,4 +11,4 @@ Flow module hues: Projects `blue`, Assets `amber`, Schedule `green`, Crew `purpl
 ## On-fill rule
 Sticker icon colour is `dark` in the dark theme; in light it's white, except on `amber` (stays `dark`). Always give it a visible label or `aria-label`.
 
-_Live: the real component, compiled into `bundle.js` from TwoToned/gearflow@5a85e40 `src/components/ui/feature-patch.tsx` — the RVLT registry primitive (RVLT-Labs/rvlt-designlanguage `packages/flow-theme/registry/rvlt/ui/`) as Flow ships it._
+_Published Flow preview: local registry source, compiled by `scripts/design-system/bundle/build-registry.mjs`. The pinned external bundle is retained for Binder adapters._

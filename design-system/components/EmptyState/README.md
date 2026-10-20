@@ -12,4 +12,4 @@ Domain-specific and dry: "Nothing booked yet — Flow's having a quiet one.", "N
 ## Don't
 Never use the mascot, jokes or Kalam in alerts, overdue states, compliance failures, conflicts or destructive confirmations — those get plain, direct copy.
 
-_Live: the real component, compiled into `bundle.js` from TwoToned/gearflow@5a85e40 `src/components/ui/empty-state.tsx` — the RVLT registry primitive (RVLT-Labs/rvlt-designlanguage `packages/flow-theme/registry/rvlt/ui/`) as Flow ships it._
+_Published Flow preview: local registry source, compiled by `scripts/design-system/bundle/build-registry.mjs`. The pinned external bundle is retained for Binder adapters._

@@ -33,8 +33,12 @@ npm i tw-animate-css        # required peer — must be imported BEFORE globals.
 ```css
 @import "tailwindcss";
 @import "tw-animate-css";                 /* animate-in/out, fade, zoom, slide utilities */
+@import "@rvlt/flow-theme/fonts.css";     /* Archivo, Hanken Grotesk, Geist Mono, Kalam, Baloo 2 (self-hosted, OFL) */
 @import "@rvlt/flow-theme/globals.css";   /* tokens, @theme utilities, accordion keyframes */
 ```
+
+The font faces ship in the package (`dist/fonts/`, SIL OFL licences in `dist/fonts/licenses/`); without
+that import every heading falls back to a system sans and the kit looks like stock shadcn.
 
 That's it — Tailwind v4 utilities (`bg-paper`, `text-ink`, `border-line-2`, `text-ok`,
 `font-display`, `bg-red` …) and the shadcn aliases (`--primary`, `--border`, `--ring` …)
@@ -76,10 +80,10 @@ import { tokens, avatarOrder, datavizOrder } from "@rvlt/flow-theme/tokens";
 
 ```bash
 npm run build           # tokens.json → dist/globals.css + dist/tokens.js
-npm run build:registry  # registry.json → public/r/*.json (needs the shadcn CLI)
+node scripts/build-registry.mjs # registry.json → dist/r/*.json and dist/registry.json
 ```
 
-To host the component registry, run `build:registry` and serve `public/r/` (e.g. on the
+To host the component registry, run `node scripts/build-registry.mjs` and serve `dist/r/` (e.g. on the
 Pages site), then set the registry URL in consumers' `components.json`. Until hosted, the
 component source under `registry/rvlt/` can be copied in directly.
 
@@ -92,3 +96,11 @@ DESIGN.md Appendix A** (the file adds a `_generator` block of emit config on top
 change it in both and re-run `npm run build`; `globals.css` then can't drift.
 
 — © RVLT Labs. Built for production companies, by a production company.
+
+## Public examples and recovery
+
+The source files in `examples/` compile unchanged against the distributed registry in preview-v2. They render at `/preview-v2/contracts/`. `form-field.tsx` demonstrates required/email/search fields and linked errors. `statuses.tsx` shows the public status vocabulary. `card-interactive.tsx` uses a real CardLink. `scan-return.tsx` and `scheduler-recovery.tsx` are in-memory references, without persistence, notifications or a backend.
+
+CrewScheduler provides a phone agenda below 768px and a desktop timeline with separate lanes for overlaps. The full assignment list provides accurate targets for short calls. `onDayChange` lets a consumer change the date and rows together. Times are hours from local midnight; use 24+ for next-day starts. An end earlier than its start crosses midnight. `unavailable` is a row state, and reassignment must check both availability and overlaps. The examples demonstrate this check. A generic Table's sticky column or phone card list remains a consumer responsibility.
+
+The gallery builds a local Flow overlay with `node scripts/design-system/bundle/build-registry.mjs` after installing preview-v2 dependencies. Pinned external Binder adapters remain separate. Token checks and successful compilation are not rendered, screen-reader or crew validation. See `docs/AUDIT-REMEDIATION-MATRIX.md` for evidence and pending checks.

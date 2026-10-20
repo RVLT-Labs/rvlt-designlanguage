@@ -1,0 +1,214 @@
+{
+  "$comment": "Machine-readable authority map (docs/AUTHORITY.md). Every top-level entry is classified; a higher layer wins. tests/unit/authority.test.mjs enforces coverage; scripts/design-system/bundle/build.mjs only writes paths whose sync is generated-external.",
+  "layers": [
+    {
+      "id": "rules",
+      "rank": 1,
+      "title": "Normative RVLT rules"
+    },
+    {
+      "id": "product-contracts",
+      "rank": 2,
+      "title": "Product contracts"
+    },
+    {
+      "id": "tokens",
+      "rank": 3,
+      "title": "Canonical machine tokens"
+    },
+    {
+      "id": "implementation",
+      "rank": 4,
+      "title": "Implementation"
+    },
+    {
+      "id": "verified-examples",
+      "rank": 5,
+      "title": "Verified examples"
+    },
+    {
+      "id": "marketing-expression",
+      "rank": 6,
+      "title": "Marketing expression"
+    }
+  ],
+  "surfaces": [
+    {
+      "path": "DESIGN.md",
+      "layer": "rules",
+      "owner": "RVLT-Labs/rvlt-designlanguage",
+      "role": "normative rules §0–§18; product contracts in §19"
+    },
+    {
+      "path": "docs/AUTHORITY.md",
+      "layer": "rules",
+      "owner": "RVLT-Labs/rvlt-designlanguage",
+      "role": "this authority map"
+    },
+    {
+      "path": "authority.json",
+      "layer": "rules",
+      "owner": "RVLT-Labs/rvlt-designlanguage",
+      "role": "machine-readable authority map"
+    },
+    {
+      "path": "README.md",
+      "layer": "rules",
+      "owner": "RVLT-Labs/rvlt-designlanguage",
+      "role": "entry point; summarises DESIGN.md, which wins"
+    },
+    {
+      "path": "index.html",
+      "layer": "rules",
+      "owner": "RVLT-Labs/rvlt-designlanguage",
+      "role": "published brand reference (Pages root); renders DESIGN.md decisions and tokens.json, which win"
+    },
+    {
+      "path": "assets/stickers",
+      "layer": "rules",
+      "owner": "RVLT-Labs/rvlt-designlanguage (supplied pack 1.1.0)",
+      "role": "locked sticker and wordmark artwork",
+      "sync": "locked"
+    },
+    {
+      "path": "assets/albert",
+      "layer": "rules",
+      "owner": "RVLT-Labs/rvlt-designlanguage (supplied pack, Design-lock.json)",
+      "role": "locked character artwork",
+      "sync": "locked"
+    },
+    {
+      "path": "packages/flow-theme/tokens.json",
+      "layer": "tokens",
+      "owner": "RVLT-Labs/rvlt-designlanguage",
+      "role": "canonical token values"
+    },
+    {
+      "path": "packages/flow-theme/contrast.json",
+      "layer": "tokens",
+      "owner": "RVLT-Labs/rvlt-designlanguage",
+      "role": "allowed contrast pairings"
+    },
+    {
+      "path": "design-system/tokens.json",
+      "layer": "tokens",
+      "owner": "RVLT-Labs/rvlt-designlanguage → claude.ai design-system artifact",
+      "role": "mirror of tokens.json",
+      "sync": "mirror-checked"
+    },
+    {
+      "path": "packages/flow-theme/registry",
+      "layer": "implementation",
+      "owner": "RVLT-Labs/rvlt-designlanguage",
+      "role": "public component contract"
+    },
+    {
+      "path": "packages/flow-theme/dist",
+      "layer": "implementation",
+      "owner": "RVLT-Labs/rvlt-designlanguage",
+      "role": "generated CSS, tokens and font faces",
+      "sync": "generated"
+    },
+    {
+      "path": "packages/flow-theme",
+      "layer": "implementation",
+      "owner": "RVLT-Labs/rvlt-designlanguage",
+      "role": "@rvlt/flow-theme package"
+    },
+    {
+      "path": "design-system/README.md",
+      "layer": "rules",
+      "owner": "RVLT-Labs/rvlt-designlanguage → claude.ai design-system artifact",
+      "role": "design-system overview (summary; DESIGN.md wins)",
+      "sync": "repo-to-artifact"
+    },
+    {
+      "path": "design-system/components/bundle.js",
+      "layer": "implementation",
+      "owner": "TwoToned/gearflow + RVLT-Labs/binder at pinned commits",
+      "role": "Flow and Binder app adapters for the live cards",
+      "sync": "generated-external"
+    },
+    {
+      "path": "design-system/components/bundle.css",
+      "layer": "implementation",
+      "owner": "Part 1 generated from TwoToned/gearflow + RVLT-Labs/binder; Part 2 from scripts/design-system/bundle/static.css",
+      "role": "card styles",
+      "sync": "generated-external"
+    },
+    {
+      "path": "design-system/components",
+      "layer": "verified-examples",
+      "owner": "RVLT-Labs/rvlt-designlanguage",
+      "role": "component cards (live adapters and static renditions)"
+    },
+    {
+      "path": "design-system",
+      "layer": "verified-examples",
+      "owner": "RVLT-Labs/rvlt-designlanguage → claude.ai design-system artifact",
+      "role": "design-system mirror: fonts, logos, icons, guides, cards",
+      "sync": "repo-to-artifact"
+    },
+    {
+      "path": "apps/preview-v2",
+      "layer": "verified-examples",
+      "owner": "RVLT-Labs/rvlt-designlanguage",
+      "role": "registry showcase compiled against the registry source"
+    },
+    {
+      "path": "examples/flow-marketing",
+      "layer": "marketing-expression",
+      "owner": "RVLT-Labs/rvlt-designlanguage",
+      "role": "Flow marketing mockups (Espresso index.html, Paper light.html); expression only, never wins, figures illustrative"
+    },
+    {
+      "path": "examples/flows",
+      "layer": "verified-examples",
+      "owner": "RVLT-Labs/rvlt-designlanguage",
+      "role": "hub for the reference compositions (implemented in apps/preview-v2/src/app/flows)"
+    },
+    {
+      "path": "examples/static-catalogue",
+      "layer": "verified-examples",
+      "owner": "RVLT-Labs/rvlt-designlanguage",
+      "role": "plain HTML/CSS token and component catalogue (formerly preview.html)"
+    },
+    {
+      "path": "examples/shared/tokens.css",
+      "layer": "implementation",
+      "owner": "RVLT-Labs/rvlt-designlanguage",
+      "role": "token variables and font faces for static examples",
+      "sync": "generated"
+    },
+    {
+      "path": "examples",
+      "layer": "verified-examples",
+      "owner": "RVLT-Labs/rvlt-designlanguage",
+      "role": "examples root"
+    },
+    {
+      "path": "scripts",
+      "layer": "tooling",
+      "owner": "RVLT-Labs/rvlt-designlanguage",
+      "role": "build and check scripts"
+    },
+    {
+      "path": "tests",
+      "layer": "tooling",
+      "owner": "RVLT-Labs/rvlt-designlanguage",
+      "role": "guards and browser regressions"
+    },
+    {
+      "path": "docs",
+      "layer": "rules",
+      "owner": "RVLT-Labs/rvlt-designlanguage",
+      "role": "authority map and audit remediation record"
+    },
+    {
+      "path": "package.json",
+      "layer": "tooling",
+      "owner": "RVLT-Labs/rvlt-designlanguage",
+      "role": "root test and check scripts (no dependencies)"
+    }
+  ]
+}

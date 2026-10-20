@@ -11,4 +11,4 @@ Figures are tabular. Write concrete numbers ("0 double-bookings", "99.9% account
 ## Consumer provides
 `figure` (number or short string), `label`, optional `bright`.
 
-_Live: the real component, compiled into `bundle.js` from TwoToned/gearflow@5a85e40 `src/components/ui/stat.tsx` — the RVLT registry primitive (RVLT-Labs/rvlt-designlanguage `packages/flow-theme/registry/rvlt/ui/`) as Flow ships it._
+_Published Flow preview: local registry source, compiled by `scripts/design-system/bundle/build-registry.mjs`. The pinned external bundle is retained for Binder adapters._

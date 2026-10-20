@@ -15,7 +15,7 @@ const Input = React.forwardRef<
     ref={ref}
     className={cn(
       "flex min-h-11 w-full rounded-[var(--radius)] border-2 border-input bg-card px-3.5 py-2 text-[16px] text-ink",
-      "placeholder:text-faint",
+      "placeholder:text-muted",
       "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red focus-visible:ring-offset-2 focus-visible:ring-offset-paper",
       "aria-[invalid=true]:border-t-out aria-[invalid=true]:focus-visible:ring-t-out",
       "disabled:cursor-not-allowed disabled:opacity-45",
@@ -27,4 +27,10 @@ const Input = React.forwardRef<
 ));
 Input.displayName = "Input";
 
-export { Input };
+/** Search retains the same 44px / 16px field contract. Supply a persistent label. */
+const SearchInput = React.forwardRef<HTMLInputElement, React.InputHTMLAttributes<HTMLInputElement>>(
+  ({ type = "search", ...props }, ref) => <Input ref={ref} type={type} {...props} />,
+);
+SearchInput.displayName = "SearchInput";
+
+export { Input, SearchInput };

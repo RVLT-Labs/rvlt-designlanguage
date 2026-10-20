@@ -1,17 +1,21 @@
 #!/usr/bin/env node
 /**
- * Generate dist/globals.css + dist/tokens.{js,d.ts} from tokens.json — the source of truth.
+ * Generate dist/globals.css + dist/tokens.{js,d.ts} from tokens.json — the source of truth —
+ * and dist/fonts.css + dist/fonts/ (the self-hosted brand faces) from the design-system font list.
  * Tailwind v4 convention: :root (dark default) + .light + @theme inline.
- * Run: node scripts/build-css.mjs   (or `npm run build`)
+ * Run: node scripts/build-css.mjs           (or `npm run build`)
+ *      node scripts/build-css.mjs --check   (exit 1 if a committed dist file is stale)
  */
-import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdirSync, copyFileSync, existsSync, readdirSync } from "node:fs";
 import { fileURLToPath } from "node:url";
-import { dirname, join } from "node:path";
+import { dirname, join, basename } from "node:path";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const root = join(here, "..");
+const CHECK = process.argv.includes("--check");
 const t = JSON.parse(readFileSync(join(root, "tokens.json"), "utf8"));
 const G = t._generator;
+const outputs = {}; // dist-relative path → contents (written, or compared under --check)
 
 const skip = (k) => k.startsWith("$");
 const vars = (obj, indent = "  ") =>
@@ -86,13 +90,12 @@ const keyframes = `@keyframes accordion-down {
   to { height: 0 }
 }
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; }
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }`;
 
 const css = [header, rootBlock, lightBlock, themeBlock, keyframes].join("\n\n") + "\n";
 
-mkdirSync(join(root, "dist"), { recursive: true });
-writeFileSync(join(root, "dist", "globals.css"), css);
+outputs["globals.css"] = css;
 
 // token export for runtime use (chart palettes, type ramp, etc.) — plain ESM + .d.ts
 const data = {
@@ -111,7 +114,7 @@ export const tokens = ${JSON.stringify(data, null, 2)};
 export const avatarOrder = tokens.avatarOrder;
 export const datavizOrder = tokens.datavizOrder;
 `;
-writeFileSync(join(root, "dist", "tokens.js"), js);
+outputs["tokens.js"] = js;
 
 const dts = `// @rvlt/flow-theme — GENERATED. Do not edit.
 export type ThemeName = "dark" | "light";
@@ -129,6 +132,30 @@ export declare const tokens: {
 export declare const avatarOrder: string[];
 export declare const datavizOrder: string[];
 `;
-writeFileSync(join(root, "dist", "tokens.d.ts"), dts);
+outputs["tokens.d.ts"] = dts;
 
-console.log("✓ wrote dist/globals.css, dist/tokens.js, dist/tokens.d.ts from tokens.json");
+// self-hosted brand faces (§5): the design system's font list and files are the single source
+const FONT_SRC = join(root, "..", "..", "design-system");
+const ds = JSON.parse(readFileSync(join(FONT_SRC, "tokens.json"), "utf8"));
+const faces = ds.type.fonts.map((f) =>
+  `@font-face {\n  font-family: "${f.family}";\n  src: url("./fonts/${basename(f.file)}") format("woff2");\n  font-weight: ${f.weight};\n  font-style: ${f.style};\n  font-display: swap;\n}`);
+outputs["fonts.css"] = `/* @rvlt/flow-theme: GENERATED brand font faces (Archivo, Hanken Grotesk, Geist Mono, Kalam,
+ * Baloo 2), SIL OFL, self-hosted. Import before globals.css: @import "@rvlt/flow-theme/fonts.css";
+ * Licences: ./fonts/licenses/. Source: design-system/fonts in RVLT-Labs/rvlt-designlanguage. */
+${faces.join("\n")}
+`;
+
+if (CHECK) {
+  const stale = Object.entries(outputs).filter(([f, s]) => !existsSync(join(root, "dist", f)) || readFileSync(join(root, "dist", f), "utf8") !== s).map(([f]) => f);
+  if (stale.length) {
+    console.error(`✗ dist is stale: ${stale.join(", ")} (run node scripts/build-css.mjs)`);
+    process.exit(1);
+  }
+  console.log("✓ dist/globals.css, tokens.js, tokens.d.ts and fonts.css match tokens.json");
+  process.exit(0);
+}
+mkdirSync(join(root, "dist", "fonts", "licenses"), { recursive: true });
+for (const [f, s] of Object.entries(outputs)) writeFileSync(join(root, "dist", f), s);
+for (const f of ds.type.fonts) copyFileSync(join(FONT_SRC, f.file), join(root, "dist", "fonts", basename(f.file)));
+for (const l of readdirSync(join(FONT_SRC, "fonts", "licenses"))) copyFileSync(join(FONT_SRC, "fonts", "licenses", l), join(root, "dist", "fonts", "licenses", l));
+console.log("✓ wrote dist/globals.css, dist/tokens.js, dist/tokens.d.ts, dist/fonts.css (+ dist/fonts/) from tokens.json");

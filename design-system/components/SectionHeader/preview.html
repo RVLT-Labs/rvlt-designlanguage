@@ -10,8 +10,8 @@ var row = function () { return h.apply(null, ['div', { style: { display: 'flex',
 var fact = function (k, v) { return h('div', { style: { display: 'flex', justifyContent: 'space-between', fontSize: '13.5px', color: 'var(--ink-2)' } }, k, h('b', { style: { fontWeight: 500, color: 'var(--ink)' } }, v)); };
 function Demo() {
   return h('div', { style: { maxWidth: '340px', display: 'flex', flexDirection: 'column', gap: '16px' } },
-    h(R.SidebarSection, { title: 'Key facts' }, fact('Client', 'Hilton Sydney'), fact('Bump-in', 'Fri 6:00am')),
-    h(R.SidebarSection, { title: 'Team', divider: false }, fact('Project manager', 'Priya Nair')));
+    h('section', { 'aria-label': 'Key facts' }, h(R.SectionHeader, { label: 'Key facts' }), fact('Client', 'Hilton Sydney'), fact('Bump-in', 'Fri 6:00am')),
+    h('section', { 'aria-label': 'Team' }, h(R.SectionHeader, { label: 'Team' }), fact('Project manager', 'Priya Nair')));
 }
 ReactDOM.createRoot(document.getElementById('root')).render(h(Demo));
 </script>

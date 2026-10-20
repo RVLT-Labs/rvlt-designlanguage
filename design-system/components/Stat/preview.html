@@ -8,9 +8,9 @@
 var h = React.createElement, R = window.Rvlt, F = React.Fragment;
 var row = function () { return h.apply(null, ['div', { style: { display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '12px', marginBottom: '12px' } }].concat([].slice.call(arguments))); };
 function Demo() {
-  return h('div', { style: { display: 'flex', gap: '32px', alignItems: 'flex-end' } },
+  return h(F, null, h('p', null, 'Illustrative figures. No operational measurements.'), h('div', { style: { display: 'flex', flexWrap: 'wrap', gap: '32px', alignItems: 'flex-end' } },
     h(R.Stat, { bright: true, figure: '0', label: 'double-bookings this month' }), h(R.Stat, { figure: '142', label: 'items out' }),
-    h(R.Stat, { figure: '7', label: 'active jobs' }), h(R.Stat, { figure: '99.9%', label: 'accounted for' }));
+    h(R.Stat, { figure: '7', label: 'active jobs' }), h(R.Stat, { figure: '99.9%', label: 'accounted for' })));
 }
 ReactDOM.createRoot(document.getElementById('root')).render(h(Demo));
 </script>

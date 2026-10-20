@@ -11,3 +11,6 @@ Thumbs.db
 
 # Local Pages builds (scripts/design-system/build-site.mjs)
 _site/
+
+# Browser test dependencies (npm ci in tests/browser)
+tests/browser/node_modules/

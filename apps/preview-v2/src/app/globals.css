@@ -1,6 +1,11 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@import "@rvlt/flow-theme/fonts.css";        /* brand faces, self-hosted (§5) */
 @import "@rvlt/flow-theme/globals.css";
+/* src/registry and src/examples are synced from the package and git-ignored, and Tailwind skips
+   ignored paths when it detects sources, so name them explicitly */
+@source "../registry";
+@source "../examples";
 
 /* Preview-only: smooth theme transition */
 html {

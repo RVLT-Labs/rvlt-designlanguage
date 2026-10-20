@@ -16,7 +16,7 @@ function Demo() {
     h(R.TableHeader, null, h(R.TableRow, null, h(R.TableHead, null, 'Asset'), h(R.TableHead, null, 'Tag'), h(R.TableHead, null, 'Status'), h(R.TableHead, { style: num }, 'Day rate'))),
     h(R.TableBody, null, rows.map(function (r, i) { return h(R.TableRow, { key: r[1], 'data-state': i === 1 ? 'selected' : undefined },
       h(R.TableCell, null, r[0]), h(R.TableCell, null, h('span', { style: mono }, r[1])),
-      h(R.TableCell, null, h(R.StatusIndicator, { category: 'asset', value: r[2], label: r[3], variant: 'pill' })), h(R.TableCell, { style: num }, r[4])); })),
+      h(R.TableCell, null, h(R.StatusIndicator, { intent: ['neutral','ok','warn','overbooked'][i], label: r[3] })), h(R.TableCell, { style: num }, r[4])); })),
     h(R.TableCaption, null, '4 of 1,284 assets'));
 }
 ReactDOM.createRoot(document.getElementById('root')).render(h(Demo));

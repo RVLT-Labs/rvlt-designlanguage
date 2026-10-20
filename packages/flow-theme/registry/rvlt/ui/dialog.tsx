@@ -52,12 +52,14 @@ const DialogContent = React.forwardRef<
       {children}
       <DialogPrimitive.Close
         className={cn(
-          "absolute right-4 top-4 rounded-[8px] opacity-70 transition-opacity",
-          "hover:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red",
+          // a real 44px target (§16.8), not a bare 16px glyph; pair it with a full-width
+          // dismiss button in the footer on phones (§16.10)
+          "absolute right-3 top-3 grid size-11 place-items-center rounded-full text-muted transition-colors",
+          "hover:bg-paper-2 hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red",
           "disabled:pointer-events-none disabled:opacity-45 disabled:cursor-not-allowed",
         )}
       >
-        <X className="size-4" aria-hidden="true" />
+        <X className="size-5" aria-hidden="true" />
         <span className="sr-only">Close</span>
       </DialogPrimitive.Close>
     </DialogPrimitive.Content>

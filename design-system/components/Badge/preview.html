@@ -9,7 +9,7 @@ var h = React.createElement, R = window.Rvlt, F = React.Fragment;
 var row = function () { return h.apply(null, ['div', { style: { display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '12px', marginBottom: '12px' } }].concat([].slice.call(arguments))); };
 function Demo() {
   return row(h(R.Badge, { status: 'ok' }, 'Available'), h(R.Badge, { status: 'warn' }, 'Due today'), h(R.Badge, { status: 'overbooked' }, 'Overbooked by 2'),
-    h(R.Badge, { status: 'repair' }, 'In repair'), h(R.Badge, null, 'Draft'), h(R.Badge, { status: 'info' }, 'Sent'), h(R.Badge, { status: 'primary' }, 'Accepted'));
+    h(R.Badge, { status: 'repair' }, 'In repair'), h(R.Badge, null, 'Draft'), h(R.Badge, { status: 'neutral' }, 'Sent'), h(R.Badge, { status: 'ok' }, 'Accepted'));
 }
 ReactDOM.createRoot(document.getElementById('root')).render(h(Demo));
 </script>

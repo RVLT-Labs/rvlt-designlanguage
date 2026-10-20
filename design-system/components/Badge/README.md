@@ -23,4 +23,4 @@ Same statuses and colours at the mockups' size: 20px high (18px inline flag), 8p
 - Don't hand-roll pill classes; map domain statuses through the status-colour table (see StatusIndicator).
 - Light theme: `ok` and `warn` text sits under 3:1 on its soft fill — the label carries the meaning.
 
-_Live: the real component, compiled into `bundle.js` from TwoToned/gearflow@5a85e40 `src/components/ui/badge.tsx` — the RVLT registry primitive (RVLT-Labs/rvlt-designlanguage `packages/flow-theme/registry/rvlt/ui/`) as Flow ships it._
+_Published Flow preview: local registry source, compiled by `scripts/design-system/bundle/build-registry.mjs`. The pinned external bundle is retained for Binder adapters._

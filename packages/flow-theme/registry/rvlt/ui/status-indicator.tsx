@@ -26,7 +26,7 @@ const dotBase = cva("rounded-full shrink-0", {
       overbooked: "bg-t-out",
       repair: "bg-rep",
       neutral: "bg-muted",
-      live: "bg-ok animate-pulse",
+      live: "bg-ok motion-safe:animate-pulse",
     },
     size: {
       sm: "size-1.5",
@@ -78,7 +78,7 @@ function StatusIndicator({
           dotBase({ intent, size }),
           showGlow && glowClass[intent ?? "neutral"],
         )}
-        aria-hidden={label ? true : undefined}
+        aria-hidden="true"
       />
       {label && (
         <span className="text-[12px] font-sans font-medium text-muted">
