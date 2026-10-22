@@ -1,0 +1,23 @@
+<!-- @dsCard group="Pulse" height=250 subtitle="Live — the real component" -->
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><link rel="stylesheet" href="../pulse-bundle.css"><script src="../pulse-bundle.js"></script><title>PulseRunOfShow — preview</title></head>
+<body style="background:var(--paper)">
+<div id="root"></div>
+<script>
+var h = React.createElement, P = window.RvltPulse;
+function run(room, name, next, start) {
+  return { roomId: room, activeId: null, nextId: 'n', startedAtUtc: null, startedBy: null, sessions: [
+    { id: 'n', name: next, startMinute: start, channelCount: 3 }, { id: 'm', name: 'Close', startMinute: start + 90, channelCount: 1 }] };
+}
+function item(tone) { return { channel: {}, presenterChange: null, tone: tone, readiness: tone === 'ready' ? 'Ready' : 'Battery 40 %' }; }
+function Demo() {
+  var noop = function () {};
+  return h(P.RunOfShow, { summary: '2 rooms · 1 channel to prepare', needsAttention: true },
+    h(P.SessionBar, { session: run('b', 'Ballroom', 'Welcome and keynote', 540), roomName: 'Ballroom', turnover: [item('action'), item('ready'), item('ready')], offline: false, onOpen: noop }),
+    h(P.SessionBar, { session: run('c', 'Breakout B', 'Workshop: planning tools', 570), roomName: 'Breakout B', turnover: [item('ready'), item('ready')], offline: false, onOpen: noop }));
+}
+ReactDOM.createRoot(document.getElementById('root')).render(h(Demo));
+</script>
+</body>
+</html>

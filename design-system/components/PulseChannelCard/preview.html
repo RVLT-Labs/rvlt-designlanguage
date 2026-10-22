@@ -1,0 +1,46 @@
+<!-- @dsCard group="Pulse" height=420 subtitle="Live — the real component" -->
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><link rel="stylesheet" href="../pulse-bundle.css"><script src="../pulse-bundle.js"></script><title>PulseChannelCard — preview</title></head>
+<body style="background:var(--paper)">
+<div id="root"></div>
+<script>
+var h = React.createElement, P = window.RvltPulse;
+var base = { id: 'c', number: 2, name: 'Presenter', performer: 'Dana Lee', kind: 'wireless', micType: 'handheld', micTypeSource: 'operator', hasImage: false,
+  input: { index: 0, label: 'input 1' }, receiver: null, monitor: { battery: true, rf: true, audio: true },
+  statuses: { rf: 'good', audio: 'good', battery: 'good', check: 'unknown' },
+  audio: { availability: 'observed', peakDbfs: -12, rmsDbfs: -30, silentForMs: 0, clipping: false },
+  rf: { availability: 'observed', levelDbm: -58, linkQualityPercent: 100, activeAntenna: 'A', interference: 'none', transmitterPresent: true },
+  battery: { availability: 'observed', percent: 90, bars: 5, runtimeMinutes: 270, type: 'LION' },
+  transmitter: { type: 'AD2', name: 'PRESENTER', muted: false, observedAtUtc: new Date().toISOString() }, check: null };
+function ch(o) { return Object.assign({}, base, o); }
+var fault = ch({ id: 'd', number: 4, name: 'Host', performer: null, micType: 'beltpack', micTypeSource: 'inferred', input: { index: 1, label: 'input 2' },
+  statuses: { rf: 'good', audio: 'good', battery: 'fault', check: 'unknown' },
+  battery: { availability: 'observed', percent: 8, bars: 1, runtimeMinutes: 12, type: 'LION' } });
+var stale = ch({ id: 'e', number: 6, name: 'Lectern', performer: null, micType: null, micTypeSource: null, input: { index: 2, label: 'input 3' },
+  statuses: { rf: 'unknown', audio: 'good', battery: 'unknown', check: 'unknown' },
+  rf: { availability: 'stale', levelDbm: null, linkQualityPercent: null, activeAntenna: null, interference: 'none', transmitterPresent: false },
+  battery: { availability: 'stale', percent: null, bars: null, runtimeMinutes: null, type: null } });
+var alertFx = { id: 'a1', kind: 'battery-critical', dimension: 'Battery', severity: 'critical', label: 'Battery critical',
+  detail: 'Battery 8 % on Host. Critical at 10 %.', channelId: 'd', channelNumber: 4, channelName: 'Host', receiverId: 'rack-a',
+  raisedAtUtc: new Date(Date.now() - 60000).toISOString(), acknowledgedAtUtc: null, acknowledgedBy: null, clearedAtUtc: null, overlayExpiresAtUtc: null };
+var store = new P.MeterStore(null);
+store.connection = 'live'; // a synthetic stream; the Lectern card is marked stale below
+function tick(t) {
+  var wave = function (k) { return -40 + 24 * Math.abs(Math.sin(t / 700 + k)); };
+  store.push({ intervalMs: 100, peakDbfs: [wave(0), -70, -90], rmsDbfs: [wave(0) - 14, -80, -95], clipped: [false, false, false] });
+}
+for (var i = 0; i < 60; i++) tick(i * 100);
+var n = 6000; setInterval(function () { tick(n += 100); }, 100);
+function card(c, o) {
+  return h('li', { style: { listStyle: 'none', width: '208px' } }, h(P.ChannelCard, Object.assign({ channel: c, alert: null, overlayExpiryMs: 300000, nowMs: Date.now(), selected: false, listening: false,
+    imageRevision: 0, meterStore: store, metersStale: false, onAcknowledge: function () {}, onSelect: function () {}, onOpenDetail: function () {} }, o || {})));
+}
+function Demo() {
+  return h('ul', { style: { display: 'flex', flexWrap: 'wrap', gap: '16px', margin: 0, padding: '16px', alignItems: 'flex-start' } },
+    card(base, { selected: true, listening: true }), card(fault, { alert: alertFx }), card(stale, { metersStale: true }));
+}
+ReactDOM.createRoot(document.getElementById('root')).render(h(Demo));
+</script>
+</body>
+</html>

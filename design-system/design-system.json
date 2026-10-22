@@ -156,6 +156,12 @@
           "blob": "175e0a73e8d3957e092999e1acdeb408",
           "size": 421,
           "type": "image/svg+xml"
+        },
+        "pulse-mark.svg": {
+          "name": "pulse-mark.svg",
+          "blob": "3dd1be945ea42d71cb006cb5905228bc",
+          "size": 460,
+          "type": "image/svg+xml"
         }
       },
       "name": "Logos",
@@ -167,6 +173,7 @@
         "r-mark-dark.svg",
         "r-mark-light.svg",
         "binder-mark.svg",
+        "pulse-mark.svg",
         "flow-mascot.svg"
       ],
       "tile": "l"
@@ -977,7 +984,7 @@
   "lastChange": {
     "by": "Claude",
     "at": "2026-10-19T12:10:00Z",
-    "via": "GitHub \u00b7 RVLT-Labs/rvlt-designlanguage design-system/",
+    "via": "GitHub · RVLT-Labs/rvlt-designlanguage design-system/",
     "note": "Mirrored into the design-language repo as design-system/ (live on its Pages site). Added font and Lucide licences, r-pill set to flow-theme's 999px, provenance refs moved to the merged mains."
   },
   "layout": "files",

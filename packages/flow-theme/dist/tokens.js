@@ -1,6 +1,6 @@
 // @rvlt/flow-theme — GENERATED from tokens.json. Do not edit.
 export const tokens = {
-  "version": "1.3.0",
+  "version": "1.4.0",
   "themes": {
     "dark": {
       "paper": "#141210",
