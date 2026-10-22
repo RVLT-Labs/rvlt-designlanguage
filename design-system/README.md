@@ -274,6 +274,8 @@ The rest of Pulse:
 - **Fonts are self-hosted**, because core show operation works without internet.
 - **Run of show** rows sit behind one collapsible disclosure with a summary line; they have no panel of their own.
 
+The Pulse mark is `assets/Logos/pulse-mark.svg`, and the **PulseChannelCard** card (group Pulse, a static rendition) shows the lockup and three channel states: listening, a critical fault and stale/unknown.
+
 Pulse lives in `qubered/a2-monitor`; its own `docs/design/DESIGN.md` (v3.0.0) holds the channel card, status strip and alert overlay. It mirrors the token values in `packages/ui/tokens.css` rather than installing `@rvlt/flow-theme`.
 
 ## Components
