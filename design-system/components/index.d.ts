@@ -63,7 +63,8 @@ export interface StatProps extends React.HTMLAttributes<HTMLDivElement> {
   bright?: boolean;
 }
 
-export interface EmptyStateProps extends React.HTMLAttributes<HTMLDivElement> {
+/** `title` is the heading text, not the HTML tooltip attribute. */
+export interface EmptyStateProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
   title: React.ReactNode;
   description?: React.ReactNode;
   /** Usually a line Button. */

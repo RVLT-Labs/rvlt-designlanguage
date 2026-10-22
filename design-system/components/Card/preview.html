@@ -17,7 +17,9 @@ function Demo() {
     row(h(C, { title: 'Hilton ballroom', desc: 'Gala dinner · Fri 15 Nov', intent: 'ok', status: 'Confirmed' }),
         h(C, { title: 'Riverside festival', desc: 'Interactive — lifts 3px on hover', intent: 'neutral', status: 'Quoted', interactive: true }),
         h(C, { title: 'Arena tour — night 2', desc: 'Live — elev + lit edge', intent: 'neutral', status: 'On site', live: true })),
-    row(h(R.Card, { id: 'riverside', style: { width: '220px' } }, h(R.SectionHeader, { label: 'Panel' }), h('div', { style: { marginTop: '4px' } }, '1px line border, same hard shadow.'))));
+    row(h(R.Card, { id: 'riverside', style: { width: '220px' } },
+      h(R.CardHeader, null, h(R.SectionHeader, { label: 'Riverside festival' })),
+      h(R.CardContent, null, 'What the interactive card opens: the quote, crew and gear for the job.'))));
 }
 ReactDOM.createRoot(document.getElementById('root')).render(h(Demo));
 </script>
