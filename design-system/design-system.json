@@ -983,9 +983,9 @@
   ],
   "lastChange": {
     "by": "Claude",
-    "at": "2026-10-22T01:42:06Z",
+    "at": "2026-10-22T01:58:46Z",
     "via": "GitHub · RVLT-Labs/rvlt-designlanguage design-system/",
-    "note": "Pulse audit: Pulse types (window.RvltPulse) in index.d.ts; the cover names Flow, Binder and Pulse; Albert stays off Pulse live screens."
+    "note": "Card preview: the second-row card uses CardHeader and CardContent (20px padding) and is the Riverside detail the interactive card links to. index.d.ts: EmptyStateProps omits the HTML title attribute, so the file typechecks."
   },
   "layout": "files",
   "libraries": [
