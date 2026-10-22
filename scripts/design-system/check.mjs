@@ -87,6 +87,16 @@ for (const name of exported) {
   if (!existsSync(p)) fail(`bundle exports ${name} but there is no components/${name}/preview.html`);
   else if (!/window\.Rvlt|R\./.test(readFileSync(p, "utf8"))) fail(`${name}/preview.html does not mount the bundle`);
 }
+// 5b. Pulse bundle (generated from qubered/a2-monitor): header ↔ live previews ↔ pinned commit
+const pulseBundle = read("design-system/components/pulse-bundle.js");
+const pulseHeader = JSON.parse(pulseBundle.match(/^\/\* @pulse-bundle: (\{.*?\}) \*\//)[1]);
+if (!/^[0-9a-f]{40}$/.test(pulseHeader.commit)) fail("pulse-bundle.js header has no pinned qubered/a2-monitor commit");
+if (!read("design-system/components/pulse-bundle.css").includes(pulseHeader.commit)) fail("pulse-bundle.css was not generated from the commit in pulse-bundle.js");
+for (const { name } of pulseHeader.components) {
+  const p = path.join(DS, "components", name, "preview.html");
+  if (!existsSync(p)) fail(`pulse bundle serves ${name} but there is no components/${name}/preview.html`);
+  else if (!/window\.RvltPulse/.test(readFileSync(p, "utf8"))) fail(`${name}/preview.html does not mount the Pulse bundle`);
+}
 for (const card of cards) {
   const marker = readFileSync(path.join(DS, "components", card, "preview.html"), "utf8").split("\n")[0];
   if (!marker.startsWith("<!-- @dsCard")) fail(`${card}/preview.html: line 1 is not a @dsCard marker`);
@@ -106,4 +116,4 @@ if (errors.length) {
   console.error(`design-system check: ${errors.length} problem(s)\n- ` + errors.join("\n- "));
   process.exit(1);
 }
-console.log(`design-system check: ok — ${compared} token values match flow-theme, ${byBlob.size} assets resolve, ${cards.length} cards, ${exported.length} live components`);
+console.log(`design-system check: ok — ${compared} token values match flow-theme, ${byBlob.size} assets resolve, ${cards.length} cards, ${exported.length + pulseHeader.components.length} live components (${pulseHeader.components.length} Pulse @ ${pulseHeader.commit.slice(0, 7)})`);

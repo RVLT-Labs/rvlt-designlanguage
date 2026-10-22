@@ -130,6 +130,20 @@
       "sync": "generated-external"
     },
     {
+      "path": "design-system/components/pulse-bundle.css",
+      "layer": "implementation",
+      "owner": "qubered/a2-monitor at the commit recorded in the bundle header",
+      "role": "Pulse live component styles",
+      "sync": "generated-external"
+    },
+    {
+      "path": "design-system/components/pulse-bundle.js",
+      "layer": "implementation",
+      "owner": "qubered/a2-monitor at the commit recorded in the bundle header",
+      "role": "Pulse live components (window.RvltPulse)",
+      "sync": "generated-external"
+    },
+    {
       "path": "design-system/components/bundle.css",
       "layer": "implementation",
       "owner": "Part 1 generated from TwoToned/gearflow + RVLT-Labs/binder; Part 2 from scripts/design-system/bundle/static.css",

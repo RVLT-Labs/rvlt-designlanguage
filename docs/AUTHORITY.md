@@ -56,6 +56,7 @@ a document still crowns a lower layer.
 | `packages/flow-theme/` | this repository | master; Flow installs it | `tests/unit/*.test.mjs`, `check-sync.mjs`, preview-v2 typecheck |
 | `design-system/` (overview, tokens, cards, fonts, logos, icons) | this repository; published to the claude.ai design-system artifact | repo → artifact | `scripts/design-system/check.mjs` |
 | `design-system/components/bundle.js`, `bundle.css` (Part 1) | **generated** from `TwoToned/gearflow` and `RVLT-Labs/binder` at pinned commits | Flow/Binder → repo, generated files only | `scripts/design-system/bundle/build.mjs` writes only the files `authority.json` marks `generated-external`, and refuses to overwrite anything else |
+| `design-system/components/pulse-bundle.js`, `pulse-bundle.css` | **generated** from `qubered/a2-monitor` at the commit recorded in the bundle header | Pulse → repo, generated files only | `scripts/design-system/pulse/build.mjs` (same write policy); `check.mjs` verifies the pinned commit and previews |
 | `design-system/components/bundle.css` (Part 2) | this repository (`scripts/design-system/bundle/static.css`) | master | `check.mjs` verifies Part 2 equals `static.css` |
 | `assets/stickers/`, `assets/albert/`, `design-system/assets/Logos/` | locked identity artwork | supplied packs; never redrawn | `check.mjs` (sizes, presence), Albert `Design-lock.json` hashes |
 | `examples/flow-marketing/` | this repository | expression only | browser and link tests |

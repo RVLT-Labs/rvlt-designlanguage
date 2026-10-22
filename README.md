@@ -131,6 +131,7 @@ The repository has no runtime dependencies at its root. Node 22.
 | `node scripts/design-system/bundle/build-registry.mjs` | Builds local Flow gallery JS and CSS using preview dependencies, required before unit site tests |
 | `node scripts/site/build.mjs _site [--preview-v2 apps/preview-v2/out]` | Assembles the Pages site, including compatibility redirects |
 | `GEARFLOW_DIR=… BINDER_DIR=… node scripts/design-system/bundle/build.mjs --write` | Rebuilds the Flow/Binder live bundle; writes only the generated bundle files |
+| `PULSE_DIR=… node scripts/design-system/pulse/build.mjs --write` | Rebuilds the Pulse live bundle from a committed `qubered/a2-monitor` checkout (Vite borrowed from it); records the commit in the header and writes only `pulse-bundle.js` / `.css` |
 
 Change the design system here first, then publish the same files to the artifact. The Pages
 workflow runs every check before it deploys.

@@ -1,0 +1,13 @@
+<!-- @dsCard group="Pulse" height=120 subtitle="Live — the real component" -->
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><link rel="stylesheet" href="../pulse-bundle.css"><script src="../pulse-bundle.js"></script><title>PulseLockup — preview</title></head>
+<body style="background:var(--paper)">
+<div id="root" style="padding:20px 24px;display:flex;flex-wrap:wrap;gap:32px;align-items:center"></div>
+<script>
+var h = React.createElement, P = window.RvltPulse;
+ReactDOM.createRoot(document.getElementById('root')).render(h(React.Fragment, null,
+  h(P.PulseLockup, null), h(P.PulseLockup, { label: 'Pulse Manager by RVLT', suffix: 'Manager' }), h(P.PulseTile, { size: 56 })));
+</script>
+</body>
+</html>

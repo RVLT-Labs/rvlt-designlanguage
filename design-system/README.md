@@ -274,13 +274,13 @@ The rest of Pulse:
 - **Fonts are self-hosted**, because core show operation works without internet.
 - **Run of show** rows sit behind one collapsible disclosure with a summary line; they have no panel of their own.
 
-The Pulse mark is `assets/Logos/pulse-mark.svg`, and the **PulseChannelCard** card (group Pulse, a static rendition) shows the lockup and three channel states: listening, a critical fault and stale/unknown.
-
 Pulse lives in `qubered/a2-monitor`; its own `docs/design/DESIGN.md` (v3.0.0) holds the channel card, status strip and alert overlay. It mirrors the token values in `packages/ui/tokens.css` rather than installing `@rvlt/flow-theme`.
+
+The three Pulse cards are live, like Flow's and Binder's: **PulseLockup**, **PulseChannelCard** and **PulseRunOfShow** mount the real components from Pulse's Live app and `@rvlt/pulse-ui`, compiled into `components/pulse-bundle.js` (`window.RvltPulse`) and styled by `components/pulse-bundle.css` (Pulse's own stylesheet, unchanged). The bundle is separate from Flow's and Binder's so regenerating Pulse never moves their cards, and its header records the exact `qubered/a2-monitor` commit it was built from. Pulse is dark only, so these cards stay dark in the light gallery theme.
 
 ## Components
 
-**20 cards are live**: the real React components from both apps, compiled into `components/bundle.js` (`window.Rvlt`, React 18.3.1 from `components/lib/`) and styled by `components/bundle.css` (Tailwind v4 compiled from their own class strings, mapped onto these tokens). Clicking a Tab, Switch, Checkbox or Segmented in a preview really changes it, and the theme switch flips them exactly as the apps do. Three Binder cards and the two artwork cards stay static renditions (class prefix `rf-`): the real Binder ones need PowerSync, the PDF page layer or app state.
+**23 cards are live**: 20 are the real React components from the Flow and Binder apps (a further 3 are Pulse's, below), compiled into `components/bundle.js` (`window.Rvlt`, React 18.3.1 from `components/lib/`) and styled by `components/bundle.css` (Tailwind v4 compiled from their own class strings, mapped onto these tokens). Clicking a Tab, Switch, Checkbox or Segmented in a preview really changes it, and the theme switch flips them exactly as the apps do. Three Binder cards and the two artwork cards stay static renditions (class prefix `rf-`): the real Binder ones need PowerSync, the PDF page layer or app state.
 
 - **Shared RVLT primitives, live** (the `@rvlt/flow-theme` registry, as shipped in Flow): Button, Badge, StatusIndicator, Card/Panel, Stat, EmptyState, Skeleton, Input, Checkbox, Switch, Tabs, SectionHeader, Table, LifecycleStepper, FeaturePatch, PersonAvatar, Kbd.
 - **Binder, live:** BinderButton, Segmented, BinderEmptyState.
