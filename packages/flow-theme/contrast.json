@@ -1,6 +1,6 @@
 {
   "$comment": "RVLT contrast contract (DESIGN.md §3.8). Which token may draw text, pills, fills, actions and control boundaries on which surface, per theme. Every pairing listed is verified against tokens.json by tests/unit/token-contrast.test.mjs (WCAG 2.x; soft fills composited over the real surface). Pairings not listed are not supported. There are no accepted exceptions.",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "thresholds": { "text": 4.5, "nonText": 3 },
   "surfaces": ["paper", "paper-2", "card", "elev"],
   "text": [

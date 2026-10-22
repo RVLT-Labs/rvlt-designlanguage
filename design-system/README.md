@@ -1,9 +1,10 @@
-RVLT Labs makes production software, built by a production company. It was born inside Two Toned Productions in Sydney (audio, lighting, theatre and events). There are two products today:
+RVLT Labs makes production software, built by a production company. It was born inside Two Toned Productions in Sydney (audio, lighting, theatre and events). There are three products today:
 
 - **RVLT Flow** — the hire business: jobs, quotes, gear, warehouse, crew, compliance.
 - **RVLT Binder** — the stage manager's script binder: cues marked on the page, calling the show.
+- **Pulse, by RVLT** — live audio and wireless monitoring: the A2's grid of channels and the A1's mix confidence.
 
-Both run on one design language: warm espresso dark, a single RVLT red, 2px outlines, hard offset shadows, and a voice that sounds like crew. Its master copy is the `RVLT-Labs/rvlt-designlanguage` repo (v1.3.0); this system is synced from it. When two RVLT sources disagree, the repo's authority map (`docs/AUTHORITY.md`) decides: rules, then product contracts, then the machine tokens, then the `@rvlt/flow-theme` registry, then verified examples, and the marketing mockups last.
+All three run on one design language: warm espresso dark, a single RVLT red, 2px outlines, hard offset shadows, and a voice that sounds like crew. Its master copy is the `RVLT-Labs/rvlt-designlanguage` repo (v1.4.0); this system is synced from it. When two RVLT sources disagree, the repo's authority map (`docs/AUTHORITY.md`) decides: rules, then product contracts, then the machine tokens, then the `@rvlt/flow-theme` registry, then verified examples, and the marketing mockups last.
 
 The brand is used along a dial.
 - **Marketing** sits at the *expressive* end: gear stickers, big display type, hand-drawn doodles, spotlight pops.
@@ -253,6 +254,28 @@ The rest of Binder:
 - **Kalam** appears only in greetings, the sign-in card and empty states, in `ink-2`.
 - **No mascot of its own.** Albert may appear where Kalam may: greetings, sign-in and empty states. Never in Calling mode.
 
+## Pulse, by RVLT — the instrument panel
+
+Pulse is read in a wing, a booth or at a tech table, lights down, for a few seconds at a time. It is dark only (no Paper theme). Its mood is calm and exact. Three rules outrank everything else in Pulse:
+
+1. **Never colour alone, and never a guess that looks like a measurement.** Every state carries a glyph and a word. Observed, inferred, stale and unknown data look different, and unknown is never drawn as zero or healthy.
+2. **Machine type is mono, human type is not.** Levels, frequencies, times and IDs are Geist Mono, tabular. An operator's note is Hanken Grotesk italic in `ink-2`. Kalam isn't used.
+3. **Mute and dim are always one touch away**, never in a menu. Listening starts unmuted.
+
+The rest of Pulse:
+- **Red on a channel card means a critical fault, and nothing else.** In chrome, red is the primary action and the RVLT mark. This narrows the per-region rule, because a "listening" ring and a "failing" ring in one colour can't be told apart on a 64-channel grid.
+- **Live and listening are `ok` green**, the same live pill as Flow.
+- **Per-channel status** is `ok` / `warn` / `t-out` / `rep` tick fills with labels, and `purple` for replay.
+- **Cards** are a 2px `line-2` outline with the hard offset shadow. **Secondary controls** (filter chips, toggles, icon and outline buttons) are a 1px `line-2` pill with no shadow. The offset shadow belongs to cards, panels and the red primary.
+- **Focus** is a 2px `red` ring on chrome and a 2px `ink` ring on channel cards, so focus never reads as a fault.
+- **Buttons** are pills with a red primary.
+- **No mascot, stickers, Kalam or doodles** on live screens. The one soft glow is the attention pulse around an unacknowledged critical alert or an unclaimed fault report.
+- **Lockup:** the five-bar Pulse glyph in `cream` on a `red` tile (radius 22.6%, built like Binder's and Flow's icons), beside "Pulse" in Archivo 800, with a "by RVLT" pill holding the unaltered RVLT mark.
+- **Fonts are self-hosted**, because core show operation works without internet.
+- **Run of show** rows sit behind one collapsible disclosure with a summary line; they have no panel of their own.
+
+Pulse lives in `qubered/a2-monitor`; its own `docs/design/DESIGN.md` (v3.0.0) holds the channel card, status strip and alert overlay. It mirrors the token values in `packages/ui/tokens.css` rather than installing `@rvlt/flow-theme`.
+
 ## Components
 
 **20 cards are live**: the real React components from both apps, compiled into `components/bundle.js` (`window.Rvlt`, React 18.3.1 from `components/lib/`) and styled by `components/bundle.css` (Tailwind v4 compiled from their own class strings, mapped onto these tokens). Clicking a Tab, Switch, Checkbox or Segmented in a preview really changes it, and the theme switch flips them exactly as the apps do. Three Binder cards and the two artwork cards stay static renditions (class prefix `rf-`): the real Binder ones need PowerSync, the PDF page layer or app state.
@@ -269,8 +292,9 @@ The rest of Binder:
 ## Not synced
 
 **Sources**
-- `RVLT-Labs/rvlt-designlanguage` (`DESIGN.md` v1.3.0, `packages/flow-theme`, `assets/`). This is the master copy, and its `design-system/` folder mirrors this design system file for file. The 2026-10-19 decisions are merged there (#12), in Flow (`TwoToned/gearflow` #1352) and in Binder (`RVLT-Labs/binder` #1).
+- `RVLT-Labs/rvlt-designlanguage` (`DESIGN.md` v1.4.0, `packages/flow-theme`, `assets/`). This is the master copy, and its `design-system/` folder mirrors this design system file for file. The 2026-10-19 decisions are merged there (#12), in Flow (`TwoToned/gearflow` #1352) and in Binder (`RVLT-Labs/binder` #1).
 - `TwoToned/gearflow` (`src/app/globals.css`, `DESIGN.md`, `src/components`)
+- `qubered/a2-monitor` (`packages/ui/tokens.css`, `packages/ui/brand`, `docs/design/DESIGN.md`) — Pulse; documented here, not synced into the bundle
 - `RVLT-Labs/binder` (`apps/web/src/styles`, `DESIGN.md`, `apps/web/src/components`, `packages/core` cue geometry)
 
 **Not brought in**

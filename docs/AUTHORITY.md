@@ -12,10 +12,11 @@ a document still crowns a lower layer.
    (§16.8). Owned by this repository (`RVLT-Labs/rvlt-designlanguage`). Prose is normative where it
    states a rule; where prose and a table give values, the table wins; where a table and the
    machine tokens disagree, that is a bug in the table.
-2. **Product contracts** — [`DESIGN.md` §19](../DESIGN.md#19-product-layers--rvlt-flow-and-rvlt-binder):
-   RVLT Flow and RVLT Binder. The only places a product may depart from layer 1, and only where §19
+2. **Product contracts** — [`DESIGN.md` §19](../DESIGN.md#19-product-layers--rvlt-flow-rvlt-binder-and-pulse):
+   RVLT Flow, RVLT Binder and Pulse. The only places a product may depart from layer 1, and only where §19
    records the difference as deliberate (Flow pills versus Binder rounded rectangles, Binder's
-   fixed white script page, Binder department colours). A product's own `DESIGN.md` may add what
+   fixed white script page, Binder department colours, Pulse's fault-only red on channel
+   cards and 1px secondary controls). A product's own `DESIGN.md` may add what
    only it needs; it never overrides layer 1 silently.
 3. **Canonical machine tokens** — [`packages/flow-theme/tokens.json`](../packages/flow-theme/tokens.json)
    (values) and [`packages/flow-theme/contrast.json`](../packages/flow-theme/contrast.json)

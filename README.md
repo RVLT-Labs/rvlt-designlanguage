@@ -1,7 +1,8 @@
 # RVLT design language
 
 The brand and design system for **RVLT Labs** and every RVLT product: **RVLT Flow** (production
-operations) and **RVLT Binder** (the stage manager's script binder). RVLT Labs was born inside Two
+operations), **RVLT Binder** (the stage manager's script binder) and **Pulse, by RVLT** (live
+audio and wireless monitoring). RVLT Labs was born inside Two
 Toned Productions; the system is built for production companies, by a production company. This
 repository is the **master copy**. The products and the claude.ai design-system artifact sync from it.
 
@@ -16,7 +17,7 @@ repository is the **master copy**. The products and the claude.ai design-system 
 One map decides which source wins, highest first:
 
 1. **Normative RVLT rules**: `DESIGN.md` §0 to §18.
-2. **Product contracts**: `DESIGN.md` §19 (Flow and Binder, and only the differences recorded there).
+2. **Product contracts**: `DESIGN.md` §19 (Flow, Binder and Pulse, and only the differences recorded there).
 3. **Canonical machine tokens**: `packages/flow-theme/tokens.json` and `contrast.json`. Appendix A,
    §15.1 and `design-system/tokens.json` are checked mirrors.
 4. **Implementation**: the `@rvlt/flow-theme` registry, the public component contract.
@@ -110,6 +111,10 @@ The packs are supplied artwork. Use the files unchanged; never generate, redraw 
 - **RVLT Binder:** rounded-rectangle buttons; the script page is always white paper in both
   themes; department colour is the only colour on the page and draws marks, not text; Markup and
   Calling draw the page identically. `DESIGN.md` §19.2.
+- **Pulse, by RVLT:** dark only, for an A2 or A1 reading it for a second at a time. Red on a
+  channel card means a critical fault and nothing else; live and listening are green; secondary
+  controls are 1px lines with no offset shadow; no mascot or Kalam on live screens. The lockup is
+  the five-bar glyph in cream on a red tile with a "by RVLT" pill. `DESIGN.md` §19.3.
 
 ## Using and building
 

@@ -1,8 +1,8 @@
 ---
 spec: design.md
-version: "1.3.0"
-status: authoritative — the build bible for every RVLT product (Flow, Binder) & the site
-updated: 2026-10-20
+version: "1.4.0"
+status: authoritative — the build bible for every RVLT product (Flow, Binder, Pulse) & the site
+updated: 2026-10-22
 authority: "docs/AUTHORITY.md (rules > product contracts > tokens > implementation > verified examples > marketing)"
 canonical_tokens: "packages/flow-theme/tokens.json + contrast.json (mirrored in Appendix A and §15.1)"
 implementation: "packages/flow-theme (the @rvlt/flow-theme registry is the public component contract)"
@@ -25,9 +25,10 @@ description: >
 
 # RVLT — Design Language &amp; Brand
 
-> **Scope (v1.3.0).** This is the design language for **all of RVLT**: the company
-> mark, the marketing site, and every product. **RVLT Flow** (production ops) and
-> **RVLT Binder** (the stage manager's script binder) are product layers on top of it
+> **Scope (v1.4.0).** This is the design language for **all of RVLT**: the company
+> mark, the marketing site, and every product. **RVLT Flow** (production ops),
+> **RVLT Binder** (the stage manager's script binder) and **Pulse, by RVLT** (live audio
+> and wireless monitoring) are product layers on top of it
 > — see §19. Where a product's own `DESIGN.md` adds to this file it may extend it;
 > where it conflicts, this file wins unless §19 records the difference as deliberate.
 
@@ -157,8 +158,9 @@ generic SaaS pattern.** Log the gap (§18.1).
 ## 1. Brand foundations
 
 - **Names:** RVLT Labs (company), born inside **Two Toned Productions** (Sydney audio /
-  lighting / theatre / events). Products: **RVLT Flow** (production ops) and **RVLT
-  Binder** (the stage manager's script binder).
+  lighting / theatre / events). Products: **RVLT Flow** (production ops), **RVLT
+  Binder** (the stage manager's script binder) and **Pulse, by RVLT** (live audio and
+  wireless monitoring for the A1 and A2).
 - **Lockup:** red `RVLT` mark (BC Alphapipe SVG outlines — static, not a loaded web font) + `Flow` in **Baloo 2** — a
   deliberate pairing of the hard, pipe-cut mark against a soft, rounded wordmark
   (§6.4).
@@ -1560,6 +1562,9 @@ for the starred items.
 - **Email / PDF / print** (quotes, dispatch sheets, invoices) — out of scope here.
 - **Internationalisation, RTL, currency/date locales** — not addressed.
 - **Hover-only states on touch** — covered by §16.8/§9.1, but verify per component.
+- **Hanken Grotesk italic** — the family has no italic cut in `design-system/fonts/`, so
+  Pulse's operator notes (§19.3) use a synthesised italic. Add a true italic, or specify a
+  different treatment for human-authored notes, before relying on it elsewhere.
 
 ### 18.2 Next steps (prioritised)
 
@@ -1574,6 +1579,16 @@ This file is **versioned** (see front-matter `version`). When a token changes, c
 in §3/§5/§7 **and** Appendix A **and** §15.1 **and** `packages/flow-theme/tokens.json` in
 the same commit, then run the theme build, and add a line here.
 
+- **1.4.0** (2026-10-22) — **Pulse, by RVLT.** A third product layer (§19.3): Pulse, live
+  audio and wireless monitoring (`qubered/a2-monitor`), adopts the espresso ramp, Archivo /
+  Hanken Grotesk / Geist Mono, 2px card outlines with hard offset shadows, pill buttons and
+  the red primary. Its deliberate differences are recorded in §19.3: red on a channel card
+  means a critical fault only, live and listening are green, focus is ink on channel
+  cards, secondary controls are 1px with no offset shadow, no mascot or Kalam on live
+  screens, and a sanctioned attention-pulse glow. Pulse's lockup is its five-bar glyph on
+  an RVLT-red tile with a "by RVLT" pill. Pulse mirrors the token values in its own
+  `packages/ui/tokens.css` rather than installing `@rvlt/flow-theme`. Gap logged in §18.1:
+  no Hanken Grotesk italic.
 - **1.3.0** (2026-10-20) — **Audit remediation: one authority map, verified contrast, field
   references.** Two UI/UX audits of 1.2.0 (record: `docs/AUDIT-REMEDIATION-MATRIX.md`).
   **Authority:** `docs/AUTHORITY.md` + `authority.json` replace "index.html is canonical";
@@ -1652,9 +1667,9 @@ the single generator and derive Appendix A + §15.1 from it, retiring the manual
 
 ---
 
-## 19. Product layers — RVLT Flow and RVLT Binder
+## 19. Product layers — RVLT Flow, RVLT Binder and Pulse
 
-Both products run on this file's tokens, type, voice and states. Each keeps its own
+All three products run on this file's tokens, type, voice and states. Each keeps its own
 `DESIGN.md` for what only it needs; the differences below are **deliberate** and are the
 only places a product may depart from §§1–16.
 
@@ -1702,6 +1717,44 @@ everything else **inside Binder**:
 - **App icon:** the Rings B — a monoline B whose bowls are binder rings, cream on an
   RVLT-red tile (radius 116/512).
 
+### 19.3 Pulse, by RVLT — live audio and wireless monitoring (`qubered/a2-monitor`)
+
+Pulse is read by an A2 in a wing or an A1 at a desk: dark, standing, one ear on comms,
+for a second at a time. It runs on this file's tokens, type, voice and states (dark only;
+it has no Paper theme). Its own `docs/design/DESIGN.md` (v3.0.0) holds what only Pulse
+needs: the honesty grammar, the channel card, the status strip and the alert overlay.
+Three rules outrank everything else **inside Pulse**:
+
+1. **Never colour alone, and never a guess that looks like a measurement.** Every state
+   carries a glyph and a word as well as a colour. Observed, inferred, stale and unknown
+   data are drawn differently, and unknown is never rendered as zero or healthy.
+2. **Machine type is mono; human type is not.** Anything a machine measured (level,
+   frequency, time, ID) is Geist Mono, tabular. An operator's own note is Hanken Grotesk
+   italic, `--ink-2`. Kalam is not used.
+3. **Safety controls are always one touch away.** Mute and dim are never in a menu;
+   listening starts unmuted at the operator's last level.
+
+| Pulse decision | Rule | Why it departs from, or narrows, §§1–16 |
+|---|---|---|
+| Red on a channel card | A critical fault, nothing else. Red is the primary action and the RVLT mark in chrome only. | §3.5 allows red for alerts, so this narrows it. A "listening" ring and a "failing" ring in one colour are indistinguishable on a 64-channel grid. |
+| Live and listening | `--ok` green (the §15.4 live pill, extended to the channel in the operator's ears). | Keeps red free for faults. |
+| Per-channel status | `--ok` / `--warn` / `--t-out` / `--rep` tick fills and labels; `--purple` for replay. | Product semantics, drawn as §3.3 labelled status. |
+| Focus | `2px --red` ring on chrome; `2px --ink` ring on channel cards. | Keyboard focus must never read as a critical fault on the grid. |
+| Secondary controls | 1px `--line-2` pill, no offset shadow. The 2px outline and offset shadow belong to cards, panels and the one red primary per region. | Narrows §9 "Button — line" (2px). A shadow on every control makes a dense grid unreadable. |
+| Hover | Card lift is an enhancement; selection and focus never depend on it. | §9.1 and §16.8, applied strictly: touch is primary. |
+| Personality | No mascot, stickers, Kalam or doodles on live screens. | Calm data; nothing decorative moves except the one attention pulse. |
+| Attention pulse | A soft glow in the alert's colour around an unacknowledged critical alert or an unclaimed fault report. Pulse's only glow and only soft shadow. | A sanctioned exception to "hard offset, no blur" (§7): it marks work handed over and not picked up. |
+
+- **Lockup:** the Pulse glyph (five vertical bars in a mountain profile, a level meter and
+  an RF-strength indicator at once) in cream on an RVLT-red tile, radius 22.6% (the same
+  build as Binder's and Flow's icons), beside "Pulse" in Archivo 800, with a "by RVLT" pill
+  (1px `--line-2`) holding the RVLT mark's unaltered outlines.
+- **Buttons:** pills with a red primary, as Flow (§19.1).
+- **Offline-first:** core show operation works without internet, so the fonts are
+  self-hosted (SIL OFL, licences kept beside them).
+- **Known gap:** Hanken Grotesk ships upright only, so Pulse's italic operator notes use
+  the browser's synthesised italic (§18.1).
+
 ---
 
 ## Appendix A — tokens (machine-readable)
@@ -1711,7 +1764,7 @@ this and §15.1 win.
 
 ```json
 {
-  "version": "1.3.0",
+  "version": "1.4.0",
   "updated": "2026-10-20",
   "default_theme": "dark",
   "themes": {
