@@ -14,3 +14,6 @@ _site/
 
 # Browser test dependencies (npm ci in tests/browser)
 tests/browser/node_modules/
+
+# Staged artifact publish (scripts/design-system/stage-artifact.mjs)
+_artifact/

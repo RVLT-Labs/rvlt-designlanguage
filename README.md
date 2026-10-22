@@ -1,3 +1,10 @@
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="design-system/assets/Logos/rvlt-labs-logo.svg">
+    <img src="design-system/assets/Logos/rvlt-mark.svg" alt="RVLT Labs" height="64">
+  </picture>
+</p>
+
 # RVLT design language
 
 The brand and design system for **RVLT Labs** and every RVLT product: **RVLT Flow** (production
@@ -22,7 +29,8 @@ One map decides which source wins, highest first:
    §15.1 and `design-system/tokens.json` are checked mirrors.
 4. **Implementation**: the `@rvlt/flow-theme` registry, the public component contract.
 5. **Verified examples**: `examples/`, `apps/preview-v2` and the design-system cards, all built and
-   tested. Live cards render the Flow and Binder app adapters at pinned commits and say so.
+   tested. Live cards render the Flow and Binder app adapters and Pulse's components at pinned commits
+   and say so.
 6. **Marketing expression**: [`examples/flow-marketing/`](examples/flow-marketing/). Marketing
    never wins a conflict, and its figures are illustrative.
 
@@ -58,6 +66,14 @@ both themes and there are no accepted exceptions (`DESIGN.md` §3.8).
 | Control boundary (`--input`) | `#857A69` | `#1D1A15` |
 | `faint` (non-text only) | `#6E665A` | `#756B58` |
 
+<picture>
+  <source media="(prefers-color-scheme: light)" srcset="docs/brand/palette-light.svg">
+  <img src="docs/brand/palette-dark.svg" alt="The RVLT palette: surfaces, text, red, status and module hues, drawn from tokens.json" width="100%">
+</picture>
+
+The palette follows your GitHub theme: Espresso in dark mode, Paper in light. It is generated from
+`tokens.json` by `scripts/site/readme-brand.mjs`.
+
 Install the generated theme with `@import "@rvlt/flow-theme/globals.css"`; see
 [`packages/flow-theme/README.md`](packages/flow-theme/README.md).
 
@@ -79,6 +95,24 @@ case everywhere; nothing below 11px; reading body at 16px or more.
 
 ## Identity and assets
 
+| RVLT Labs | RVLT Flow | RVLT Binder | Pulse, by RVLT |
+|:---:|:---:|:---:|:---:|
+| <picture><source media="(prefers-color-scheme: dark)" srcset="design-system/assets/Logos/rvlt-labs-logo.svg"><img src="design-system/assets/Logos/rvlt-mark.svg" alt="RVLT" height="36"></picture> | <picture><source media="(prefers-color-scheme: dark)" srcset="design-system/assets/Logos/rvlt-flow-wordmark-dark.svg"><img src="design-system/assets/Logos/rvlt-flow-wordmark-light.svg" alt="RVLT Flow" height="36"></picture> | <img src="design-system/assets/Logos/binder-mark.svg" alt="RVLT Binder Rings B mark" height="56"> | <img src="design-system/assets/Logos/pulse-mark.svg" alt="Pulse five-bar mark" height="56"> |
+
+<p>
+  <img src="assets/albert/illustrations/albert-sitting-v4.png" alt="Albert, RVLT's bearded dragon, sitting" width="180">
+  <img src="assets/stickers/svg/road-case-sticker.svg" alt="" width="104">
+  <img src="assets/stickers/svg/microphone-sticker.svg" alt="" width="104">
+  <img src="assets/stickers/svg/walkie-talkie-sticker.svg" alt="" width="104">
+  <img src="assets/stickers/svg/coffee-mug-sticker.svg" alt="" width="104">
+</p>
+<p>
+  <img src="assets/stickers/svg/standby-patch.svg" alt="Standby patch" height="64">
+  <img src="assets/stickers/svg/go-patch.svg" alt="Go! patch" height="64">
+  <img src="assets/stickers/svg/crew-patch.svg" alt="Crew patch" height="64">
+  <img src="assets/stickers/svg/on-air-patch.svg" alt="On air patch" height="64">
+</p>
+
 - **Marks:** [`design-system/assets/Logos/`](design-system/assets/Logos): `rvlt-mark.svg`,
   `rvlt-labs-logo.svg`, the Flow wordmarks, R marks, Binder's Rings B and Flow's mascot. Ship as
   SVG; never retype, recolour or redraw.
@@ -87,6 +121,8 @@ case everywhere; nothing below 11px; reading body at 16px or more.
 - **Albert**, RVLT's character: [`assets/albert/`](assets/albert) (SVGs, the three locked
   illustrations pinned in `Design-lock.json`, the workday set; `DESIGN.md` §11).
 - **Icons:** Lucide at 16 / 20 / 24px, 2px stroke; the 42px patch icon at 2.6px.
+- **Light and dark grounds:** RVLT LABS (white LABS) and the dark Flow wordmark are for dark
+  grounds only. The images above switch with your GitHub theme rather than recolouring a mark.
 
 The packs are supplied artwork. Use the files unchanged; never generate, redraw or recombine them.
 
@@ -126,14 +162,17 @@ The repository has no runtime dependencies at its root. Node 22.
 | `npm run test:browser` | Browser regressions against a built site (needs `RVLT_SITE_DIR` and Playwright from `tests/browser`) |
 | `node packages/flow-theme/scripts/check-sync.mjs` | `tokens.json` equals `DESIGN.md` Appendix A |
 | `node scripts/design-system/check.mjs` | The design-system mirror equals `tokens.json`; assets, fonts and cards resolve |
+| `node scripts/site/readme-brand.mjs [--check]` | Regenerates (or checks) the README palettes in `docs/brand/` from `tokens.json` |
 | `node packages/flow-theme/scripts/build-css.mjs` | Regenerates `dist/` (globals, tokens, font faces) from `tokens.json` |
 | `npm ci --prefix apps/preview-v2` | Installs locked project-local build dependencies |
 | `node scripts/design-system/bundle/build-registry.mjs` | Builds local Flow gallery JS and CSS using preview dependencies, required before unit site tests |
 | `node scripts/site/build.mjs _site [--preview-v2 apps/preview-v2/out]` | Assembles the Pages site, including compatibility redirects |
 | `GEARFLOW_DIR=… BINDER_DIR=… node scripts/design-system/bundle/build.mjs --write` | Rebuilds the Flow/Binder live bundle; writes only the generated bundle files |
 | `PULSE_DIR=… node scripts/design-system/pulse/build.mjs --write` | Rebuilds the Pulse live bundle from a committed `qubered/a2-monitor` checkout (Vite borrowed from it); records the commit in the header and writes only `pulse-bundle.js` / `.css` |
+| `node scripts/design-system/stage-artifact.mjs [_artifact]` | Stages `design-system/` as the artifact's `project/` folder, folding the Flow registry overlay into `bundle.js` / `bundle.css` (run `build-registry.mjs` first) |
 
-Change the design system here first, then publish the same files to the artifact. The Pages
+Change the design system here first, then publish the staged `project/` files to the artifact
+(pictures under `assets/` are asset-store uploads named in `design-system.json`). The Pages
 workflow runs every check before it deploys.
 
 © RVLT Labs. Built for production companies, by a production company.

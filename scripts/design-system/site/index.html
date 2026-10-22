@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>RVLT Design System</title>
-<meta name="description" content="RVLT's design system for Flow, Binder and the site: tokens, live components, artwork and brand assets. Mirrors the claude.ai RVLT design system.">
+<meta name="description" content="RVLT's design system for Flow, Binder, Pulse and the site: tokens, live components, artwork and brand assets. Mirrors the claude.ai RVLT design system.">
 <script>
   try { var t = localStorage.getItem("rvlt-ds-theme"); if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t); } catch (e) {}
 </script>
@@ -161,7 +161,7 @@
     return output.join('\n');
   }
   var REPO = "https://github.com/RVLT-Labs/rvlt-designlanguage/tree/main/design-system/";
-  var GROUP_ORDER = ["Actions", "Status", "Surfaces", "Forms", "Navigation", "Data", "Identity", "Binder", "Illustration"];
+  var GROUP_ORDER = ["Actions", "Status", "Surfaces", "Forms", "Navigation", "Data", "Identity", "Binder", "Pulse", "Illustration"];
   var DARK_TILE = /(^|-)(dark|line|cream|espresso)(-|\.|$)|labs-logo|wordmark\.svg$/;
   var PAPER_TILE = /(^|-)light(-|\.|$)|^rvlt-mark\.svg$/;
   var root = document.documentElement, page = document.getElementById("page"), nav = document.getElementById("nav");
@@ -256,7 +256,7 @@
         var list = '<h2 class="ds-title" style="font-size:18px;margin:32px 0 12px">Components</h2><div class="cards">' + data.cards.filter(function (c) { return c.readme; }).map(function (c) {
           return '<a class="card" href="#/components/' + esc(c.name) + '"><b>' + esc(c.name) + "</b><span>" + esc(c.group) + " · " + (c.live ? "live" : "static") + "</span></a>";
         }).join("") + "</div>";
-        return '<div class="kicker">Flow · Binder · the site</div><h1 class="ds-title">RVLT design system</h1>' +
+        return '<div class="kicker">Flow · Binder · Pulse · the site</div><h1 class="ds-title">RVLT design system</h1>' +
           '<p class="lede">Tokens, live components, artwork and brand assets for every RVLT product.</p>' +
           (cover ? frame(cover, true) : "") + md(t) + list;
       });

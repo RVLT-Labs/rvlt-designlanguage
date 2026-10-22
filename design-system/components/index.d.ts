@@ -1,11 +1,12 @@
 // RVLT components — prop contracts copied from the source apps.
-// Shared primitives: TwoToned/gearflow src/components/ui (the RVLT registry as Flow ships it).
+// Shared primitives: the local registry, packages/flow-theme/registry/rvlt/ui (overlaid on window.Rvlt
+// in the published artifact bundle); Panel and SidebarSection still come from TwoToned/gearflow.
 // Binder components: RVLT-Labs/binder apps/web/src/components. Both are React + Radix + Tailwind v4.
 // Live: every component in components/bundle.js (window.Rvlt) is the real source compiled; Notice,
 // OfflineBanner, SyncStatus and CueTag below are documented here but shipped as static rf- renditions.
 import type * as React from "react";
 
-export type ColorIntent = "success" | "warning" | "error" | "info" | "neutral" | "primary";
+export type StatusIntent = "ok" | "warn" | "overbooked" | "repair" | "neutral" | "live";
 export type ModuleHue = "blue" | "amber" | "green" | "purple" | "coral" | "teal";
 export type AvatarHue = ModuleHue | "pink" | "lime";
 
@@ -22,29 +23,30 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 
 export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
   /** Default "neutral". Always render a text label. */
-  status?: "ok" | "warn" | "overbooked" | "repair" | "neutral" | "info" | "primary";
+  status?: "ok" | "warn" | "overbooked" | "repair" | "neutral";
 }
 
-export interface StatusIndicatorProps {
-  /** Domain status table, e.g. "asset", "project". */
-  category?: string;
-  /** Domain status value, e.g. "CHECKED_OUT". */
-  value?: string;
-  /** Direct intent when there is no category/value pair. */
-  intent?: ColorIntent;
-  /** Human-readable label — required, sentence case. */
-  label: string;
-  /** dot = detail views (default) · pill = tables */
-  variant?: "dot" | "pill";
-  className?: string;
+export interface StatusIndicatorProps extends React.HTMLAttributes<HTMLSpanElement> {
+  /** Default "neutral". `live` = connection freshness (green dot, pulses, glows). */
+  intent?: StatusIntent;
+  /** Dot size. Default "default". */
+  size?: "sm" | "default" | "lg";
+  /** Soft ring-glow around the dot. Auto-enabled for `live`. */
+  glow?: boolean;
+  /** Label beside the dot, sentence case. Status is never colour-only: pass one when standalone. */
+  label?: string;
 }
 
 export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   /** The one active / real-time card: elev fill + lit edge. */
   live?: boolean;
-  /** Clickable: lifts 3px to sh-hover. */
+  /** Opens something: put a CardLink in the title. Lifts 3px to sh-hover. Never onClick on the card. */
   interactive?: boolean;
+  /** Render as your own element (e.g. <article>, <li>) via Radix Slot. */
+  asChild?: boolean;
 }
+/** A real <a href> in an interactive card's title; stretches over the whole card. */
+export type CardLinkProps = React.AnchorHTMLAttributes<HTMLAnchorElement>;
 export type CardHeaderProps = React.HTMLAttributes<HTMLDivElement>;
 export type CardTitleProps = React.HTMLAttributes<HTMLDivElement>;
 export type CardDescriptionProps = React.HTMLAttributes<HTMLDivElement>;
@@ -97,10 +99,11 @@ export interface TabsTriggerProps extends React.ButtonHTMLAttributes<HTMLButtonE
   value: string;
 }
 
-export interface SectionHeaderProps {
+export interface SectionHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
   /** Overline label, sentence case — never uppercase. */
   label: string;
-  className?: string;
+  /** default = muted section label · prominent = Kalam red eyebrow (marketing and hero moments only). */
+  variant?: "default" | "prominent";
 }
 export interface SidebarSectionProps {
   title: string;
@@ -221,6 +224,107 @@ export interface CueTagProps {
   selected?: boolean;
   /** Accessible name: department, type, number, label, trigger. */
   "aria-label": string;
+}
+
+// ── Pulse (window.RvltPulse from components/pulse-bundle.js; qubered/a2-monitor) ──
+// A separate namespace: load ../pulse-bundle.css and ../pulse-bundle.js beside the Rvlt bundle.
+// Pulse is dark only. Prop names are the components' own; the data shapes are the fields the
+// cards read, as Pulse's API sends them (see the PulseChannelCard preview for a full example).
+
+export interface PulseLockupProps {
+  /** Accessible name. Default "Pulse by RVLT". */
+  label?: string;
+  /** App suffix after the wordmark, e.g. "Manager". */
+  suffix?: string;
+}
+export interface PulseTileProps {
+  /** Tile size in px. Default 36. */
+  size?: number;
+}
+
+export type PulseStatus = "good" | "caution" | "fault" | "unknown";
+export type PulseAvailability = "observed" | "inferred" | "stale" | "unknown";
+export interface PulseChannelStatuses {
+  rf: PulseStatus;
+  audio: PulseStatus;
+  battery: PulseStatus;
+  check: PulseStatus;
+}
+export interface PulseChannel {
+  id: string;
+  number: number;
+  name: string;
+  performer: string | null;
+  kind: string;
+  /** Unknown mic type: a glyph stands in for the photo; "inferred" reads "Likely". */
+  micType: string | null;
+  micTypeSource: "operator" | "inferred" | null;
+  hasImage: boolean;
+  input: { index: number; label: string };
+  statuses: PulseChannelStatuses;
+  audio: { availability: PulseAvailability; peakDbfs: number | null; rmsDbfs: number | null; [field: string]: unknown };
+  rf: { availability: PulseAvailability; levelDbm: number | null; linkQualityPercent: number | null; [field: string]: unknown };
+  battery: { availability: PulseAvailability; percent: number | null; bars: number | null; runtimeMinutes: number | null; [field: string]: unknown };
+  [field: string]: unknown;
+}
+export interface PulseAlert {
+  id: string;
+  kind: string;
+  dimension: string;
+  /** "critical" draws the red overlay and the attention pulse. */
+  severity: string;
+  /** Words on the overlay, e.g. "Battery critical". */
+  label: string;
+  detail: string;
+  channelId: string;
+  raisedAtUtc: string;
+  acknowledgedAtUtc: string | null;
+  [field: string]: unknown;
+}
+export interface PulseChannelCardProps {
+  channel: PulseChannel;
+  alert: PulseAlert | null;
+  report?: unknown;
+  /** Default "Select". */
+  actionLabel?: string;
+  /** Default "card". */
+  density?: string;
+  /** Default true. */
+  tabbable?: boolean;
+  overlayExpiryMs: number;
+  nowMs: number;
+  selected: boolean;
+  /** The channel in the operator's ears: a 2px ok ring. */
+  listening: boolean;
+  imageRevision: number;
+  /** A MeterStore (new RvltPulse.MeterStore(null) for a static feed). */
+  meterStore: unknown;
+  /** Draws the meter as stale rather than silent. */
+  metersStale: boolean;
+  onAcknowledge: () => void;
+  onSelect: () => void;
+  onLongPressSelect?: () => void;
+  onOpenDetail: () => void;
+}
+export interface PulseStatusStripProps {
+  statuses: PulseChannelStatuses;
+  /** Default false. */
+  compact?: boolean;
+}
+export interface PulseRunOfShowProps {
+  /** Always visible, even when the rows are hidden. */
+  summary: string;
+  needsAttention: boolean;
+  /** SessionBar rows. */
+  children: React.ReactNode;
+}
+export interface PulseSessionBarProps {
+  session: { roomId: string; activeId: string | null; nextId: string | null; sessions: { id: string; name: string; startMinute: number; channelCount: number }[]; [field: string]: unknown };
+  roomName?: string | null;
+  /** One per channel in the next session; any tone but "ready" counts toward the summary. */
+  turnover: { tone: string; readiness: string; [field: string]: unknown }[];
+  offline: boolean;
+  onOpen: () => void;
 }
 
 // ── Artwork (RVLT Flow Stickers and Wordmarks pack 1.1.0, examples/react/RvltArt.tsx) ──

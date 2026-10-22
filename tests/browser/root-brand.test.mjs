@@ -82,6 +82,8 @@ for (const theme of ['dark', 'light']) {
           // Keyboard focus and activation must reach the final navigation destination.
           await page.locator('.toc a').last().focus();
           await page.keyboard.press('Enter');
+          // Same-document navigation can land after the keypress resolves; wait for it.
+          await page.waitForURL(url => new URL(url).hash === '#using', { timeout: 2000 });
           assert.equal(new URL(page.url()).hash, '#using');
         } finally { await context.close(); }
       });
