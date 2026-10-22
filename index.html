@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>RVLT design language: brand reference</title>
-<meta name="description" content="The RVLT brand and design system for RVLT Labs, RVLT Flow and RVLT Binder: authority map, foundations, tokens with measured contrast, type, identity, components and product layers.">
+<meta name="description" content="The RVLT brand and design system for RVLT Labs, RVLT Flow, RVLT Binder and Pulse, by RVLT: authority map, foundations, tokens with measured contrast, type, identity, components and product layers.">
 <script>
   // theme before first paint: ?theme=light|dark, else the visitor's last choice, else Espresso
   (function () {
@@ -162,7 +162,7 @@ footer{padding:40px 0 64px;color:var(--ink-2);font-size:14px;border-top:1px soli
 <main id="main">
 <div class="hero"><div class="wrap">
   <p class="eyebrow">built for production companies, by a production company</p>
-  <h1>One design language for RVLT Labs, RVLT Flow and RVLT Binder.</h1>
+  <h1>One design language for RVLT Labs, RVLT Flow, RVLT Binder and Pulse.</h1>
   <p class="lead">This is the brand source of truth: the rules, the machine tokens with their measured contrast, the type, the identity assets, the components and how each product departs from the core. <a href="https://github.com/RVLT-Labs/rvlt-designlanguage/blob/main/DESIGN.md">DESIGN.md</a> is the full spec; this page renders it.</p>
   <div class="chips">
     <a class="btn btn-primary" href="design-system/">Open the component gallery</a>
@@ -176,10 +176,10 @@ footer{padding:40px 0 64px;color:var(--ink-2);font-size:14px;border-top:1px soli
   <p class="sec-d">One authority map, highest first. A higher layer always wins; fix the lower one in the same change. Machine copy: <a href="authority.json">authority.json</a>. Full text: <a href="https://github.com/RVLT-Labs/rvlt-designlanguage/blob/main/docs/AUTHORITY.md">docs/AUTHORITY.md</a>.</p>
   <ol class="layers">
     <li><div><b>Normative RVLT rules</b><span>DESIGN.md §0 to §18: meaning, accessibility, voice, budgets, the contrast contract, touch targets.</span></div></li>
-    <li><div><b>Product contracts</b><span>DESIGN.md §19: Flow and Binder, and only the differences recorded there as deliberate.</span></div></li>
+    <li><div><b>Product contracts</b><span>DESIGN.md §19: Flow, Binder and Pulse, and only the differences recorded there as deliberate.</span></div></li>
     <li><div><b>Canonical machine tokens</b><span><a href="tokens/tokens.json">tokens.json</a> and <a href="tokens/contrast.json">contrast.json</a>. Appendix A, §15.1 and the design-system tokens are checked mirrors.</span></div></li>
     <li><div><b>Implementation</b><span>The <code>@rvlt/flow-theme</code> registry: the public component contract.</span></div></li>
-    <li><div><b>Verified examples</b><span>Reference compositions, the static catalogue, preview-v2 and the gallery cards. Flow live cards render this repository's registry. Binder cards retain labelled, pinned app adapters.</span></div></li>
+    <li><div><b>Verified examples</b><span>Reference compositions, the static catalogue, preview-v2 and the gallery cards. Flow live cards render this repository's registry. Binder cards retain labelled, pinned app adapters; Pulse cards mount Pulse's own components at a pinned commit.</span></div></li>
     <li class="marketing"><div><b>Marketing expression</b><span>The <a href="examples/flow-marketing/">Flow marketing mockups</a>. Marketing never wins a conflict; its figures are illustrative.</span></div></li>
   </ol>
 </div></section>
@@ -348,6 +348,7 @@ footer{padding:40px 0 64px;color:var(--ink-2);font-size:14px;border-top:1px soli
     <figure class="mark"><img src="design-system/assets/Logos/rvlt-mark.svg" alt="RVLT mark" width="160" height="57"><figcaption>RVLT mark (drawn from BC Alphapipe outlines)</figcaption></figure>
     <figure class="mark labs"><img src="design-system/assets/Logos/rvlt-labs-logo.svg" alt="RVLT Labs logo" width="200" height="60"><figcaption>RVLT Labs (dark grounds only)</figcaption></figure>
     <figure class="mark"><img src="design-system/assets/Logos/binder-mark.svg" alt="RVLT Binder Rings B mark" width="72" height="72"><figcaption>Binder's Rings B</figcaption></figure>
+    <figure class="mark"><img src="design-system/assets/Logos/pulse-mark.svg" alt="Pulse five-bar mark" width="72" height="72"><figcaption>Pulse's five bars</figcaption></figure>
     <figure class="mark"><img src="design-system/assets/Logos/flow-mascot.svg" alt="Flow's stage-light mascot" width="72" height="72"><figcaption>Flow's stage light (Flow's in-app mascot)</figcaption></figure>
     <figure class="mark"><img src="assets/albert/svg/albert-avatar.svg" alt="Albert, RVLT's bearded dragon" width="96" height="96"><figcaption>Albert, RVLT's character</figcaption></figure>
     <figure class="mark"><img src="assets/albert/illustrations/albert-sitting-v4.png" alt="Albert sitting (locked illustration)" width="160" height="160" loading="lazy"><figcaption>Locked illustration: sitting</figcaption></figure>
@@ -361,7 +362,7 @@ footer{padding:40px 0 64px;color:var(--ink-2);font-size:14px;border-top:1px soli
   <h2 class="sec-h" id="components-h">Components</h2>
   <p class="sec-d">The <code>@rvlt/flow-theme</code> registry is the public component contract. Everything below is built and tested from it or labelled as an app adapter.</p>
   <div class="grid">
-    <div class="card"><h3>Component gallery</h3><p>Every card with its README. Live cards mount the Flow and Binder app adapters; static cards are labelled renditions.</p><a class="more" href="design-system/">Open the gallery</a></div>
+    <div class="card"><h3>Component gallery</h3><p>Every card with its README. Live cards mount the Flow, Binder and Pulse components; static cards are labelled renditions.</p><a class="more" href="design-system/">Open the gallery</a></div>
     <div class="card"><h3>Reference compositions</h3><p>Scan and return, the offline queue, clash recovery, the responsive scheduler and accessible forms, at 320px to desktop. Front-end only: no backend, no user testing claimed.</p><a class="more" href="examples/flows/">Open the compositions</a></div>
     <div class="card"><h3>Registry showcase</h3><p>preview-v2: every registry component compiled against the registry source, both themes.</p><a class="more" href="preview-v2/">Open preview-v2</a></div>
     <div class="card"><h3>Static catalogue</h3><p>Plain HTML and CSS states for every token and component, for non-React surfaces. The old <code>preview.html</code> URL redirects here.</p><a class="more" href="examples/static-catalogue/">Open the catalogue</a></div>
@@ -370,12 +371,14 @@ footer{padding:40px 0 64px;color:var(--ink-2);font-size:14px;border-top:1px soli
 
 <section id="product-layers" aria-labelledby="product-layers-h"><div class="wrap">
   <h2 class="sec-h" id="product-layers-h">Product layers</h2>
-  <p class="sec-d">Both products run on the same tokens, type, voice and states. These differences are deliberate, and the only places a product departs from the core (DESIGN.md §19).</p>
+  <p class="sec-d">All three products run on the same tokens, type, voice and states. These differences are deliberate, and the only places a product departs from the core (DESIGN.md §19).</p>
   <div class="grid">
     <div class="card"><h3>RVLT Flow: production operations</h3>
       <ul><li>Pill buttons with the hard red-700 drop.</li><li>Module hues for wayfinding: Projects blue, Assets amber, Crew purple, Schedule green, Maintenance coral, Warehouse teal. Active items keep an ink label; the hue carries the icon and indicator.</li><li>The stage-light mascot in empty states; Albert for RVLT-wide moments.</li><li>Phone: bottom tab bar, scan action in the thumb zone, scheduler as an agenda.</li></ul></div>
     <div class="card"><h3>RVLT Binder: the prompt corner</h3>
       <ul><li>Rounded-rectangle buttons (30px desktop, 44px phone).</li><li>The script page is always white paper, in both themes, on a dark stage.</li><li>Department colour is the only colour on the page, and it draws marks: outline, leader, dash. Abbreviations and numbers stay page ink.</li><li>Markup and Calling draw the page identically; offline is a muted state, never red.</li></ul></div>
+    <div class="card"><h3>Pulse, by RVLT: live audio and wireless monitoring</h3>
+      <ul><li>Dark only, read for a second at a time from a wing or a desk.</li><li>Red on a channel card means a critical fault and nothing else; live and listening are green.</li><li>Every state carries a glyph and a word; unknown is never drawn as zero or healthy. Measured values are Geist Mono.</li><li>Secondary controls are 1px pills with no offset shadow; mute and dim are always one touch away. No mascot, stickers or Kalam on live screens.</li></ul></div>
   </div>
   <h3 class="tgroup">Binder's fixed page (app chrome themes; the page does not)</h3>
   <div class="binder" aria-label="Binder script page sample">

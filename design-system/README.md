@@ -187,7 +187,7 @@ Touch targets are at least `touch-target` (44px). On phones, honour all four saf
   - Use a warm grade, never crushed black, never stock or AI.
   - Frame it like a card: 2px outline, `r-lg`, hard offset shadow.
   - Text goes beside a photo, or over it only on a `scrim`.
-- **Albert is RVLT's character.** He is a filled-in bearded dragon, used across every product and the site. Rules and asset picking are in the *Albert* section, and the files are in `assets/Albert` and `assets/Albert-illustrations`.
+- **Albert is RVLT's character.** He is a filled-in bearded dragon, used across every product and the site (in Pulse, never on live screens). Rules and asset picking are in the *Albert* section, and the files are in `assets/Albert` and `assets/Albert-illustrations`.
   - Use him for welcomes, onboarding, large empty states, success and assistant moments, always with the state in live text.
   - Never use him in alerts, compliance, conflict or destructive messages.
 - **Flow's stage light** (a moving-head light with googly eyes) stays as Flow's in-app mascot.

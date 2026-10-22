@@ -29,7 +29,8 @@ One map decides which source wins, highest first:
    §15.1 and `design-system/tokens.json` are checked mirrors.
 4. **Implementation**: the `@rvlt/flow-theme` registry, the public component contract.
 5. **Verified examples**: `examples/`, `apps/preview-v2` and the design-system cards, all built and
-   tested. Live cards render the Flow and Binder app adapters at pinned commits and say so.
+   tested. Live cards render the Flow and Binder app adapters and Pulse's components at pinned commits
+   and say so.
 6. **Marketing expression**: [`examples/flow-marketing/`](examples/flow-marketing/). Marketing
    never wins a conflict, and its figures are illustrative.
 

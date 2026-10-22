@@ -82,6 +82,10 @@ dark** (§3.1). Light "Paper" (§3.2) is the alternate.
 **You are an AI coding agent (e.g. Claude Code) building the RVLT Flow _app_ from
 this spec. It is authoritative. Follow these rules:**
 
+> Building **RVLT Binder** or **Pulse, by RVLT** instead? The same rules apply, then read
+> §19.2 or §19.3 for the only places that product departs. Pulse is dark only, keeps red for
+> critical faults on the grid, and has no mascot, stickers or Kalam on live screens.
+
 - **MUST use only tokens/values defined here** (§3 colour, §5 type, §6–7
   spacing/shape, Appendix A). Do **not** invent hex codes, off-scale font sizes,
   or new radii. If you need something that isn't here, derive it from the nearest
@@ -168,7 +172,8 @@ generic SaaS pattern.** Log the gap (§18.1).
   dark. The single signal colour; never a gradient, never one-of-many.
 - **Logo assets:** `design-system/assets/Logos/rvlt-labs-logo.svg` (full "RVLT LABS"),
   `design-system/assets/Logos/rvlt-mark.svg` (RVLT-only, red, `viewBox 0 0 1258 450.7`), plus
-  the Flow wordmarks, R marks, Binder's Rings B and Flow's mascot alongside them. Ship as SVG.
+  the Flow wordmarks, R marks, Binder's Rings B, Pulse's five-bar mark and Flow's mascot
+  alongside them. Ship as SVG.
 - **Character:** **Albert** — RVLT's bearded dragon (§11). Flow's stage-light mascot
   stays as Flow's in-app empty-state mark.
 - **Personality:** competent + warm + a little cheeky. The reliable roadie who's
@@ -773,7 +778,8 @@ cream `#FFFDF8`, espresso `#141210`, coral `#EF7E55`, RVLT red `#E0363D`.
   Albert in alerts, compliance, conflict or destructive messages. He is always filled.
 - **Flow's stage light** (a moving-head light with googly eyes) stays as **Flow's
   in-app** empty-state and loading mark (idle pose only). Binder uses Albert where it
-  wants a character; it has no mascot of its own.
+  wants a character; it has no mascot of its own. Pulse has none either, and keeps Albert,
+  stickers and Kalam off its live screens (§19.3).
 
 ---
 
@@ -1527,8 +1533,8 @@ table with availability columns"); avoid vague style words; name an app to filte
   hand-copying. Keep `tokens.json` == Appendix A.
 - `design-system/` — **the RVLT design system, mirrored file for file** from the claude.ai
   design-system artifact: overview README, `tokens.json`, the artwork and Albert guides,
-  25 component cards (README + preview; 20 mount the real Flow/Binder components from
-  `components/bundle.js`), the self-hosted fonts, and the Logos and Icons. Rendered live on
+  29 component cards (README + preview; 20 mount the real Flow/Binder components from
+  `components/bundle.js` and 3 mount Pulse's from `components/pulse-bundle.js`), the self-hosted fonts, and the Logos and Icons. Rendered live on
   the Pages site at `/design-system/`. `scripts/design-system/check.mjs` keeps its colours
   equal to `packages/flow-theme/tokens.json`.
 - `assets/stickers/` — the Stickers &amp; Wordmarks pack 1.1.0 (52 SVGs, manifest, palette,

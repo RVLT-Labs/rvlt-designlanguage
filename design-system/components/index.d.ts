@@ -226,6 +226,107 @@ export interface CueTagProps {
   "aria-label": string;
 }
 
+// ── Pulse (window.RvltPulse from components/pulse-bundle.js; qubered/a2-monitor) ──
+// A separate namespace: load ../pulse-bundle.css and ../pulse-bundle.js beside the Rvlt bundle.
+// Pulse is dark only. Prop names are the components' own; the data shapes are the fields the
+// cards read, as Pulse's API sends them (see the PulseChannelCard preview for a full example).
+
+export interface PulseLockupProps {
+  /** Accessible name. Default "Pulse by RVLT". */
+  label?: string;
+  /** App suffix after the wordmark, e.g. "Manager". */
+  suffix?: string;
+}
+export interface PulseTileProps {
+  /** Tile size in px. Default 36. */
+  size?: number;
+}
+
+export type PulseStatus = "good" | "caution" | "fault" | "unknown";
+export type PulseAvailability = "observed" | "inferred" | "stale" | "unknown";
+export interface PulseChannelStatuses {
+  rf: PulseStatus;
+  audio: PulseStatus;
+  battery: PulseStatus;
+  check: PulseStatus;
+}
+export interface PulseChannel {
+  id: string;
+  number: number;
+  name: string;
+  performer: string | null;
+  kind: string;
+  /** Unknown mic type: a glyph stands in for the photo; "inferred" reads "Likely". */
+  micType: string | null;
+  micTypeSource: "operator" | "inferred" | null;
+  hasImage: boolean;
+  input: { index: number; label: string };
+  statuses: PulseChannelStatuses;
+  audio: { availability: PulseAvailability; peakDbfs: number | null; rmsDbfs: number | null; [field: string]: unknown };
+  rf: { availability: PulseAvailability; levelDbm: number | null; linkQualityPercent: number | null; [field: string]: unknown };
+  battery: { availability: PulseAvailability; percent: number | null; bars: number | null; runtimeMinutes: number | null; [field: string]: unknown };
+  [field: string]: unknown;
+}
+export interface PulseAlert {
+  id: string;
+  kind: string;
+  dimension: string;
+  /** "critical" draws the red overlay and the attention pulse. */
+  severity: string;
+  /** Words on the overlay, e.g. "Battery critical". */
+  label: string;
+  detail: string;
+  channelId: string;
+  raisedAtUtc: string;
+  acknowledgedAtUtc: string | null;
+  [field: string]: unknown;
+}
+export interface PulseChannelCardProps {
+  channel: PulseChannel;
+  alert: PulseAlert | null;
+  report?: unknown;
+  /** Default "Select". */
+  actionLabel?: string;
+  /** Default "card". */
+  density?: string;
+  /** Default true. */
+  tabbable?: boolean;
+  overlayExpiryMs: number;
+  nowMs: number;
+  selected: boolean;
+  /** The channel in the operator's ears: a 2px ok ring. */
+  listening: boolean;
+  imageRevision: number;
+  /** A MeterStore (new RvltPulse.MeterStore(null) for a static feed). */
+  meterStore: unknown;
+  /** Draws the meter as stale rather than silent. */
+  metersStale: boolean;
+  onAcknowledge: () => void;
+  onSelect: () => void;
+  onLongPressSelect?: () => void;
+  onOpenDetail: () => void;
+}
+export interface PulseStatusStripProps {
+  statuses: PulseChannelStatuses;
+  /** Default false. */
+  compact?: boolean;
+}
+export interface PulseRunOfShowProps {
+  /** Always visible, even when the rows are hidden. */
+  summary: string;
+  needsAttention: boolean;
+  /** SessionBar rows. */
+  children: React.ReactNode;
+}
+export interface PulseSessionBarProps {
+  session: { roomId: string; activeId: string | null; nextId: string | null; sessions: { id: string; name: string; startMinute: number; channelCount: number }[]; [field: string]: unknown };
+  roomName?: string | null;
+  /** One per channel in the next session; any tone but "ready" counts toward the summary. */
+  turnover: { tone: string; readiness: string; [field: string]: unknown }[];
+  offline: boolean;
+  onOpen: () => void;
+}
+
 // ── Artwork (RVLT Flow Stickers and Wordmarks pack 1.1.0, examples/react/RvltArt.tsx) ──
 
 export type IllustrationId =

@@ -9,7 +9,7 @@
 
 He was approved on 2026-09-17 (revision 4). Three identity illustrations are locked: *sitting*, *on the roadcase* and *resting*. Every other pose and the 22 workday pieces are companion art built from them.
 
-Albert appears in every RVLT product and on the site. Flow's stage-light mascot stays as Flow's in-app empty-state mark. Binder has no mascot of its own and uses Albert where it wants a character.
+Albert appears in every RVLT product and on the site. Flow's stage-light mascot stays as Flow's in-app empty-state mark. Binder has no mascot of its own and uses Albert where it wants a character. Pulse has no mascot either, and keeps Albert off its live screens: monitoring is calm data.
 
 ## Picking an asset
 
