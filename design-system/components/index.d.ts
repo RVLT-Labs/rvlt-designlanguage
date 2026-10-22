@@ -1,11 +1,12 @@
 // RVLT components — prop contracts copied from the source apps.
-// Shared primitives: TwoToned/gearflow src/components/ui (the RVLT registry as Flow ships it).
+// Shared primitives: the local registry, packages/flow-theme/registry/rvlt/ui (overlaid on window.Rvlt
+// in the published artifact bundle); Panel and SidebarSection still come from TwoToned/gearflow.
 // Binder components: RVLT-Labs/binder apps/web/src/components. Both are React + Radix + Tailwind v4.
 // Live: every component in components/bundle.js (window.Rvlt) is the real source compiled; Notice,
 // OfflineBanner, SyncStatus and CueTag below are documented here but shipped as static rf- renditions.
 import type * as React from "react";
 
-export type ColorIntent = "success" | "warning" | "error" | "info" | "neutral" | "primary";
+export type StatusIntent = "ok" | "warn" | "overbooked" | "repair" | "neutral" | "live";
 export type ModuleHue = "blue" | "amber" | "green" | "purple" | "coral" | "teal";
 export type AvatarHue = ModuleHue | "pink" | "lime";
 
@@ -22,29 +23,30 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 
 export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
   /** Default "neutral". Always render a text label. */
-  status?: "ok" | "warn" | "overbooked" | "repair" | "neutral" | "info" | "primary";
+  status?: "ok" | "warn" | "overbooked" | "repair" | "neutral";
 }
 
-export interface StatusIndicatorProps {
-  /** Domain status table, e.g. "asset", "project". */
-  category?: string;
-  /** Domain status value, e.g. "CHECKED_OUT". */
-  value?: string;
-  /** Direct intent when there is no category/value pair. */
-  intent?: ColorIntent;
-  /** Human-readable label — required, sentence case. */
-  label: string;
-  /** dot = detail views (default) · pill = tables */
-  variant?: "dot" | "pill";
-  className?: string;
+export interface StatusIndicatorProps extends React.HTMLAttributes<HTMLSpanElement> {
+  /** Default "neutral". `live` = connection freshness (green dot, pulses, glows). */
+  intent?: StatusIntent;
+  /** Dot size. Default "default". */
+  size?: "sm" | "default" | "lg";
+  /** Soft ring-glow around the dot. Auto-enabled for `live`. */
+  glow?: boolean;
+  /** Label beside the dot, sentence case. Status is never colour-only: pass one when standalone. */
+  label?: string;
 }
 
 export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   /** The one active / real-time card: elev fill + lit edge. */
   live?: boolean;
-  /** Clickable: lifts 3px to sh-hover. */
+  /** Opens something: put a CardLink in the title. Lifts 3px to sh-hover. Never onClick on the card. */
   interactive?: boolean;
+  /** Render as your own element (e.g. <article>, <li>) via Radix Slot. */
+  asChild?: boolean;
 }
+/** A real <a href> in an interactive card's title; stretches over the whole card. */
+export type CardLinkProps = React.AnchorHTMLAttributes<HTMLAnchorElement>;
 export type CardHeaderProps = React.HTMLAttributes<HTMLDivElement>;
 export type CardTitleProps = React.HTMLAttributes<HTMLDivElement>;
 export type CardDescriptionProps = React.HTMLAttributes<HTMLDivElement>;
@@ -97,10 +99,11 @@ export interface TabsTriggerProps extends React.ButtonHTMLAttributes<HTMLButtonE
   value: string;
 }
 
-export interface SectionHeaderProps {
+export interface SectionHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
   /** Overline label, sentence case — never uppercase. */
   label: string;
-  className?: string;
+  /** default = muted section label · prominent = Kalam red eyebrow (marketing and hero moments only). */
+  variant?: "default" | "prominent";
 }
 export interface SidebarSectionProps {
   title: string;

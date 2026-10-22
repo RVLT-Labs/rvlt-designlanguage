@@ -159,8 +159,8 @@
         },
         "pulse-mark.svg": {
           "name": "pulse-mark.svg",
-          "blob": "3dd1be945ea42d71cb006cb5905228bc",
-          "size": 460,
+          "blob": "24ade48dc526766d7c03104c9350c31f",
+          "size": 495,
           "type": "image/svg+xml"
         }
       },
@@ -983,9 +983,9 @@
   ],
   "lastChange": {
     "by": "Claude",
-    "at": "2026-10-19T12:10:00Z",
-    "via": "GitHub · RVLT-Labs/rvlt-designlanguage design-system/",
-    "note": "Mirrored into the design-language repo as design-system/ (live on its Pages site). Added font and Lucide licences, r-pill set to flow-theme's 999px, provenance refs moved to the merged mains."
+    "at": "2026-10-22T01:17:22Z",
+    "via": "GitHub · RVLT-Labs/rvlt-designlanguage@e284478 design-system/",
+    "note": "Re-synced to v1.4.0: Pulse, by RVLT added (3 live cards, pulse-mark logo); action-red, red-text, control-line and info tokens added; Flow cards render the local registry (folded into bundle.js / bundle.css); card READMEs and previews updated."
   },
   "layout": "files",
   "libraries": [
