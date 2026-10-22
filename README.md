@@ -1,3 +1,10 @@
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="design-system/assets/Logos/rvlt-labs-logo.svg">
+    <img src="design-system/assets/Logos/rvlt-mark.svg" alt="RVLT Labs" height="64">
+  </picture>
+</p>
+
 # RVLT design language
 
 The brand and design system for **RVLT Labs** and every RVLT product: **RVLT Flow** (production
@@ -58,6 +65,14 @@ both themes and there are no accepted exceptions (`DESIGN.md` §3.8).
 | Control boundary (`--input`) | `#857A69` | `#1D1A15` |
 | `faint` (non-text only) | `#6E665A` | `#756B58` |
 
+<picture>
+  <source media="(prefers-color-scheme: light)" srcset="docs/brand/palette-light.svg">
+  <img src="docs/brand/palette-dark.svg" alt="The RVLT palette: surfaces, text, red, status and module hues, drawn from tokens.json" width="100%">
+</picture>
+
+The palette follows your GitHub theme: Espresso in dark mode, Paper in light. It is generated from
+`tokens.json` by `scripts/site/readme-brand.mjs`.
+
 Install the generated theme with `@import "@rvlt/flow-theme/globals.css"`; see
 [`packages/flow-theme/README.md`](packages/flow-theme/README.md).
 
@@ -79,6 +94,24 @@ case everywhere; nothing below 11px; reading body at 16px or more.
 
 ## Identity and assets
 
+| RVLT Labs | RVLT Flow | RVLT Binder | Pulse, by RVLT |
+|:---:|:---:|:---:|:---:|
+| <picture><source media="(prefers-color-scheme: dark)" srcset="design-system/assets/Logos/rvlt-labs-logo.svg"><img src="design-system/assets/Logos/rvlt-mark.svg" alt="RVLT" height="36"></picture> | <picture><source media="(prefers-color-scheme: dark)" srcset="design-system/assets/Logos/rvlt-flow-wordmark-dark.svg"><img src="design-system/assets/Logos/rvlt-flow-wordmark-light.svg" alt="RVLT Flow" height="36"></picture> | <img src="design-system/assets/Logos/binder-mark.svg" alt="RVLT Binder Rings B mark" height="56"> | <img src="design-system/assets/Logos/pulse-mark.svg" alt="Pulse five-bar mark" height="56"> |
+
+<p>
+  <img src="assets/albert/illustrations/albert-sitting-v4.png" alt="Albert, RVLT's bearded dragon, sitting" width="180">
+  <img src="assets/stickers/svg/road-case-sticker.svg" alt="" width="104">
+  <img src="assets/stickers/svg/microphone-sticker.svg" alt="" width="104">
+  <img src="assets/stickers/svg/walkie-talkie-sticker.svg" alt="" width="104">
+  <img src="assets/stickers/svg/coffee-mug-sticker.svg" alt="" width="104">
+</p>
+<p>
+  <img src="assets/stickers/svg/standby-patch.svg" alt="Standby patch" height="64">
+  <img src="assets/stickers/svg/go-patch.svg" alt="Go! patch" height="64">
+  <img src="assets/stickers/svg/crew-patch.svg" alt="Crew patch" height="64">
+  <img src="assets/stickers/svg/on-air-patch.svg" alt="On air patch" height="64">
+</p>
+
 - **Marks:** [`design-system/assets/Logos/`](design-system/assets/Logos): `rvlt-mark.svg`,
   `rvlt-labs-logo.svg`, the Flow wordmarks, R marks, Binder's Rings B and Flow's mascot. Ship as
   SVG; never retype, recolour or redraw.
@@ -87,6 +120,8 @@ case everywhere; nothing below 11px; reading body at 16px or more.
 - **Albert**, RVLT's character: [`assets/albert/`](assets/albert) (SVGs, the three locked
   illustrations pinned in `Design-lock.json`, the workday set; `DESIGN.md` §11).
 - **Icons:** Lucide at 16 / 20 / 24px, 2px stroke; the 42px patch icon at 2.6px.
+- **Light and dark grounds:** RVLT LABS (white LABS) and the dark Flow wordmark are for dark
+  grounds only. The images above switch with your GitHub theme rather than recolouring a mark.
 
 The packs are supplied artwork. Use the files unchanged; never generate, redraw or recombine them.
 
@@ -126,6 +161,7 @@ The repository has no runtime dependencies at its root. Node 22.
 | `npm run test:browser` | Browser regressions against a built site (needs `RVLT_SITE_DIR` and Playwright from `tests/browser`) |
 | `node packages/flow-theme/scripts/check-sync.mjs` | `tokens.json` equals `DESIGN.md` Appendix A |
 | `node scripts/design-system/check.mjs` | The design-system mirror equals `tokens.json`; assets, fonts and cards resolve |
+| `node scripts/site/readme-brand.mjs [--check]` | Regenerates (or checks) the README palettes in `docs/brand/` from `tokens.json` |
 | `node packages/flow-theme/scripts/build-css.mjs` | Regenerates `dist/` (globals, tokens, font faces) from `tokens.json` |
 | `npm ci --prefix apps/preview-v2` | Installs locked project-local build dependencies |
 | `node scripts/design-system/bundle/build-registry.mjs` | Builds local Flow gallery JS and CSS using preview dependencies, required before unit site tests |

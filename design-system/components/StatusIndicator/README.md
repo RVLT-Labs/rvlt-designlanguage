@@ -1,9 +1,24 @@
 # StatusIndicator
 
-The distributed registry component shows a decorative dot and a visible, muted text label. Supply `label` or adjacent visible status text. Colour alone never carries state.
+A decorative status dot with a visible, muted text label beside it; colour alone never carries state.
 
-Public intents: `ok`, `warn`, `overbooked`, `repair`, `neutral`, `live`. Sizes: `sm`, `default`, `lg`. `glow` enables a soft ring. `live` means connection freshness, uses green and stops pulsing under reduced motion. Active selection is a focus/selection treatment. Checked-out equipment is a domain label, not connection freshness.
+## Intents
+| intent | dot | means |
+|---|---|---|
+| `ok` | `ok` | available, ready, confirmed |
+| `warn` | `warn` | prepping, due, check |
+| `overbooked` | `t-out` | clash, overdue, lost |
+| `repair` | `rep` | in repair |
+| `neutral` (default) | `muted` | enquiry, checked out, plain |
+| `live` | `ok`, pulsing, with a soft glow | connection freshness only |
 
-Domain values are mapped explicitly by the consumer: AVAILABLE to `ok`, IN_MAINTENANCE to `warn`, LOST to `overbooked`, CHECKED_OUT to `neutral` with the visible label “Checked out”. No domain adapter or pill variant is exported. For a pill use Badge and retain visible text.
+Sizes `sm`, `default`, `lg`. `glow` adds a soft ring in the intent's soft fill; `live` turns it on and stops pulsing under reduced motion. The label is 12px medium `muted`.
 
-Copyable, compiled source: `packages/flow-theme/examples/statuses.tsx`, rendered at `/preview-v2/contracts/#statuses`. Table's phone alternative is a consumer responsibility: retain the semantic table in a scroll region or provide a labelled card list; never hide required columns silently.
+`live` means the data connection is fresh ("Connection live"). It is not an active selection (that is a focus/selection treatment) and not an equipment state: checked-out gear is `neutral` with the visible label "Checked out".
+
+## Consumer provides
+`label` (sentence case), or visible status text right beside the dot. Domain values are mapped explicitly by the consumer, for example AVAILABLE → `ok`, IN_MAINTENANCE → `warn`, LOST → `overbooked`, CHECKED_OUT → `neutral` "Checked out". No domain adapter or pill variant is exported: for a pill, use Badge with its visible text.
+
+Copyable source: `packages/flow-theme/examples/statuses.tsx`, rendered at `/preview-v2/contracts/#statuses`.
+
+_Published Flow preview: local registry source, compiled by `scripts/design-system/bundle/build-registry.mjs`. The pinned external bundle is retained for Binder adapters._

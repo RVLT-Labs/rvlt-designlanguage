@@ -983,9 +983,9 @@
   ],
   "lastChange": {
     "by": "Claude",
-    "at": "2026-10-22T01:17:22Z",
-    "via": "GitHub · RVLT-Labs/rvlt-designlanguage@e284478 design-system/",
-    "note": "Re-synced to v1.4.0: Pulse, by RVLT added (3 live cards, pulse-mark logo); action-red, red-text, control-line and info tokens added; Flow cards render the local registry (folded into bundle.js / bundle.css); card READMEs and previews updated."
+    "at": "2026-10-22T01:25:56Z",
+    "via": "GitHub · RVLT-Labs/rvlt-designlanguage design-system/",
+    "note": "Badge and StatusIndicator READMEs match the registry API (no info/primary Badge statuses, intent table, no contrast exception); Table README: status as a dot or Badge, phone alternative."
   },
   "layout": "files",
   "libraries": [
